@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>goald</groupId>
+	<artifactId>goald-parent</artifactId>
+	<version>0.0.1</version>
+
+	<modules>
+		<module>goald-core</module>
+		<module>evaluation-commons</module>
+		<module>scalability-evaluation</module>
+		<module>filling-station-case-study</module>
+	</modules>
+
+	<name>goald-parent</name>
+	<packaging>pom</packaging>
+	<url>http://goald.io</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<bintray.subject>lesunb</bintray.subject>
+		<bintray.repo>goald</bintray.repo>
+		<bintray.package>goald</bintray.package>
+	</properties>
+
+	<scm>
+		<connection>scm:git:https://github.com/lesunb/goald.git</connection>
+		<developerConnection>scm:git:git@github.com:gabrielsr/goald.git</developerConnection>
+		<url>https://github.com/lesunb/goald</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>external.atlassian.jgitflow</groupId>
+				<artifactId>jgitflow-maven-plugin</artifactId>
+				<version>1.0-m5.1</version>
+			</plugin>
+
+			<!-- Coberture Report -->
+			<plugin>
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>4.2.0</version>
+				<configuration>
+					<repoToken>mE1jiIBd2rwLbiPz8Gv75KRUt26Hr7pC7</repoToken>
+				</configuration>
+			</plugin>
+			<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.7.6.201602180812</version>
+					<executions>
+							<execution>
+									<id>prepare-agent</id>
+									<goals>
+											<goal>prepare-agent</goal>
+									</goals>
+							</execution>
+					</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<distributionManagement>
+		<repository>
+			<id>bintray</id>
+			<url>https://api.bintray.com/maven/${bintray.subject}/${bintray.repo}/${bintray.package}</url>
+		</repository>
+	</distributionManagement>
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
