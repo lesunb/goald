@@ -1,0 +1,11 @@
+target/
+bin
+logs/
+*~
+.classpath
+.project
+.settings
+.DS_Store
+.checkstyle
+*.bak
+evaluation/result/
