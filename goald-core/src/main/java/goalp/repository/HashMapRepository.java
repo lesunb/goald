@@ -1,8 +1,7 @@
-package goald.beliefs;
+package goalp.repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,20 +10,25 @@ import com.artemis.Component;
 import goald.beliefs.model.Bundle;
 import goald.beliefs.model.IRepository;
 import goald.desires.model.Goal;
-import goalp.repository.HashMapRepository.BundleType;
 
 public class HashMapRepository extends Component implements IRepository {
 
-	protected HashMap<String, Set<Bundle>> knownDefinitions;
+	protected HashMap<String, List<Bundle>> knownDefinitions;
 	
-	protected HashMap<String, Set<Bundle>> knownImplementations;
-		
+	protected HashMap<String, List<Bundle>> knownImplementations;
+	
+	public enum BundleType {
+		DEFINITION,
+		IMPLEMENTATION
+	}
+	
+	
 	int repoSize = 0;
 
 	/* (non-Javadoc)
 	 * @see goalp.systems.IRepository#getKnownArtifacts()
 	 */
-	protected HashMap<String, Set<Bundle>> getKnownBundles(BundleType type) {
+	protected HashMap<String, List<Bundle>> getKnownBundles(BundleType type) {
 		if(type == BundleType.DEFINITION ) {
 			if(knownDefinitions == null){
 				knownDefinitions = new HashMap<>();
@@ -52,9 +56,9 @@ public class HashMapRepository extends Component implements IRepository {
 	}
 	
 	private void put(BundleType type, Goal goal, Bundle artifact) {
-		Set<Bundle> list = getKnownBundles(type).get(goal.getIdentication());
+		List<Bundle> list = getKnownBundles(type).get(goal.getIdentication());
 		if (list == null) {
-			list = new HashSet<>();
+			list = new ArrayList<>();
 			getKnownBundles(type).put(goal.getIdentication(), list);
 		}
 		list.add(artifact);
@@ -68,11 +72,11 @@ public class HashMapRepository extends Component implements IRepository {
 	 * @see goalp.systems.IRepository#getArtifactsThatProvideGoal(java.lang.String)
 	 */
 	@Override
-	public Bundle queryForDefinition(String goalId){
+	public Bundle queryForDefinition(Goal goal){
 		List<Bundle> bundles = new ArrayList<>();
-		Set<Bundle> bundlesSet = getKnownBundles(BundleType.DEFINITION).get(goalId);
-		if(bundlesSet != null) {
-			bundles.addAll(bundlesSet);
+		List<Bundle> bundlesList = getKnownBundles(BundleType.DEFINITION).get(goal.getIdentication());
+		if(bundlesList != null) {
+			bundles.addAll(bundlesList);
 		}
 		return bundles.get(0);
 	}
@@ -81,46 +85,46 @@ public class HashMapRepository extends Component implements IRepository {
 	 * @see goalp.systems.IRepository#getArtifactsThatProvideGoal(java.lang.String)
 	 */
 	@Override
-	public List<Bundle>  queryForImplementations(String goalId){
+	public List<Bundle>  queryForImplementations(Goal goal){
 		List<Bundle> bundles = new ArrayList<>();
-		Set<Bundle> bundlesSet = getKnownBundles(BundleType.IMPLEMENTATION).get(goalId);
-		if(bundlesSet != null) {
-			bundles.addAll(bundlesSet);
+		List<Bundle> bundlesList = getKnownBundles(BundleType.IMPLEMENTATION).get(goal.getIdentication());
+		if(bundlesList != null) {
+			bundles.addAll(bundlesList);
 		}
 		return bundles;
-	}
-
-	@Override
-	public List<Bundle> queryForDefinitions(String goalId) {
-		List<Bundle> bundles = new ArrayList<>();
-		Set<Bundle> bundlesSet = getKnownBundles(BundleType.DEFINITION).get(goalId);
-		if(bundlesSet != null) {
-			bundles.addAll(bundlesSet);
-		}
-		return bundles;
-	}
-
-	@Override
-	public Set<Bundle> queryFor(BundleType type, String goalId) {
-		return getKnownBundles(type).get(goalId);
-	}
-
-	@Override
-	public Bundle queryForDefinition(Goal goal) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Bundle> queryForImplementations(Goal goal) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public List<Bundle> queryForDefinitions(Goal goal) {
+		List<Bundle> bundles = new ArrayList<>();
+		List<Bundle> bundlesList = getKnownBundles(BundleType.DEFINITION).get(goal.getIdentication());
+		if(bundlesList != null) {
+			bundles.addAll(bundlesList);
+		}
+		return bundles;
+	}
+
+	@Override
+	public Bundle queryForDefinition(String goalId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Bundle> queryForImplementations(String goalId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Bundle> queryForDefinitions(String goalId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Bundle> queryFor(BundleType type, String goalId) {
+		return getKnownBundles(type).get(goalId);
 	}
 
 }

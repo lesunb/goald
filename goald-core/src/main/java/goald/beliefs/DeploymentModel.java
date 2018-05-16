@@ -1,20 +1,21 @@
 package goald.beliefs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.artemis.Component;
 
-import goald.beliefs.util.DeploymentUnit;
-import goald.desires.model.Goal;
+import goald.beliefs.model.DeploymentUnit;
 
 public class DeploymentModel extends Component {
 
-	DeploymentUnit metaGoal;
-
-	/**
-	 * Modify the root meta goal adding a new goal dependency and 
-	 * 
-	 * @param goal
-	 */
-	protected void addFirstLevelGoal(Goal goal) {}
+	List<DeploymentUnit> firstLevelDeploymentUnits;
 	
+	public List<DeploymentUnit> getFistLevelDeploymentUnits() {
+		if( this.firstLevelDeploymentUnits == null) {
+			this.firstLevelDeploymentUnits = new ArrayList<>();
+		}
+		return this.firstLevelDeploymentUnits;
+	}	
 
 }

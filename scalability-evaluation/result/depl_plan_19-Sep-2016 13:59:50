@@ -1,0 +1,630 @@
+## Root Goal
+|_br.unb.tree0goalDeep2_653267889566551:0.0.1
+ |_br.unb.tree0artifactDeep2_18863018625106664:0.0.1
+ |_br.unb.tree0goalDeep1_3888542764759969:0.0.1
+  |_br.unb.tree0artifactDeep1_7242617341137517:0.0.1
+  |_br.unb.tree0:goalLeaf_6410196452936646:0.0.1
+   |_br.unb.tree0artifactLeaf_11678203595021863C11C4:0.0.1::[C11, C4]
+  |_br.unb.tree0:goalLeaf_3347621678937128:0.0.1
+   |_br.unb.tree0artifactLeaf_45346236188777256C14C19:0.0.1::[C14, C19]
+  |_br.unb.tree0:goalLeaf_23300712047298733:0.0.1
+   |_br.unb.tree0artifactLeaf_6309522323460383C17C12:0.0.1::[C17, C12]
+  |_br.unb.tree0:goalLeaf_16255039756936218:0.0.1
+   |_br.unb.tree0artifactLeaf_6509049137421221C14C18:0.0.1::[C14, C18]
+  |_br.unb.tree0:goalLeaf_5801784927064909:0.0.1
+   |_br.unb.tree0artifactLeaf_7301051107508094C5C0:0.0.1::[C5, C0]
+ |_br.unb.tree0goalDeep1_7171896999278989:0.0.1
+  |_br.unb.tree0artifactDeep1_4185641218006827:0.0.1
+  |_br.unb.tree0:goalLeaf_9155270714812651:0.0.1
+   |_br.unb.tree0artifactLeaf_9258319378882394C18C10:0.0.1::[C18, C10]
+  |_br.unb.tree0:goalLeaf_9144050535974172:0.0.1
+   |_br.unb.tree0artifactLeaf_4613223997708147C7C0:0.0.1::[C7, C0]
+  |_br.unb.tree0:goalLeaf_21968915501413244:0.0.1
+   |_br.unb.tree0artifactLeaf_16350911842063987C3C4:0.0.1::[C3, C4]
+  |_br.unb.tree0:goalLeaf_8985693625599543:0.0.1
+   |_br.unb.tree0artifactLeaf_2293797350659994C14C11:0.0.1::[C14, C11]
+  |_br.unb.tree0:goalLeaf_8328984665682679:0.0.1
+   |_br.unb.tree0artifactLeaf_19749319808612964C10C11:0.0.1::[C10, C11]
+ |_br.unb.tree0goalDeep1_1803913119421362:0.0.1
+  |_br.unb.tree0artifactDeep1_4969027100905169:0.0.1
+  |_br.unb.tree0:goalLeaf_26173771820091696:0.0.1
+   |_br.unb.tree0artifactLeaf_22317227411326512C18C8:0.0.1::[C18, C8]
+  |_br.unb.tree0:goalLeaf_134845737744979:0.0.1
+   |_br.unb.tree0artifactLeaf_8825785163582053C15C0:0.0.1::[C15, C0]
+  |_br.unb.tree0:goalLeaf_03177201003093977:0.0.1
+   |_br.unb.tree0artifactLeaf_4019085156266593C2C10:0.0.1::[C2, C10]
+  |_br.unb.tree0:goalLeaf_786917288774598:0.0.1
+   |_br.unb.tree0artifactLeaf_46116266384412574C7C2:0.0.1::[C7, C2]
+  |_br.unb.tree0:goalLeaf_7982684307365799:0.0.1
+   |_br.unb.tree0artifactLeaf_45283084295921794C8C6:0.0.1::[C8, C6]
+ |_br.unb.tree0goalDeep1_3881864423736143:0.0.1
+  |_br.unb.tree0artifactDeep1_22641445693293005:0.0.1
+  |_br.unb.tree0:goalLeaf_1557491925006511:0.0.1
+   |_br.unb.tree0artifactLeaf_6619893507088338C19C9:0.0.1::[C19, C9]
+  |_br.unb.tree0:goalLeaf_4451050342811893:0.0.1
+   |_br.unb.tree0artifactLeaf_5245166561973066C10C7:0.0.1::[C10, C7]
+  |_br.unb.tree0:goalLeaf_9915809619958617:0.0.1
+   |_br.unb.tree0artifactLeaf_37466770157284535C0C8:0.0.1::[C0, C8]
+  |_br.unb.tree0:goalLeaf_5619058250772986:0.0.1
+   |_br.unb.tree0artifactLeaf_13769393836384847C3C4:0.0.1::[C3, C4]
+  |_br.unb.tree0:goalLeaf_06133469764794253:0.0.1
+   |_br.unb.tree0artifactLeaf_9224949185073836C19C9:0.0.1::[C19, C9]
+ |_br.unb.tree0goalDeep1_668127553754663:0.0.1
+  |_br.unb.tree0artifactDeep1_1499037607323197:0.0.1
+  |_br.unb.tree0:goalLeaf_9528529391144366:0.0.1
+   |_br.unb.tree0artifactLeaf_4698553515161846C8C7:0.0.1::[C8, C7]
+  |_br.unb.tree0:goalLeaf_20792120407112913:0.0.1
+   |_br.unb.tree0artifactLeaf_7918730764039318C9C6:0.0.1::[C9, C6]
+  |_br.unb.tree0:goalLeaf_6616143071270304:0.0.1
+   |_br.unb.tree0artifactLeaf_1613489755654116C17C3:0.0.1::[C17, C3]
+  |_br.unb.tree0:goalLeaf_7773040873471936:0.0.1
+   |_br.unb.tree0artifactLeaf_2360103928663786C13C10:0.0.1::[C13, C10]
+  |_br.unb.tree0:goalLeaf_6348469352942582:0.0.1
+   |_br.unb.tree0artifactLeaf_9912402446689182C4C17:0.0.1::[C4, C17]
+## Root Goal
+|_br.unb.tree1goalDeep2_06232480981095667:0.0.1
+ |_br.unb.tree1artifactDeep2_2559977743834013:0.0.1
+ |_br.unb.tree1goalDeep1_12867881838991235:0.0.1
+  |_br.unb.tree1artifactDeep1_6460476495470455:0.0.1
+  |_br.unb.tree1:goalLeaf_28261771066463337:0.0.1
+   |_br.unb.tree1artifactLeaf_7306985081039559C18C15:0.0.1::[C18, C15]
+  |_br.unb.tree1:goalLeaf_13324540859591116:0.0.1
+   |_br.unb.tree1artifactLeaf_8068148419183419C15C11:0.0.1::[C15, C11]
+  |_br.unb.tree1:goalLeaf_37698261373960074:0.0.1
+   |_br.unb.tree1artifactLeaf_7103836749605986C10C15:0.0.1::[C10, C15]
+  |_br.unb.tree1:goalLeaf_6378101493731739:0.0.1
+   |_br.unb.tree1artifactLeaf_514264564663812C11C9:0.0.1::[C11, C9]
+  |_br.unb.tree1:goalLeaf_05714658325926203:0.0.1
+   |_br.unb.tree1artifactLeaf_6042000629023307C1C5:0.0.1::[C1, C5]
+ |_br.unb.tree1goalDeep1_012345652989214084:0.0.1
+  |_br.unb.tree1artifactDeep1_7561426746637157:0.0.1
+  |_br.unb.tree1:goalLeaf_8117066539759759:0.0.1
+   |_br.unb.tree1artifactLeaf_7096463190498908C11C6:0.0.1::[C11, C6]
+  |_br.unb.tree1:goalLeaf_33123551930623596:0.0.1
+   |_br.unb.tree1artifactLeaf_8075040152833304C2C15:0.0.1::[C2, C15]
+  |_br.unb.tree1:goalLeaf_08144910023794405:0.0.1
+   |_br.unb.tree1artifactLeaf_8402765782754927C6C12:0.0.1::[C6, C12]
+  |_br.unb.tree1:goalLeaf_49406699889071337:0.0.1
+   |_br.unb.tree1artifactLeaf_4129760506679132C12C0:0.0.1::[C12, C0]
+  |_br.unb.tree1:goalLeaf_5820200323774254:0.0.1
+   |_br.unb.tree1artifactLeaf_37348864952764205C11C8:0.0.1::[C11, C8]
+ |_br.unb.tree1goalDeep1_9427491335001977:0.0.1
+  |_br.unb.tree1artifactDeep1_541121633152974:0.0.1
+  |_br.unb.tree1:goalLeaf_4937636772851022:0.0.1
+   |_br.unb.tree1artifactLeaf_6482903732238948C2C5:0.0.1::[C2, C5]
+  |_br.unb.tree1:goalLeaf_3792229776092003:0.0.1
+   |_br.unb.tree1artifactLeaf_6505444693889383C1C11:0.0.1::[C1, C11]
+  |_br.unb.tree1:goalLeaf_584474338352146:0.0.1
+   |_br.unb.tree1artifactLeaf_6401018599389409C4C10:0.0.1::[C4, C10]
+  |_br.unb.tree1:goalLeaf_17572698785303043:0.0.1
+   |_br.unb.tree1artifactLeaf_29918667550455724C14C17:0.0.1::[C14, C17]
+  |_br.unb.tree1:goalLeaf_6140229245911246:0.0.1
+   |_br.unb.tree1artifactLeaf_6712197282888813C10C18:0.0.1::[C10, C18]
+ |_br.unb.tree1goalDeep1_022522368304608187:0.0.1
+  |_br.unb.tree1artifactDeep1_04963635997471072:0.0.1
+  |_br.unb.tree1:goalLeaf_9505022248162859:0.0.1
+   |_br.unb.tree1artifactLeaf_39406309862124234C2C10:0.0.1::[C2, C10]
+  |_br.unb.tree1:goalLeaf_21487553941513082:0.0.1
+   |_br.unb.tree1artifactLeaf_5152124716397456C16C14:0.0.1::[C16, C14]
+  |_br.unb.tree1:goalLeaf_6196581261089211:0.0.1
+   |_br.unb.tree1artifactLeaf_3933938443112305C17C3:0.0.1::[C17, C3]
+  |_br.unb.tree1:goalLeaf_001095006040822688:0.0.1
+   |_br.unb.tree1artifactLeaf_4144208368101482C4C2:0.0.1::[C4, C2]
+  |_br.unb.tree1:goalLeaf_44687383698646255:0.0.1
+   |_br.unb.tree1artifactLeaf_8645569586311546C1C8:0.0.1::[C1, C8]
+ |_br.unb.tree1goalDeep1_2542037867513698:0.0.1
+  |_br.unb.tree1artifactDeep1_5277393780517499:0.0.1
+  |_br.unb.tree1:goalLeaf_5313203895765397:0.0.1
+   |_br.unb.tree1artifactLeaf_6360699812389348C15C3:0.0.1::[C15, C3]
+  |_br.unb.tree1:goalLeaf_8732115635168423:0.0.1
+   |_br.unb.tree1artifactLeaf_07617608733244141C9C0:0.0.1::[C9, C0]
+  |_br.unb.tree1:goalLeaf_13252925764723678:0.0.1
+   |_br.unb.tree1artifactLeaf_4858733752976142C14C7:0.0.1::[C14, C7]
+  |_br.unb.tree1:goalLeaf_8483763390562958:0.0.1
+   |_br.unb.tree1artifactLeaf_6184557347006178C6C2:0.0.1::[C6, C2]
+  |_br.unb.tree1:goalLeaf_7049252609741831:0.0.1
+   |_br.unb.tree1artifactLeaf_9839212094699736C14C18:0.0.1::[C14, C18]
+## Root Goal
+|_br.unb.tree2goalDeep2_27325525321226707:0.0.1
+ |_br.unb.tree2artifactDeep2_9864087528119007:0.0.1
+ |_br.unb.tree2goalDeep1_8097750505076898:0.0.1
+  |_br.unb.tree2artifactDeep1_6930773655217212:0.0.1
+  |_br.unb.tree2:goalLeaf_5930718141779345:0.0.1
+   |_br.unb.tree2artifactLeaf_7179986868792232C11C0:0.0.1::[C11, C0]
+  |_br.unb.tree2:goalLeaf_5184857795085216:0.0.1
+   |_br.unb.tree2artifactLeaf_44828613340703694C6C10:0.0.1::[C6, C10]
+  |_br.unb.tree2:goalLeaf_4380113766993836:0.0.1
+   |_br.unb.tree2artifactLeaf_13235134957130834C1C2:0.0.1::[C1, C2]
+  |_br.unb.tree2:goalLeaf_09396614141927817:0.0.1
+   |_br.unb.tree2artifactLeaf_31180422101637906C4C15:0.0.1::[C4, C15]
+  |_br.unb.tree2:goalLeaf_4433691355676468:0.0.1
+   |_br.unb.tree2artifactLeaf_45701960291071286C6C16:0.0.1::[C6, C16]
+ |_br.unb.tree2goalDeep1_9858892355893556:0.0.1
+  |_br.unb.tree2artifactDeep1_3610095365375233:0.0.1
+  |_br.unb.tree2:goalLeaf_8098775535592082:0.0.1
+   |_br.unb.tree2artifactLeaf_49916735308984905C8C13:0.0.1::[C8, C13]
+  |_br.unb.tree2:goalLeaf_15428927106744372:0.0.1
+   |_br.unb.tree2artifactLeaf_6127299457772679C13C2:0.0.1::[C13, C2]
+  |_br.unb.tree2:goalLeaf_6873891323647584:0.0.1
+   |_br.unb.tree2artifactLeaf_527537091518705C0C4:0.0.1::[C0, C4]
+  |_br.unb.tree2:goalLeaf_32290946615196736:0.0.1
+   |_br.unb.tree2artifactLeaf_9632366100077442C9C5:0.0.1::[C9, C5]
+  |_br.unb.tree2:goalLeaf_3464034673934647:0.0.1
+   |_br.unb.tree2artifactLeaf_010118211139410138C2C10:0.0.1::[C2, C10]
+ |_br.unb.tree2goalDeep1_3501712384806659:0.0.1
+  |_br.unb.tree2artifactDeep1_8905144411970097:0.0.1
+  |_br.unb.tree2:goalLeaf_9650670851599754:0.0.1
+   |_br.unb.tree2artifactLeaf_2096027766355304C4C17:0.0.1::[C4, C17]
+  |_br.unb.tree2:goalLeaf_7496243993937187:0.0.1
+   |_br.unb.tree2artifactLeaf_4988893045942395C9C8:0.0.1::[C9, C8]
+  |_br.unb.tree2:goalLeaf_35897046543880307:0.0.1
+   |_br.unb.tree2artifactLeaf_7695343108975344C11C4:0.0.1::[C11, C4]
+  |_br.unb.tree2:goalLeaf_2591420610007069:0.0.1
+   |_br.unb.tree2artifactLeaf_7076555080129597C6C7:0.0.1::[C6, C7]
+  |_br.unb.tree2:goalLeaf_12328292695331455:0.0.1
+   |_br.unb.tree2artifactLeaf_8850125807487186C9C5:0.0.1::[C9, C5]
+ |_br.unb.tree2goalDeep1_15734284584563696:0.0.1
+  |_br.unb.tree2artifactDeep1_18834306043399174:0.0.1
+  |_br.unb.tree2:goalLeaf_649290197347094:0.0.1
+   |_br.unb.tree2artifactLeaf_017228448414260078C3C11:0.0.1::[C3, C11]
+  |_br.unb.tree2:goalLeaf_7700160918699189:0.0.1
+   |_br.unb.tree2artifactLeaf_5942256576242245C3C13:0.0.1::[C3, C13]
+  |_br.unb.tree2:goalLeaf_48997922889339085:0.0.1
+   |_br.unb.tree2artifactLeaf_4979184392317718C15C0:0.0.1::[C15, C0]
+  |_br.unb.tree2:goalLeaf_07577420251790745:0.0.1
+   |_br.unb.tree2artifactLeaf_980539976117481C17C4:0.0.1::[C17, C4]
+  |_br.unb.tree2:goalLeaf_6820145607249657:0.0.1
+   |_br.unb.tree2artifactLeaf_09849650530786747C18C1:0.0.1::[C18, C1]
+ |_br.unb.tree2goalDeep1_007837271957117808:0.0.1
+  |_br.unb.tree2artifactDeep1_9173736129938594:0.0.1
+  |_br.unb.tree2:goalLeaf_40134192099837174:0.0.1
+   |_br.unb.tree2artifactLeaf_7389094040655094C4C19:0.0.1::[C4, C19]
+  |_br.unb.tree2:goalLeaf_8638955401811232:0.0.1
+   |_br.unb.tree2artifactLeaf_9680661434848201C0C12:0.0.1::[C0, C12]
+  |_br.unb.tree2:goalLeaf_2957520596557548:0.0.1
+   |_br.unb.tree2artifactLeaf_4493301080539852C15C14:0.0.1::[C15, C14]
+  |_br.unb.tree2:goalLeaf_5794256764430246:0.0.1
+   |_br.unb.tree2artifactLeaf_49145390887398577C19C10:0.0.1::[C19, C10]
+  |_br.unb.tree2:goalLeaf_2624538797003031:0.0.1
+   |_br.unb.tree2artifactLeaf_1352651232234593C10C3:0.0.1::[C10, C3]
+## Root Goal
+|_br.unb.tree3goalDeep2_8508609756688099:0.0.1
+ |_br.unb.tree3artifactDeep2_860515400420777:0.0.1
+ |_br.unb.tree3goalDeep1_9113738953219847:0.0.1
+  |_br.unb.tree3artifactDeep1_9055037659665871:0.0.1
+  |_br.unb.tree3:goalLeaf_5112974130247294:0.0.1
+   |_br.unb.tree3artifactLeaf_4014827655683557C9C4:0.0.1::[C9, C4]
+  |_br.unb.tree3:goalLeaf_9956545391543079:0.0.1
+   |_br.unb.tree3artifactLeaf_01361624138889328C3C5:0.0.1::[C3, C5]
+  |_br.unb.tree3:goalLeaf_11581762833713438:0.0.1
+   |_br.unb.tree3artifactLeaf_2721107568721637C11C9:0.0.1::[C11, C9]
+  |_br.unb.tree3:goalLeaf_7644551223870838:0.0.1
+   |_br.unb.tree3artifactLeaf_03126791090745962C4C12:0.0.1::[C4, C12]
+  |_br.unb.tree3:goalLeaf_38980733788868616:0.0.1
+   |_br.unb.tree3artifactLeaf_1751319307881749C3C11:0.0.1::[C3, C11]
+ |_br.unb.tree3goalDeep1_3970066664180807:0.0.1
+  |_br.unb.tree3artifactDeep1_8212240024614004:0.0.1
+  |_br.unb.tree3:goalLeaf_35834054688692474:0.0.1
+   |_br.unb.tree3artifactLeaf_23390187673993945C14C3:0.0.1::[C14, C3]
+  |_br.unb.tree3:goalLeaf_704326450686865:0.0.1
+   |_br.unb.tree3artifactLeaf_5449501808625775C14C1:0.0.1::[C14, C1]
+  |_br.unb.tree3:goalLeaf_6199837044346562:0.0.1
+   |_br.unb.tree3artifactLeaf_2217883051822106C19C6:0.0.1::[C19, C6]
+  |_br.unb.tree3:goalLeaf_48467193673158737:0.0.1
+   |_br.unb.tree3artifactLeaf_980866393205051C16C5:0.0.1::[C16, C5]
+  |_br.unb.tree3:goalLeaf_7917209911339491:0.0.1
+   |_br.unb.tree3artifactLeaf_7775970654840177C7C4:0.0.1::[C7, C4]
+ |_br.unb.tree3goalDeep1_9362716903880076:0.0.1
+  |_br.unb.tree3artifactDeep1_2584068082215909:0.0.1
+  |_br.unb.tree3:goalLeaf_5293269637690089:0.0.1
+   |_br.unb.tree3artifactLeaf_680079477358792C10C15:0.0.1::[C10, C15]
+  |_br.unb.tree3:goalLeaf_9586383176156333:0.0.1
+   |_br.unb.tree3artifactLeaf_8772059772658056C16C11:0.0.1::[C16, C11]
+  |_br.unb.tree3:goalLeaf_40287021023339764:0.0.1
+   |_br.unb.tree3artifactLeaf_6347884871091889C7C12:0.0.1::[C7, C12]
+  |_br.unb.tree3:goalLeaf_9764827181469318:0.0.1
+   |_br.unb.tree3artifactLeaf_8108384016007684C11C10:0.0.1::[C11, C10]
+  |_br.unb.tree3:goalLeaf_6639896677243788:0.0.1
+   |_br.unb.tree3artifactLeaf_23590403983872077C5C16:0.0.1::[C5, C16]
+ |_br.unb.tree3goalDeep1_49626383523591155:0.0.1
+  |_br.unb.tree3artifactDeep1_49075836149866137:0.0.1
+  |_br.unb.tree3:goalLeaf_8000491159082829:0.0.1
+   |_br.unb.tree3artifactLeaf_8723249803927703C13C11:0.0.1::[C13, C11]
+  |_br.unb.tree3:goalLeaf_46441388117709737:0.0.1
+   |_br.unb.tree3artifactLeaf_4316457234082435C7C19:0.0.1::[C7, C19]
+  |_br.unb.tree3:goalLeaf_37319358683756143:0.0.1
+   |_br.unb.tree3artifactLeaf_8651683512406267C18C3:0.0.1::[C18, C3]
+  |_br.unb.tree3:goalLeaf_03224610677838602:0.0.1
+   |_br.unb.tree3artifactLeaf_19681620643782982C6C11:0.0.1::[C6, C11]
+  |_br.unb.tree3:goalLeaf_8066641213385334:0.0.1
+   |_br.unb.tree3artifactLeaf_6343009581729451C18C4:0.0.1::[C18, C4]
+ |_br.unb.tree3goalDeep1_187797221543746:0.0.1
+  |_br.unb.tree3artifactDeep1_9644593693521868:0.0.1
+  |_br.unb.tree3:goalLeaf_3489048639631571:0.0.1
+   |_br.unb.tree3artifactLeaf_4932084745315549C4C9:0.0.1::[C4, C9]
+  |_br.unb.tree3:goalLeaf_9110881742035182:0.0.1
+   |_br.unb.tree3artifactLeaf_9412655645113286C5C17:0.0.1::[C5, C17]
+  |_br.unb.tree3:goalLeaf_9809034594413204:0.0.1
+   |_br.unb.tree3artifactLeaf_6124536246615772C7C10:0.0.1::[C7, C10]
+  |_br.unb.tree3:goalLeaf_04827522319068478:0.0.1
+   |_br.unb.tree3artifactLeaf_6039275126408183C18C15:0.0.1::[C18, C15]
+  |_br.unb.tree3:goalLeaf_9493230545568005:0.0.1
+   |_br.unb.tree3artifactLeaf_5199569876226726C2C4:0.0.1::[C2, C4]
+## Root Goal
+|_br.unb.tree4goalDeep2_6642650326457304:0.0.1
+ |_br.unb.tree4artifactDeep2_3869147058667819:0.0.1
+ |_br.unb.tree4goalDeep1_8142164700210959:0.0.1
+  |_br.unb.tree4artifactDeep1_5249196292535102:0.0.1
+  |_br.unb.tree4:goalLeaf_8098151394624894:0.0.1
+   |_br.unb.tree4artifactLeaf_8736117995956807C14C10:0.0.1::[C14, C10]
+  |_br.unb.tree4:goalLeaf_3709244231077754:0.0.1
+   |_br.unb.tree4artifactLeaf_41507321370727956C4C9:0.0.1::[C4, C9]
+  |_br.unb.tree4:goalLeaf_39147504858943616:0.0.1
+   |_br.unb.tree4artifactLeaf_8182708361599872C17C11:0.0.1::[C17, C11]
+  |_br.unb.tree4:goalLeaf_7643591473356511:0.0.1
+   |_br.unb.tree4artifactLeaf_18720360331974595C18C5:0.0.1::[C18, C5]
+  |_br.unb.tree4:goalLeaf_5849085123316322:0.0.1
+   |_br.unb.tree4artifactLeaf_9758412049414495C6C11:0.0.1::[C6, C11]
+ |_br.unb.tree4goalDeep1_6153943593824396:0.0.1
+  |_br.unb.tree4artifactDeep1_6434113486197544:0.0.1
+  |_br.unb.tree4:goalLeaf_8246658553562628:0.0.1
+   |_br.unb.tree4artifactLeaf_863628247981861C1C5:0.0.1::[C1, C5]
+  |_br.unb.tree4:goalLeaf_8907993832590414:0.0.1
+   |_br.unb.tree4artifactLeaf_8160499914174374C1C12:0.0.1::[C1, C12]
+  |_br.unb.tree4:goalLeaf_36045948910687575:0.0.1
+   |_br.unb.tree4artifactLeaf_8224036393889865C0C12:0.0.1::[C0, C12]
+  |_br.unb.tree4:goalLeaf_2964168129720609:0.0.1
+   |_br.unb.tree4artifactLeaf_1273504544082087C0C18:0.0.1::[C0, C18]
+  |_br.unb.tree4:goalLeaf_5771167774529321:0.0.1
+   |_br.unb.tree4artifactLeaf_9914038396557294C17C15:0.0.1::[C17, C15]
+ |_br.unb.tree4goalDeep1_8531065790015588:0.0.1
+  |_br.unb.tree4artifactDeep1_7489063064806324:0.0.1
+  |_br.unb.tree4:goalLeaf_9372137408315979:0.0.1
+   |_br.unb.tree4artifactLeaf_9520583533025752C14C4:0.0.1::[C14, C4]
+  |_br.unb.tree4:goalLeaf_0870274327699031:0.0.1
+   |_br.unb.tree4artifactLeaf_06668862040911794C15C18:0.0.1::[C15, C18]
+  |_br.unb.tree4:goalLeaf_3942685937905719:0.0.1
+   |_br.unb.tree4artifactLeaf_5651121035683251C17C8:0.0.1::[C17, C8]
+  |_br.unb.tree4:goalLeaf_21288474007788927:0.0.1
+   |_br.unb.tree4artifactLeaf_8381287025929555C16C12:0.0.1::[C16, C12]
+  |_br.unb.tree4:goalLeaf_9934208322018808:0.0.1
+   |_br.unb.tree4artifactLeaf_5740971887118702C11C2:0.0.1::[C11, C2]
+ |_br.unb.tree4goalDeep1_7993746662004295:0.0.1
+  |_br.unb.tree4artifactDeep1_09457001938726617:0.0.1
+  |_br.unb.tree4:goalLeaf_8018391349247562:0.0.1
+   |_br.unb.tree4artifactLeaf_05234124774066895C3C0:0.0.1::[C3, C0]
+  |_br.unb.tree4:goalLeaf_0384235134652845:0.0.1
+   |_br.unb.tree4artifactLeaf_8037802925105685C14C12:0.0.1::[C14, C12]
+  |_br.unb.tree4:goalLeaf_09028701563273478:0.0.1
+   |_br.unb.tree4artifactLeaf_9129404837648901C15C9:0.0.1::[C15, C9]
+  |_br.unb.tree4:goalLeaf_9135441610274185:0.0.1
+   |_br.unb.tree4artifactLeaf_4208699321163022C17C6:0.0.1::[C17, C6]
+  |_br.unb.tree4:goalLeaf_5951359094906499:0.0.1
+   |_br.unb.tree4artifactLeaf_8974389980758015C2C14:0.0.1::[C2, C14]
+ |_br.unb.tree4goalDeep1_039523223137152175:0.0.1
+  |_br.unb.tree4artifactDeep1_9341419918841104:0.0.1
+  |_br.unb.tree4:goalLeaf_10309444006448065:0.0.1
+   |_br.unb.tree4artifactLeaf_921619045208611C4C0:0.0.1::[C4, C0]
+  |_br.unb.tree4:goalLeaf_4878621307469053:0.0.1
+   |_br.unb.tree4artifactLeaf_2288143696312528C4C16:0.0.1::[C4, C16]
+  |_br.unb.tree4:goalLeaf_4504571737149744:0.0.1
+   |_br.unb.tree4artifactLeaf_8282778000925127C6C7:0.0.1::[C6, C7]
+  |_br.unb.tree4:goalLeaf_6835347865819713:0.0.1
+   |_br.unb.tree4artifactLeaf_12503443767604272C1C16:0.0.1::[C1, C16]
+  |_br.unb.tree4:goalLeaf_14746448260704648:0.0.1
+   |_br.unb.tree4artifactLeaf_7683575006077729C19C10:0.0.1::[C19, C10]
+## Root Goal
+|_br.unb.tree5goalDeep2_45218112193663673:0.0.1
+ |_br.unb.tree5artifactDeep2_8523066550708354:0.0.1
+ |_br.unb.tree5goalDeep1_2885904967256764:0.0.1
+  |_br.unb.tree5artifactDeep1_3944792137869194:0.0.1
+  |_br.unb.tree5:goalLeaf_0819741746900845:0.0.1
+   |_br.unb.tree5artifactLeaf_41539209425131673C4C1:0.0.1::[C4, C1]
+  |_br.unb.tree5:goalLeaf_6446632237818946:0.0.1
+   |_br.unb.tree5artifactLeaf_9165373041486895C1C4:0.0.1::[C1, C4]
+  |_br.unb.tree5:goalLeaf_6196905572831864:0.0.1
+   |_br.unb.tree5artifactLeaf_5722874925777098C13C3:0.0.1::[C13, C3]
+  |_br.unb.tree5:goalLeaf_6331002275802868:0.0.1
+   |_br.unb.tree5artifactLeaf_5526285273166501C15C10:0.0.1::[C15, C10]
+  |_br.unb.tree5:goalLeaf_27990865566160883:0.0.1
+   |_br.unb.tree5artifactLeaf_25032740028746614C6C0:0.0.1::[C6, C0]
+ |_br.unb.tree5goalDeep1_27093580189479105:0.0.1
+  |_br.unb.tree5artifactDeep1_0926920537092707:0.0.1
+  |_br.unb.tree5:goalLeaf_5119149877244228:0.0.1
+   |_br.unb.tree5artifactLeaf_62137860471945C19C5:0.0.1::[C19, C5]
+  |_br.unb.tree5:goalLeaf_06491072079318405:0.0.1
+   |_br.unb.tree5artifactLeaf_1748183708689538C7C5:0.0.1::[C7, C5]
+  |_br.unb.tree5:goalLeaf_07335470280586132:0.0.1
+   |_br.unb.tree5artifactLeaf_32118690763402835C3C19:0.0.1::[C3, C19]
+  |_br.unb.tree5:goalLeaf_8503306136459211:0.0.1
+   |_br.unb.tree5artifactLeaf_47405955013929735C17C7:0.0.1::[C17, C7]
+  |_br.unb.tree5:goalLeaf_3402412416234263:0.0.1
+   |_br.unb.tree5artifactLeaf_9349226661802897C15C3:0.0.1::[C15, C3]
+ |_br.unb.tree5goalDeep1_2227368397656031:0.0.1
+  |_br.unb.tree5artifactDeep1_2797039587104788:0.0.1
+  |_br.unb.tree5:goalLeaf_40146165708102355:0.0.1
+   |_br.unb.tree5artifactLeaf_7466904837244145C16C12:0.0.1::[C16, C12]
+  |_br.unb.tree5:goalLeaf_37321523832353243:0.0.1
+   |_br.unb.tree5artifactLeaf_9370881029725191C3C11:0.0.1::[C3, C11]
+  |_br.unb.tree5:goalLeaf_20701119644506638:0.0.1
+   |_br.unb.tree5artifactLeaf_19608091481921386C12C4:0.0.1::[C12, C4]
+  |_br.unb.tree5:goalLeaf_6670049147392371:0.0.1
+   |_br.unb.tree5artifactLeaf_639081446959708C16C0:0.0.1::[C16, C0]
+  |_br.unb.tree5:goalLeaf_012302178452503143:0.0.1
+   |_br.unb.tree5artifactLeaf_4951598566131289C6C14:0.0.1::[C6, C14]
+ |_br.unb.tree5goalDeep1_2723825133399477:0.0.1
+  |_br.unb.tree5artifactDeep1_9326856946222017:0.0.1
+  |_br.unb.tree5:goalLeaf_4384193164788901:0.0.1
+   |_br.unb.tree5artifactLeaf_4539232723114244C2C0:0.0.1::[C2, C0]
+  |_br.unb.tree5:goalLeaf_7391708454203073:0.0.1
+   |_br.unb.tree5artifactLeaf_2671327831016237C9C13:0.0.1::[C9, C13]
+  |_br.unb.tree5:goalLeaf_04838313627523638:0.0.1
+   |_br.unb.tree5artifactLeaf_6225506777067701C8C15:0.0.1::[C8, C15]
+  |_br.unb.tree5:goalLeaf_8091345142236651:0.0.1
+   |_br.unb.tree5artifactLeaf_5094897347410563C6C8:0.0.1::[C6, C8]
+  |_br.unb.tree5:goalLeaf_9436489977304291:0.0.1
+   |_br.unb.tree5artifactLeaf_3950151336787191C8C7:0.0.1::[C8, C7]
+ |_br.unb.tree5goalDeep1_871663570956876:0.0.1
+  |_br.unb.tree5artifactDeep1_4212031664854381:0.0.1
+  |_br.unb.tree5:goalLeaf_8790889873205282:0.0.1
+   |_br.unb.tree5artifactLeaf_03860470073709499C18C15:0.0.1::[C18, C15]
+  |_br.unb.tree5:goalLeaf_8103179263469168:0.0.1
+   |_br.unb.tree5artifactLeaf_6307984164380178C13C15:0.0.1::[C13, C15]
+  |_br.unb.tree5:goalLeaf_162820552848577:0.0.1
+   |_br.unb.tree5artifactLeaf_29369217031995365C10C1:0.0.1::[C10, C1]
+  |_br.unb.tree5:goalLeaf_09973976330806478:0.0.1
+   |_br.unb.tree5artifactLeaf_22262702901623987C18C1:0.0.1::[C18, C1]
+  |_br.unb.tree5:goalLeaf_4344364990285522:0.0.1
+   |_br.unb.tree5artifactLeaf_7637414410251743C11C0:0.0.1::[C11, C0]
+## Root Goal
+|_br.unb.tree6goalDeep2_990959109067305:0.0.1
+ |_br.unb.tree6artifactDeep2_12889360999441013:0.0.1
+ |_br.unb.tree6goalDeep1_794599498020364:0.0.1
+  |_br.unb.tree6artifactDeep1_4092417638836049:0.0.1
+  |_br.unb.tree6:goalLeaf_23781775708725295:0.0.1
+   |_br.unb.tree6artifactLeaf_31857036370028446C8C0:0.0.1::[C8, C0]
+  |_br.unb.tree6:goalLeaf_24447695683948478:0.0.1
+   |_br.unb.tree6artifactLeaf_37422983807577737C16C6:0.0.1::[C16, C6]
+  |_br.unb.tree6:goalLeaf_8829006944055046:0.0.1
+   |_br.unb.tree6artifactLeaf_9485283822340055C19C11:0.0.1::[C19, C11]
+  |_br.unb.tree6:goalLeaf_8064089560226226:0.0.1
+   |_br.unb.tree6artifactLeaf_9201202699660789C17C14:0.0.1::[C17, C14]
+  |_br.unb.tree6:goalLeaf_07726786977224787:0.0.1
+   |_br.unb.tree6artifactLeaf_8220417520126113C2C18:0.0.1::[C2, C18]
+ |_br.unb.tree6goalDeep1_26750866416256025:0.0.1
+  |_br.unb.tree6artifactDeep1_48153021518533223:0.0.1
+  |_br.unb.tree6:goalLeaf_6189522222713563:0.0.1
+   |_br.unb.tree6artifactLeaf_4011026988586235C8C12:0.0.1::[C8, C12]
+  |_br.unb.tree6:goalLeaf_6718950992890338:0.0.1
+   |_br.unb.tree6artifactLeaf_16248282376935552C14C4:0.0.1::[C14, C4]
+  |_br.unb.tree6:goalLeaf_4208356130723042:0.0.1
+   |_br.unb.tree6artifactLeaf_471781929733881C4C1:0.0.1::[C4, C1]
+  |_br.unb.tree6:goalLeaf_17355674358207962:0.0.1
+   |_br.unb.tree6artifactLeaf_49584281397646135C7C8:0.0.1::[C7, C8]
+  |_br.unb.tree6:goalLeaf_14888570333157836:0.0.1
+   |_br.unb.tree6artifactLeaf_8651781971158721C12C10:0.0.1::[C12, C10]
+ |_br.unb.tree6goalDeep1_10216629615560502:0.0.1
+  |_br.unb.tree6artifactDeep1_40876881474929716:0.0.1
+  |_br.unb.tree6:goalLeaf_05220118667524054:0.0.1
+   |_br.unb.tree6artifactLeaf_3045836687928728C17C18:0.0.1::[C17, C18]
+  |_br.unb.tree6:goalLeaf_5490032001749411:0.0.1
+   |_br.unb.tree6artifactLeaf_03636400293360542C11C6:0.0.1::[C11, C6]
+  |_br.unb.tree6:goalLeaf_8186817415323934:0.0.1
+   |_br.unb.tree6artifactLeaf_30511814007940374C16C1:0.0.1::[C16, C1]
+  |_br.unb.tree6:goalLeaf_5922944013675707:0.0.1
+   |_br.unb.tree6artifactLeaf_48882700583335836C6C12:0.0.1::[C6, C12]
+  |_br.unb.tree6:goalLeaf_7970069861754844:0.0.1
+   |_br.unb.tree6artifactLeaf_0287402661545203C0C3:0.0.1::[C0, C3]
+ |_br.unb.tree6goalDeep1_032955628050557295:0.0.1
+  |_br.unb.tree6artifactDeep1_3022611728449057:0.0.1
+  |_br.unb.tree6:goalLeaf_2733271208288659:0.0.1
+   |_br.unb.tree6artifactLeaf_4124424390102739C14C3:0.0.1::[C14, C3]
+  |_br.unb.tree6:goalLeaf_8742556786774215:0.0.1
+   |_br.unb.tree6artifactLeaf_4684540007900795C7C0:0.0.1::[C7, C0]
+  |_br.unb.tree6:goalLeaf_5286127441715505:0.0.1
+   |_br.unb.tree6artifactLeaf_6684590764803506C11C15:0.0.1::[C11, C15]
+  |_br.unb.tree6:goalLeaf_6724301227326352:0.0.1
+   |_br.unb.tree6artifactLeaf_3374615954586401C4C16:0.0.1::[C4, C16]
+  |_br.unb.tree6:goalLeaf_057648225046970425:0.0.1
+   |_br.unb.tree6artifactLeaf_43343848975138266C11C10:0.0.1::[C11, C10]
+ |_br.unb.tree6goalDeep1_2791376552360194:0.0.1
+  |_br.unb.tree6artifactDeep1_45010294594481026:0.0.1
+  |_br.unb.tree6:goalLeaf_30465717867653186:0.0.1
+   |_br.unb.tree6artifactLeaf_9878983723643209C1C19:0.0.1::[C1, C19]
+  |_br.unb.tree6:goalLeaf_5806287925887839:0.0.1
+   |_br.unb.tree6artifactLeaf_44754926225140923C2C17:0.0.1::[C2, C17]
+  |_br.unb.tree6:goalLeaf_8692374909378126:0.0.1
+   |_br.unb.tree6artifactLeaf_3808028718331403C9C16:0.0.1::[C9, C16]
+  |_br.unb.tree6:goalLeaf_5668038609443675:0.0.1
+   |_br.unb.tree6artifactLeaf_2629015920744566C6C2:0.0.1::[C6, C2]
+  |_br.unb.tree6:goalLeaf_9202707362508816:0.0.1
+   |_br.unb.tree6artifactLeaf_6474637244438334C14C4:0.0.1::[C14, C4]
+## Root Goal
+|_br.unb.tree7goalDeep2_12394807080552617:0.0.1
+ |_br.unb.tree7artifactDeep2_45691297913880635:0.0.1
+ |_br.unb.tree7goalDeep1_8973174737669573:0.0.1
+  |_br.unb.tree7artifactDeep1_56557543250121:0.0.1
+  |_br.unb.tree7:goalLeaf_07483026802609116:0.0.1
+   |_br.unb.tree7artifactLeaf_6669847627646543C14C18:0.0.1::[C14, C18]
+  |_br.unb.tree7:goalLeaf_049143205528754175:0.0.1
+   |_br.unb.tree7artifactLeaf_48182891672409567C7C9:0.0.1::[C7, C9]
+  |_br.unb.tree7:goalLeaf_4398244093803467:0.0.1
+   |_br.unb.tree7artifactLeaf_972373827324349C1C5:0.0.1::[C1, C5]
+  |_br.unb.tree7:goalLeaf_913277707540231:0.0.1
+   |_br.unb.tree7artifactLeaf_6289860983015011C3C11:0.0.1::[C3, C11]
+  |_br.unb.tree7:goalLeaf_7629836745600728:0.0.1
+   |_br.unb.tree7artifactLeaf_7072148208503387C8C12:0.0.1::[C8, C12]
+ |_br.unb.tree7goalDeep1_6002073238937562:0.0.1
+  |_br.unb.tree7artifactDeep1_2204031476149767:0.0.1
+  |_br.unb.tree7:goalLeaf_5156049142666594:0.0.1
+   |_br.unb.tree7artifactLeaf_5282661397331594C4C11:0.0.1::[C4, C11]
+  |_br.unb.tree7:goalLeaf_6939644564999513:0.0.1
+   |_br.unb.tree7artifactLeaf_03294634376545047C8C7:0.0.1::[C8, C7]
+  |_br.unb.tree7:goalLeaf_3258977504041217:0.0.1
+   |_br.unb.tree7artifactLeaf_42070542536435585C5C6:0.0.1::[C5, C6]
+  |_br.unb.tree7:goalLeaf_6308123865333373:0.0.1
+   |_br.unb.tree7artifactLeaf_16085622600521454C4C13:0.0.1::[C4, C13]
+  |_br.unb.tree7:goalLeaf_16145210507080276:0.0.1
+   |_br.unb.tree7artifactLeaf_7108724204125656C17C16:0.0.1::[C17, C16]
+ |_br.unb.tree7goalDeep1_0646624135859829:0.0.1
+  |_br.unb.tree7artifactDeep1_40505307605570695:0.0.1
+  |_br.unb.tree7:goalLeaf_7555770501774888:0.0.1
+   |_br.unb.tree7artifactLeaf_5668332085697352C4C11:0.0.1::[C4, C11]
+  |_br.unb.tree7:goalLeaf_4337523163771546:0.0.1
+   |_br.unb.tree7artifactLeaf_8889160891647564C11C4:0.0.1::[C11, C4]
+  |_br.unb.tree7:goalLeaf_2692309149987391:0.0.1
+   |_br.unb.tree7artifactLeaf_22871441328551356C8C19:0.0.1::[C8, C19]
+  |_br.unb.tree7:goalLeaf_6080781986760935:0.0.1
+   |_br.unb.tree7artifactLeaf_7622758034576568C11C10:0.0.1::[C11, C10]
+  |_br.unb.tree7:goalLeaf_7001608594257789:0.0.1
+   |_br.unb.tree7artifactLeaf_5894862514272308C8C11:0.0.1::[C8, C11]
+ |_br.unb.tree7goalDeep1_25257676254162653:0.0.1
+  |_br.unb.tree7artifactDeep1_7626346790165448:0.0.1
+  |_br.unb.tree7:goalLeaf_6260920831742751:0.0.1
+   |_br.unb.tree7artifactLeaf_3181058780156264C8C5:0.0.1::[C8, C5]
+  |_br.unb.tree7:goalLeaf_08237517496544644:0.0.1
+   |_br.unb.tree7artifactLeaf_1665286223795731C5C3:0.0.1::[C5, C3]
+  |_br.unb.tree7:goalLeaf_01806801756697829:0.0.1
+   |_br.unb.tree7artifactLeaf_7744928285468533C13C16:0.0.1::[C13, C16]
+  |_br.unb.tree7:goalLeaf_45510360113827886:0.0.1
+   |_br.unb.tree7artifactLeaf_9440740791646345C7C3:0.0.1::[C7, C3]
+  |_br.unb.tree7:goalLeaf_030394637335583563:0.0.1
+   |_br.unb.tree7artifactLeaf_6669008442290674C18C7:0.0.1::[C18, C7]
+ |_br.unb.tree7goalDeep1_7595433164067299:0.0.1
+  |_br.unb.tree7artifactDeep1_052010868596602866:0.0.1
+  |_br.unb.tree7:goalLeaf_7928308934156536:0.0.1
+   |_br.unb.tree7artifactLeaf_18308113405645188C6C5:0.0.1::[C6, C5]
+  |_br.unb.tree7:goalLeaf_11998151365268628:0.0.1
+   |_br.unb.tree7artifactLeaf_36677884774119196C5C9:0.0.1::[C5, C9]
+  |_br.unb.tree7:goalLeaf_030878929232778574:0.0.1
+   |_br.unb.tree7artifactLeaf_5745929047430525C7C19:0.0.1::[C7, C19]
+  |_br.unb.tree7:goalLeaf_6082376523072459:0.0.1
+   |_br.unb.tree7artifactLeaf_702113842579162C13C15:0.0.1::[C13, C15]
+  |_br.unb.tree7:goalLeaf_3868620548941528:0.0.1
+   |_br.unb.tree7artifactLeaf_08335459642613097C16C15:0.0.1::[C16, C15]
+## Root Goal
+|_br.unb.tree8goalDeep2_3887310418126473:0.0.1
+ |_br.unb.tree8artifactDeep2_21721956855196034:0.0.1
+ |_br.unb.tree8goalDeep1_9906867182214344:0.0.1
+  |_br.unb.tree8artifactDeep1_11816471872281387:0.0.1
+  |_br.unb.tree8:goalLeaf_8635886619678327:0.0.1
+   |_br.unb.tree8artifactLeaf_13080064922971046C19C1:0.0.1::[C19, C1]
+  |_br.unb.tree8:goalLeaf_8402984724620934:0.0.1
+   |_br.unb.tree8artifactLeaf_2035871994532693C5C8:0.0.1::[C5, C8]
+  |_br.unb.tree8:goalLeaf_9907373790458094:0.0.1
+   |_br.unb.tree8artifactLeaf_7938109455607882C4C1:0.0.1::[C4, C1]
+  |_br.unb.tree8:goalLeaf_6169396501432086:0.0.1
+   |_br.unb.tree8artifactLeaf_8202697367381703C17C13:0.0.1::[C17, C13]
+  |_br.unb.tree8:goalLeaf_8578440399680484:0.0.1
+   |_br.unb.tree8artifactLeaf_8797753421513915C17C18:0.0.1::[C17, C18]
+ |_br.unb.tree8goalDeep1_2813420976244664:0.0.1
+  |_br.unb.tree8artifactDeep1_6526923754149221:0.0.1
+  |_br.unb.tree8:goalLeaf_5995800908082977:0.0.1
+   |_br.unb.tree8artifactLeaf_5983710708816573C9C0:0.0.1::[C9, C0]
+  |_br.unb.tree8:goalLeaf_49075859259280297:0.0.1
+   |_br.unb.tree8artifactLeaf_39401717624551424C16C14:0.0.1::[C16, C14]
+  |_br.unb.tree8:goalLeaf_18085388793116086:0.0.1
+   |_br.unb.tree8artifactLeaf_5992397496191472C10C15:0.0.1::[C10, C15]
+  |_br.unb.tree8:goalLeaf_35595571396722336:0.0.1
+   |_br.unb.tree8artifactLeaf_7079629473258247C0C17:0.0.1::[C0, C17]
+  |_br.unb.tree8:goalLeaf_5284738092907608:0.0.1
+   |_br.unb.tree8artifactLeaf_2632176744946394C15C17:0.0.1::[C15, C17]
+ |_br.unb.tree8goalDeep1_17483037240345745:0.0.1
+  |_br.unb.tree8artifactDeep1_9960143104073809:0.0.1
+  |_br.unb.tree8:goalLeaf_5693675560812007:0.0.1
+   |_br.unb.tree8artifactLeaf_4407248260918766C3C5:0.0.1::[C3, C5]
+  |_br.unb.tree8:goalLeaf_9581615240427815:0.0.1
+   |_br.unb.tree8artifactLeaf_7883799778726494C1C0:0.0.1::[C1, C0]
+  |_br.unb.tree8:goalLeaf_5021941077015674:0.0.1
+   |_br.unb.tree8artifactLeaf_006304411322685666C14C16:0.0.1::[C14, C16]
+  |_br.unb.tree8:goalLeaf_3366702207327623:0.0.1
+   |_br.unb.tree8artifactLeaf_2629688184857839C7C19:0.0.1::[C7, C19]
+  |_br.unb.tree8:goalLeaf_6011495386652057:0.0.1
+   |_br.unb.tree8artifactLeaf_6169133154008073C8C3:0.0.1::[C8, C3]
+ |_br.unb.tree8goalDeep1_10432098937499423:0.0.1
+  |_br.unb.tree8artifactDeep1_400458800153188:0.0.1
+  |_br.unb.tree8:goalLeaf_027113209657752435:0.0.1
+   |_br.unb.tree8artifactLeaf_40194706885710285C19C9:0.0.1::[C19, C9]
+  |_br.unb.tree8:goalLeaf_21083680935649984:0.0.1
+   |_br.unb.tree8artifactLeaf_7748789265401158C2C13:0.0.1::[C2, C13]
+  |_br.unb.tree8:goalLeaf_6065172933408021:0.0.1
+   |_br.unb.tree8artifactLeaf_5718101175174911C15C6:0.0.1::[C15, C6]
+  |_br.unb.tree8:goalLeaf_09097020446380999:0.0.1
+   |_br.unb.tree8artifactLeaf_6281039964307562C3C7:0.0.1::[C3, C7]
+  |_br.unb.tree8:goalLeaf_3139700321198624:0.0.1
+   |_br.unb.tree8artifactLeaf_8964858446895084C19C15:0.0.1::[C19, C15]
+ |_br.unb.tree8goalDeep1_24941990618970555:0.0.1
+  |_br.unb.tree8artifactDeep1_1120708768820945:0.0.1
+  |_br.unb.tree8:goalLeaf_32991820830075624:0.0.1
+   |_br.unb.tree8artifactLeaf_9206866383798187C16C5:0.0.1::[C16, C5]
+  |_br.unb.tree8:goalLeaf_1397283315173138:0.0.1
+   |_br.unb.tree8artifactLeaf_9273949133911499C10C12:0.0.1::[C10, C12]
+  |_br.unb.tree8:goalLeaf_2385456958605745:0.0.1
+   |_br.unb.tree8artifactLeaf_6171251631655948C6C18:0.0.1::[C6, C18]
+  |_br.unb.tree8:goalLeaf_8061969750579746:0.0.1
+   |_br.unb.tree8artifactLeaf_5204629396549817C12C3:0.0.1::[C12, C3]
+  |_br.unb.tree8:goalLeaf_07701966129198945:0.0.1
+   |_br.unb.tree8artifactLeaf_5595083794808847C2C14:0.0.1::[C2, C14]
+## Root Goal
+|_br.unb.tree9goalDeep2_7529696049163486:0.0.1
+ |_br.unb.tree9artifactDeep2_3933680891892829:0.0.1
+ |_br.unb.tree9goalDeep1_08112111774859743:0.0.1
+  |_br.unb.tree9artifactDeep1_6937536981004925:0.0.1
+  |_br.unb.tree9:goalLeaf_33934910504253035:0.0.1
+   |_br.unb.tree9artifactLeaf_9021546548044865C0C12:0.0.1::[C0, C12]
+  |_br.unb.tree9:goalLeaf_5347695280222567:0.0.1
+   |_br.unb.tree9artifactLeaf_28059362372245567C16C19:0.0.1::[C16, C19]
+  |_br.unb.tree9:goalLeaf_8668738078044743:0.0.1
+   |_br.unb.tree9artifactLeaf_37839205845511825C4C5:0.0.1::[C4, C5]
+  |_br.unb.tree9:goalLeaf_18856758594186518:0.0.1
+   |_br.unb.tree9artifactLeaf_7469181877053783C5C1:0.0.1::[C5, C1]
+  |_br.unb.tree9:goalLeaf_5024354592171152:0.0.1
+   |_br.unb.tree9artifactLeaf_6726390349895237C12C4:0.0.1::[C12, C4]
+ |_br.unb.tree9goalDeep1_06727180776509656:0.0.1
+  |_br.unb.tree9artifactDeep1_9216026405834171:0.0.1
+  |_br.unb.tree9:goalLeaf_4797012190684151:0.0.1
+   |_br.unb.tree9artifactLeaf_6833532411292158C16C10:0.0.1::[C16, C10]
+  |_br.unb.tree9:goalLeaf_9231313046269393:0.0.1
+   |_br.unb.tree9artifactLeaf_2741014413798878C2C12:0.0.1::[C2, C12]
+  |_br.unb.tree9:goalLeaf_780332426566984:0.0.1
+   |_br.unb.tree9artifactLeaf_9410777148845444C6C7:0.0.1::[C6, C7]
+  |_br.unb.tree9:goalLeaf_09235866672615523:0.0.1
+   |_br.unb.tree9artifactLeaf_039789527096814936C12C3:0.0.1::[C12, C3]
+  |_br.unb.tree9:goalLeaf_7937166861011131:0.0.1
+   |_br.unb.tree9artifactLeaf_8312419910240901C6C10:0.0.1::[C6, C10]
+ |_br.unb.tree9goalDeep1_8653081530434629:0.0.1
+  |_br.unb.tree9artifactDeep1_7804877720316705:0.0.1
+  |_br.unb.tree9:goalLeaf_069678192412155:0.0.1
+   |_br.unb.tree9artifactLeaf_320018687364962C18C19:0.0.1::[C18, C19]
+  |_br.unb.tree9:goalLeaf_29211898672725256:0.0.1
+   |_br.unb.tree9artifactLeaf_5665594217213019C3C10:0.0.1::[C3, C10]
+  |_br.unb.tree9:goalLeaf_2229094315251956:0.0.1
+   |_br.unb.tree9artifactLeaf_7054583548405786C6C13:0.0.1::[C6, C13]
+  |_br.unb.tree9:goalLeaf_393971552300741:0.0.1
+   |_br.unb.tree9artifactLeaf_2762905890586653C3C11:0.0.1::[C3, C11]
+  |_br.unb.tree9:goalLeaf_7614166358861532:0.0.1
+   |_br.unb.tree9artifactLeaf_8459854243074361C11C15:0.0.1::[C11, C15]
+ |_br.unb.tree9goalDeep1_7835302883259204:0.0.1
+  |_br.unb.tree9artifactDeep1_9661106560505635:0.0.1
+  |_br.unb.tree9:goalLeaf_8296140183774583:0.0.1
+   |_br.unb.tree9artifactLeaf_015179571174788409C18C10:0.0.1::[C18, C10]
+  |_br.unb.tree9:goalLeaf_19062536846870137:0.0.1
+   |_br.unb.tree9artifactLeaf_12129142781124436C4C3:0.0.1::[C4, C3]
+  |_br.unb.tree9:goalLeaf_4179568061205857:0.0.1
+   |_br.unb.tree9artifactLeaf_5448138904031544C10C7:0.0.1::[C10, C7]
+  |_br.unb.tree9:goalLeaf_31376204144827324:0.0.1
+   |_br.unb.tree9artifactLeaf_36024387280958725C9C11:0.0.1::[C9, C11]
+  |_br.unb.tree9:goalLeaf_3081246104412432:0.0.1
+   |_br.unb.tree9artifactLeaf_16768050742865548C0C16:0.0.1::[C0, C16]
+ |_br.unb.tree9goalDeep1_9250218360153774:0.0.1
+  |_br.unb.tree9artifactDeep1_1496688220925393:0.0.1
+  |_br.unb.tree9:goalLeaf_8568674471306217:0.0.1
+   |_br.unb.tree9artifactLeaf_36657485892380637C16C13:0.0.1::[C16, C13]
+  |_br.unb.tree9:goalLeaf_03161729032508798:0.0.1
+   |_br.unb.tree9artifactLeaf_92320025214813C13C12:0.0.1::[C13, C12]
+  |_br.unb.tree9:goalLeaf_7349740889606324:0.0.1
+   |_br.unb.tree9artifactLeaf_5906526271795214C6C16:0.0.1::[C6, C16]
+  |_br.unb.tree9:goalLeaf_2646315934614455:0.0.1
+   |_br.unb.tree9artifactLeaf_021450582634207738C11C15:0.0.1::[C11, C15]
+  |_br.unb.tree9:goalLeaf_01994678210527201:0.0.1
+   |_br.unb.tree9artifactLeaf_9528471782512155C13C17:0.0.1::[C13, C17]

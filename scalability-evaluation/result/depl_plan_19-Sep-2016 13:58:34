@@ -1,0 +1,145 @@
+## Root Goal
+|_br.unb.tree0goalDeep2_46329655454486174:0.0.1
+ |_br.unb.tree0artifactDeep2_9156900352259901:0.0.1
+ |_br.unb.tree0goalDeep1_827816144553705:0.0.1
+  |_br.unb.tree0artifactDeep1_9544184385977045:0.0.1
+  |_br.unb.tree0:goalLeaf_14145484246327356:0.0.1
+   |_br.unb.tree0artifactLeaf_8799262425653456C10C1:0.0.1::[C10, C1]
+  |_br.unb.tree0:goalLeaf_9832747539220511:0.0.1
+   |_br.unb.tree0artifactLeaf_856364193081814C7C10:0.0.1::[C7, C10]
+  |_br.unb.tree0:goalLeaf_3000637681105309:0.0.1
+   |_br.unb.tree0artifactLeaf_9530061548148319C12C8:0.0.1::[C12, C8]
+  |_br.unb.tree0:goalLeaf_5982953449374359:0.0.1
+   |_br.unb.tree0artifactLeaf_8271818014642596C2C18:0.0.1::[C2, C18]
+  |_br.unb.tree0:goalLeaf_9924188321609002:0.0.1
+   |_br.unb.tree0artifactLeaf_9443406049475505C8C15:0.0.1::[C8, C15]
+ |_br.unb.tree0goalDeep1_7643863687576103:0.0.1
+  |_br.unb.tree0artifactDeep1_3385113206612751:0.0.1
+  |_br.unb.tree0:goalLeaf_5371892033575941:0.0.1
+   |_br.unb.tree0artifactLeaf_6961069502117281C4C0:0.0.1::[C4, C0]
+  |_br.unb.tree0:goalLeaf_07876722647791634:0.0.1
+   |_br.unb.tree0artifactLeaf_9878763240916586C13C7:0.0.1::[C13, C7]
+  |_br.unb.tree0:goalLeaf_6058498958643416:0.0.1
+   |_br.unb.tree0artifactLeaf_3894778550667731C6C11:0.0.1::[C6, C11]
+  |_br.unb.tree0:goalLeaf_6934928643463522:0.0.1
+   |_br.unb.tree0artifactLeaf_8166211620787263C14C11:0.0.1::[C14, C11]
+  |_br.unb.tree0:goalLeaf_46664343268909547:0.0.1
+   |_br.unb.tree0artifactLeaf_7581301796662909C5C14:0.0.1::[C5, C14]
+ |_br.unb.tree0goalDeep1_4828023335517112:0.0.1
+  |_br.unb.tree0artifactDeep1_8162259991156283:0.0.1
+  |_br.unb.tree0:goalLeaf_03481676276314816:0.0.1
+   |_br.unb.tree0artifactLeaf_5613440114902076C12C0:0.0.1::[C12, C0]
+  |_br.unb.tree0:goalLeaf_753305312890638:0.0.1
+   |_br.unb.tree0artifactLeaf_7502528484432155C12C4:0.0.1::[C12, C4]
+  |_br.unb.tree0:goalLeaf_0955444126684809:0.0.1
+   |_br.unb.tree0artifactLeaf_8934783594126351C11C5:0.0.1::[C11, C5]
+  |_br.unb.tree0:goalLeaf_2933487744049096:0.0.1
+   |_br.unb.tree0artifactLeaf_9931851822269946C4C15:0.0.1::[C4, C15]
+  |_br.unb.tree0:goalLeaf_9120364549229132:0.0.1
+   |_br.unb.tree0artifactLeaf_2560707976915384C15C16:0.0.1::[C15, C16]
+ |_br.unb.tree0goalDeep1_15870580796789813:0.0.1
+  |_br.unb.tree0artifactDeep1_11960375830692671:0.0.1
+  |_br.unb.tree0:goalLeaf_6988970572170643:0.0.1
+   |_br.unb.tree0artifactLeaf_4771135279828347C16C12:0.0.1::[C16, C12]
+  |_br.unb.tree0:goalLeaf_6302334589662991:0.0.1
+   |_br.unb.tree0artifactLeaf_7599025548671728C8C10:0.0.1::[C8, C10]
+  |_br.unb.tree0:goalLeaf_0716389127132101:0.0.1
+   |_br.unb.tree0artifactLeaf_926714071102084C15C6:0.0.1::[C15, C6]
+  |_br.unb.tree0:goalLeaf_523610272842699:0.0.1
+   |_br.unb.tree0artifactLeaf_13611112956483007C11C9:0.0.1::[C11, C9]
+  |_br.unb.tree0:goalLeaf_7777277775048198:0.0.1
+   |_br.unb.tree0artifactLeaf_509800750940432C1C13:0.0.1::[C1, C13]
+ |_br.unb.tree0goalDeep1_6916820788484602:0.0.1
+  |_br.unb.tree0artifactDeep1_7353836750701873:0.0.1
+  |_br.unb.tree0:goalLeaf_7292087893917163:0.0.1
+   |_br.unb.tree0artifactLeaf_8615250212678732C13C10:0.0.1::[C13, C10]
+  |_br.unb.tree0:goalLeaf_12193064205806337:0.0.1
+   |_br.unb.tree0artifactLeaf_9377661752150779C10C13:0.0.1::[C10, C13]
+  |_br.unb.tree0:goalLeaf_6708403809683156:0.0.1
+   |_br.unb.tree0artifactLeaf_993746356102387C1C10:0.0.1::[C1, C10]
+  |_br.unb.tree0:goalLeaf_5991009653217119:0.0.1
+   |_br.unb.tree0artifactLeaf_7166864108479106C5C14:0.0.1::[C5, C14]
+  |_br.unb.tree0:goalLeaf_6233518089167045:0.0.1
+   |_br.unb.tree0artifactLeaf_9889710175139526C4C12:0.0.1::[C4, C12]
+## Root Goal
+|_br.unb.tree1goalDeep2_6232050377605137:0.0.1
+ |_br.unb.tree1artifactDeep2_017204338689988607:0.0.1
+ |_br.unb.tree1goalDeep1_04494568274659472:0.0.1
+  |_br.unb.tree1artifactDeep1_25894673248847777:0.0.1
+  |_br.unb.tree1:goalLeaf_8665739798927667:0.0.1
+   |_br.unb.tree1artifactLeaf_9185471655614704C0C11:0.0.1::[C0, C11]
+  |_br.unb.tree1:goalLeaf_1392941973710734:0.0.1
+   |_br.unb.tree1artifactLeaf_17411581667577425C18C6:0.0.1::[C18, C6]
+  |_br.unb.tree1:goalLeaf_9815227634001044:0.0.1
+   |_br.unb.tree1artifactLeaf_19804512491734372C14C7:0.0.1::[C14, C7]
+  |_br.unb.tree1:goalLeaf_5005645226677358:0.0.1
+   |_br.unb.tree1artifactLeaf_18573314858318735C4C13:0.0.1::[C4, C13]
+  |_br.unb.tree1:goalLeaf_41634511603649305:0.0.1
+   |_br.unb.tree1artifactLeaf_11664396442114022C0C6:0.0.1::[C0, C6]
+ |_br.unb.tree1goalDeep1_5319836940500585:0.0.1
+  |_br.unb.tree1artifactDeep1_4234556844457399:0.0.1
+  |_br.unb.tree1:goalLeaf_9200222313359726:0.0.1
+   |_br.unb.tree1artifactLeaf_5284159179235496C6C12:0.0.1::[C6, C12]
+  |_br.unb.tree1:goalLeaf_7216037274033186:0.0.1
+   |_br.unb.tree1artifactLeaf_9142789838740311C13C9:0.0.1::[C13, C9]
+  |_br.unb.tree1:goalLeaf_22589451727659793:0.0.1
+   |_br.unb.tree1artifactLeaf_8763072429871913C8C6:0.0.1::[C8, C6]
+  |_br.unb.tree1:goalLeaf_6348858952829627:0.0.1
+   |_br.unb.tree1artifactLeaf_872510142988516C14C5:0.0.1::[C14, C5]
+  |_br.unb.tree1:goalLeaf_8135217021267146:0.0.1
+   |_br.unb.tree1artifactLeaf_521330453449572C4C13:0.0.1::[C4, C13]
+ |_br.unb.tree1goalDeep1_7091759079748815:0.0.1
+  |_br.unb.tree1artifactDeep1_9445393716270171:0.0.1
+  |_br.unb.tree1:goalLeaf_2650367336590176:0.0.1
+   |_br.unb.tree1artifactLeaf_9130843900300156C16C14:0.0.1::[C16, C14]
+  |_br.unb.tree1:goalLeaf_7797901704716786:0.0.1
+   |_br.unb.tree1artifactLeaf_23125050207398745C15C9:0.0.1::[C15, C9]
+  |_br.unb.tree1:goalLeaf_04947909469040157:0.0.1
+   |_br.unb.tree1artifactLeaf_6999720640491703C13C16:0.0.1::[C13, C16]
+  |_br.unb.tree1:goalLeaf_5576716727151919:0.0.1
+   |_br.unb.tree1artifactLeaf_03804475922066064C16C19:0.0.1::[C16, C19]
+  |_br.unb.tree1:goalLeaf_6632053081163948:0.0.1
+   |_br.unb.tree1artifactLeaf_14489496113299283C5C15:0.0.1::[C5, C15]
+ |_br.unb.tree1goalDeep1_5936873993552833:0.0.1
+  |_br.unb.tree1artifactDeep1_7630304970737184:0.0.1
+  |_br.unb.tree1:goalLeaf_25519815615717456:0.0.1
+   |_br.unb.tree1artifactLeaf_35137280501845514C9C19:0.0.1::[C9, C19]
+  |_br.unb.tree1:goalLeaf_4655356276593483:0.0.1
+   |_br.unb.tree1artifactLeaf_2620680735199715C15C3:0.0.1::[C15, C3]
+  |_br.unb.tree1:goalLeaf_9880321826796103:0.0.1
+   |_br.unb.tree1artifactLeaf_44833513753749266C2C6:0.0.1::[C2, C6]
+  |_br.unb.tree1:goalLeaf_09213459474305741:0.0.1
+   |_br.unb.tree1artifactLeaf_3810227337441203C10C14:0.0.1::[C10, C14]
+  |_br.unb.tree1:goalLeaf_9849788899367116:0.0.1
+   |_br.unb.tree1artifactLeaf_7597101674451703C2C5:0.0.1::[C2, C5]
+ |_br.unb.tree1goalDeep1_9374125579973281:0.0.1
+  |_br.unb.tree1artifactDeep1_013286800207419902:0.0.1
+  |_br.unb.tree1:goalLeaf_35832691890058976:0.0.1
+   |_br.unb.tree1artifactLeaf_514457615310498C16C13:0.0.1::[C16, C13]
+  |_br.unb.tree1:goalLeaf_4700839854433816:0.0.1
+   |_br.unb.tree1artifactLeaf_3158988767270221C8C4:0.0.1::[C8, C4]
+  |_br.unb.tree1:goalLeaf_39840893647988496:0.0.1
+   |_br.unb.tree1artifactLeaf_6567064778153401C3C4:0.0.1::[C3, C4]
+  |_br.unb.tree1:goalLeaf_6696995386518217:0.0.1
+   |_br.unb.tree1artifactLeaf_594583711454685C8C5:0.0.1::[C8, C5]
+  |_br.unb.tree1:goalLeaf_850605040503532:0.0.1
+   |_br.unb.tree1artifactLeaf_5008726594801406C18C10:0.0.1::[C18, C10]
+## Root Goal
+|_br.unb.tree2goalDeep2_9745714322555769:0.0.1
+ |_br.unb.tree2artifactDeep2_054767092714550825:0.0.1
+ |_br.unb.tree2goalDeep1_09359306629853104:0.0.1
+  |_br.unb.tree2artifactDeep1_005534273326453176:0.0.1
+  |_br.unb.tree2:goalLeaf_16182405911937903:0.0.1
+   |_br.unb.tree2artifactLeaf_09609837261191678C10C18:0.0.1::[C10, C18]
+  |_br.unb.tree2:goalLeaf_846413573723536:0.0.1
+   |_br.unb.tree2artifactLeaf_4619714976607796C12C8:0.0.1::[C12, C8]
+  |_br.unb.tree2:goalLeaf_5092620648936942:0.0.1
+   |_br.unb.tree2artifactLeaf_380761387503712C0C18:0.0.1::[C0, C18]
+  |_br.unb.tree2:goalLeaf_1748122629135529:0.0.1
+   |_br.unb.tree2artifactLeaf_9371704402650541C8C19:0.0.1::[C8, C19]
+  |_br.unb.tree2:goalLeaf_6207477433554414:0.0.1
+   |_br.unb.tree2artifactLeaf_7364710909626251C15C17:0.0.1::[C15, C17]
+ |_br.unb.tree2goalDeep1_147699607867522:0.0.1
+  |_br.unb.tree2artifactDeep1_5407531635328581:0.0.1
+  |_br.unb.tree2:goalLeaf_6339280364050972:0.0.1
+   |_br.unb.tree2artifactLeaf_49258996517353104C13C15:0.0.1::[C13, C15]

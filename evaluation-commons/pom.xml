@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>br.unb.goalp</groupId>
+		<artifactId>goalp-parent</artifactId>
+		<version>0.0.7</version>
+	</parent>
+	<artifactId>evaluation-commons</artifactId>
+	<name>evaluation-commons</name>
+	<packaging>jar</packaging>
+
+	<url>http://maven.apache.org</url>
+
+	<repositories>
+	    <repository>
+	        <id>bintray-lesunb</id>
+	        <url>https://dl.bintray.com/lesunb/third-party</url>
+	    </repository>
+	</repositories>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>br.unb.goalp</groupId>
+			<artifactId>goalp-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.jboss.weld.se/weld-se-core -->
+		<dependency>
+		    <groupId>org.jboss.weld.se</groupId>
+		    <artifactId>weld-se-core</artifactId>
+		    <version>2.3.5.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jboss.weld/weld-logger -->
+		<dependency>
+		    <groupId>org.jboss.weld</groupId>
+		    <artifactId>weld-logger</artifactId>
+		    <version>1.0.0-CR2</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<artifactId>slf4j-api</artifactId>
+		    		<groupId>org.slf4j</groupId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-core</artifactId>
+		    <version>2.0.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-slf4j-impl</artifactId>
+		    <version>2.0.2</version>
+		</dependency>
+		<dependency>
+		<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+</project>
