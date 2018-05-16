@@ -1,5 +1,6 @@
 package goald.dam.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Alternative {
@@ -12,6 +13,8 @@ public class Alternative {
 	private Boolean resolved;
 	
 	private List<Dame> listDepDame;
+	
+	private List<String> ctxReq;
 
 	public Dame getParentDame() {
 		return parentDame;
@@ -51,6 +54,17 @@ public class Alternative {
 
 	public void setListDepDame(List<Dame> listDepDame) {
 		this.listDepDame = listDepDame;
+	}
+
+	public List<String> getCtxReq() {
+		if(ctxReq == null) {
+			ctxReq = new ArrayList<>();
+		}
+		return ctxReq;
+	}
+
+	public void setCtxReq(List<String> ctxReq) {
+		this.ctxReq = ctxReq;
 	}
 	
 }
