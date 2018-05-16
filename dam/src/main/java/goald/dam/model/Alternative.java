@@ -6,7 +6,7 @@ import java.util.List;
 public class Alternative {
 	private Dame parentDame;
 	
-	private List<String> dependencyGoals;
+	private List<Goal> dependencyGoals;
 	
 	private Boolean ctxSatisfied;
 	
@@ -24,11 +24,11 @@ public class Alternative {
 		this.parentDame = parentDame;
 	}
 
-	public List<String> getDependencyGoals() {
+	public List<Goal> getDependencyGoals() {
 		return dependencyGoals;
 	}
 
-	public void setDependencyGoals(List<String> dependencyGoals) {
+	public void setDependencyGoals(List<Goal> dependencyGoals) {
 		this.dependencyGoals = dependencyGoals;
 	}
 
