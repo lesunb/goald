@@ -1,6 +1,7 @@
 package goald.dam.model.util;
 
 import goald.dam.model.Alternative;
+import goald.dam.model.ContextCondition;
 
 public class AlternativeBuilder {
 	
@@ -20,9 +21,19 @@ public class AlternativeBuilder {
 		return built;
 	}
 
-	public AlternativeBuilder addCtxReq(String ctx) {
+	public AlternativeBuilder addCtxReq(ContextCondition ctx) {
 		this.alternative.getCtxReq().add(ctx);
 		return this;
 	}
+
+	public AlternativeBuilder requiresCtx(String label) {
+		return addCtxReq(new ContextCondition(label));
+	}
 	
+	public AlternativeBuilder requiresCtx(String ...labels){
+		for(String label: labels) {
+			requiresCtx(label);	
+		}
+		return this;
+	}
 }

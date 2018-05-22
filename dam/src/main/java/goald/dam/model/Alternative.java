@@ -14,7 +14,7 @@ public class Alternative {
 	
 	private List<Dame> listDepDame;
 	
-	private List<String> ctxReq;
+	private List<ContextCondition> ctxReq;
 
 	public Dame getParentDame() {
 		return parentDame;
@@ -56,14 +56,14 @@ public class Alternative {
 		this.listDepDame = listDepDame;
 	}
 
-	public List<String> getCtxReq() {
+	public List<ContextCondition> getCtxReq() {
 		if(ctxReq == null) {
 			ctxReq = new ArrayList<>();
 		}
 		return ctxReq;
 	}
 
-	public void setCtxReq(List<String> ctxReq) {
+	public void setCtxReq(List<ContextCondition> ctxReq) {
 		this.ctxReq = ctxReq;
 	}
 	

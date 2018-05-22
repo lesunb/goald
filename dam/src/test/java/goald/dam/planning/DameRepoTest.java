@@ -14,19 +14,16 @@ import goald.dam.model.util.BundleBuilder;
 import goalp.repository.IRepository;
 import goalp.repository.RepositoryBuilder;
 
-public class QueryRepoTest {
+public class DameRepoTest {
 
-	IRepository repo;
+	DameRespository repo;
 	
 	Agent agent;
 	
 	@Before
 	public void setUp() throws Exception {
 		
-		
-		Agent agent = new Agent();
-		
-		repo = RepositoryBuilder.create()
+		IRepository _repo = RepositoryBuilder.create()
 				.add(
 					BundleBuilder.create()
 					.identification("greater.def")
@@ -86,6 +83,8 @@ public class QueryRepoTest {
 					.requires("display_capability")
 					.build())
 				.build();
+		this.repo = new DameRespository(_repo);
+		
 	}
 	
 	@Test
@@ -93,10 +92,8 @@ public class QueryRepoTest {
 		Goal goal = new Goal("nosense");
 		List<Goal> goals = new ArrayList<>();
 		goals.add(goal);
-		
-		UpdateDame updater  = new UpdateDame(repo, agent);
-	
-		List<Dame> result = updater.queryRepo(goals);
+
+		List<Dame> result = repo.queryRepo(goals);
 		Assert.assertNull(result);
 	}
 	
@@ -106,9 +103,7 @@ public class QueryRepoTest {
 		List<Goal> goals = new ArrayList<>();
 		goals.add(goal);
 		
-		UpdateDame updater  = new UpdateDame(repo, agent);
-	
-		List<Dame> result = updater.queryRepo(goals);
+		List<Dame> result = repo.queryRepo(goals);
 		
 		Assert.assertNotNull(result);
 		Assert.assertEquals(1, result.size());
@@ -123,10 +118,8 @@ public class QueryRepoTest {
 		
 		List<Goal> goals = new ArrayList<>();
 		goals.add(goal);
-		
-		UpdateDame updater  = new UpdateDame(repo, agent);
-	
-		List<Dame> result = updater.queryRepo(goals);
+
+		List<Dame> result = repo.queryRepo(goals);
 		
 		Assert.assertNotNull(result);
 		Assert.assertEquals(1, result.size());

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Agent {
 
-	private List<String> actualCtx;
+	private List<ContextCondition> actualCtx;
 	
 	private Dame rootDame;
 	

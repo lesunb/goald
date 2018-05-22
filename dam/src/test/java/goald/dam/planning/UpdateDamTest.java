@@ -1,32 +1,31 @@
 package goald.dam.planning;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import goald.dam.model.Alternative;
 import goald.dam.model.util.AlternativeBuilder;
+import goald.dam.model.util.CtxEvaluatorBuilder;
 
-public class UpdateDameTest {
+public class UpdateDamTest {
 	
-	UpdateDame updater;
+	DamUpdater updater;
 	
 	@Before
 	public void setup() {
-		updater = new UpdateDame(null, null);
+		updater = new DamUpdater(null, null);
 	}
 	
 
 	@Test
-	public void testIfLeaf() {
-		List<String> ctx = new ArrayList<>();
-		ctx.add("c1");
+	public void testResolveIfLeaf() {
+		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
+		.with("C1")
+		.build();
 		
 		Alternative alt = new Alternative();
-		UpdateDame updater = new UpdateDame(null, null);
+		DamUpdater updater = new DamUpdater(null, null);
 		
 		boolean result = updater.resolveAlt(ctx, alt);
 		
@@ -35,13 +34,14 @@ public class UpdateDameTest {
 
 	
 	@Test
-	public void testContextNotValid() {
-		List<String> ctx = new ArrayList<>();
-		ctx.add("c1");
+	public void testResolveAltInANotValidContext() {
+		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
+				.with("C1")
+				.build();
 		
 		Alternative alt = AlternativeBuilder
 				.create()
-				.addCtxReq("c2")
+				.requiresCtx("C1", "C2")
 				.build();
 		
 		boolean result = updater.resolveAlt(ctx, alt);
@@ -50,21 +50,20 @@ public class UpdateDameTest {
 	}
 	
 	@Test
-	public void testContextValid() {
-		List<String> ctx = new ArrayList<>();
-		ctx.add("c1");
-		ctx.add("c2");
-		ctx.add("c3");
-		
+	public void testResolveAltInAContextValid() {
+		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
+				.with("C1", "C2", "C3")
+				.build();
 		
 		Alternative alt = AlternativeBuilder
 				.create()
-				.addCtxReq("c1")
-				.addCtxReq("c2")
+				.requiresCtx("C1", "C2")
 				.build();
 		
 		boolean result = updater.resolveAlt(ctx, alt);
 		
 		Assert.assertTrue(result);
 	}
+	
+	
 }
