@@ -32,7 +32,7 @@ public class DamUpdater {
 			/// valid context with dependencies, resolve them all.
 			// check all dependencies
 			for(Dame dame: repo.queryRepo(alt.getDependencyGoals())) {
-				if(!resolveDame(ctx, dame, alt)) {
+				if(!resolveDame(ctx, dame)) {
 					return false;
 				}
 			}
@@ -40,7 +40,7 @@ public class DamUpdater {
 		}
 	}
 	
-	public boolean resolveDame(CtxEvaluator ctx, Dame dame, Alternative alt) {
+	public boolean resolveDame(CtxEvaluator ctx, Dame dame) {
 		
 		boolean result = false;
 		
@@ -49,11 +49,12 @@ public class DamUpdater {
 		
 		while(!result && alts.hasNext() ) {
 				Alternative candidate = alts.next();
-				result = resolveAlt(ctx, alt);
+				result = resolveAlt(ctx, candidate);
 				if(result) {
-					alt.setResolved(true);
-					alt.setCtxSatisfied(true);
+					candidate.setResolved(true);
+					candidate.setCtxSatisfied(true);
 					dame.setChosenAlt(candidate);
+					break;
 				}
 		}
 		return result;

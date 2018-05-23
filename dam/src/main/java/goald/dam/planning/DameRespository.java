@@ -32,7 +32,8 @@ public class DameRespository {
 			
 			for(Bundle impl:impls) {
 				Alternative alt = AlternativeBuilder.create()
-						//.addCtxReq(impl.getConditions())
+						.forDame(dame)
+						.from(def, impl)
 						.build();
 				
 				dame.getAlts().add(alt);

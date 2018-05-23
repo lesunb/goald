@@ -1,7 +1,9 @@
 package goald.dam.model.util;
 
 import goald.dam.model.Alternative;
+import goald.dam.model.Bundle;
 import goald.dam.model.ContextCondition;
+import goald.dam.model.Dame;
 
 public class AlternativeBuilder {
 	
@@ -34,6 +36,17 @@ public class AlternativeBuilder {
 		for(String label: labels) {
 			requiresCtx(label);	
 		}
+		return this;
+	}
+
+	public AlternativeBuilder from(Bundle def, Bundle impl) {
+		this.alternative.setDependencyGoals(impl.getDepends());
+		this.alternative.setCtxReq(impl.getConditions());
+		return this;
+	}
+
+	public AlternativeBuilder forDame(Dame dame) {
+		this.alternative.setParentDame(dame);
 		return this;
 	}
 }
