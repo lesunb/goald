@@ -25,6 +25,9 @@ public class Alternative {
 	}
 
 	public List<Goal> getDependencyGoals() {
+		if(dependencyGoals == null) {
+			this.dependencyGoals = new ArrayList<>();
+		}
 		return dependencyGoals;
 	}
 

@@ -40,8 +40,7 @@ public class FeelingStationAdvisorRepoMock {
 					BundleBuilder.create()
 					.identification("displayMyPosition.impl")
 					.provides("displayMyPosition")
-					.requires("display_capability")
-					.dependsOn("getPositionByGPS")
+					.dependsOn("getPosition")
 					.dependsOn("mapView")
 					.build())
 				.add(
@@ -64,7 +63,7 @@ public class FeelingStationAdvisorRepoMock {
 				.add(
 					BundleBuilder.create()
 					.identification("mapView.def")
-					.provides("mapView")
+					.defines("mapView")
 					.build())
 				.add(
 					BundleBuilder.create()

@@ -1,5 +1,6 @@
 package goald.dam.planning;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,13 +26,17 @@ public class DamUpdater {
 			return false;
 		}
 		
-		if(alt.getDependencyGoals() == null) {
+		if(alt.getDependencyGoals().size() == 0) {
 			// valid context without dependencies
 			return true;
 		}else {
 			/// valid context with dependencies, resolve them all.
 			// check all dependencies
-			for(Dame dame: repo.queryRepo(alt.getDependencyGoals())) {
+			Collection<Dame> dames = repo.queryRepo(alt.getDependencyGoals());
+			if(dames == null) { // for any goal, has no alternative
+				return false;
+			}
+			for(Dame dame: dames) {
 				if(!resolveDame(ctx, dame)) {
 					return false;
 				}

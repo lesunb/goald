@@ -123,6 +123,36 @@ public class UpdateDamTest {
 		Assert.assertEquals(true, dame2.getChosenAlt().getResolved());	
 	}
 	
+	@Test
+	public void testResolveDameMultipleAlternativeDependencies() {
+		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
+				.with("gps_capability", "display_capability")
+				.build();
+		
+		List<Goal> query = RepoQueryBuilder.create()
+				.queryFor("displayMyPosition")
+				.build();
+		
+		Dame dame = repo.queryRepo(query).get(0);		
+		
+		boolean result = updater.resolveDame(ctx, dame);
+		Assert.assertTrue(result);
+		
+		// displayMyPosition
+		
+		Assert.assertNotNull(dame.getChosenAlt());
+		Assert.assertEquals(true, dame.getChosenAlt().getResolved());	
+		
+
+		//TODO check altenative children
+		//TODO check altenative grand children
+	}
+	
+	//TODO @Test
+	//testResolveDameWithDependenciesNotPresentInTheRepo
+	
+	
+	
 	
 	
 }
