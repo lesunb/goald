@@ -52,6 +52,9 @@ public class Alternative {
 	}
 
 	public List<Dame> getListDepDame() {
+		if(listDepDame == null) {
+			listDepDame = new ArrayList<>();
+		}
 		return listDepDame;
 	}
 

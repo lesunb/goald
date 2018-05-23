@@ -138,12 +138,12 @@ public class UpdateDamTest {
 		Assert.assertNotNull(dame.getChosenAlt());
 		Assert.assertEquals(true, dame.getChosenAlt().getResolved());	
 		
-
-		//TODO check altenative children
+		// check altenative children
+		Assert.assertEquals(2, dame.getChosenAlt().getListDepDame().size());	
 		//TODO check altenative grand children
 	}
 	
-	//TODO @Test
+	//TODO improve coverage @Test
 	//testResolveDameWithDependenciesNotPresentInTheRepo
 	
 	

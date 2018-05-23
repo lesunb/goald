@@ -39,6 +39,8 @@ public class DamUpdater {
 			for(Dame dame: dames) {
 				if(!resolveDame(ctx, dame)) {
 					return false;
+				}else {
+					alt.getListDepDame().add(dame);
 				}
 			}
 			return true;
