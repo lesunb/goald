@@ -17,6 +17,8 @@ public class Bundle {
 	protected List<Goal> provides;
 
 	protected List<Goal> depends;
+	
+	protected List<QualityParameter> qualityParams;
 
 	public String getUuid() {
 		return uuid;
@@ -76,6 +78,17 @@ public class Bundle {
 
 	public void setDepends(List<Goal> depends) {
 		this.depends = depends;
+	}
+	
+	public List<QualityParameter> getQualityParams() {
+		if(qualityParams == null) {
+			qualityParams = new ArrayList<>();
+		}
+		return qualityParams;
+	}
+
+	public void setQualityParams(List<QualityParameter> qualityParams) {
+		this.qualityParams = qualityParams;
 	}
 
 }

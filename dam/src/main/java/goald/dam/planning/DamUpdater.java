@@ -8,6 +8,7 @@ import goald.dam.model.Agent;
 import goald.dam.model.Alternative;
 import goald.dam.model.Bundle;
 import goald.dam.model.Dame;
+import goald.dam.model.QualityParameter;
 
 public class DamUpdater {
 	
@@ -19,7 +20,7 @@ public class DamUpdater {
 		this.agent = agent;
 	}
 
-	public boolean resolveAlt(CtxEvaluator ctx, Alternative alt) {
+	public boolean resolveAlt(Agent agent, CtxEvaluator ctx, Alternative alt) {
 		
 		if(!ctx.check(alt.getCtxReq())) {
 			// invalid context
@@ -37,7 +38,7 @@ public class DamUpdater {
 				return false;
 			}
 			for(Dame dame: dames) {
-				if(!resolveDame(ctx, dame)) {
+				if(!resolveDame(null, ctx, dame)) {
 					return false;
 				}else {
 					alt.getListDepDame().add(dame);
@@ -47,16 +48,16 @@ public class DamUpdater {
 		}
 	}
 	
-	public boolean resolveDame(CtxEvaluator ctx, Dame dame) {
+	public boolean resolveDame(Agent agent, CtxEvaluator ctx, Dame dame) {
 		
 		boolean result = false;
 		
-		List<Alternative> orderedAlts = orderAlt(dame.getAlts(), dame.getDefinition());
+		List<Alternative> orderedAlts = orderAlt(agent, dame.getAlts(), dame.getDefinition());
 		Iterator<Alternative> alts = orderedAlts.iterator();
 		
 		while(!result && alts.hasNext() ) {
 				Alternative candidate = alts.next();
-				result = resolveAlt(ctx, candidate);
+				result = resolveAlt(null, ctx, candidate);
 				if(result) {
 					candidate.setResolved(true);
 					candidate.setCtxSatisfied(true);
@@ -68,7 +69,19 @@ public class DamUpdater {
 	}
 	
 
-	public List<Alternative> orderAlt(List<Alternative> alts, Bundle definition) {
+	public List<Alternative> orderAlt(Agent agent, List<Alternative> alts, Bundle definition) {
+		
+		for(Alternative alt: alts) {
+			int quality = 0;
+			for(QualityParameter param: alt.getImpl().getQualityParams()) {
+				quality += param.getValue() * agent.getQualityWeight(param.getLabel());
+			}
+			alt.setQuality(quality);
+		}
+		
+		alts.sort( 
+				(alt1, alt2) 
+				-> alt2.getQuality().compareTo(alt1.getQuality()));
 		
 		return alts;
 	}

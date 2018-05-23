@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Alternative {
+	
 	private Dame parentDame;
 	
 	private List<Goal> dependencyGoals;
@@ -17,6 +18,8 @@ public class Alternative {
 	private List<ContextCondition> ctxReq;
 	
 	private Bundle impl;
+	
+	private Integer quality;
 
 	public Dame getParentDame() {
 		return parentDame;
@@ -81,6 +84,14 @@ public class Alternative {
 
 	public void setImpl(Bundle impl) {
 		this.impl = impl;
+	}
+
+	public Integer getQuality() {
+		return quality;
+	}
+
+	public void setQuality(Integer quality) {
+		this.quality = quality;
 	}
 	
 }

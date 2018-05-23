@@ -53,12 +53,16 @@ public class FeelingStationAdvisorRepoMock {
 					.identification("getPositionByGPS")
 					.provides("getPosition")
 					.requires("gps_capability")
+					.withQuality("precision", 10)
+					.withQuality("responseTime", 5)
 					.build())
 				.add(
 					BundleBuilder.create()
 					.identification("getPositionByAntenna")
 					.provides("getPosition")
 					.requires("antenna_capability")
+					.withQuality("precision", 5)
+					.withQuality("responseTime", 10)
 					.build())
 				.add(
 					BundleBuilder.create()

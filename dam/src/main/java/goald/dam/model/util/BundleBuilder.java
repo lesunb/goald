@@ -3,6 +3,7 @@ package goald.dam.model.util;
 import goald.dam.model.Bundle;
 import goald.dam.model.ContextCondition;
 import goald.dam.model.Goal;
+import goald.dam.model.QualityParameter;
 
 public class BundleBuilder {
 	
@@ -58,6 +59,11 @@ public class BundleBuilder {
 		for(String condition:conditions){
 			requires(condition);
 		}
+		return this;
+	}
+
+	public BundleBuilder withQuality(String label, int value) {
+		this.bundle.getQualityParams().add(new QualityParameter(label, value));
 		return this;
 	}
 
