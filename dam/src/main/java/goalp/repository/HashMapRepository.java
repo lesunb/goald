@@ -69,7 +69,6 @@ public class HashMapRepository implements IRepository {
 	 */
 	@Override
 	public Bundle queryForDefinition(Goal goal){
-		List<Bundle> bundles = new ArrayList<>();
 		List<Bundle> bundlesList = getKnownBundles(BundleType.DEFINITION).get(goal.getIdentication());
 		if(bundlesList != null) {
 			return bundlesList.get(0);

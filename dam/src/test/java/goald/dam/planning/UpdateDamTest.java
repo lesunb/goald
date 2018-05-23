@@ -76,11 +76,6 @@ public class UpdateDamTest {
 				.with("C1", "C2", "C3")
 				.build();
 		
-		Alternative alt = AlternativeBuilder
-				.create()
-				.requiresCtx("C1", "C2")
-				.build();
-		
 		List<Goal> query = RepoQueryBuilder.create()
 				.queryFor("alarm")
 				.build();

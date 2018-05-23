@@ -10,9 +10,6 @@ import org.junit.Test;
 import goald.dam.model.Agent;
 import goald.dam.model.Dame;
 import goald.dam.model.Goal;
-import goald.dam.model.util.BundleBuilder;
-import goalp.repository.IRepository;
-import goalp.repository.RepositoryBuilder;
 
 public class DameRepoTest {
 

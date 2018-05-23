@@ -3,9 +3,7 @@ package goald.dam.model.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import goald.dam.model.ContextCondition;
 import goald.dam.model.Goal;
-import goald.dam.planning.CtxEvaluator;
 
 public class RepoQueryBuilder {
 	
