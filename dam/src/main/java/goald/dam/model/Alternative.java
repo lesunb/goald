@@ -15,6 +15,8 @@ public class Alternative {
 	private List<Dame> listDepDame;
 	
 	private List<ContextCondition> ctxReq;
+	
+	private Bundle impl;
 
 	public Dame getParentDame() {
 		return parentDame;
@@ -71,6 +73,14 @@ public class Alternative {
 
 	public void setCtxReq(List<ContextCondition> ctxReq) {
 		this.ctxReq = ctxReq;
+	}
+
+	public Bundle getImpl() {
+		return impl;
+	}
+
+	public void setImpl(Bundle impl) {
+		this.impl = impl;
 	}
 	
 }

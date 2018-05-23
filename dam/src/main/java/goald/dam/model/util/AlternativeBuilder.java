@@ -42,6 +42,7 @@ public class AlternativeBuilder {
 	public AlternativeBuilder from(Bundle def, Bundle impl) {
 		this.alternative.setDependencyGoals(impl.getDepends());
 		this.alternative.setCtxReq(impl.getConditions());
+		this.alternative.setImpl(impl);
 		return this;
 	}
 

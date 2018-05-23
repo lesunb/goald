@@ -69,7 +69,7 @@ public class DamUpdater {
 	
 
 	public List<Alternative> orderAlt(List<Alternative> alts, Bundle definition) {
-		// TODO Auto-generated method stub
+		
 		return alts;
 	}
 
