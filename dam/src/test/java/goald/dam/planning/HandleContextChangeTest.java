@@ -9,8 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.dam.model.Agent;
-import goald.dam.model.Alternative;
-import goald.dam.model.Bundle;
+import goald.dam.model.ContextChange;
 import goald.dam.model.Dame;
 import goald.dam.model.Goal;
 import goald.dam.model.util.AgentBuilder;
@@ -25,7 +24,6 @@ public class HandleContextChangeTest {
 	@Before
 	public void setup() {
 		repo = FeelingStationAdvisorRepoMock.regRepo();
-		updater = new DamUpdater(repo, null);
 	}
 	
 	@Test
@@ -36,22 +34,31 @@ public class HandleContextChangeTest {
 				.withQualityWeight("responseTime", 1)
 				.build();
 		
+		updater = new DamUpdater(repo, agent);
+		
 		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
-		.with("antenna_capability", "gps_capability")
+		.with("gps_capability")
 		.build();
 		
 		List<Goal> query = RepoQueryBuilder.create()
 				.queryFor("getPosition")
 				.build();
 		
-		List<Dame> result = repo.queryRepo(query);		
-		List<Alternative> alts = result.get(0).getAlts();
-		Bundle def = result.get(0).getDefinition();
+		Dame dame = repo.queryRepo(query).get(0);		
 		
-		List<Alternative> orderAlts = updater.orderAlt(agent, alts, def);
-				
-		assertEquals("getPositionByGPS", orderAlts.get(0).getImpl().getIdentification());
-		assertEquals("getPositionByAntenna", orderAlts.get(1).getImpl().getIdentification());
+		updater.resolveDame(ctx, dame);
+		
+		agent.setRootDame(dame);
+		
+		assertEquals("getPositionByGPS", agent.getRootDame().getChosenAlt().getImpl().identification );
+		
+		ContextChange change = new ContextChange(ContextChange.OP.ADDED, "antenna_capability");
+		
+		ContextChangeHandler handler = new ContextChangeHandler(repo, agent);
+		
+		handler.handle(change);
+		
+		assertEquals("getPositionByGPS", agent.getRootDame().getChosenAlt().getImpl().identification );
 		
 	}
 	

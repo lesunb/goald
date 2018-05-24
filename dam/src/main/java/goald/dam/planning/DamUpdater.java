@@ -20,7 +20,7 @@ public class DamUpdater {
 		this.agent = agent;
 	}
 
-	public boolean resolveAlt(Agent agent, CtxEvaluator ctx, Alternative alt) {
+	public boolean resolveAlt(CtxEvaluator ctx, Alternative alt) {
 		
 		if(!ctx.check(alt.getCtxReq())) {
 			// invalid context
@@ -38,7 +38,7 @@ public class DamUpdater {
 				return false;
 			}
 			for(Dame dame: dames) {
-				if(!resolveDame(null, ctx, dame)) {
+				if(!resolveDame(ctx, dame)) {
 					return false;
 				}else {
 					alt.getListDepDame().add(dame);
@@ -48,16 +48,16 @@ public class DamUpdater {
 		}
 	}
 	
-	public boolean resolveDame(Agent agent, CtxEvaluator ctx, Dame dame) {
+	public boolean resolveDame(CtxEvaluator ctx, Dame dame) {
 		
 		boolean result = false;
 		
-		List<Alternative> orderedAlts = orderAlt(agent, dame.getAlts(), dame.getDefinition());
+		List<Alternative> orderedAlts = orderAlt(dame.getAlts(), dame.getDefinition());
 		Iterator<Alternative> alts = orderedAlts.iterator();
 		
 		while(!result && alts.hasNext() ) {
 				Alternative candidate = alts.next();
-				result = resolveAlt(null, ctx, candidate);
+				result = resolveAlt(ctx, candidate);
 				if(result) {
 					candidate.setResolved(true);
 					candidate.setCtxSatisfied(true);
@@ -69,7 +69,7 @@ public class DamUpdater {
 	}
 	
 
-	public List<Alternative> orderAlt(Agent agent, List<Alternative> alts, Bundle definition) {
+	public List<Alternative> orderAlt(List<Alternative> alts, Bundle definition) {
 		
 		for(Alternative alt: alts) {
 			int quality = 0;

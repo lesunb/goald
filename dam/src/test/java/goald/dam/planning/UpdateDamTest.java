@@ -32,7 +32,7 @@ public class UpdateDamTest {
 		
 		Alternative alt = new Alternative();
 		
-		boolean result = updater.resolveAlt(null, ctx, alt);
+		boolean result = updater.resolveAlt(ctx, alt);
 		
 		Assert.assertTrue(result);
 	}
@@ -49,7 +49,7 @@ public class UpdateDamTest {
 				.requiresCtx("C1", "C2")
 				.build();
 		
-		boolean result = updater.resolveAlt(null, ctx, alt);
+		boolean result = updater.resolveAlt(ctx, alt);
 		
 		Assert.assertFalse(result);
 	}
@@ -65,7 +65,7 @@ public class UpdateDamTest {
 				.requiresCtx("C1", "C2")
 				.build();
 		
-		boolean result = updater.resolveAlt(null, ctx, alt);
+		boolean result = updater.resolveAlt(ctx, alt);
 		
 		Assert.assertTrue(result);
 	}
@@ -82,7 +82,7 @@ public class UpdateDamTest {
 		
 		Dame dame = repo.queryRepo(query).get(0);		
 		
-		boolean result = updater.resolveDame(null, ctx, dame);
+		boolean result = updater.resolveDame(ctx, dame);
 		Assert.assertFalse(result);
 		Assert.assertNull(dame.getChosenAlt());	
 	}
@@ -99,7 +99,7 @@ public class UpdateDamTest {
 		
 		Dame dame = repo.queryRepo(query).get(0);		
 		
-		boolean result = updater.resolveDame(null, ctx, dame);
+		boolean result = updater.resolveDame(ctx, dame);
 		Assert.assertTrue(result);
 		
 		Assert.assertNotNull(dame.getChosenAlt());
@@ -111,7 +111,7 @@ public class UpdateDamTest {
 		
 		Dame dame2 = repo.queryRepo(query).get(0);		
 		
-		boolean result2 = updater.resolveDame(null, ctx2, dame2);
+		boolean result2 = updater.resolveDame(ctx2, dame2);
 		Assert.assertTrue(result2);
 		
 		Assert.assertNotNull(dame2.getChosenAlt());
@@ -130,7 +130,7 @@ public class UpdateDamTest {
 		
 		Dame dame = repo.queryRepo(query).get(0);		
 		
-		boolean result = updater.resolveDame(null, ctx, dame);
+		boolean result = updater.resolveDame(ctx, dame);
 		Assert.assertTrue(result);
 		
 		// displayMyPosition
