@@ -39,7 +39,7 @@ public class HandleContextChangeTest {
 			.withQualityWeight("responseTime", 1)
 			.withContext(ctx)
 			.build();
-			
+
 		List<Goal> query = RepoQueryBuilder.create()
 			.queryFor("getPosition")
 			.build();
@@ -52,16 +52,22 @@ public class HandleContextChangeTest {
 		
 		assertEquals("getPositionByGPS", agent.getRootDame().getChosenAlt().getImpl().identification );
 		
-		ContextChange change = ContextChangeBuilder.create()
-				.add("antenna_capability")
-				.build();
+		// adaptation 
+
+		ContextChange change2 = ContextChangeBuilder.create()
+			.add("antenna_capability")
+			.build();
 		
 		ContextChangeHandler handler = new ContextChangeHandler(repo, agent);
+		handler.handle(change2);
+
+		Dame dame2 = repo.queryRepo(query).get(0);
+
+		updater.resolveDame(ctx, dame2);
 		
-		handler.handle(change);
+		agent.setRootDame(dame2);
 		
-		assertEquals("getPositionByGPS", agent.getRootDame().getChosenAlt().getImpl().identification );
-		
+		assertEquals("getPositionByGPS", agent.getRootDame().getChosenAlt().getImpl().identification );		
 	}
 	
 	@Test

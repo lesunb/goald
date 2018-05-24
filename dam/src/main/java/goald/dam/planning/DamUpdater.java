@@ -49,7 +49,7 @@ public class DamUpdater {
 		}
 		return result;
 	}
-	
+
 	public boolean resolveAlt(CtxEvaluator ctx, Alternative alt) {
 		
 		if(!ctx.check(alt.getCtxReq())) {
