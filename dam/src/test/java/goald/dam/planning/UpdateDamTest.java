@@ -6,9 +6,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import goald.dam.model.Agent;
 import goald.dam.model.Alternative;
 import goald.dam.model.Dame;
 import goald.dam.model.Goal;
+import goald.dam.model.util.AgentBuilder;
 import goald.dam.model.util.AlternativeBuilder;
 import goald.dam.model.util.CtxEvaluatorBuilder;
 import goald.dam.model.util.RepoQueryBuilder;
@@ -92,6 +94,12 @@ public class UpdateDamTest {
 		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
 				.with("gps_capability")
 				.build();
+	
+		Agent agent = AgentBuilder.create()
+				.withQualityWeight("precision", 3)
+				.withQualityWeight("responseTime", 1)
+				.withContext(ctx)
+				.build();
 		
 		List<Goal> query = RepoQueryBuilder.create()
 				.queryFor("getPosition")
@@ -99,6 +107,7 @@ public class UpdateDamTest {
 		
 		Dame dame = repo.queryRepo(query).get(0);		
 		
+		DamUpdater updater = new DamUpdater(repo, agent);
 		boolean result = updater.resolveDame(ctx, dame);
 		Assert.assertTrue(result);
 		
@@ -120,8 +129,16 @@ public class UpdateDamTest {
 	
 	@Test
 	public void testResolveDameMultipleAlternativeDependencies() {
+
+		
 		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
 				.with("gps_capability", "display_capability")
+				.build();
+		
+		Agent agent = AgentBuilder.create()
+				.withQualityWeight("precision", 3)
+				.withQualityWeight("responseTime", 1)
+				.withContext(ctx)
 				.build();
 		
 		List<Goal> query = RepoQueryBuilder.create()
@@ -130,6 +147,7 @@ public class UpdateDamTest {
 		
 		Dame dame = repo.queryRepo(query).get(0);		
 		
+		DamUpdater updater = new DamUpdater(repo, agent);
 		boolean result = updater.resolveDame(ctx, dame);
 		Assert.assertTrue(result);
 		

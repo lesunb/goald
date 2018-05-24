@@ -18,12 +18,10 @@ import goald.dam.model.util.RepoQueryBuilder;
 
 public class OrderAlternativesTest {
 	
-	DamUpdater updater;
 	DameRespository repo;
 	@Before
 	public void setup() {
 		repo = FeelingStationAdvisorRepoMock.regRepo();
-		updater = new DamUpdater(repo, null);
 	}
 	
 
@@ -46,6 +44,7 @@ public class OrderAlternativesTest {
 		List<Alternative> alts = result.get(0).getAlts();
 		Bundle def = result.get(0).getDefinition();
 		
+		DamUpdater updater = new DamUpdater(repo, agent);
 		List<Alternative> orderAlts = updater.orderAlt(alts, def);
 				
 		assertEquals("getPositionByGPS", orderAlts.get(0).getImpl().getIdentification());
@@ -59,6 +58,7 @@ public class OrderAlternativesTest {
 		Agent agent2 = AgentBuilder.create()
 				.withQualityWeight("precision", 1)
 				.withQualityWeight("responseTime", 3)
+				.withContext(ctx2)
 				.build();
 		
 		List<Goal> query2 = RepoQueryBuilder.create()
@@ -69,7 +69,8 @@ public class OrderAlternativesTest {
 		List<Alternative> alts2 = result2.get(0).getAlts();
 		Bundle def2 = result2.get(0).getDefinition();
 		
-		List<Alternative> orderAlts2 = updater.orderAlt(alts2, def2);
+		DamUpdater updater2 = new DamUpdater(repo, agent2);
+		List<Alternative> orderAlts2 = updater2.orderAlt(alts2, def2);
 				
 		assertEquals("getPositionByAntenna", orderAlts2.get(0).getImpl().getIdentification());
 		assertEquals("getPositionByGPS", orderAlts2.get(1).getImpl().getIdentification());
