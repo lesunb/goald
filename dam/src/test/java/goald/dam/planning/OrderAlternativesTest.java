@@ -46,7 +46,7 @@ public class OrderAlternativesTest {
 		List<Alternative> alts = result.get(0).getAlts();
 		Bundle def = result.get(0).getDefinition();
 		
-		List<Alternative> orderAlts = updater.orderAlt(agent, alts, def);
+		List<Alternative> orderAlts = updater.orderAlt(alts, def);
 				
 		assertEquals("getPositionByGPS", orderAlts.get(0).getImpl().getIdentification());
 		assertEquals("getPositionByAntenna", orderAlts.get(1).getImpl().getIdentification());
@@ -69,7 +69,7 @@ public class OrderAlternativesTest {
 		List<Alternative> alts2 = result2.get(0).getAlts();
 		Bundle def2 = result2.get(0).getDefinition();
 		
-		List<Alternative> orderAlts2 = updater.orderAlt(agent2, alts2, def2);
+		List<Alternative> orderAlts2 = updater.orderAlt(alts2, def2);
 				
 		assertEquals("getPositionByAntenna", orderAlts2.get(0).getImpl().getIdentification());
 		assertEquals("getPositionByGPS", orderAlts2.get(1).getImpl().getIdentification());
