@@ -1,6 +1,7 @@
 package goald.dam.model.util;
 
 import goald.dam.model.Agent;
+import goald.dam.planning.CtxEvaluator;
 
 public class AgentBuilder {
 	
@@ -21,9 +22,15 @@ public class AgentBuilder {
 	}
 	
 	public AgentBuilder withQualityWeight(String label, int value) {
-	this.agent.setWeight(label, value);
-	return this;
-}
+		this.agent.setWeight(label, value);
+		return this;
+	}
+
+	public AgentBuilder withContext(CtxEvaluator ctx) {
+		this.agent.setActualCtx(ctx);
+		return this;
+	}
+	
 
 //	public AgentBuilder addContext(String context) {
 //		this.agent.getContext().add(context);

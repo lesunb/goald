@@ -8,6 +8,7 @@ import goald.dam.model.Agent;
 import goald.dam.model.Alternative;
 import goald.dam.model.Bundle;
 import goald.dam.model.Dame;
+import goald.dam.model.Goal;
 import goald.dam.model.QualityParameter;
 
 public class DamUpdater {
@@ -19,7 +20,36 @@ public class DamUpdater {
 		this.repo = repo;
 		this.agent = agent;
 	}
-
+	
+	public List<Dame> resolveGoals(List<Goal> goals) {
+		List<Dame> dames = repo.queryRepo(goals);
+		
+		for(Dame dame:dames) {
+			resolveDame(agent.getActualCtx(), dame);
+		}
+		return dames;
+	}
+	
+	public boolean resolveDame(CtxEvaluator ctx, Dame dame) {
+		
+		boolean result = false;
+		
+		List<Alternative> orderedAlts = orderAlt(dame.getAlts(), dame.getDefinition());
+		Iterator<Alternative> alts = orderedAlts.iterator();
+		
+		while(!result && alts.hasNext() ) {
+				Alternative candidate = alts.next();
+				result = resolveAlt(ctx, candidate);
+				if(result) {
+					candidate.setResolved(true);
+					candidate.setCtxSatisfied(true);
+					dame.setChosenAlt(candidate);
+					break;
+				}
+		}
+		return result;
+	}
+	
 	public boolean resolveAlt(CtxEvaluator ctx, Alternative alt) {
 		
 		if(!ctx.check(alt.getCtxReq())) {
@@ -47,27 +77,6 @@ public class DamUpdater {
 			return true;
 		}
 	}
-	
-	public boolean resolveDame(CtxEvaluator ctx, Dame dame) {
-		
-		boolean result = false;
-		
-		List<Alternative> orderedAlts = orderAlt(dame.getAlts(), dame.getDefinition());
-		Iterator<Alternative> alts = orderedAlts.iterator();
-		
-		while(!result && alts.hasNext() ) {
-				Alternative candidate = alts.next();
-				result = resolveAlt(ctx, candidate);
-				if(result) {
-					candidate.setResolved(true);
-					candidate.setCtxSatisfied(true);
-					dame.setChosenAlt(candidate);
-					break;
-				}
-		}
-		return result;
-	}
-	
 
 	public List<Alternative> orderAlt(List<Alternative> alts, Bundle definition) {
 		

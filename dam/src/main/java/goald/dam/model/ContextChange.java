@@ -10,6 +10,8 @@ public class ContextChange {
 	
 	private String label;
 
+	public ContextChange() { }
+	
 	public ContextChange(OP op, String label) {
 		this.op = op;
 		this.label = label;

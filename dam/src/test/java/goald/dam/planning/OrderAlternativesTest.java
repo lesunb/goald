@@ -74,5 +74,4 @@ public class OrderAlternativesTest {
 		assertEquals("getPositionByAntenna", orderAlts2.get(0).getImpl().getIdentification());
 		assertEquals("getPositionByGPS", orderAlts2.get(1).getImpl().getIdentification());
 	}
-	
 }

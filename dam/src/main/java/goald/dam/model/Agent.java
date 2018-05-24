@@ -1,23 +1,24 @@
 package goald.dam.model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import goald.dam.planning.CtxEvaluator;
 
 public class Agent {
 
-	private List<ContextCondition> actualCtx;
+	private CtxEvaluator actualCtx;
 	
 	private Dame rootDame;
 		
 	private Map<String, Integer> weightMap;
 
-	public List<ContextCondition> getActualCtx() {
+	public CtxEvaluator getActualCtx() {
 		return actualCtx;
 	}
 
-	public void setActualCtx(List<ContextCondition> actualCtx) {
-		this.actualCtx = actualCtx;
+	public void setActualCtx(CtxEvaluator ctx) {
+		this.actualCtx = ctx;
 	}
 
 	public Dame getRootDame() {
