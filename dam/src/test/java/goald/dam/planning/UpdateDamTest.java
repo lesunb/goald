@@ -83,11 +83,7 @@ public class UpdateDamTest {
 	}
 	
 	@Test
-	public void testResolveDameInNoValidAlternative() {
-		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
-				.with("C1", "C2", "C3")
-				.build();
-		
+	public void testResolveDameInNoValidAlternative() {		
 		List<Goal> query = RepoQueryBuilder.create()
 				.queryFor("alarm")
 				.build();
@@ -123,10 +119,6 @@ public class UpdateDamTest {
 		
 		Assert.assertNotNull(dame.getChosenAlt());
 		Assert.assertEquals(true, dame.getChosenAlt().getResolved());	
-		
-		CtxEvaluator ctx2 = CtxEvaluatorBuilder.create()
-				.with("antenna_capability")
-				.build();
 		
 		Dame dame2 = repo.queryRepo(query).get(0);		
 		

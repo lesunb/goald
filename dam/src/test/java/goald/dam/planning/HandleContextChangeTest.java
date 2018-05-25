@@ -217,8 +217,7 @@ public class HandleContextChangeTest {
 			
 			ContextChangeHandler handler = new ContextChangeHandler(repo, agent);
 			
-			boolean result = handler.handle(change);
-			
+			handler.handle(change);
 			assertEquals("getPositionByGPS", agent.getRootDame().getChosenAlt().getImpl().identification );
 	}
 	
