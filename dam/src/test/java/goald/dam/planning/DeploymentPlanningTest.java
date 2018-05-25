@@ -1,7 +1,6 @@
 package goald.dam.planning;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
@@ -10,12 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.dam.model.Agent;
-import goald.dam.model.ContextChange;
 import goald.dam.model.Dame;
 import goald.dam.model.DeploymentPlan;
 import goald.dam.model.Goal;
 import goald.dam.model.util.AgentBuilder;
-import goald.dam.model.util.ContextChangeBuilder;
 import goald.dam.model.util.CtxEvaluatorBuilder;
 import goald.dam.model.util.RepoQueryBuilder;
 
