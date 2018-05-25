@@ -76,11 +76,10 @@ public class DeploymentPlanningTest {
 		
 		ContextChangeHandler handler = new ContextChangeHandler(repo, agent);
 		
-		boolean result = handler.handle(change);
+		handler.handle(change);
 		
 		DeploymentPlan plan2 = deploymentPlanner.createPlan();
 
-		
 		assertNotNull(plan);
 		assertEquals(2, plan2.getCommands().size());
 	}
