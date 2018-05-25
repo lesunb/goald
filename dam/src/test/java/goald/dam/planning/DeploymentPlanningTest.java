@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.dam.model.Agent;
+import goald.dam.model.CtxEvaluator;
 import goald.dam.model.Dame;
 import goald.dam.model.DeploymentPlan;
 import goald.dam.model.Goal;
@@ -55,6 +56,5 @@ public class DeploymentPlanningTest {
 		
 		assertNotNull(plan);
 		assertEquals(6, plan.getCommands().size());
-				
 	}
 }

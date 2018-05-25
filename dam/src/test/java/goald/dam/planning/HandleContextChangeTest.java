@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import goald.dam.model.Agent;
 import goald.dam.model.ContextChange;
+import goald.dam.model.CtxEvaluator;
 import goald.dam.model.Dame;
 import goald.dam.model.Goal;
 import goald.dam.model.util.AgentBuilder;
@@ -63,7 +64,7 @@ public class HandleContextChangeTest {
 
 		Dame dame2 = repo.queryRepo(query).get(0);
 
-		updater.resolveDame(ctx, dame2);
+		updater.resolveDame(dame2);
 		
 		agent.setRootDame(dame2);
 		
@@ -110,18 +111,115 @@ public class HandleContextChangeTest {
 	
 	@Test
 	public void testHCCThatMakesTheGoalNotAchivable() {
-		assertFalse(true);
+		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
+				.with("gps_capability")
+				.build();
+			
+			Agent agent = AgentBuilder.create()
+				.withContext(ctx)
+				.withQualityWeight("precision", 3)
+				.withQualityWeight("responseTime", 1)
+				.build();
+				
+			List<Goal> query = RepoQueryBuilder.create()
+				.queryFor("getPosition")
+				.build();
+			
+			updater = new DamUpdater(repo, agent);
+		
+			Dame dame = updater.resolveGoals(query).get(0);		
+					
+			agent.setRootDame(dame);
+			
+			assertEquals("getPositionByGPS", agent.getRootDame().getChosenAlt().getImpl().identification );
+			
+			ContextChange change = ContextChangeBuilder.create()
+					.remove("gps_capability")
+					.build();
+			
+			ContextChangeHandler handler = new ContextChangeHandler(repo, agent);
+			
+			boolean result = handler.handle(change);
+			
+			assertFalse(result);
 	}
 	
 	@Test
 	public void testHCCThatRecoveryAchivabilityOfGoals() {
-		assertFalse(true);
+		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
+				.with("gps_capability")
+				.build();
+			
+			Agent agent = AgentBuilder.create()
+				.withContext(ctx)
+				.withQualityWeight("precision", 3)
+				.withQualityWeight("responseTime", 1)
+				.build();
+				
+			List<Goal> query = RepoQueryBuilder.create()
+				.queryFor("getPosition")
+				.build();
+			
+			updater = new DamUpdater(repo, agent);
+		
+			Dame dame = updater.resolveGoals(query).get(0);		
+					
+			agent.setRootDame(dame);
+			
+			assertEquals("getPositionByGPS", agent.getRootDame().getChosenAlt().getImpl().identification );
+			
+			ContextChange change = ContextChangeBuilder.create()
+					.remove("gps_capability")
+					.build();
+			
+			ContextChangeHandler handler = new ContextChangeHandler(repo, agent);
+			
+			boolean result = handler.handle(change);
+			
+			assertFalse(result);
+			
+			ContextChange change2 = ContextChangeBuilder.create()
+					.add("antenna_capability")
+					.build();
+			 
+			handler.handle(change2);
+			assertEquals("getPositionByAntenna", agent.getRootDame().getChosenAlt().getImpl().identification );
 	}
 	
 	
 	@Test
 	public void handleCCFWithIncreaseInQuality() {
-		assertFalse(true);
+		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
+				.with("antenna_capability")
+				.build();
+			
+			Agent agent = AgentBuilder.create()
+				.withContext(ctx)
+				.withQualityWeight("precision", 3)
+				.withQualityWeight("responseTime", 1)
+				.build();
+				
+			List<Goal> query = RepoQueryBuilder.create()
+				.queryFor("getPosition")
+				.build();
+			
+			updater = new DamUpdater(repo, agent);
+		
+			Dame dame = updater.resolveGoals(query).get(0);		
+					
+			agent.setRootDame(dame);
+			
+			assertEquals("getPositionByAntenna", agent.getRootDame().getChosenAlt().getImpl().identification );
+			
+			ContextChange change = ContextChangeBuilder.create()
+					.add("gps_capability")
+					.build();
+			
+			ContextChangeHandler handler = new ContextChangeHandler(repo, agent);
+			
+			boolean result = handler.handle(change);
+			
+			assertEquals("getPositionByGPS", agent.getRootDame().getChosenAlt().getImpl().identification );
 	}
 	
 }

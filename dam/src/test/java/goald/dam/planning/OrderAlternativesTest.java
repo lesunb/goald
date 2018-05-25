@@ -10,6 +10,7 @@ import org.junit.Test;
 import goald.dam.model.Agent;
 import goald.dam.model.Alternative;
 import goald.dam.model.Bundle;
+import goald.dam.model.CtxEvaluator;
 import goald.dam.model.Dame;
 import goald.dam.model.Goal;
 import goald.dam.model.util.AgentBuilder;

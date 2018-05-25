@@ -7,6 +7,7 @@ import java.util.List;
 import goald.dam.model.Agent;
 import goald.dam.model.Alternative;
 import goald.dam.model.Bundle;
+import goald.dam.model.CtxEvaluator;
 import goald.dam.model.Dame;
 import goald.dam.model.Goal;
 import goald.dam.model.QualityParameter;
@@ -25,13 +26,14 @@ public class DamUpdater {
 		List<Dame> dames = repo.queryRepo(goals);
 		
 		for(Dame dame:dames) {
-			resolveDame(agent.getActualCtx(), dame);
+			resolveDame(dame);
 		}
 		return dames;
 	}
 	
-	public boolean resolveDame(CtxEvaluator ctx, Dame dame) {
-		
+	public boolean resolveDame(Dame dame) {
+		CtxEvaluator ctx = this.agent.getActualCtx();
+		dame.setChosenAlt(null);
 		boolean result = false;
 		
 		List<Alternative> orderedAlts = orderAlt(dame.getAlts(), dame.getDefinition());
@@ -39,6 +41,7 @@ public class DamUpdater {
 		
 		while(!result && alts.hasNext() ) {
 				Alternative candidate = alts.next();
+				agent.getCtxDamesMap().add(candidate.getCtxReq(), dame);
 				result = resolveAlt(ctx, candidate);
 				if(result) {
 					candidate.setResolved(true);
@@ -68,7 +71,7 @@ public class DamUpdater {
 				return false;
 			}
 			for(Dame dame: dames) {
-				if(!resolveDame(ctx, dame)) {
+				if(!resolveDame(dame)) {
 					return false;
 				}else {
 					alt.getListDepDame().add(dame);
@@ -94,5 +97,4 @@ public class DamUpdater {
 		
 		return alts;
 	}
-
 }

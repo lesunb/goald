@@ -3,7 +3,7 @@ package goald.dam.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import goald.dam.planning.CtxEvaluator;
+
 
 public class Agent {
 
@@ -12,6 +12,8 @@ public class Agent {
 	private Dame rootDame;
 		
 	private Map<String, Integer> weightMap;
+	
+	private CtxDameMap ctxDamesMap;
 
 	public CtxEvaluator getActualCtx() {
 		return actualCtx;
@@ -39,4 +41,16 @@ public class Agent {
 	public Integer getQualityWeight(String label) {
 		return weightMap.get(label);
 	}
+
+	public CtxDameMap getCtxDamesMap() {
+		if(ctxDamesMap == null) {
+			ctxDamesMap = new CtxDameMap();
+		}
+		return ctxDamesMap;
+	}
+
+	public void setCtxDamesMap(CtxDameMap ctxDamesMap) {
+		this.ctxDamesMap = ctxDamesMap;
+	}
+
 }

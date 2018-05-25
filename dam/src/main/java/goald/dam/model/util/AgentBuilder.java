@@ -1,7 +1,7 @@
 package goald.dam.model.util;
 
 import goald.dam.model.Agent;
-import goald.dam.planning.CtxEvaluator;
+import goald.dam.model.CtxEvaluator;
 
 public class AgentBuilder {
 	

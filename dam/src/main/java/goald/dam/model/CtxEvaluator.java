@@ -1,13 +1,11 @@
-package goald.dam.planning;
+package goald.dam.model;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import goald.dam.model.ContextChange;
 import goald.dam.model.ContextChange.OP;
-import goald.dam.model.ContextCondition;
 
 public class CtxEvaluator {
 	

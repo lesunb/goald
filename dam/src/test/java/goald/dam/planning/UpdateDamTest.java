@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import goald.dam.model.Agent;
 import goald.dam.model.Alternative;
+import goald.dam.model.CtxEvaluator;
 import goald.dam.model.Dame;
 import goald.dam.model.Goal;
 import goald.dam.model.util.AgentBuilder;
@@ -22,7 +23,16 @@ public class UpdateDamTest {
 	@Before
 	public void setup() {
 		repo = FeelingStationAdvisorRepoMock.regRepo();
-		updater = new DamUpdater(repo, null);
+		
+		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
+				.with("gps_capability")
+				.build();
+		
+		Agent agent = AgentBuilder.create()
+				.withContext(ctx)
+				.build();
+		
+		updater = new DamUpdater(repo, agent);
 	}
 	
 
@@ -84,7 +94,7 @@ public class UpdateDamTest {
 		
 		Dame dame = repo.queryRepo(query).get(0);		
 		
-		boolean result = updater.resolveDame(ctx, dame);
+		boolean result = updater.resolveDame(dame);
 		Assert.assertFalse(result);
 		Assert.assertNull(dame.getChosenAlt());	
 	}
@@ -108,7 +118,7 @@ public class UpdateDamTest {
 		Dame dame = repo.queryRepo(query).get(0);		
 		
 		DamUpdater updater = new DamUpdater(repo, agent);
-		boolean result = updater.resolveDame(ctx, dame);
+		boolean result = updater.resolveDame(dame);
 		Assert.assertTrue(result);
 		
 		Assert.assertNotNull(dame.getChosenAlt());
@@ -120,7 +130,7 @@ public class UpdateDamTest {
 		
 		Dame dame2 = repo.queryRepo(query).get(0);		
 		
-		boolean result2 = updater.resolveDame(ctx2, dame2);
+		boolean result2 = updater.resolveDame(dame2);
 		Assert.assertTrue(result2);
 		
 		Assert.assertNotNull(dame2.getChosenAlt());
@@ -148,7 +158,7 @@ public class UpdateDamTest {
 		Dame dame = repo.queryRepo(query).get(0);		
 		
 		DamUpdater updater = new DamUpdater(repo, agent);
-		boolean result = updater.resolveDame(ctx, dame);
+		boolean result = updater.resolveDame(dame);
 		Assert.assertTrue(result);
 		
 		// displayMyPosition

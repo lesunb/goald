@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import goald.dam.model.ContextCondition;
-import goald.dam.planning.CtxEvaluator;
+import goald.dam.model.CtxEvaluator;
 
 public class CtxEvaluatorBuilder {
 	
