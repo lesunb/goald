@@ -14,6 +14,8 @@ public class Agent {
 	private Map<String, Integer> weightMap;
 	
 	private CtxDameMap ctxDamesMap;
+	
+	private Deployment deployment;
 
 	public CtxEvaluator getActualCtx() {
 		return actualCtx;
@@ -51,6 +53,17 @@ public class Agent {
 
 	public void setCtxDamesMap(CtxDameMap ctxDamesMap) {
 		this.ctxDamesMap = ctxDamesMap;
+	}
+
+	public Deployment getDeployment() {
+		if(deployment == null) {
+			deployment = new Deployment();
+		}
+		return deployment;
+	}
+
+	public void setDeployment(Deployment deployment) {
+		this.deployment = deployment;
 	}
 
 }
