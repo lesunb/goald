@@ -1,4 +1,4 @@
-package goalp.repository;
+package goald.repository;
 
 
 import goald.dam.model.Bundle;

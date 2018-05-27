@@ -1,8 +1,8 @@
 package goald.dam.planning;
 
 import goald.dam.model.util.BundleBuilder;
-import goalp.repository.IRepository;
-import goalp.repository.RepositoryBuilder;
+import goald.repository.IRepository;
+import goald.repository.RepositoryBuilder;
 
 public class FeelingStationAdvisorRepoMock {
 

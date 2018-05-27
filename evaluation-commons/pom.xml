@@ -3,10 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>br.unb.goalp</groupId>
-		<artifactId>goalp-parent</artifactId>
-		<version>0.0.7</version>
+		<groupId>goald</groupId>
+		<artifactId>goald-parent</artifactId>
+		<version>0.0.1</version>
 	</parent>
+	
 	<artifactId>evaluation-commons</artifactId>
 	<name>evaluation-commons</name>
 	<packaging>jar</packaging>
@@ -23,8 +24,8 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>br.unb.goalp</groupId>
-			<artifactId>goalp-core</artifactId>
+			<groupId>goald</groupId>
+			<artifactId>goald-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
@@ -45,6 +46,11 @@
 		    		<groupId>org.slf4j</groupId>
 		    	</exclusion>
 		    </exclusions>
+		</dependency>
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>1.0-SP4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.logging.log4j</groupId>

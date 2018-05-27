@@ -3,7 +3,7 @@ package goald.dam.model.util;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Utils<T> {
+public class SetUtils<T> {
 	
 	public Set<T> diffSet(Set<T> setA, Set<T> setB) {
 		Set<T> result = new HashSet<T>();

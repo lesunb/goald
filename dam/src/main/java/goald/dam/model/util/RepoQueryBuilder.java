@@ -22,9 +22,13 @@ public class RepoQueryBuilder {
 		this.goals = null;
 		return built;
 	}
-
+	
 	public RepoQueryBuilder queryFor(String identification){
-		this.goals.add(new Goal(identification));
+		return queryFor(new Goal(identification));
+	}
+
+	public RepoQueryBuilder queryFor(Goal goal){
+		this.goals.add(goal);
 		return this;
 	}
 	

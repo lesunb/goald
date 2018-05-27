@@ -6,7 +6,7 @@
 		<artifactId>goald-parent</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>dam</artifactId>
+	<artifactId>goald-core</artifactId>
 	<name>Deployment Adaptation Model</name>
 	<packaging>jar</packaging>
 

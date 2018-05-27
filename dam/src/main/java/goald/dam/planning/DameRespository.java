@@ -8,7 +8,7 @@ import goald.dam.model.Bundle;
 import goald.dam.model.Dame;
 import goald.dam.model.Goal;
 import goald.dam.model.util.AlternativeBuilder;
-import goalp.repository.IRepository;
+import goald.repository.IRepository;
 
 public class DameRespository {
 	

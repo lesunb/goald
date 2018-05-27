@@ -1,4 +1,4 @@
-package goalp.repository;
+package goald.repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;

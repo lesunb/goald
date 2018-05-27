@@ -2,6 +2,7 @@ package goald.dam.planning;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -59,6 +60,11 @@ public class DeploymentPlanningTest {
 		
 		assertNotNull(plan);
 		assertEquals(6, plan.getCommands().size());
+	}
+	
+	@Test
+	public void testPlanForAnInvalidDeployment() {
+		assertTrue(false);
 	}
 	
 	

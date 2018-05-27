@@ -9,7 +9,7 @@ import goald.dam.model.Dame;
 import goald.dam.model.Deployment.Status;
 import goald.dam.model.DeploymentPlan;
 import goald.dam.model.util.DeploymentPlanBuilder;
-import goald.dam.model.util.Utils;
+import goald.dam.model.util.SetUtils;
 
 public class DeploymentPlanner {
 	
@@ -25,11 +25,17 @@ public class DeploymentPlanner {
 	
 	public DeploymentPlan createPlan() {
 		Dame rootDame = this.agent.getRootDame();
+		if(rootDame.getChosenAlt() == null) {
+			// TODO how to procced?
+			return DeploymentPlanBuilder.create()
+					.build();
+		}
+		
 		Set<Bundle> sellected = addToSellected(rootDame, new HashSet<>());
 		
 		Set<Bundle> active = this.agent.getDeployment().getAll(Status.ACTIVE);
 		
-		Utils<Bundle> utils = new Utils<Bundle>();
+		SetUtils<Bundle> utils = new SetUtils<Bundle>();
 		Set<Bundle> toInstall = utils.diffSet(sellected, active);
 		Set<Bundle> toRemove = utils.diffSet(active, sellected);
 		

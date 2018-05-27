@@ -4,17 +4,15 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import goald.beliefs.model.IRepository;
-import goalp.exputil.AbstractStudyCase;
+import goald.dam.model.util.BundleBuilder;
+import goald.dam.model.util.ContextChangeBuilder;
+import goald.dam.model.util.CtxEvaluatorBuilder;
+import goald.repository.IRepository;
+import goald.repository.RepositoryBuilder;
 import goalp.exputil.ExperimentTimer;
 import goalp.exputil.WriteService;
-import goalp.model.ArtifactBuilder;
-import goalp.systems.IDeploymentPlanner;
-import goalp.systems.RepositoryBuilder;
 
 public class FillingStationStudyCase extends AbstractStudyCase {
-
-	IDeploymentPlanner planner;
 	
 	IRepository repo;
 	
@@ -24,12 +22,12 @@ public class FillingStationStudyCase extends AbstractStudyCase {
 	@Inject
 	ExperimentTimer timer;
 	
-	@Inject
-	WriteService write;
+//	@Inject
+//	WriteService write;
 	
 
 	public void caseStudy() {
-		for(int i =0; i<100; i++){
+		for(int i =0; i<1; i++){
 			doCaseStudy();
 		}
 	}
@@ -40,202 +38,204 @@ public class FillingStationStudyCase extends AbstractStudyCase {
 		 * For each one the deployment will be planned
 		 */
 		scenario("s1", (agentBuilder)->{
-			agentBuilder.addContexts(
-				"antenna_triangulation", 
-				"protocol_get_fuel_level_and_mileage",
-				"storage",
-				"sound");
+			agentBuilder.withContext(
+				CtxEvaluatorBuilder.create()
+				.with(	"antenna_triangulation", 
+						"protocol_get_fuel_level_and_mileage",
+						"storage",
+						"sound").build());
+			},
+			(goalsChangeBuilding)->{
+				goalsChangeBuilding.addGoal("vehicle-refueling-is-assisted");
+			},
+			(changesList) -> {
+//				changesList.add(ContextChangeBuilder.create()
+//						.remove("storage").build());
+				changesList.add(ContextChangeBuilder.create()
+						.add("label").build());	
+//				changesList.add(ContextChangeBuilder.create()
+//						.add("storage").build());	
+//				changesList.add(ContextChangeBuilder.create()
+//						.remove("antenna_triangulation").build());	
 		});
 		
-		scenario("s2", (agentBuilder)->{
-			agentBuilder.addContexts(
-				"gps_capability",
-				"protocol_on_board_computer_get_distante_to_empty",
-				"internet_connection",
-				"synthesized_voice");
-		});
-		
-		scenario("s3", (agentBuilder)->{
-			agentBuilder.addContexts(
-				"gps_capability", 
-				"internet_connection",
-				"synthesized_voice");
-		});
-	
-		scenario("s4", (agentBuilder)->{
-			agentBuilder.addContexts(
-				"gps_capability", 
-				"protocol_on_board_computer_get_distante_to_empty",
-				"storage",
-				"visible_graphical_interface");
-		});
-		
-		scenario("s5", (agentBuilder)->{
-			agentBuilder.addContexts(
-				"gps_capability", 
-				"protocol_on_board_computer_get_distante_to_empty",
-				"internet_connection",
-				"interface_navigation_system");
-		});
-		
-		
-		scenario("s6", (agentBuilder)->{
-			agentBuilder.addContexts(
-				"protocol_on_board_computer_get_distante_to_empty", 
-				"storage",
-				"synthesized_voice");
-		});
-		
-		scenario("s7", (agentBuilder)->{
-			agentBuilder.addContexts(
-				"gps_capability", 
-				"protocol_on_board_computer_get_distante_to_empty",
-				"interface_navigation_system");
-		});
+//		scenario("s2", (agentBuilder)->{
+//			agentBuilder.addContexts(
+//				"gps_capability",
+//				"protocol_on_board_computer_get_distante_to_empty",
+//				"internet_connection",
+//				"synthesized_voice");
+//		});
+//		
+//		scenario("s3", (agentBuilder)->{
+//			agentBuilder.addContexts(
+//				"gps_capability", 
+//				"internet_connection",
+//				"synthesized_voice");
+//		});
+//	
+//		scenario("s4", (agentBuilder)->{
+//			agentBuilder.addContexts(
+//				"gps_capability", 
+//				"protocol_on_board_computer_get_distante_to_empty",
+//				"storage",
+//				"visible_graphical_interface");
+//		});
+//		
+//		scenario("s5", (agentBuilder)->{
+//			agentBuilder.addContexts(
+//				"gps_capability", 
+//				"protocol_on_board_computer_get_distante_to_empty",
+//				"internet_connection",
+//				"interface_navigation_system");
+//		});
+//		
+//		
+//		scenario("s6", (agentBuilder)->{
+//			agentBuilder.addContexts(
+//				"protocol_on_board_computer_get_distante_to_empty", 
+//				"storage",
+//				"synthesized_voice");
+//		});
+//		
+//		scenario("s7", (agentBuilder)->{
+//			agentBuilder.addContexts(
+//				"gps_capability", 
+//				"protocol_on_board_computer_get_distante_to_empty",
+//				"interface_navigation_system");
+//		});
 
 	}
 	
 	protected void setupEnvironment(RepositoryBuilder repositoryBuilder){
 		repositoryBuilder
 		.add(
-			ArtifactBuilder.create()
-			.identification("vehicle-refueling-is-assisted-definition:0.0.1")
-			.provides("vehicle-refueling-is-assisted-definition:0.0.1")
+			BundleBuilder.create()
+			.identification("vehicle-refueling-is-assisted-definition")
+			.defines("vehicle-refueling-is-assisted")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("vehicle-refueling-is-assisted-strategy:0.0.1")
-			.provides("vehicle-refueling-is-assisted:0.0.1")
-			.dependsOn("vehicle-refueling-is-assisted-definition:0.0.1")
-			.dependsOn("get_position-definition:0.0.1")
-			.dependsOn("get_distance_to_empty-definition:0.0.1")
-			.dependsOn("decide_convenient_station-definition:0.0.1")
-			.dependsOn("driver_is_notified-definition:0.0.1")
-			.dependsOn("get_position:0.0.1")
-			.dependsOn("get_distance_to_empty:0.0.1")
-			.dependsOn("access_filling_station_information:0.0.1")
-			.dependsOn("decide_convenient_station:0.0.1")
-			.dependsOn("driver_is_notified:0.0.1")
+			BundleBuilder.create()
+			.identification("vehicle-refueling-is-assisted-strategy")
+			.provides("vehicle-refueling-is-assisted")
+			.dependsOn("get_position")
+			.dependsOn("get_distance_to_empty")
+			.dependsOn("access_filling_station_information")
+			.dependsOn("decide_convenient_station")
+			.dependsOn("driver_is_notified")
 			.build())
 		/* 2nd level definitions */
 		.add(
-			ArtifactBuilder.create()
-			.identification("get_position-definition:0.0.1")
-			.provides("get_position-definition:0.0.1")
+			BundleBuilder.create()
+			.identification("get_position-definition")
+			.defines("get_position")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("get_distance_to_empty-definition:0.0.1")
-			.provides("get_distance_to_empty-definition:0.0.1")
+			BundleBuilder.create()
+			.identification("get_distance_to_empty-definition")
+			.defines("get_distance_to_empty")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("access_filling_station_information-definition:0.0.1")
-			.provides("access_filling_station_information-definition:0.0.1")
+			BundleBuilder.create()
+			.identification("access_filling_station_information-definition")
+			.defines("access_filling_station_information")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("decide_convenient_station-definition:0.0.1")
-			.provides("decide_convenient_station-definition:0.0.1")
+			BundleBuilder.create()
+			.identification("decide_convenient_station-definition")
+			.defines("decide_convenient_station")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("driver_is_notified-definition:0.0.1")
-			.provides("driver_is_notified-definition:0.0.1")
+			BundleBuilder.create()
+			.identification("driver_is_notified-definition")
+			.defines("driver_is_notified")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("get_distance_to_empty-definition:0.0.1")
-			.provides("get_distance_to_empty-definition:0.0.1")
+			BundleBuilder.create()
+			.identification("get_distance_to_empty-definition")
+			.defines("get_distance_to_empty")
 			.build())
 		/* positioning plans */
 		.add(
-			ArtifactBuilder.create()
-			.identification("get_position_gps:0.0.1")
-			.provides("get_position:0.0.1")
-			.condition("gps_capability")
+			BundleBuilder.create()
+			.identification("get_position_gps")
+			.provides("get_position")
+			.requires("gps_capability")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("get_position_antenna_triangulation:0.0.1")
-			.provides("get_position:0.0.1")
-			.condition("antenna_triangulation")
+			BundleBuilder.create()
+			.identification("get_position_antenna_triangulation")
+			.provides("get_position")
+			.requires("antenna_triangulation")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("get_position_using_nearby_wifi:0.0.1")
-			.provides("get_position:0.0.1")
-			.condition("wifi")
+			BundleBuilder.create()
+			.identification("get_position_using_nearby_wifi")
+			.provides("get_position")
+			.requires("wifi")
 			.build())
 		/* get distance alternatives */
 		.add(
-			ArtifactBuilder.create()
-			.identification("get_distance_to_empty-from-on-board-computer:0.0.1")
-			.provides("get_distance_to_empty:0.0.1")
-			.condition("protocol_on_board_computer_get_distante_to_empty")
+			BundleBuilder.create()
+			.identification("get_distance_to_empty-from-on-board-computer")
+			.provides("get_distance_to_empty")
+			.requires("protocol_on_board_computer_get_distante_to_empty")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("calculate_distance_to_empty_based_on_fuel_level_and_mileage:0.0.1")
-			.provides("get_distance_to_empty:0.0.1")
-			.condition("protocol_get_fuel_level_and_mileage")
+			BundleBuilder.create()
+			.identification("calculate_distance_to_empty_based_on_fuel_level_and_mileage")
+			.provides("get_distance_to_empty")
+			.requires("protocol_get_fuel_level_and_mileage")
 			.build())
 		.add(/* further divide */
-			ArtifactBuilder.create()
-			.identification("get_distance_to_empty_based_on_user_input_and_distance_track:0.0.1")
-			.provides("get_distance_to_empty:0.0.1")
-			.condition("gps_capability")
+			BundleBuilder.create()
+			.identification("get_distance_to_empty_based_on_user_input_and_distance_track")
+			.provides("get_distance_to_empty")
+			.requires("gps_capability")
 			.build())
 		/* access_filling_station_information alternatives */
 		.add(
-			ArtifactBuilder.create()
-			.identification("access_filling_station_information_online_impl:0.0.1")
-			.provides("access_filling_station_information:0.0.1")
-			.dependsOn("access_filling_station_information-definition:0.0.1")
-			.condition("internet_connection")
+			BundleBuilder.create()
+			.identification("access_filling_station_information_online_impl")
+			.provides("access_filling_station_information")
+			.requires("internet_connection")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("access_filling_station_information_offline_impl:0.0.1")
-			.provides("access_filling_station_information:0.0.1")
-			.dependsOn("access_filling_station_information-definition:0.0.1")
-			.condition("storage")
+			BundleBuilder.create()
+			.identification("access_filling_station_information_offline_impl")
+			.provides("access_filling_station_information")
+			.requires("storage")
 			.build())
 		/* decide convenient station alternatives */
 		.add(
-			ArtifactBuilder.create()
-			.identification("decide_convenient_station_impl:0.0.1")
-			.provides("decide_convenient_station:0.0.1")
-			.dependsOn("decide_convenient_station-definition:0.0.1")
+			BundleBuilder.create()
+			.identification("decide_convenient_station_impl")
+			.provides("decide_convenient_station")
 			.build())
 		/* driver is notified alternatives */
 		.add(
-			ArtifactBuilder.create()
-			.identification("driver_is_notified_by_navigation_system:0.0.1")
-			.provides("driver_is_notified:0.0.1")
-			.dependsOn("driver_is_notified-definition:0.0.1")
-			.condition("interface_navigation_system")
+			BundleBuilder.create()
+			.identification("driver_is_notified_by_navigation_system")
+			.provides("driver_is_notified")
+			.requires("interface_navigation_system")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("alert_driver_by_sound_using_synthesized_voice:0.0.1")
-			.provides("driver_is_notified:0.0.1")
-			.dependsOn("driver_is_notified-definition:0.0.1")
-			.condition("synthesized_voice")
+			BundleBuilder.create()
+			.identification("alert_driver_by_sound_using_synthesized_voice")
+			.provides("driver_is_notified")
+			.requires("synthesized_voice")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("alert_driver_by_sound_using_pre_recorded_voice:0.0.1")
-			.provides("driver_is_notified:0.0.1")
-			.dependsOn("driver_is_notified-definition:0.0.1")
-			.condition("sound")
+			BundleBuilder.create()
+			.identification("alert_driver_by_sound_using_pre_recorded_voice")
+			.provides("driver_is_notified")
+			.requires("sound")
 			.build())
 		.add(
-			ArtifactBuilder.create()
-			.identification("alert_driver_by_visual_sign:0.0.1")
-			.provides("driver_is_notified:0.0.1")
-			.dependsOn("driver_is_notified-definition:0.0.1")
-			.condition("visible_graphical_interface")
+			BundleBuilder.create()
+			.identification("alert_driver_by_visual_sign")
+			.provides("driver_is_notified")
+			.requires("visible_graphical_interface")
 			.build());
 	}
 

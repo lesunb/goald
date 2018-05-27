@@ -9,8 +9,8 @@ import org.junit.Test;
 import goald.dam.model.Bundle;
 import goald.dam.model.Goal;
 import goald.dam.model.util.BundleBuilder;
-import goalp.repository.IRepository;
-import goalp.repository.RepositoryBuilder;
+import goald.repository.IRepository;
+import goald.repository.RepositoryBuilder;
 
 public class RepositoryTest {
 	

@@ -6,8 +6,9 @@
 		<artifactId>goald-parent</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>goald-core</artifactId>
-	<name>goald-core</name>
+	
+	<artifactId>goald-bdi</artifactId>
+	<name>goald-bdi</name>
 	<packaging>jar</packaging>
 
 	<url>http://maven.apache.org</url>
