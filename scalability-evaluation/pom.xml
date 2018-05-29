@@ -37,9 +37,9 @@
 		
 		<!-- https://mvnrepository.com/artifact/org.jboss.weld.se/weld-se-core -->
 		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<version>1.0-SP4</version>
+   			<groupId>javax.enterprise</groupId>
+    			<artifactId>cdi-api</artifactId>
+    			<version>2.0</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.jboss.weld.se</groupId>

@@ -33,6 +33,11 @@ public class DeploymentPlan {
 		public Bundle getBundle() {
 			return this.bundle;
 		}
+		
+		@Override
+		public String toString() {
+			return op + ":" + bundle.identification;
+		}
 	}
 	
 
@@ -46,5 +51,14 @@ public class DeploymentPlan {
 
 	public void setCommands(List<Command> commands) {
 		this.commands = commands;
+	}
+
+	@Override
+	public String toString() {
+		if(commands == null) {
+			return "DeploymentPlan []";
+		} else {
+			return "DeploymentPlan [commands=" + commands + "]";	
+		}
 	}
 }

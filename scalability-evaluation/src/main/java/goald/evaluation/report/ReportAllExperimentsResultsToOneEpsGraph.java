@@ -1,4 +1,4 @@
-package goalp.evaluation.plans;
+package goald.evaluation.report;
 
 import java.util.List;
 import java.util.function.Function;

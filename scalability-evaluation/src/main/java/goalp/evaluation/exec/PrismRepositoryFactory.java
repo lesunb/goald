@@ -1,4 +1,4 @@
-package goalp.evaluation.plans;
+package goalp.evaluation.exec;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -8,38 +8,38 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import goald.beliefs.model.IRepository;
+import goald.dam.model.Bundle;
+import goald.dam.model.util.BundleBuilder;
+import goald.repository.IRepository;
+import goald.repository.RepositoryBuilder;
 import goalp.evaluation.model.ExperimentSetup;
 import goalp.evaluation.model.RepoSpec;
 import goalp.exputil.RandomPrismRepositoryUtil;
-import goalp.model.Artifact;
-import goalp.model.ArtifactBuilder;
-import goalp.systems.RepositoryBuilder;
 
-public class PrismRepositoryBuilder {
+public class PrismRepositoryFactory {
 	
 	private IRepository repository;
 	private Map<Integer, List<String>> rootGaoalsMap;
 	
-	protected PrismRepositoryBuilder(){
+	protected PrismRepositoryFactory(){
 		
 	}
 	
-	public static PrismRepositoryBuilder create(){
-		return new PrismRepositoryBuilder();
+	public static PrismRepositoryFactory create(){
+		return new PrismRepositoryFactory();
 	}
 	
-	public PrismRepositoryBuilder setSetupWithRepo(ExperimentSetup setup){
+	public PrismRepositoryFactory setSetupWithRepo(ExperimentSetup setup){
 		setup.setRepository(repository);
 		return this;
 	}
 
-	public PrismRepositoryBuilder setSetupRootGoals(ExperimentSetup setup){
+	public PrismRepositoryFactory setSetupRootGoals(ExperimentSetup setup){
 		setup.setRootGoalsMap(rootGaoalsMap);
 		return this;
 	}
 	
-	public PrismRepositoryBuilder buildBySpec(RepoSpec repoSpec){
+	public PrismRepositoryFactory buildBySpec(RepoSpec repoSpec){
 		Integer depth = repoSpec.getInteger("depth");
 		Integer numOfDependencies = repoSpec.getInteger("numOfDependencies");
 		Integer numOfContextConditionsPerGoal = repoSpec.getInteger("contextVariabilityP");
@@ -84,25 +84,34 @@ public class PrismRepositoryBuilder {
 			Set<String> artifactVariabilityContextSpace = RandomPrismRepositoryUtil.getPElements(contexts, numOfContextConditionsPerGoal);
 			contextSpace.addAll(artifactVariabilityContextSpace);
 			
-			String artifactProvide = "br.unb.tree" + treeId + ":goalLeaf" + randonLabel() + ":0.0.1";
+			String goalId = "goald" + treeId + ":" + randonLabel();
+			
+			Bundle deaf = BundleBuilder.create()
+					.identification(goalId+"-def")
+					.defines(goalId)
+					.build();
+			
+			builder.add(deaf);
 			
 			Deque<Deque<String>> combinations = RandomPrismRepositoryUtil.getCombinations(contextSpace, numOfContextConditionsPerArtifact);
 			for(int i = 0; i<variability; i++){
 				Deque<String> contextSelection = combinations.pop();
+				String[] ctxs = {};
+				String[] contextSelectionStr = (String[]) contextSelection.toArray(ctxs);
 				//leaf artifact, do not depends on any other
 				String contextLabel  = RandomPrismRepositoryUtil.concat(contextSelection);
-				String artifactLabel = "br.unb.tree" + treeId + "artifactLeaf" + randonLabel() + contextLabel + ":0.0.1";
+				String artifactLabel = "goald" + treeId + ":" + randonLabel() + contextLabel + "-impl";
 				
 				
-				Artifact leaf = ArtifactBuilder.create()
+				Bundle leaf = BundleBuilder.create()
 						.identification(artifactLabel)
-						.provides(artifactProvide)
-						.conditions(contextSelection) // generated the conditions after the selection
+						.provides(goalId)
+						.requires(contextSelectionStr) // generated the conditions after the selection
 						.build();
 				builder.add(leaf);
 			}
 			
-			return artifactProvide;
+			return goalId;
 		}else{
 			//create strategies
 			
@@ -116,16 +125,21 @@ public class PrismRepositoryBuilder {
 			}
 			
 			//no leaf
-			String artifactLabel = "br.unb.tree" + treeId + "artifactDeep"+ depth + randonLabel() + ":0.0.1";
-			String artifactProvide = "br.unb.tree" + treeId + "goalDeep"+ depth + randonLabel() + ":0.0.1";
+			String goaldId = "goald" + treeId + "goalDeep"+ depth + randonLabel();
 
-			Artifact strategy =  ArtifactBuilder.create()
-					.identification(artifactLabel)
-					.provides(artifactProvide)
+			Bundle def =  BundleBuilder.create()
+					.identification(goaldId+"-def")
+					.defines(goaldId)
+					.build();
+			builder.add(def);
+			
+			Bundle strategy =  BundleBuilder.create()
+					.identification(goaldId+"-impl")
+					.provides(goaldId)
 					.dependsOn(branchsProvidedGoal) //TODO should be the provided goal ?
 					.build();
 			builder.add(strategy);
-			return artifactProvide;
+			return goaldId;
 		}
 	}
 	

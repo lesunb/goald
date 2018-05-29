@@ -1,114 +1,13 @@
 package goalp.evaluation.fillingstation;
 
-import javax.inject.Inject;
-
-import org.slf4j.Logger;
-
 import goald.dam.model.util.BundleBuilder;
-import goald.dam.model.util.ContextChangeBuilder;
-import goald.dam.model.util.CtxEvaluatorBuilder;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
-import goalp.exputil.ExperimentTimer;
-//import goalp.exputil.WriteService;
 
-public class FillingStationStudyCase extends AbstractStudyCase {
-	
-	IRepository repo;
-	
-	@Inject
-	Logger log;
-	
-	@Inject
-	ExperimentTimer timer;
-	
-//	@Inject
-//	WriteService write;
-	
+public class FSARepository {
 
-	public void caseStudy() {
-		for(int i =0; i<1; i++){
-			doCaseStudy();
-		}
-	}
-	
-	public void doCaseStudy() {
-		/* 
-		 * Study case scenarios. Each one define a different set of contexts. 
-		 * For each one the deployment will be planned
-		 */
-		scenario("s1", (agentBuilder)->{
-			agentBuilder.withContext(
-				CtxEvaluatorBuilder.create()
-				.with(	"antenna_triangulation", 
-						"protocol_get_fuel_level_and_mileage",
-						"storage",
-						"sound").build());
-			},
-			(goalsChangeBuilding)->{
-				goalsChangeBuilding.addGoal("vehicle-refueling-is-assisted");
-			},
-			(changesList) -> {
-//				changesList.add(ContextChangeBuilder.create()
-//						.remove("storage").build());
-				changesList.add(ContextChangeBuilder.create()
-						.add("label").build());	
-//				changesList.add(ContextChangeBuilder.create()
-//						.add("storage").build());	
-//				changesList.add(ContextChangeBuilder.create()
-//						.remove("antenna_triangulation").build());	
-		});
-		
-//		scenario("s2", (agentBuilder)->{
-//			agentBuilder.addContexts(
-//				"gps_capability",
-//				"protocol_on_board_computer_get_distante_to_empty",
-//				"internet_connection",
-//				"synthesized_voice");
-//		});
-//		
-//		scenario("s3", (agentBuilder)->{
-//			agentBuilder.addContexts(
-//				"gps_capability", 
-//				"internet_connection",
-//				"synthesized_voice");
-//		});
-//	
-//		scenario("s4", (agentBuilder)->{
-//			agentBuilder.addContexts(
-//				"gps_capability", 
-//				"protocol_on_board_computer_get_distante_to_empty",
-//				"storage",
-//				"visible_graphical_interface");
-//		});
-//		
-//		scenario("s5", (agentBuilder)->{
-//			agentBuilder.addContexts(
-//				"gps_capability", 
-//				"protocol_on_board_computer_get_distante_to_empty",
-//				"internet_connection",
-//				"interface_navigation_system");
-//		});
-//		
-//		
-//		scenario("s6", (agentBuilder)->{
-//			agentBuilder.addContexts(
-//				"protocol_on_board_computer_get_distante_to_empty", 
-//				"storage",
-//				"synthesized_voice");
-//		});
-//		
-//		scenario("s7", (agentBuilder)->{
-//			agentBuilder.addContexts(
-//				"gps_capability", 
-//				"protocol_on_board_computer_get_distante_to_empty",
-//				"interface_navigation_system");
-//		});
-
-	}
-	
-	protected void setupEnvironment(RepositoryBuilder repositoryBuilder){
-		repositoryBuilder
+	public static IRepository getRepo() {
+		return RepositoryBuilder.create()
 		.add(
 			BundleBuilder.create()
 			.identification("vehicle-refueling-is-assisted-definition")
@@ -236,7 +135,7 @@ public class FillingStationStudyCase extends AbstractStudyCase {
 			.identification("alert_driver_by_visual_sign")
 			.provides("driver_is_notified")
 			.requires("visible_graphical_interface")
-			.build());
+			.build())
+		.build();
 	}
-
 }

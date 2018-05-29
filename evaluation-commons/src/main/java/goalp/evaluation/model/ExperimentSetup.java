@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import goald.beliefs.model.IRepository;
-import goalp.model.Agent;
-import goalp.systems.IDeploymentPlanner;
+import goald.dam.model.Agent;
+import goald.repository.IRepository;
+// import goalp.systems.IDeploymentPlanner;
 
 public class ExperimentSetup {
 
@@ -14,7 +14,7 @@ public class ExperimentSetup {
 	
 	private Map<Integer, List<String>> rootGoals;
 	
-	private IDeploymentPlanner planner;
+	// private IDeploymentPlanner planner;
 	
 	private Agent agent;
 
@@ -42,13 +42,13 @@ public class ExperimentSetup {
 		this.rootGoals = rootGoals;
 	}
 
-	public IDeploymentPlanner getPlanner() {
-		return planner;
-	}
-
-	public void setPlanner(IDeploymentPlanner planner) {
-		this.planner = planner;
-	}
+//	public IDeploymentPlanner getPlanner() {
+//		return planner;
+//	}
+//
+//	public void setPlanner(IDeploymentPlanner planner) {
+//		this.planner = planner;
+//	}
 
 	public Agent getAgent() {
 		return agent;

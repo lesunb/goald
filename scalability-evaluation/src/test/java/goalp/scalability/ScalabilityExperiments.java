@@ -6,10 +6,10 @@ import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 import org.junit.Test;
 
+import goald.experiments.CreateExperimentsToEvaluateScalabilityOverPlanSize;
+import goald.experiments.CreateExperimentsToEvaluateScalabilityOverVariabilityLevel;
 import goalp.evaluation.goals.ICreateExperiments;
 import goalp.evaluation.model.Experiment;
-import goalp.evaluation.plans.CreateExperimentsToEvaluateScalabilityOverPlanSize;
-import goalp.evaluation.plans.CreateExperimentsToEvaluateScalabilityOverVariabilityLevel;
 import goalp.evaluation.strategy.EvaluateStrategy;
 
 public class ScalabilityExperiments {

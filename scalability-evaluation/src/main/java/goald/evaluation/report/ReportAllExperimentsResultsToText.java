@@ -1,4 +1,4 @@
-package goalp.evaluation.plans;
+package goald.evaluation.report;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,46 +12,38 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 
 import com.panayotis.gnuplot.dataset.Point;
-import com.panayotis.gnuplot.style.FillStyle.Fill;
-import com.panayotis.gnuplot.style.Style;
 
 import goalp.Conf;
 import goalp.Conf.Keys;
+import goalp.evaluation.goals.IReportResult;
 import goalp.evaluation.model.Execution;
-import goalp.evaluation.model.PlanningExperiment;
+import goalp.evaluation.model.Experiment;
 import goalp.exputil.DataSetBuilder;
 import goalp.exputil.EvalUtil;
-import goalp.exputil.PlotBuilder;
+import goalp.exputil.GnuPlotDataBuilder;
 
 /**
  * Context Requirement: gnuplot installed
  */
 @Named
-public class ReportAllExperimentsResultsToOne3dEpsGraph {// implements IReportResult {
+public class ReportAllExperimentsResultsToText implements IReportResult {
 
 	@Inject
 	Logger log;
 
-	//@Override
-	public void exec(List<PlanningExperiment> experiments) {
+	@Override
+	public void exec(List<Experiment> experiments) {
 		
 		// create graph
-		PlotBuilder plotBuilder = PlotBuilder.create()
-			.asEps(Conf.get(Keys.RESULT_FILE) + EvalUtil.getFactor(experiments.get(0),0) + ".eps")
-			.xLabel(EvalUtil.getFactor(experiments.get(0), 0))
-			.xRange(Double.NaN, Double.NaN, true)
-			//.yRange(0d, 10d, false)
-			.yLabel(EvalUtil.getFactor(experiments.get(0), 1))
-			.zLabel(EvalUtil.getResponseVariable(experiments.get(0)))
-			.zTicslevel(0)
-			.xyplane(0);
+		GnuPlotDataBuilder dataSetFileBuilder = GnuPlotDataBuilder.create()
+				.toFile(Conf.get(Keys.RESULT_FILE) + EvalUtil.getFactor(experiments.get(0),0) + ".dat");
 
 		experiments.forEach((exp) -> {
 			List<String> factors = exp.getEvaluation().getFactorList();
 			if (factors.size() == 0) {
 				throw new IllegalStateException("experiment factors was not initialized");
 			} else if (factors.size() != 2) {
-				throw new IllegalStateException("3d graph only supported for two factors experiments");
+				throw new IllegalStateException("report only supported for two factors experiments");
 			} else if (factors.size() == 2) {
 
 				String factorOne = factors.get(0);
@@ -71,13 +63,8 @@ public class ReportAllExperimentsResultsToOne3dEpsGraph {// implements IReportRe
 					
 				}
 				
-				String responseVariable = ((PlanningExperiment) exp).getEvaluation().getResponseVariable();
-				//log.info("ploting {},{} vs {}", factorOne, factorTwo, responseVariable);
-
-				// create graph (factor vs r)esult) for the experiment execution
-				// list
 				for(List<Execution> execs: contextExecutions.values()){
-					addDataSet(exp, execs, plotBuilder, (exec) -> {
+					addDataSet(exp, execs, dataSetFileBuilder, (exec) -> {
 						Number factorOneValue = exec.getEvaluation().getFactors().get(factorOne);
 						Number factorTwoValue = exec.getEvaluation().getFactors().get(factorTwo);
 						Number response = exec.getEvaluation().getResponseValue();
@@ -88,15 +75,13 @@ public class ReportAllExperimentsResultsToOne3dEpsGraph {// implements IReportRe
 
 		});
 		
-		plotBuilder.plot();
+		dataSetFileBuilder.done();
 	}
 
-	private void addDataSet(PlanningExperiment exp,  List<Execution> execs, PlotBuilder plotBuilder, Function<Execution, Point<Number>> mapper) {
+	private void addDataSet(Experiment exp,  List<Execution> execs, GnuPlotDataBuilder plotBuilder, Function<Execution, Point<Number>> mapper) {
 
 		// create dataset
-		DataSetBuilder<Number> dsbuilder = 
-				DataSetBuilder.create()
-				.setStyle(Style.BOXES, Fill.PATTERN);
+		DataSetBuilder<Number> dsbuilder = DataSetBuilder.create();
 
 		for (Execution exec : execs) {
 
@@ -104,7 +89,7 @@ public class ReportAllExperimentsResultsToOne3dEpsGraph {// implements IReportRe
 		}
 
 		// add data set
-		plotBuilder.addDataSet(dsbuilder.buildDataSetPlot());
+		plotBuilder.addDataSet(dsbuilder.buildPointDataSet());
 	}
 
 	private Double nanoToMiliseconds(Number nanoSecs) {

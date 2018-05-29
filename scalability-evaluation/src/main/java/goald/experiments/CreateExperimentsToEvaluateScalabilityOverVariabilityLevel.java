@@ -1,4 +1,4 @@
-package goalp.evaluation.plans;
+package goald.experiments;
 
 import goalp.evaluation.model.ExecSpec;
 import goalp.evaluation.model.ExecSpecBuilder;
@@ -6,7 +6,7 @@ import goalp.evaluation.model.Experiment;
 import goalp.evaluation.model.ExperimentBuilder;
 import goalp.evaluation.model.PlanningExperimentBuilder;
 
-public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel  extends AbstractCreateExperiments {
+public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel extends AbstractCreateExperiments {
 
 	protected Experiment createExperiments() {
 		
@@ -34,13 +34,13 @@ public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel  extends
 				.put("type", 0)
 			.build();
 		
-		//create 10 series of equal experiments
+		//create 10 repetitions of equal experiments
 		for(int i=0; i<10; i++){
 			
 			//create execution specification from a range of k combination, from 0
 			addExecSpecsWithTwoInRangeSetter(model, 
-					0, 100, 1, //goals
-					1, 10, 1, //variability
+					0, 100, 1, //goals (start, end, step)
+					1, 10, 1, //variability  (start, end, step)
 					(spec, rangeValues) ->{
 				spec.put("numberOfGoals", rangeValues[0]);
 				spec.put("variability", rangeValues[1]);

@@ -1,4 +1,4 @@
-package goalp.evaluation.plans;
+package goald.experiments;
 
 import java.util.ArrayList;
 import java.util.Arrays;

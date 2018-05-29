@@ -1,4 +1,4 @@
-package goalp.evaluation.plans;
+package goald.experiments;
 
 import goalp.evaluation.model.ExecSpec;
 import goalp.evaluation.model.ExecSpecBuilder;

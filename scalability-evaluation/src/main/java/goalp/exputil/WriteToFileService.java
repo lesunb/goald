@@ -9,7 +9,6 @@ import java.nio.file.Paths;
 import goalp.Conf;
 import goalp.Conf.Keys;
 import goalp.evaluation.model.ExecResult;
-import goalp.model.Goal;
 
 public class WriteToFileService extends WriteService{
 
@@ -29,9 +28,9 @@ public class WriteToFileService extends WriteService{
 	}
 
 	private void write(ExecResult result, BufferedWriter writer) throws IOException{
-		for(Goal goal: result.getRequest().getGoals()){
-			printTree(goal, result.getResultPlan().getPlan(), 0, writer);			
-		}
+//		for(Goal goal: result.getRequest().getGoals()){
+//			printTree(goal, result.getResultPlan().getPlan(), 0, writer);			
+//		}
 	}
 
 }

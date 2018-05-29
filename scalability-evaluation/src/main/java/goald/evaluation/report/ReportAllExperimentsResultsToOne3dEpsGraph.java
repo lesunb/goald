@@ -1,4 +1,4 @@
-package goalp.evaluation.plans;
+package goald.evaluation.report;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,36 +7,43 @@ import java.util.Map;
 import java.util.function.Function;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.slf4j.Logger;
 
 import com.panayotis.gnuplot.dataset.Point;
+import com.panayotis.gnuplot.style.FillStyle.Fill;
+import com.panayotis.gnuplot.style.Style;
 
 import goalp.Conf;
 import goalp.Conf.Keys;
-import goalp.evaluation.goals.IReportResult;
 import goalp.evaluation.model.Execution;
-import goalp.evaluation.model.Experiment;
+import goalp.evaluation.model.PlanningExperiment;
 import goalp.exputil.DataSetBuilder;
 import goalp.exputil.EvalUtil;
-import goalp.exputil.GnuPlotDataBuilder;
+import goalp.exputil.PlotBuilder;
 
 /**
  * Context Requirement: gnuplot installed
  */
-@Named
-public class ReportAllExperimentsResultsToText implements IReportResult {
+// @Named
+public class ReportAllExperimentsResultsToOne3dEpsGraph {// implements IReportResult {
 
 	@Inject
 	Logger log;
 
-	@Override
-	public void exec(List<Experiment> experiments) {
+	//@Override
+	public void exec(List<PlanningExperiment> experiments) {
 		
 		// create graph
-		GnuPlotDataBuilder dataSetFileBuilder = GnuPlotDataBuilder.create()
-				.toFile(Conf.get(Keys.RESULT_FILE) + EvalUtil.getFactor(experiments.get(0),0) + ".dat");
+		PlotBuilder plotBuilder = PlotBuilder.create()
+			.asEps(Conf.get(Keys.RESULT_FILE) + EvalUtil.getFactor(experiments.get(0),0) + ".eps")
+			.xLabel(EvalUtil.getFactor(experiments.get(0), 0))
+			.xRange(Double.NaN, Double.NaN, true)
+			//.yRange(0d, 10d, false)
+			.yLabel(EvalUtil.getFactor(experiments.get(0), 1))
+			.zLabel(EvalUtil.getResponseVariable(experiments.get(0)))
+			.zTicslevel(0)
+			.xyplane(0);
 
 		experiments.forEach((exp) -> {
 			List<String> factors = exp.getEvaluation().getFactorList();
@@ -63,8 +70,13 @@ public class ReportAllExperimentsResultsToText implements IReportResult {
 					
 				}
 				
+				String responseVariable = ((PlanningExperiment) exp).getEvaluation().getResponseVariable();
+				//log.info("ploting {},{} vs {}", factorOne, factorTwo, responseVariable);
+
+				// create graph (factor vs r)esult) for the experiment execution
+				// list
 				for(List<Execution> execs: contextExecutions.values()){
-					addDataSet(exp, execs, dataSetFileBuilder, (exec) -> {
+					addDataSet(exp, execs, plotBuilder, (exec) -> {
 						Number factorOneValue = exec.getEvaluation().getFactors().get(factorOne);
 						Number factorTwoValue = exec.getEvaluation().getFactors().get(factorTwo);
 						Number response = exec.getEvaluation().getResponseValue();
@@ -75,13 +87,15 @@ public class ReportAllExperimentsResultsToText implements IReportResult {
 
 		});
 		
-		dataSetFileBuilder.done();
+		plotBuilder.plot();
 	}
 
-	private void addDataSet(Experiment exp,  List<Execution> execs, GnuPlotDataBuilder plotBuilder, Function<Execution, Point<Number>> mapper) {
+	private void addDataSet(PlanningExperiment exp,  List<Execution> execs, PlotBuilder plotBuilder, Function<Execution, Point<Number>> mapper) {
 
 		// create dataset
-		DataSetBuilder<Number> dsbuilder = DataSetBuilder.create();
+		DataSetBuilder<Number> dsbuilder = 
+				DataSetBuilder.create()
+				.setStyle(Style.BOXES, Fill.PATTERN);
 
 		for (Execution exec : execs) {
 
@@ -89,7 +103,7 @@ public class ReportAllExperimentsResultsToText implements IReportResult {
 		}
 
 		// add data set
-		plotBuilder.addDataSet(dsbuilder.buildPointDataSet());
+		plotBuilder.addDataSet(dsbuilder.buildDataSetPlot());
 	}
 
 	private Double nanoToMiliseconds(Number nanoSecs) {

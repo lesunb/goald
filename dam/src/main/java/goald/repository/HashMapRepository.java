@@ -99,27 +99,6 @@ public class HashMapRepository implements IRepository {
 		return bundles;
 	}
 
-	@Override
-	public Bundle queryForDefinition(String goalId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public List<Bundle> queryForImplementations(String goalId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Bundle> queryForDefinitions(String goalId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Bundle> queryFor(BundleType type, String goalId) {
-		return getKnownBundles(type).get(goalId);
-	}
 
 }

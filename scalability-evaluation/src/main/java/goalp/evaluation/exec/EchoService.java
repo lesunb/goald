@@ -1,4 +1,4 @@
-package goalp.evaluation.plans;
+package goalp.evaluation.exec;
 
 import javax.inject.Inject;
 

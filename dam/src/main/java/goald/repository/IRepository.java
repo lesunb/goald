@@ -9,14 +9,6 @@ import goald.repository.HashMapRepository.BundleType;
 public interface IRepository {
 
 	void add(Bundle bundle);
-
-	Bundle queryForDefinition(String goalId);
-
-	List<Bundle> queryForImplementations(String goalId);
-	
-	List<Bundle> queryForDefinitions(String goalId);
-	
-	List<Bundle> queryFor(BundleType type, String goalId);
 	
 	int getSize();
 
@@ -25,5 +17,5 @@ public interface IRepository {
 	List<Bundle> queryForImplementations(Goal goal);
 
 	List<Bundle> queryForDefinitions(Goal goal);
-
+	
 }
