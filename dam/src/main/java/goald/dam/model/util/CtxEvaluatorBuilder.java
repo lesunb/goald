@@ -37,4 +37,11 @@ public class CtxEvaluatorBuilder {
 		}
 		return this;
 	}
+
+	public CtxEvaluatorBuilder with(List<String> ctxs) {
+		for(String identification: ctxs) {
+			this.ctx.add(new ContextCondition(identification));	
+		}
+		return this;
+	}
 }

@@ -1,13 +1,16 @@
-package goalp.evaluation.model;
+package goald.eval.spec;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import goald.eval.exec.Evaluation;
+import goald.eval.exec.Execution;
 
 public class Experiment {
 	
 	public String name;
 	
-	private EvaluationComponent evaluation;
+	private Evaluation evaluation;
 		
 	private List<Execution> executions;
 	
@@ -31,14 +34,14 @@ public class Experiment {
 		getExecutions().add(execution);
 	}
 
-	public EvaluationComponent getEvaluation() {
+	public Evaluation getEvaluation() {
 		if(evaluation == null){
-			evaluation = new EvaluationComponent();
+			evaluation = new Evaluation();
 		}
 		return evaluation;
 	}
 
-	public void setEvaluation(EvaluationComponent evaluation) {
+	public void setEvaluation(Evaluation evaluation) {
 		this.evaluation = evaluation;
 	}
 

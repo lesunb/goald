@@ -2,7 +2,7 @@ package goalp.exputil;
 
 import java.util.List;
 
-import goalp.evaluation.model.Experiment;
+import goald.eval.spec.Experiment;
 
 public class EvalUtil {
 	

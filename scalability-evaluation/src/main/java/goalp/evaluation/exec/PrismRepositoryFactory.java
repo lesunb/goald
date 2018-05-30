@@ -10,9 +10,9 @@ import java.util.Set;
 
 import goald.dam.model.Bundle;
 import goald.dam.model.util.BundleBuilder;
+import goald.eval.exec.ExperimentSetup;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
-import goalp.evaluation.model.ExperimentSetup;
 import goalp.evaluation.model.RepoSpec;
 import goalp.exputil.RandomPrismRepositoryUtil;
 
@@ -20,6 +20,7 @@ public class PrismRepositoryFactory {
 	
 	private IRepository repository;
 	private Map<Integer, List<String>> rootGaoalsMap;
+	private List<String> contextSpace;
 	
 	protected PrismRepositoryFactory(){
 		
@@ -39,6 +40,11 @@ public class PrismRepositoryFactory {
 		return this;
 	}
 	
+	public PrismRepositoryFactory setCtxSpace(ExperimentSetup setup){
+		setup.setCtxSpace(this.contextSpace);
+		return this;
+	}
+	
 	public PrismRepositoryFactory buildBySpec(RepoSpec repoSpec){
 		Integer depth = repoSpec.getInteger("depth");
 		Integer numOfDependencies = repoSpec.getInteger("numOfDependencies");
@@ -46,7 +52,7 @@ public class PrismRepositoryFactory {
 		Integer numOfContextConditionsPerArtifact = repoSpec.getInteger("contextVariabilityK");
 		
 		@SuppressWarnings("unchecked")
-		List<String> contextSpace = (List<String>) repoSpec.getObject(List.class, "contextSpace");
+		List<String> contextSpace = repoSpec.getObject(List.class, "contextSpace");
 		
 		RepositoryBuilder builder = RepositoryBuilder.create();
 		
@@ -70,6 +76,7 @@ public class PrismRepositoryFactory {
 		
 		this.repository = builder.build();
 		this.rootGaoalsMap = rootGaoalsMap;
+		this.contextSpace = contextSpace;
 		
 		return this;
 	}
@@ -97,7 +104,7 @@ public class PrismRepositoryFactory {
 			for(int i = 0; i<variability; i++){
 				Deque<String> contextSelection = combinations.pop();
 				String[] ctxs = {};
-				String[] contextSelectionStr = (String[]) contextSelection.toArray(ctxs);
+				String[] contextSelectionStr = contextSelection.toArray(ctxs);
 				//leaf artifact, do not depends on any other
 				String contextLabel  = RandomPrismRepositoryUtil.concat(contextSelection);
 				String artifactLabel = "goald" + treeId + ":" + randonLabel() + contextLabel + "-impl";

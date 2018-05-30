@@ -6,12 +6,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import goald.eval.exec.ExecResult;
 import goalp.Conf;
 import goalp.Conf.Keys;
-import goalp.evaluation.model.ExecResult;
 
 public class WriteToFileService extends WriteService{
 
+	@Override
 	public void it(ExecResult result){
 		it(result, Conf.get(Keys.DEPL_PLAN_FILE));
 	}
@@ -28,9 +29,9 @@ public class WriteToFileService extends WriteService{
 	}
 
 	private void write(ExecResult result, BufferedWriter writer) throws IOException{
-//		for(Goal goal: result.getRequest().getGoals()){
-//			printTree(goal, result.getResultPlan().getPlan(), 0, writer);			
-//		}
+		if(result.getAgent() != null &&
+				result.getAgent().getRootDame() != null) {
+			printTree(result.getAgent().getRootDame(), 0, writer);
+		}						
 	}
-
 }

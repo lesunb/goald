@@ -7,10 +7,9 @@ import javax.inject.Singleton;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 
+import goald.eval.spec.Experiment;
 import goald.experiments.CreateExperimentsToEvaluateScalabilityOverPlanSize;
-import goald.experiments.CreateExperimentsToEvaluateScalabilityOverVariabilityLevel;
 import goalp.evaluation.goals.ICreateExperiments;
-import goalp.evaluation.model.Experiment;
 import goalp.evaluation.strategy.EvaluateStrategy;
 
 @Singleton
@@ -25,12 +24,15 @@ public class EvaluationMain {
 		Weld weld = new Weld();
 		WeldContainer container = weld.initialize();
 
+		//execute experiments
 		container.select(EvaluateStrategy.class).get()
-		.exec(getExperiments(CreateExperimentsToEvaluateScalabilityOverPlanSize.class));
+			.exec(getExperiments(
+					CreateExperimentsToEvaluateScalabilityOverPlanSize.class));
 		
-		container.select(EvaluateStrategy.class).get()
-			.exec(getExperiments(CreateExperimentsToEvaluateScalabilityOverVariabilityLevel.class));
-		
+//		container.select(EvaluateStrategy.class).get()
+//			.exec(getExperiments(
+//					CreateExperimentsToEvaluateScalabilityOverVariabilityLevel.class));
+//		
 		container.shutdown();
 
 		System.out.println("Goalp planning evaluation has come a normal end. Good bye");
@@ -38,7 +40,7 @@ public class EvaluationMain {
 
 	public static List<Experiment> getExperiments(Class<? extends ICreateExperiments> classCreator){
 		try {
-			ICreateExperiments creator = (ICreateExperiments) classCreator.newInstance();
+			ICreateExperiments creator = classCreator.newInstance();
 			return creator.exec();
 		} catch (Exception e) {
 			throw new IllegalStateException(e);

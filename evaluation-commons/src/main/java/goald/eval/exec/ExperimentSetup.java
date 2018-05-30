@@ -1,4 +1,4 @@
-package goalp.evaluation.model;
+package goald.eval.exec;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,8 @@ public class ExperimentSetup {
 	// private IDeploymentPlanner planner;
 	
 	private Agent agent;
+
+	private List<String> contextSpace;
 
 	public IRepository getRepository() {
 		return repository;
@@ -56,6 +58,14 @@ public class ExperimentSetup {
 
 	public void setAgent(Agent agent) {
 		this.agent = agent;
+	}
+	
+	public List<String> getCtxSpace() {
+		return this.contextSpace;
+	}
+
+	public void setCtxSpace(List<String> contextSpace) {
+		this.contextSpace = contextSpace;
 	}
 
 }

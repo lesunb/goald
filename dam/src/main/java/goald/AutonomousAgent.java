@@ -42,23 +42,15 @@ public abstract class AutonomousAgent {
 		executor.execute(adaptPlan);
 		deploymentChangeExecuted();
 	}
-
-	public void damUpdated() {
-		// TODO Auto-generated method stub
-		
-	}
 	
+	public void changingGoals() {}
 	
-	public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void damUpdated() {}
 	
-	public void deploymentChangeExecuted() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {}
+	
+	public void deploymentChangeExecuted() {}
+	
 	public void init(IRepository _repo) {
 		DameRespository repo = new DameRespository(_repo);
 		
@@ -79,7 +71,8 @@ public abstract class AutonomousAgent {
 		deploymentPlanner = new DeploymentPlanner(repo, agent);
 		executor = new DeploymentExecutor(agent);
 		ccHandler = new ContextChangeHandler(repo, agent);
-
+		
+		changingGoals();
 		gcHandler.handle(goalsChangeRequest);
 		damUpdated();
 		DeploymentPlan initialPlan = deploymentPlanner.createPlan();

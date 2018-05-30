@@ -1,4 +1,4 @@
-package goalp.evaluation.model;
+package goald.eval.spec;
 
 import java.util.HashMap;
 import java.util.List;

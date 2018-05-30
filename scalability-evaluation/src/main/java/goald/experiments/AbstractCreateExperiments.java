@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import goald.eval.spec.ExecSpec;
+import goald.eval.spec.Experiment;
+import goald.eval.spec.ExperimentBuilder;
 import goalp.evaluation.goals.ICreateExperiments;
-import goalp.evaluation.model.ExecSpec;
-import goalp.evaluation.model.Experiment;
-import goalp.evaluation.model.ExperimentBuilder;
 
 public abstract class AbstractCreateExperiments  implements ICreateExperiments {
 

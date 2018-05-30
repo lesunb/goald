@@ -1,13 +1,14 @@
 package goald.experiments;
 
-import goalp.evaluation.model.ExecSpec;
-import goalp.evaluation.model.ExecSpecBuilder;
-import goalp.evaluation.model.Experiment;
-import goalp.evaluation.model.ExperimentBuilder;
+import goald.eval.spec.ExecSpec;
+import goald.eval.spec.ExecSpecBuilder;
+import goald.eval.spec.Experiment;
+import goald.eval.spec.ExperimentBuilder;
 import goalp.evaluation.model.PlanningExperimentBuilder;
 
 public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel extends AbstractCreateExperiments {
 
+	@Override
 	protected Experiment createExperiments() {
 		
 		String expName = "Plan Size vs Variability vs Planning Time (ms) - 10 execs";
@@ -32,6 +33,7 @@ public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel extends 
 		//model of the experiment. Set common variable accross all experiments
 		ExecSpec model = ExecSpecBuilder.create()
 				.put("type", 0)
+				.put("agentContext", getContextSpace(20))
 			.build();
 		
 		//create 10 repetitions of equal experiments

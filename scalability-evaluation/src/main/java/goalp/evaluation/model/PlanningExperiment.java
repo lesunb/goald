@@ -1,5 +1,7 @@
 package goalp.evaluation.model;
 
+import goald.eval.spec.Experiment;
+
 public class PlanningExperiment extends Experiment{
 	
 	public String name;

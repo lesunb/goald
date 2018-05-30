@@ -13,11 +13,11 @@ import org.slf4j.Logger;
 
 import com.panayotis.gnuplot.dataset.Point;
 
+import goald.eval.exec.Execution;
+import goald.eval.spec.Experiment;
 import goalp.Conf;
 import goalp.Conf.Keys;
 import goalp.evaluation.goals.IReportResult;
-import goalp.evaluation.model.Execution;
-import goalp.evaluation.model.Experiment;
 import goalp.exputil.DataSetBuilder;
 import goalp.exputil.EvalUtil;
 import goalp.exputil.GnuPlotDataBuilder;

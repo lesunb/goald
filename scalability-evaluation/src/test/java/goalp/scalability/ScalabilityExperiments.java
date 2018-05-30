@@ -6,10 +6,10 @@ import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 import org.junit.Test;
 
+import goald.eval.spec.Experiment;
 import goald.experiments.CreateExperimentsToEvaluateScalabilityOverPlanSize;
 import goald.experiments.CreateExperimentsToEvaluateScalabilityOverVariabilityLevel;
 import goalp.evaluation.goals.ICreateExperiments;
-import goalp.evaluation.model.Experiment;
 import goalp.evaluation.strategy.EvaluateStrategy;
 
 public class ScalabilityExperiments {
@@ -20,7 +20,7 @@ public class ScalabilityExperiments {
 
 		// get experiments
 		@SuppressWarnings("unchecked")
-		List<Experiment> experiments = (List<Experiment>) getExperiments(
+		List<Experiment> experiments = getExperiments(
 				CreateExperimentsToEvaluateScalabilityOverPlanSize.class).exec();
 		exec(experiments);
 	}
@@ -31,7 +31,7 @@ public class ScalabilityExperiments {
 
 		// get experiments
 		@SuppressWarnings("unchecked")
-		List<Experiment> experiments = (List<Experiment>) getExperiments(
+		List<Experiment> experiments = getExperiments(
 				CreateExperimentsToEvaluateScalabilityOverVariabilityLevel.class).exec();
 		exec(experiments);
 	}
@@ -51,7 +51,7 @@ public class ScalabilityExperiments {
 
 	public ICreateExperiments getExperiments(Class<? extends ICreateExperiments> classCreator) {
 		try {
-			return (ICreateExperiments) classCreator.newInstance();
+			return classCreator.newInstance();
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
 		}

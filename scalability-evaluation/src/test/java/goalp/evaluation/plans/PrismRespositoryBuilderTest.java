@@ -11,8 +11,8 @@ import org.junit.Test;
 
 import goald.dam.model.Bundle;
 import goald.dam.model.Goal;
+import goald.eval.exec.ExperimentSetup;
 import goalp.evaluation.exec.PrismRepositoryFactory;
-import goalp.evaluation.model.ExperimentSetup;
 import goalp.evaluation.model.PlanningExperiment;
 import goalp.evaluation.model.PlanningExperimentBuilder;
 

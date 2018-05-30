@@ -1,6 +1,9 @@
-package goalp.evaluation.model;
+package goald.eval.spec;
 
 import java.util.List;
+
+import goald.eval.exec.Evaluation;
+import goald.eval.exec.Execution;
 
 public class ExperimentBuilder {
 	
@@ -27,7 +30,7 @@ public class ExperimentBuilder {
 		exec.setSpecification(spec);
 		
 		//set exec eval with factors values from spec
-		EvaluationComponent eval = this.experiment.getEvaluation().blankCopy();
+		Evaluation eval = this.experiment.getEvaluation().blankCopy();
 		eval.getFactorList().forEach((factor)->{
 			eval.putFactor(factor, spec.getInteger(factor));
 		});

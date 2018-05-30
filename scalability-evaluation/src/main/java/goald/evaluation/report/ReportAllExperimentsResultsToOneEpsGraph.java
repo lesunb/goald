@@ -9,9 +9,9 @@ import org.slf4j.Logger;
 
 import com.panayotis.gnuplot.dataset.Point;
 
+import goald.eval.exec.Execution;
 import goalp.Conf;
 import goalp.Conf.Keys;
-import goalp.evaluation.model.Execution;
 import goalp.evaluation.model.PlanningExperiment;
 import goalp.exputil.DataSetBuilder;
 import goalp.exputil.EvalUtil;
@@ -42,7 +42,7 @@ public class ReportAllExperimentsResultsToOneEpsGraph { // implements IReportRes
 			} else if (factors.size() == 1) {
 
 				String factor = factors.get(0);
-				String responseVariable = ((PlanningExperiment) exp).getEvaluation().getResponseVariable();
+				String responseVariable = exp.getEvaluation().getResponseVariable();
 				log.info("ploting {} vs {}", factor, responseVariable);
 
 				// create graph (factor vs result) for the experiment execution

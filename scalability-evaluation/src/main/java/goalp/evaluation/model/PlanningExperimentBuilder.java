@@ -1,5 +1,7 @@
 package goalp.evaluation.model;
 
+import goald.eval.spec.ExperimentBuilder;
+
 public class PlanningExperimentBuilder extends ExperimentBuilder {
 	
 	protected PlanningExperiment getExperiment(){
@@ -14,6 +16,7 @@ public class PlanningExperimentBuilder extends ExperimentBuilder {
 		return new PlanningExperimentBuilder();
 	}
 	
+	@Override
 	public PlanningExperiment build(){
 		PlanningExperiment built = getExperiment();
 		this.experiment = null;

@@ -1,10 +1,12 @@
-package goalp.evaluation.model;
+package goald.eval.exec;
+
+import goald.eval.spec.ExecSpec;
 
 public class Execution {
 
 	private ExecSpec spec;
 
-	private EvaluationComponent evaluation;
+	private Evaluation evaluation;
 	
 	public ExecSpec getSpecification() {
 		return spec;
@@ -14,11 +16,11 @@ public class Execution {
 		this.spec = spec;
 	}
 
-	public EvaluationComponent getEvaluation() {
+	public Evaluation getEvaluation() {
 		return evaluation;
 	}
 
-	public void setEvaluation(EvaluationComponent evaluation) {
+	public void setEvaluation(Evaluation evaluation) {
 		this.evaluation = evaluation;
 	}
 }

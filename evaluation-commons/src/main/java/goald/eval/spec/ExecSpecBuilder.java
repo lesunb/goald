@@ -1,4 +1,4 @@
-package goalp.evaluation.model;
+package goald.eval.spec;
 
 public class ExecSpecBuilder {
 	

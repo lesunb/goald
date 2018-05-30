@@ -19,9 +19,9 @@ import goald.dam.planning.ContextChangeHandler;
 import goald.dam.planning.DameRespository;
 import goald.dam.planning.DeploymentPlanner;
 import goald.dam.planning.GoalsChangeHandler;
+import goald.eval.exec.ExecResult;
 import goald.repository.RepositoryBuilder;
 import goalp.evaluation.Dataset;
-import goalp.evaluation.model.ExecResult;
 import goalp.exputil.ExperimentTimer;
 
 //@Named

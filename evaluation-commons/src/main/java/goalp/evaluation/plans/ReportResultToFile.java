@@ -7,9 +7,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import goald.eval.spec.Experiment;
 import goalp.Conf;
 import goalp.Conf.Keys;
-import goalp.evaluation.model.Experiment;
 
 //@Named
 public class ReportResultToFile {// implements IReportResult {

@@ -4,8 +4,8 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import goalp.evaluation.model.EvaluationComponent;
-import goalp.evaluation.model.Execution;
+import goald.eval.exec.Evaluation;
+import goald.eval.exec.Execution;
 import goalp.systems.DeploymentPlanningResult;
 
 public class EchoService {
@@ -17,7 +17,7 @@ public class EchoService {
 		it(exec.getEvaluation(), resultPlan);
 	}
 
-	public void it(EvaluationComponent evaluation, DeploymentPlanningResult resultPlan) {
+	public void it(Evaluation evaluation, DeploymentPlanningResult resultPlan) {
 		log.info("############################ Exec Result");
 		log.info("# Factors:" + evaluation.getFactors());
 		log.info("# Response:" + evaluation.getResponseVariable());

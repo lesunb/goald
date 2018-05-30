@@ -1,15 +1,16 @@
 package goald.experiments;
 
-import goalp.evaluation.model.ExecSpec;
-import goalp.evaluation.model.ExecSpecBuilder;
-import goalp.evaluation.model.Experiment;
-import goalp.evaluation.model.ExperimentBuilder;
+import goald.eval.spec.ExecSpec;
+import goald.eval.spec.ExecSpecBuilder;
+import goald.eval.spec.Experiment;
+import goald.eval.spec.ExperimentBuilder;
 import goalp.evaluation.model.PlanningExperimentBuilder;
 
 
 public class CreateExperimentsToEvaluateScalabilityOverPlanSize extends AbstractCreateExperiments {
 
 
+	@Override
 	protected Experiment createExperiments() {
 		
 		String expName = "Plan Size vs Planning Time (ms) - with variability=2, 10 execs";
@@ -27,7 +28,6 @@ public class CreateExperimentsToEvaluateScalabilityOverPlanSize extends Abstract
 				.putRepoSpec("variabilityRange", 2, 2)
 				.putRepoSpec("numberOfTrees", 100)
 				.putRepoSpec("contextSpace", getContextSpace(20))
-				.putRepoSpec("agentContext", getContextSpace(20))
 				.putRepoSpec("contextVariabilityP",5)
 				.putRepoSpec("contextVariabilityK",2);
 		
@@ -42,7 +42,7 @@ public class CreateExperimentsToEvaluateScalabilityOverPlanSize extends Abstract
 			
 			//add new experiment specification, copying from model and setting values in ranges (goals and variability)
 			addExecSpecsWithInRangeSetter(model, 
-					0, 100, 1, //goals
+					1, 100, 1, // goals (from 0 to 1, step = 1 )
 					(spec, value) ->{
 				spec.put("numberOfGoals",value);
 			}, expBuilder);

@@ -1,17 +1,25 @@
-package goalp.evaluation.model;
+package goald.eval.exec;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EvaluationComponent {
+import goalp.evaluation.ExperimentTimerImpl.Split;
+import goalp.exputil.ExperimentTimer;
+
+public class Evaluation {
 	
 	private Map<String, Number> factors = new HashMap<>();
 	
 	private String responseVariable;
 	
 	private Number responseValue;
+	
+	// for experiments with many observations
+	private List<Long> observations;
+	
+	private List<Split> times;
 	
 	public Map<String, Number> getFactors() {
 		if(factors == null){
@@ -52,13 +60,24 @@ public class EvaluationComponent {
 		this.responseValue = responseValue;
 	}
 	
-	public EvaluationComponent blankCopy(){
-		EvaluationComponent clone = new EvaluationComponent();
+	public void addObservation(Long observation) {
+		if(this.observations == null) {
+			this.observations = new ArrayList<>();
+		}
+		this.observations.add(observation);
+	}
+	
+	public Evaluation blankCopy(){
+		Evaluation clone = new Evaluation();
 		for(String key:this.factors.keySet()){
 			clone.factors.put(key, null);
 		}
 		clone.responseVariable = this.responseVariable;
 		return clone;
+	}
+
+	public void addMesures(List<Split> times) {
+		this.times = times;
 	}
 
 }

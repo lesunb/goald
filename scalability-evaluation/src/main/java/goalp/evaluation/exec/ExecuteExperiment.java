@@ -12,11 +12,11 @@ import goald.AutonomousAgent;
 import goald.dam.model.DeploymentPlan;
 import goald.dam.model.util.CtxEvaluatorBuilder;
 import goald.dam.model.util.GoalsChangeRequestBuilder;
+import goald.eval.exec.ExecResult;
+import goald.eval.exec.Execution;
+import goald.eval.exec.ExperimentSetup;
+import goald.eval.spec.Experiment;
 import goalp.evaluation.goals.IExecuteExperiments;
-import goalp.evaluation.model.ExecResult;
-import goalp.evaluation.model.Execution;
-import goalp.evaluation.model.Experiment;
-import goalp.evaluation.model.ExperimentSetup;
 import goalp.evaluation.model.PlanningExperiment;
 import goalp.exputil.EvalUtil;
 import goalp.exputil.ExperimentTimer;
@@ -31,11 +31,11 @@ public class ExecuteExperiment implements IExecuteExperiments {
 	@Inject
 	ExperimentTimer timer;
 	
-//	@Inject
-//	EchoService echo;
+	@Inject
+	EchoService echo;
 	
-//	@Inject
-//	WriteToFileService write;
+	@Inject
+	WriteToFileService write;
 	
 	// ValidatePlan validate = new ValidatePlan();
 	
@@ -51,7 +51,7 @@ public class ExecuteExperiment implements IExecuteExperiments {
 		setupEnvironment((PlanningExperiment)experiment);
 		timer.split("setup env");
 		
-		log.info("Experiment factor {}", EvalUtil.getFactors((PlanningExperiment)experiment));
+		log.info("Experiment factor {}", EvalUtil.getFactors(experiment));
 		//exec
 		experiment.getExecutions().forEach((exec) -> {
 			//TODO change for dispatch event in experiment context?
@@ -60,7 +60,7 @@ public class ExecuteExperiment implements IExecuteExperiments {
 			timer.begin();
 			ExecResult result = execute(exec);
 			Number responseResult = timer.split("execution");
-			// write.it(result);
+			write.it(result);
 			
 			// validateResult(result);
 			timer.split("validation");
@@ -72,26 +72,27 @@ public class ExecuteExperiment implements IExecuteExperiments {
 
 	private void setupEnvironment(PlanningExperiment exp) {
 		log.debug("setup repo :" + exp.getName() + ":" + exp.toString());
-		
-		//TODO choose the correct strategy
-		//IRepository repo = CreateSpecifiedRepository.exec(exec.getSpecification(), rootGoal);
-		
+
 		expSetup = new ExperimentSetup();
+
+		// create repo and set in the expSetup
 		
 		PrismRepositoryFactory
 			.create()
 			.buildBySpec(exp.getRepoSpec())
 			.setSetupWithRepo(expSetup)
-			.setSetupRootGoals(expSetup);
-		
-		//expSetup.setAgent(agent.getAgent());
-		
-		// echo.it(expSetup);
+			.setSetupRootGoals(expSetup)
+			.setCtxSpace(expSetup);
+				
+		echo.it(expSetup);
 	}
 
 	private ExecResult execute(Execution exec) {
+		timer.begin();
 		
+		// get exec params
 		int numberOfGoals=0, variability = 0;
+		
 		try{
 			numberOfGoals = exec.getSpecification().getInteger("numberOfGoals");
 			variability = exec.getSpecification().getInteger("variability");
@@ -99,50 +100,59 @@ public class ExecuteExperiment implements IExecuteExperiments {
 			throw new IllegalStateException("can't get number of goals or variability");
 		}
 
-		List<String> repositoryGoals = expSetup.getRootGoals(variability);
+		List<String> ctx = expSetup.getCtxSpace();
+		List<String> repositoryGoals = expSetup.getRootGoals();
 		
+		// parameterize the exec by number of goals
 		List<String> execGoals = new ArrayList<>(); 
 		for(int i=0; i< numberOfGoals; i++){
 			execGoals.add(repositoryGoals.get(i));
 		}
 		
+		//create a experiment agent
 		AutonomousAgent agent = new AutonomousAgent() {
+		
 			@Override
 			public void setup(CtxEvaluatorBuilder initialCtx, 
 					GoalsChangeRequestBuilder goals) {
-						initialCtx.with(	"antenna_triangulation", 
-								"protocol_get_fuel_level_and_mileage",
-								"storage",
-								"sound",
-								"label");
+					
+						initialCtx.with(ctx);
 						
 						goals
 						.addGoal(execGoals.get(0));
+				timer.split("creating_dam");
 				
 			}
 			@Override
+			public void damUpdated() {
+				timer.split("dam_updated");
+				
+			}
+			
+			@Override
 			public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {
-				System.out.println("scenario1");
-				System.out.println(adaptPlan);
+				//echo.it(adaptPlan);
+				timer.split("deployment_change_planned");
+			}
+			
+			
+			@Override
+			public void deploymentChangeExecuted() {
+				timer.split("deployment_change_excuted");
 			}
 		};
 		
-		agent.init(expSetup.getRepository());		
+		// fire agent init
+		agent.init(expSetup.getRepository());
+		
+		//start the data collection
 		ExecResult execResult = new ExecResult(); // agent.getExecResult();
-				
-
-		//		try {
-//			resultPlan = expSetup.getPlanner().doPlan(request,  expSetup.getAgent());
-//		} catch (PlanSelectionException e) {
-//			log.error("error planning:" + e.getMessage());
-//			log.error("for " + request.toString());
-//			log.error("with setup " + expSetup.toString());
-//		}
+		
+		//TODO: sequence of adaptation
 		
 		exec.getEvaluation().getFactors().put("Variability", variability);
-		//exec.getEvaluation().getFactors().put("Plan size", resultPlan.getPlanSize());
-		
-		//echo.it(exec, resultPlan);
+		exec.getEvaluation().getFactors().put("Bundles Count", agent.getDeployment().getBundles().size());
+		echo.it(exec);
 		
 		return execResult;
 		

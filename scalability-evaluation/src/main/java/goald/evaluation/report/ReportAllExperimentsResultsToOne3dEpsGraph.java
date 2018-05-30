@@ -12,11 +12,13 @@ import org.slf4j.Logger;
 
 import com.panayotis.gnuplot.dataset.Point;
 import com.panayotis.gnuplot.style.FillStyle.Fill;
+
+import goald.eval.exec.Execution;
+
 import com.panayotis.gnuplot.style.Style;
 
 import goalp.Conf;
 import goalp.Conf.Keys;
-import goalp.evaluation.model.Execution;
 import goalp.evaluation.model.PlanningExperiment;
 import goalp.exputil.DataSetBuilder;
 import goalp.exputil.EvalUtil;
@@ -70,7 +72,7 @@ public class ReportAllExperimentsResultsToOne3dEpsGraph {// implements IReportRe
 					
 				}
 				
-				String responseVariable = ((PlanningExperiment) exp).getEvaluation().getResponseVariable();
+				String responseVariable = exp.getEvaluation().getResponseVariable();
 				//log.info("ploting {},{} vs {}", factorOne, factorTwo, responseVariable);
 
 				// create graph (factor vs r)esult) for the experiment execution

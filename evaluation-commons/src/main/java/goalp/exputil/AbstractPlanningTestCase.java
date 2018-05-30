@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.beliefs.model.IRepository;
-import goalp.evaluation.model.ExecResult;
+import goald.eval.exec.ExecResult;
 import goalp.model.Agent;
 import goalp.model.AgentBuilder;
 import goalp.model.DeploymentRequest;

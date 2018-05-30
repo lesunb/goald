@@ -34,7 +34,6 @@ public class Deployment {
 		return null;
 	}
 	
-
 	public Set<Bundle> getAll(Status status) {
 		Set<Bundle> result = new HashSet<>();
 		for(BundleStatus bstatus: getBundles()) {

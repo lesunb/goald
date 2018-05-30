@@ -4,7 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
-import goalp.evaluation.model.ExecResult;
+import goald.eval.exec.ExecResult;
 import goalp.model.DeploymentRequest;
 import goalp.model.Goal;
 import goalp.systems.DeploymentPlan;
