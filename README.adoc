@@ -1,6 +1,6 @@
-# goald
+# goal
 
-image:https://travis-ci.org/lesunb/goald.svg?branch=master["Build Status", link="https://travis-ci.org/lesunb/goalp"]
+image:https://travis-ci.org/lesunb/goald.svg?branch=master["Build Status", link="https://travis-ci.org/lesunb/goald"]
 image:https://coveralls.io/repos/github/lesunb/goald/badge.svg?branch=master["Coverage Status", link="https://coveralls.io/repos/github/lesunb/goald?branch=master"]
 image:https://api.bintray.com/packages/lesunb/goald/goald/images/download.svg[link="https://bintray.com/lesunb/goald/goald/_latestVersion"]
 image:https://codeclimate.com/github/lesunb/goald/badges/issue_count.svg["Issues", link="https://codeclimate.com/github/lesunb/goald"]
@@ -40,7 +40,7 @@ Install JDK8:
 It should come with Eclipse, don't worry.
 
 
-= Building and Running GOALP
+= Building and Running GOALD
 
  * clone the repo: 
   $ git clone https://github.com/lesunb/goald/ 
