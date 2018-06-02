@@ -47,6 +47,10 @@ public class DeploymentPlanner {
 	
 	public Set<Bundle> addToSellected(Dame dame, Set<Bundle> sellected) {		
 		sellected.add(dame.getDefinition());
+		if(dame.getChosenAlt() == null) {
+			System.out.println("incomplete deployment plan");
+			return sellected;
+		}
 		sellected.add(dame.getChosenAlt().getImpl());
 		
 		for(Dame child:dame.getChosenAlt().getListDepDame()) {

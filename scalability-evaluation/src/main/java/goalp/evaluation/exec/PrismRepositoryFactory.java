@@ -84,7 +84,6 @@ public class PrismRepositoryFactory {
 	private String createArtifactChain(RepositoryBuilder builder, int numOfDependencies, int depth, int treeId, int variability,			
 			List<String> contexts,  int numOfContextConditionsPerGoal,  int numOfContextConditionsPerArtifact){
 		if(depth==0){
-			
 			//create  context dependent plans
 
 			Deque<String> contextSpace = new ArrayDeque<>();

@@ -2,6 +2,7 @@ package goalp.evaluation.exec;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -9,7 +10,9 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
+import goald.dam.model.ContextChange;
 import goald.dam.model.DeploymentPlan;
+import goald.dam.model.util.ContextChangeBuilder;
 import goald.dam.model.util.CtxEvaluatorBuilder;
 import goald.dam.model.util.GoalsChangeRequestBuilder;
 import goald.eval.exec.ExecResult;
@@ -40,11 +43,14 @@ public class ExecuteExperiment implements IExecuteExperiments {
 	// ValidatePlan validate = new ValidatePlan();
 	
 	ExperimentSetup expSetup;
+	
+	private Random randomGenerator;
 
 	String rootGoal = "br.unb.rootGoal:0.0.1";
 	
 	@Override
 	public void accept(Experiment experiment) {
+		randomGenerator = new Random();
 		
 		//preamble
 		timer.begin();
@@ -142,13 +148,33 @@ public class ExecuteExperiment implements IExecuteExperiments {
 			}
 		};
 		
-		// fire agent init
-		agent.init(expSetup.getRepository());
-		
+		List<ContextChange> changes = new ArrayList<>();
+
 		//start the data collection
 		ExecResult execResult = new ExecResult(); // agent.getExecResult();
 		
-		//TODO: sequence of adaptation
+		// create context changes
+		for(int i = 0; i<5; i++) {
+			String ctxChanged = getRandom(ctx);
+			ContextChange ctxRemoved = ContextChangeBuilder.create()
+					.remove(ctxChanged)
+					.build();
+			changes.add(ctxRemoved);
+			
+			ContextChange ctxAdded = ContextChangeBuilder.create()
+					.add(ctxChanged)
+					.build();
+			changes.add(ctxAdded);
+		}
+		
+		
+		// fire agent init
+		agent.init(expSetup.getRepository());
+		
+		// handle changes
+		for(ContextChange ctxChange: changes) {
+			agent.handleContextChange(ctxChange);
+		}
 		
 		exec.getEvaluation().getFactors().put("Variability", variability);
 		exec.getEvaluation().getFactors().put("Bundles Count", agent.getDeployment().getBundles().size());
@@ -157,6 +183,12 @@ public class ExecuteExperiment implements IExecuteExperiments {
 		return execResult;
 		
 	}
+	
+	public String getRandom(List<String> list){
+		int index = randomGenerator.nextInt(list.size());
+        return list.get(index);
+	}
+	
 	
 //
 //	private void validateResult(ExecResult execResult) {

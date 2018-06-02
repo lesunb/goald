@@ -42,7 +42,7 @@ public class CreateExperimentsToEvaluateScalabilityOverPlanSize extends Abstract
 			
 			//add new experiment specification, copying from model and setting values in ranges (goals and variability)
 			addExecSpecsWithInRangeSetter(model, 
-					1, 100, 1, // goals (from 0 to 1, step = 1 )
+					1, 100, 1, // goals (from 0 to 100, step = 1 )
 					(spec, value) ->{
 				spec.put("numberOfGoals",value);
 			}, expBuilder);
