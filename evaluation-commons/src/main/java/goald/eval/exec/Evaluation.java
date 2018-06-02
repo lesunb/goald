@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import goalp.evaluation.ExperimentTimerImpl.Split;
-import goalp.exputil.ExperimentTimer;
 
 public class Evaluation {
 	

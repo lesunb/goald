@@ -125,7 +125,7 @@ public class ExecuteExperiment implements IExecuteExperiments {
 						initialCtx.with(ctx);
 						
 						goals
-						.addGoal(execGoals.get(0));
+						.addGoals(execGoals);
 				timer.split("creating_dam");
 				
 			}

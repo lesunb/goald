@@ -36,21 +36,21 @@ public class DeploymentPlanningTest {
 				.with("display_capability")
 				.build();
 			
-			agent = AgentBuilder.create()
-				.withQualityWeight("precision", 3)
-				.withQualityWeight("responseTime", 1)
-				.withContext(ctx)
-				.build();
+		agent = AgentBuilder.create()
+			.withQualityWeight("precision", 3)
+			.withQualityWeight("responseTime", 1)
+			.withContext(ctx)
+			.build();
 
-			List<Goal> query = RepoQueryBuilder.create()
-				.queryFor("displayMyPosition")
-				.build();
-			
-			updater = new DamUpdater(repo, agent);
+		List<Goal> query = RepoQueryBuilder.create()
+			.queryFor("displayMyPosition")
+			.build();
 		
-			Dame rootDame = updater.resolveGoals(query).get(0);		
-					
-			agent.setRootDame(rootDame);
+		updater = new DamUpdater(repo, agent);
+	
+		Dame rootDame = updater.resolveGoals(query).get(0);		
+				
+		agent.setRootDame(rootDame);
 	}
 	
 	@Test
@@ -60,13 +60,7 @@ public class DeploymentPlanningTest {
 		
 		assertNotNull(plan);
 		assertEquals(6, plan.getCommands().size());
-	}
-	
-	@Test
-	public void testPlanForAnInvalidDeployment() {
-		assertTrue(false);
-	}
-	
+	}	
 	
 	@Test
 	public void testCreateAPlanOfChange() {		
@@ -88,5 +82,10 @@ public class DeploymentPlanningTest {
 
 		assertNotNull(plan);
 		assertEquals(2, plan2.getCommands().size());
+	}
+	
+	@Test
+	public void testPlanForAnInvalidDeployment() {
+		assertTrue(false);
 	}
 }

@@ -1,6 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import goald.AutonomousAgent;
 import goald.dam.model.DeploymentPlan;
 import goald.dam.model.util.ContextChangeBuilder;
 import goald.dam.model.util.CtxEvaluatorBuilder;

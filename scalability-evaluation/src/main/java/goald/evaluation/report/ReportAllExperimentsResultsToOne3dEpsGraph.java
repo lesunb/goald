@@ -12,11 +12,9 @@ import org.slf4j.Logger;
 
 import com.panayotis.gnuplot.dataset.Point;
 import com.panayotis.gnuplot.style.FillStyle.Fill;
-
-import goald.eval.exec.Execution;
-
 import com.panayotis.gnuplot.style.Style;
 
+import goald.eval.exec.Execution;
 import goalp.Conf;
 import goalp.Conf.Keys;
 import goalp.evaluation.model.PlanningExperiment;

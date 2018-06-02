@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import goald.dam.model.Agent;
 import goald.dam.model.CtxEvaluator;
-import goald.dam.model.DeploymentPlan;
 import goald.dam.model.GoalsChangeRequest;
 import goald.dam.model.util.AgentBuilder;
 import goald.dam.model.util.CtxEvaluatorBuilder;
@@ -27,6 +26,7 @@ public class HandleGoalsChangeTest {
 				.with("gps_capability")
 				.with("antenna_capability")
 				.with("display_capability")
+				.with("sound_capability")
 				.build();
 			
 			agent = AgentBuilder.create()
@@ -49,4 +49,21 @@ public class HandleGoalsChangeTest {
 				
 		assertNotNull(agent.getRootDame());
 	}
+	
+	@Test
+	public void testHandleTowGoals() {
+		
+		GoalsChangeRequest change = GoalsChangeRequestBuilder.create()
+		.addGoal("displayMyPosition")
+		.addGoal("alarm")
+		.build();
+		
+		GoalsChangeHandler handler = new GoalsChangeHandler(repo, agent);
+		handler.handle(change);
+				
+		assertNotNull(agent.getRootDame());
+		assertEquals("displayMyPosition.impl", agent.getRootDame().getChosenAlt().getListDepDame().get(0).getChosenAlt().getImpl().identification);
+		assertEquals("alarm", agent.getRootDame().getChosenAlt().getListDepDame().get(1).getChosenAlt().getImpl().identification);
+	}
+
 }

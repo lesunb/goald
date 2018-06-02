@@ -82,6 +82,9 @@ public class DamUpdater {
 	}
 
 	public List<Alternative> orderAlt(List<Alternative> alts, Bundle definition) {
+		if(alts.size() == 1) {
+			return alts;
+		}
 		
 		for(Alternative alt: alts) {
 			int quality = 0;

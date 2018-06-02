@@ -1,9 +1,12 @@
 package goald.dam.model.util;
 
+import java.util.List;
+
 import goald.dam.model.Alternative;
 import goald.dam.model.Bundle;
 import goald.dam.model.ContextCondition;
 import goald.dam.model.Dame;
+import goald.dam.model.Goal;
 
 public class AlternativeBuilder {
 	
@@ -48,6 +51,11 @@ public class AlternativeBuilder {
 
 	public AlternativeBuilder forDame(Dame dame) {
 		this.alternative.setParentDame(dame);
+		return this;
+	}
+
+	public AlternativeBuilder withDependencies(List<Goal> dependencyGoals) {
+		this.alternative.setDependencyGoals(dependencyGoals);
 		return this;
 	}
 }

@@ -17,6 +17,7 @@ public class ExecSpec implements Cloneable{
 		return (Integer) this.repoSpec.get(key);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public <T> T getObject(Class<T> t, String key){
 		Object obj = this.repoSpec.get(key);
 		if(obj != null && t.isAssignableFrom(obj.getClass())){

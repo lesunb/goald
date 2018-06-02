@@ -15,6 +15,7 @@ public class Conf {
 		
 		@SuppressWarnings("deprecation")
 		RESULT_FILE (BASE_DIR+"restult_"+(new Date()).toLocaleString()),
+		@SuppressWarnings("deprecation")
 		DEPL_PLAN_FILE (BASE_DIR+"depl_plan_"+(new Date()).toLocaleString());
 
 		String _default;
