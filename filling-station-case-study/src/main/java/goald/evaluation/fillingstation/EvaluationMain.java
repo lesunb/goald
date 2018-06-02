@@ -1,4 +1,4 @@
-package goalp.evaluation.fillingstation;
+package goald.evaluation.fillingstation;
 
 import java.util.List;
 

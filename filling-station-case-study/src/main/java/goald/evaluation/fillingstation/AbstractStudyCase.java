@@ -1,4 +1,4 @@
-package goalp.evaluation.fillingstation;
+package goald.evaluation.fillingstation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,6 @@ import goald.dam.planning.ContextChangeHandler;
 import goald.dam.planning.DameRespository;
 import goald.dam.planning.DeploymentPlanner;
 import goald.dam.planning.GoalsChangeHandler;
-import goald.eval.exec.ExecResult;
 import goald.repository.RepositoryBuilder;
 import goalp.evaluation.Dataset;
 import goalp.exputil.ExperimentTimer;
@@ -116,13 +115,6 @@ public abstract class AbstractStudyCase {
 		//echo(result.getResultPlan(), responseResult);
 		timer.finish();
 	}
-
-	
-	private void validateResult(ExecResult result) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
 //	public void echo(DeploymentPlanningResult resultPlan, Number time) {
 //		log.info("############################ Exec Result");
