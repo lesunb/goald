@@ -11,7 +11,7 @@ import javax.inject.Singleton;
 import org.jboss.weld.exceptions.IllegalStateException;
 import org.slf4j.Logger;
 
-import goalp.exputil.ExperimentTimer;
+import goald.exputil.ExperimentTimer;
 
 @Singleton
 @Default

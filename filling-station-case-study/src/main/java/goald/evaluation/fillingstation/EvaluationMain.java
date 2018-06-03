@@ -17,14 +17,14 @@ public class EvaluationMain {
 	public static void main(String[] args) throws Exception {
 
 
-		System.out.println("Initializing goalp planning evaluation ... ");
+		System.out.println("Initializing goald planning evaluation ... ");
 
 		Weld weld = new Weld();
 		WeldContainer container = weld.initialize();
 		container.select(FillingStationStudyCase.class).get().exec();
 		container.shutdown();
 
-		System.out.println("Goalp planning evaluation has come a normal end. Good bye");
+		System.out.println("Goald planning evaluation has come a normal end. Good bye");
 	}
 
 	public void printHello(@Observes ContainerInitialized event, @Parameters List<String> parameters) {

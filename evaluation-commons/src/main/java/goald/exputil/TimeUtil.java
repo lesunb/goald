@@ -1,4 +1,4 @@
-package goalp.exputil;
+package goald.exputil;
 
 public class TimeUtil {
 

@@ -1,4 +1,4 @@
-package goalp.exputil;
+package goald.exputil;
 
 import com.panayotis.gnuplot.JavaPlot;
 import com.panayotis.gnuplot.dataset.Point;

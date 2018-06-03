@@ -11,10 +11,10 @@ import java.util.Set;
 import goald.dam.model.Bundle;
 import goald.dam.model.util.BundleBuilder;
 import goald.eval.exec.ExperimentSetup;
+import goald.exputil.RandomPrismRepositoryUtil;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
 import goalp.evaluation.model.RepoSpec;
-import goalp.exputil.RandomPrismRepositoryUtil;
 
 public class PrismRepositoryFactory {
 	

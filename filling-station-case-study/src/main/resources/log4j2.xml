@@ -9,6 +9,9 @@
     <Logger name="goalp" level="trace" additivity="false">
       <AppenderRef ref="Console"/>
     </Logger>
+    <Logger name="goald" level="trace" additivity="true">
+      <AppenderRef ref="Console"/>
+    </Logger>
     <Root level="error">
       <AppenderRef ref="Console"/>
     </Root>

@@ -51,9 +51,7 @@ public abstract class AutonomousAgent {
 	
 	public void deploymentChangeExecuted() {}
 	
-	public void init(IRepository _repo) {
-		DameRespository repo = new DameRespository(_repo);
-		
+	public void init(DameRespository repo) {
 		CtxEvaluatorBuilder ctxEvaluatorBilder = CtxEvaluatorBuilder.create();
 		
 		GoalsChangeRequestBuilder goalsChangeBuilder = GoalsChangeRequestBuilder.create();
@@ -80,6 +78,10 @@ public abstract class AutonomousAgent {
 		executor.execute(initialPlan);
 		deploymentChangeExecuted();
 		// exec the experiment
+	}
+	
+	public void init(IRepository _repo) {
+		init(new DameRespository(_repo));
 	}
 	
 	public Deployment getDeployment() {

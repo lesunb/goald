@@ -8,20 +8,17 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import goald.dam.execution.DeploymentExecutor;
-import goald.dam.model.Agent;
+import goald.AutonomousAgent;
 import goald.dam.model.ContextChange;
 import goald.dam.model.DeploymentPlan;
-import goald.dam.model.GoalsChangeRequest;
-import goald.dam.model.util.AgentBuilder;
+import goald.dam.model.util.CtxEvaluatorBuilder;
 import goald.dam.model.util.GoalsChangeRequestBuilder;
-import goald.dam.planning.ContextChangeHandler;
 import goald.dam.planning.DameRespository;
-import goald.dam.planning.DeploymentPlanner;
-import goald.dam.planning.GoalsChangeHandler;
+import goald.exputil.EchoService;
+import goald.exputil.ExperimentTimer;
+import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
 import goalp.evaluation.Dataset;
-import goalp.exputil.ExperimentTimer;
 
 //@Named
 public abstract class AbstractStudyCase {
@@ -35,22 +32,23 @@ public abstract class AbstractStudyCase {
 	@Inject
 	ExperimentTimer timer;
 //	
-//	@Inject
-//	WriteService write;
+	@Inject
+	EchoService echo;
 
 	Dataset ds;
 	
-
+	public CtxEvaluatorBuilder initialCtx;
+	public GoalsChangeRequestBuilder goalsChangeBuilder;
+	
 	public abstract void caseStudy();
 	
-	protected abstract void setupEnvironment(RepositoryBuilder repo2);
+	protected abstract IRepository getRepo();
 
 	public void exec() {
 		//setup environment
 		timer.begin();
 		RepositoryBuilder hashRepo = RepositoryBuilder.create();
-		setupEnvironment(hashRepo);
-		repo = new DameRespository(hashRepo.build());
+		repo = new DameRespository(getRepo());
 		timer.split("setup env");
 		//execute deployment planning for case study
 		ds = Dataset.init("test_case", "scenario", "time");
@@ -58,7 +56,7 @@ public abstract class AbstractStudyCase {
 		ds.flush();
 	}
 	
-	public void scenario(String experimentName, Consumer<AgentBuilder> agentBuilding,
+	public void scenario(String experimentName, Consumer<CtxEvaluatorBuilder> ctxBuilding,
 			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding,
 			Consumer<List<ContextChange>> changesBuilding) {
 	
@@ -66,41 +64,22 @@ public abstract class AbstractStudyCase {
 		//run execution
 		timer.begin();
 		
-		// construct the scenario
-		//ExecResult result = new ExecResult();
-
-		AgentBuilder agentBuilder =  AgentBuilder.create();
-		agentBuilding.accept(agentBuilder);
-		Agent agent = agentBuilder.build();
+		// agent contexts and goals
+		AutonomousAgent agent = createAgent(ctxBuilding, goalsChangeBuilding);
 		
-		GoalsChangeRequestBuilder goalsChangeBuilder = GoalsChangeRequestBuilder.create();
-		goalsChangeBuilding.accept(goalsChangeBuilder);
-		GoalsChangeRequest goalsChangeRequest = goalsChangeBuilder.build();
-		
+		// contexts changes
 		List<ContextChange> changes = new ArrayList<>();
 		changesBuilding.accept(changes);
-		
-		// construct the goald systems
-		
-		GoalsChangeHandler gcHandler = new GoalsChangeHandler(repo, agent);
-		DeploymentPlanner deploymentPlanner = new DeploymentPlanner(repo, agent);
-		DeploymentExecutor executor = new DeploymentExecutor(agent);
-		ContextChangeHandler ccHandler = new ContextChangeHandler(repo, agent);
-		
-		// exec the experiment
+
+		// start the agent. It will deploy for the initial goals
+		agent.init(repo);
+				
+		// context changes
 		try {
-			timer.split("setup:" + experimentName);
-			gcHandler.handle(goalsChangeRequest);
-			DeploymentPlan initialPlan = deploymentPlanner.createPlan();
-			executor.execute(initialPlan);
-			Number responseResult = timer.split("execution:" + experimentName);
-			ds.log(experimentName, responseResult);
+			timer.split("start_addapting:" + experimentName);
 			for(ContextChange change:changes) {
-				DeploymentPlan adaptPlan;
-				ccHandler.handle(change);
-				adaptPlan = deploymentPlanner.createPlan();
-				executor.execute(adaptPlan);
-				Number resultTime = timer.split("execution:" + experimentName);
+				agent.handleContextChange(change);
+				Number resultTime = timer.split("handling_change:" + experimentName);
 				ds.log(experimentName, resultTime);
 			}
 		} catch (Exception e) {
@@ -109,11 +88,44 @@ public abstract class AbstractStudyCase {
 			throw new RuntimeException(e);
 		}
 		
-		log.info(agent.getRootDame().getChosenAlt().toString());
+		// log.info(agent.getRootDame().getChosenAlt().toString());
 		
 		timer.split("validation");
 		//echo(result.getResultPlan(), responseResult);
 		timer.finish();
+	}
+		
+	public AutonomousAgent createAgent(Consumer<CtxEvaluatorBuilder> ctxBuilding,
+			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding) {
+		return new AutonomousAgent() {
+			@Override
+			public void setup(CtxEvaluatorBuilder _initialCtx, 
+					GoalsChangeRequestBuilder _goalsChangeBuilder) {
+				ctxBuilding.accept(_initialCtx); 
+				goalsChangeBuilding.accept(_goalsChangeBuilder); 
+			}
+			
+			@Override
+			public void changingGoals() {
+				timer.split("changing_goals");
+			}
+			
+			@Override
+			public void damUpdated() {
+				timer.split("dam_updated");
+			}
+			
+			@Override
+			public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {
+				echo.it(adaptPlan);
+				timer.split("deployment_change_planned");
+			}
+			
+			@Override
+			public void deploymentChangeExecuted() {
+				timer.split("deployment_change_excuted");
+			}
+		};
 	}
 
 //	public void echo(DeploymentPlanningResult resultPlan, Number time) {

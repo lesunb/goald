@@ -1,4 +1,4 @@
-package goalp.exputil;
+package goald.exputil;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

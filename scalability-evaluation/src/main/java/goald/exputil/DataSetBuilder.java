@@ -1,4 +1,4 @@
-package goalp.exputil;
+package goald.exputil;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;

@@ -15,12 +15,12 @@ import com.panayotis.gnuplot.dataset.Point;
 
 import goald.eval.exec.Execution;
 import goald.eval.spec.Experiment;
+import goald.exputil.DataSetBuilder;
+import goald.exputil.EvalUtil;
+import goald.exputil.GnuPlotDataBuilder;
 import goalp.Conf;
 import goalp.Conf.Keys;
 import goalp.evaluation.goals.IReportResult;
-import goalp.exputil.DataSetBuilder;
-import goalp.exputil.EvalUtil;
-import goalp.exputil.GnuPlotDataBuilder;
 
 /**
  * Context Requirement: gnuplot installed

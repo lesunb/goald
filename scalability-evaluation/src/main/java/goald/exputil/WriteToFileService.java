@@ -1,4 +1,4 @@
-package goalp.exputil;
+package goald.exputil;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import goald.eval.exec.ExecResult;
+import goald.exputil.WriteService;
 import goalp.Conf;
 import goalp.Conf.Keys;
 

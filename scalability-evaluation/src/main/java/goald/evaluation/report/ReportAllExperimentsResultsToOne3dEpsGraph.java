@@ -15,12 +15,12 @@ import com.panayotis.gnuplot.style.FillStyle.Fill;
 import com.panayotis.gnuplot.style.Style;
 
 import goald.eval.exec.Execution;
+import goald.exputil.DataSetBuilder;
+import goald.exputil.EvalUtil;
+import goald.exputil.PlotBuilder;
 import goalp.Conf;
 import goalp.Conf.Keys;
 import goalp.evaluation.model.PlanningExperiment;
-import goalp.exputil.DataSetBuilder;
-import goalp.exputil.EvalUtil;
-import goalp.exputil.PlotBuilder;
 
 /**
  * Context Requirement: gnuplot installed
