@@ -69,8 +69,17 @@ public class Deployment {
 		public Bundle getBundle() {
 			return this.bundle;
 		}
+
+		@Override
+		public String toString() {
+			return "BundleStatus [status=" + status + ", bundle=" + bundle + "]";
+		}
 	}
 
 
+	@Override
+	public String toString() {
+		return "Deployment [bundleStatus=" + bundleStatus + "]";
+	}
 
 }

@@ -17,25 +17,22 @@ import goald.dam.planning.DameRespository;
 import goald.exputil.EchoService;
 import goald.exputil.ExperimentTimer;
 import goald.repository.IRepository;
-import goald.repository.RepositoryBuilder;
 import goalp.evaluation.Dataset;
 
-//@Named
 public abstract class AbstractStudyCase {
 
-	
-	DameRespository repo;
-	
 	@Inject
 	Logger log;
 	
 	@Inject
 	ExperimentTimer timer;
-//	
+
 	@Inject
 	EchoService echo;
 
 	Dataset ds;
+	
+	DameRespository repo;
 	
 	public CtxEvaluatorBuilder initialCtx;
 	public GoalsChangeRequestBuilder goalsChangeBuilder;
@@ -47,7 +44,6 @@ public abstract class AbstractStudyCase {
 	public void exec() {
 		//setup environment
 		timer.begin();
-		RepositoryBuilder hashRepo = RepositoryBuilder.create();
 		repo = new DameRespository(getRepo());
 		timer.split("setup env");
 		//execute deployment planning for case study
@@ -71,6 +67,7 @@ public abstract class AbstractStudyCase {
 		List<ContextChange> changes = new ArrayList<>();
 		changesBuilding.accept(changes);
 
+		timer.split("initing_agent:" + experimentName);
 		// start the agent. It will deploy for the initial goals
 		agent.init(repo);
 				
@@ -87,11 +84,9 @@ public abstract class AbstractStudyCase {
 			log.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
-		
-		// log.info(agent.getRootDame().getChosenAlt().toString());
-		
+				
 		timer.split("validation");
-		//echo(result.getResultPlan(), responseResult);
+		echo.it(agent.getDeployment());
 		timer.finish();
 	}
 		
