@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import goald.dam.model.Bundle;
-import goald.dam.model.Goal;
+import goald.model.Bundle;
+import goald.model.Goal;
 
 public class HashMapRepository implements IRepository {
 

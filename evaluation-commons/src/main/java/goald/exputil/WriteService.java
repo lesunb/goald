@@ -3,8 +3,8 @@ package goald.exputil;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
-import goald.dam.model.Dame;
 import goald.eval.exec.ExecResult;
+import goald.model.Dame;
 
 public abstract class WriteService {
 

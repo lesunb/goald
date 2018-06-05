@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import goald.dam.model.Agent;
+import goald.model.Agent;
 import goald.repository.IRepository;
 // import goalp.systems.IDeploymentPlanner;
 

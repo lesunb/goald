@@ -6,9 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.dam.model.Bundle;
-import goald.dam.model.Goal;
-import goald.dam.model.util.BundleBuilder;
+import goald.model.Bundle;
+import goald.model.Goal;
+import goald.model.util.BundleBuilder;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
 

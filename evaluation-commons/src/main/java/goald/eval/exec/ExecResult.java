@@ -1,6 +1,6 @@
 package goald.eval.exec;
 
-import goald.dam.model.Agent;
+import goald.model.Agent;
 
 public class ExecResult {	
 	public ExecResult(){

@@ -2,24 +2,27 @@ package goald.dam.planning;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.dam.execution.DeploymentExecutor;
-import goald.dam.model.Agent;
-import goald.dam.model.ContextChange;
-import goald.dam.model.CtxEvaluator;
-import goald.dam.model.Dame;
-import goald.dam.model.DeploymentPlan;
-import goald.dam.model.Goal;
-import goald.dam.model.util.AgentBuilder;
-import goald.dam.model.util.ContextChangeBuilder;
-import goald.dam.model.util.CtxEvaluatorBuilder;
-import goald.dam.model.util.RepoQueryBuilder;
+import goald.execution.DeploymentExecutor;
+import goald.model.Agent;
+import goald.model.ContextChange;
+import goald.model.CtxEvaluator;
+import goald.model.Dame;
+import goald.model.DeploymentPlan;
+import goald.model.Goal;
+import goald.model.util.AgentBuilder;
+import goald.model.util.ContextChangeBuilder;
+import goald.model.util.CtxEvaluatorBuilder;
+import goald.model.util.RepoQueryBuilder;
+import goald.planning.ContextChangeHandler;
+import goald.planning.DamUpdater;
+import goald.planning.DameRespository;
+import goald.planning.DeploymentPlanner;
 
 public class DeploymentPlanningTest {
 	
@@ -80,8 +83,19 @@ public class DeploymentPlanningTest {
 		
 		DeploymentPlan plan2 = deploymentPlanner.createPlan();
 
-		assertNotNull(plan);
+		assertNotNull(plan2);
 		assertEquals(2, plan2.getCommands().size());
+		executor.execute(plan2);
+		
+		ContextChange change2 = ContextChangeBuilder.create()
+				.remove("gps_capability")
+				.build();
+		
+		handler.handle(change2);
+		
+		DeploymentPlan plan3 = deploymentPlanner.createPlan();
+		assertEquals(0, plan3.getCommands().size());
+		
 	}
 	
 	@Test

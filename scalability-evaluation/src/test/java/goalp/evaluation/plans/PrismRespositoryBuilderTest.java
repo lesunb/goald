@@ -9,9 +9,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.dam.model.Bundle;
-import goald.dam.model.Goal;
 import goald.eval.exec.ExperimentSetup;
+import goald.model.Bundle;
+import goald.model.Goal;
 import goalp.evaluation.exec.PrismRepositoryFactory;
 import goalp.evaluation.model.PlanningExperiment;
 import goalp.evaluation.model.PlanningExperimentBuilder;

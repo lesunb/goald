@@ -4,9 +4,9 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import goald.dam.model.DeploymentPlan;
 import goald.eval.exec.Execution;
 import goald.eval.exec.ExperimentSetup;
+import goald.model.DeploymentPlan;
 
 public class EchoService {
 

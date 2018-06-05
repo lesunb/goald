@@ -9,13 +9,13 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
-import goald.dam.model.ContextChange;
-import goald.dam.model.DeploymentPlan;
-import goald.dam.model.util.CtxEvaluatorBuilder;
-import goald.dam.model.util.GoalsChangeRequestBuilder;
-import goald.dam.planning.DameRespository;
 import goald.exputil.EchoService;
 import goald.exputil.ExperimentTimer;
+import goald.model.ContextChange;
+import goald.model.DeploymentPlan;
+import goald.model.util.CtxEvaluatorBuilder;
+import goald.model.util.GoalsChangeRequestBuilder;
+import goald.planning.DameRespository;
 import goald.repository.IRepository;
 import goalp.evaluation.Dataset;
 

@@ -2,8 +2,8 @@ package goald.repository;
 
 import java.util.List;
 
-import goald.dam.model.Bundle;
-import goald.dam.model.Goal;
+import goald.model.Bundle;
+import goald.model.Goal;
 import goald.repository.HashMapRepository.BundleType;
 
 public interface IRepository {

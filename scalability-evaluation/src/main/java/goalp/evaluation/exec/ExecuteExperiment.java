@@ -10,11 +10,6 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
-import goald.dam.model.ContextChange;
-import goald.dam.model.DeploymentPlan;
-import goald.dam.model.util.ContextChangeBuilder;
-import goald.dam.model.util.CtxEvaluatorBuilder;
-import goald.dam.model.util.GoalsChangeRequestBuilder;
 import goald.eval.exec.ExecResult;
 import goald.eval.exec.Execution;
 import goald.eval.exec.ExperimentSetup;
@@ -23,6 +18,11 @@ import goald.exputil.EchoService;
 import goald.exputil.EvalUtil;
 import goald.exputil.ExperimentTimer;
 import goald.exputil.WriteToFileService;
+import goald.model.ContextChange;
+import goald.model.DeploymentPlan;
+import goald.model.util.ContextChangeBuilder;
+import goald.model.util.CtxEvaluatorBuilder;
+import goald.model.util.GoalsChangeRequestBuilder;
 import goalp.evaluation.goals.IExecuteExperiments;
 import goalp.evaluation.model.PlanningExperiment;
 

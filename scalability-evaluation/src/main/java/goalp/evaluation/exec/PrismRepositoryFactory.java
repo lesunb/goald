@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import goald.dam.model.Bundle;
-import goald.dam.model.util.BundleBuilder;
 import goald.eval.exec.ExperimentSetup;
 import goald.exputil.RandomPrismRepositoryUtil;
+import goald.model.Bundle;
+import goald.model.util.BundleBuilder;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
 import goalp.evaluation.model.RepoSpec;

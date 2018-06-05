@@ -1,7 +1,7 @@
 package goald.repository;
 
 
-import goald.dam.model.Bundle;
+import goald.model.Bundle;
 
 public class RepositoryBuilder {
 

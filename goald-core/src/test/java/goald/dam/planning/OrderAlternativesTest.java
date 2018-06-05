@@ -7,15 +7,17 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.dam.model.Agent;
-import goald.dam.model.Alternative;
-import goald.dam.model.Bundle;
-import goald.dam.model.CtxEvaluator;
-import goald.dam.model.Dame;
-import goald.dam.model.Goal;
-import goald.dam.model.util.AgentBuilder;
-import goald.dam.model.util.CtxEvaluatorBuilder;
-import goald.dam.model.util.RepoQueryBuilder;
+import goald.model.Agent;
+import goald.model.Alternative;
+import goald.model.Bundle;
+import goald.model.CtxEvaluator;
+import goald.model.Dame;
+import goald.model.Goal;
+import goald.model.util.AgentBuilder;
+import goald.model.util.CtxEvaluatorBuilder;
+import goald.model.util.RepoQueryBuilder;
+import goald.planning.DamUpdater;
+import goald.planning.DameRespository;
 
 public class OrderAlternativesTest {
 	

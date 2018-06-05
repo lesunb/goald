@@ -6,12 +6,15 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.dam.model.Agent;
-import goald.dam.model.CtxEvaluator;
-import goald.dam.model.GoalsChangeRequest;
-import goald.dam.model.util.AgentBuilder;
-import goald.dam.model.util.CtxEvaluatorBuilder;
-import goald.dam.model.util.GoalsChangeRequestBuilder;
+import goald.model.Agent;
+import goald.model.CtxEvaluator;
+import goald.model.GoalsChangeRequest;
+import goald.model.util.AgentBuilder;
+import goald.model.util.CtxEvaluatorBuilder;
+import goald.model.util.GoalsChangeRequestBuilder;
+import goald.planning.DamUpdater;
+import goald.planning.DameRespository;
+import goald.planning.GoalsChangeHandler;
 
 public class HandleGoalsChangeTest {
 	

@@ -4,8 +4,8 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import goald.dam.model.util.ContextChangeBuilder;
 import goald.exputil.ExperimentTimer;
+import goald.model.util.ContextChangeBuilder;
 import goald.repository.IRepository;
 
 public class FillingStationStudyCase extends AbstractStudyCase {

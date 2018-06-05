@@ -3,10 +3,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.AutonomousAgent;
-import goald.dam.model.DeploymentPlan;
-import goald.dam.model.util.ContextChangeBuilder;
-import goald.dam.model.util.CtxEvaluatorBuilder;
-import goald.dam.model.util.GoalsChangeRequestBuilder;
+import goald.model.DeploymentPlan;
+import goald.model.util.ContextChangeBuilder;
+import goald.model.util.CtxEvaluatorBuilder;
+import goald.model.util.GoalsChangeRequestBuilder;
 import goald.repository.IRepository;
 
 public class FillingStationAdvisorTestSuite {

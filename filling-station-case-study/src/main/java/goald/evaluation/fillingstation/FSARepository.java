@@ -1,6 +1,6 @@
 package goald.evaluation.fillingstation;
 
-import goald.dam.model.util.BundleBuilder;
+import goald.model.util.BundleBuilder;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
 

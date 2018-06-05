@@ -1,6 +1,7 @@
 package goald.dam.planning;
 
-import goald.dam.model.util.BundleBuilder;
+import goald.model.util.BundleBuilder;
+import goald.planning.DameRespository;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
 

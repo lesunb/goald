@@ -1,18 +1,18 @@
 package goald; 
 
-import goald.dam.execution.DeploymentExecutor;
-import goald.dam.model.Agent;
-import goald.dam.model.ContextChange;
-import goald.dam.model.Deployment;
-import goald.dam.model.DeploymentPlan;
-import goald.dam.model.GoalsChangeRequest;
-import goald.dam.model.util.AgentBuilder;
-import goald.dam.model.util.CtxEvaluatorBuilder;
-import goald.dam.model.util.GoalsChangeRequestBuilder;
-import goald.dam.planning.ContextChangeHandler;
-import goald.dam.planning.DameRespository;
-import goald.dam.planning.DeploymentPlanner;
-import goald.dam.planning.GoalsChangeHandler;
+import goald.execution.DeploymentExecutor;
+import goald.model.Agent;
+import goald.model.ContextChange;
+import goald.model.Deployment;
+import goald.model.DeploymentPlan;
+import goald.model.GoalsChangeRequest;
+import goald.model.util.AgentBuilder;
+import goald.model.util.CtxEvaluatorBuilder;
+import goald.model.util.GoalsChangeRequestBuilder;
+import goald.planning.ContextChangeHandler;
+import goald.planning.DameRespository;
+import goald.planning.DeploymentPlanner;
+import goald.planning.GoalsChangeHandler;
 import goald.repository.IRepository;
 
 public abstract class AutonomousAgent {
@@ -90,6 +90,12 @@ public abstract class AutonomousAgent {
 	
 	public Agent getAgent() {
 		return this.agent;
+	}
+
+	@Override
+	public String toString() {
+		return "AutonomousAgent [agent=" + agent + ", gcHandler=" + gcHandler + ", ccHandler=" + ccHandler + ", deploymentPlanner="
+				+ deploymentPlanner + ", executor=" + executor + "]";
 	}
 
 }
