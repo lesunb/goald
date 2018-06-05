@@ -1,4 +1,4 @@
-package goald.dam.planning;
+package goald;
 
 import static org.junit.Assert.assertEquals;
 

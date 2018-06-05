@@ -1,15 +1,25 @@
-package goald.dam.planning;
+package goald;
 
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import goald.model.Bundle;
+import goald.model.Goal;
 import goald.model.util.BundleBuilder;
-import goald.planning.DameRespository;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
 
-public class FeelingStationAdvisorRepoMock {
-
-	public static DameRespository regRepo() {
-
-		IRepository _repo = RepositoryBuilder.create()
+public class RepositoryTest {
+	
+	IRepository	repo;
+	
+	@Before
+	public void setUp() throws Exception {
+		
+		repo = RepositoryBuilder.create()
 				.add(
 					BundleBuilder.create()
 					.identification("greater.def")
@@ -20,11 +30,6 @@ public class FeelingStationAdvisorRepoMock {
 					.identification("greater.impl")
 					.provides("greet")
 					.requires("display_capability")
-					.build())
-				.add(
-					BundleBuilder.create()
-					.identification("alarm.def")
-					.defines("alarm")
 					.build())
 				.add(
 					BundleBuilder.create()
@@ -41,34 +46,25 @@ public class FeelingStationAdvisorRepoMock {
 					BundleBuilder.create()
 					.identification("displayMyPosition.impl")
 					.provides("displayMyPosition")
-					.dependsOn("getPosition")
+					.requires("display_capability")
+					.dependsOn("getPositionByGPS")
 					.dependsOn("mapView")
 					.build())
 				.add(
 					BundleBuilder.create()
-					.identification("getPosition.def")
-					.defines("getPosition")
+					.identification("getPositionByGPS.def")
+					.defines("getPositionByGPS")
 					.build())
 				.add(
 					BundleBuilder.create()
 					.identification("getPositionByGPS")
-					.provides("getPosition")
+					.provides("getPositionByGPS")
 					.requires("gps_capability")
-					.withQuality("precision", 10)
-					.withQuality("responseTime", 5)
-					.build())
-				.add(
-					BundleBuilder.create()
-					.identification("getPositionByAntenna")
-					.provides("getPosition")
-					.requires("antenna_capability")
-					.withQuality("precision", 5)
-					.withQuality("responseTime", 10)
 					.build())
 				.add(
 					BundleBuilder.create()
 					.identification("mapView.def")
-					.defines("mapView")
+					.provides("mapView")
 					.build())
 				.add(
 					BundleBuilder.create()
@@ -77,6 +73,27 @@ public class FeelingStationAdvisorRepoMock {
 					.requires("display_capability")
 					.build())
 				.build();
-		return new DameRespository(_repo);
 	}
+	
+	@Test
+	public void testQueryForDefinition() {
+
+		Goal goal = new Goal("greet");
+		Bundle bundle = repo.queryForDefinition(goal);
+
+		Assert.assertEquals("greater.def", bundle.identification);
+		
+	}
+	
+	@Test
+	public void testQueryForImplementation() {
+
+		Goal goal = new Goal("greet");
+		List<Bundle> bundles = repo.queryForImplementations(goal);
+
+		Assert.assertEquals(1, bundles.size());
+		Assert.assertEquals("greater.impl", bundles.get(0).identification);
+		
+	}
+
 }

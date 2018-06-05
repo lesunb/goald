@@ -99,6 +99,9 @@ public class HashMapRepository implements IRepository {
 		return bundles;
 	}
 
-
+	@Override
+	public String toString() {
+		return "HashMapRepository [size=" + repoSize + "]";
+	}
 
 }

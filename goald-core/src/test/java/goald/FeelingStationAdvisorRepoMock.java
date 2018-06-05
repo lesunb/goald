@@ -1,25 +1,15 @@
-package goald.dam.planning;
+package goald;
 
-import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import goald.model.Bundle;
-import goald.model.Goal;
 import goald.model.util.BundleBuilder;
+import goald.planning.DameRespository;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
 
-public class RepositoryTest {
-	
-	IRepository	repo;
-	
-	@Before
-	public void setUp() throws Exception {
-		
-		repo = RepositoryBuilder.create()
+public class FeelingStationAdvisorRepoMock {
+
+	public static DameRespository regRepo() {
+
+		IRepository _repo = RepositoryBuilder.create()
 				.add(
 					BundleBuilder.create()
 					.identification("greater.def")
@@ -30,6 +20,11 @@ public class RepositoryTest {
 					.identification("greater.impl")
 					.provides("greet")
 					.requires("display_capability")
+					.build())
+				.add(
+					BundleBuilder.create()
+					.identification("alarm.def")
+					.defines("alarm")
 					.build())
 				.add(
 					BundleBuilder.create()
@@ -46,25 +41,34 @@ public class RepositoryTest {
 					BundleBuilder.create()
 					.identification("displayMyPosition.impl")
 					.provides("displayMyPosition")
-					.requires("display_capability")
-					.dependsOn("getPositionByGPS")
+					.dependsOn("getPosition")
 					.dependsOn("mapView")
 					.build())
 				.add(
 					BundleBuilder.create()
-					.identification("getPositionByGPS.def")
-					.defines("getPositionByGPS")
+					.identification("getPosition.def")
+					.defines("getPosition")
 					.build())
 				.add(
 					BundleBuilder.create()
 					.identification("getPositionByGPS")
-					.provides("getPositionByGPS")
+					.provides("getPosition")
 					.requires("gps_capability")
+					.withQuality("precision", 10)
+					.withQuality("responseTime", 5)
+					.build())
+				.add(
+					BundleBuilder.create()
+					.identification("getPositionByAntenna")
+					.provides("getPosition")
+					.requires("antenna_capability")
+					.withQuality("precision", 5)
+					.withQuality("responseTime", 10)
 					.build())
 				.add(
 					BundleBuilder.create()
 					.identification("mapView.def")
-					.provides("mapView")
+					.defines("mapView")
 					.build())
 				.add(
 					BundleBuilder.create()
@@ -73,27 +77,6 @@ public class RepositoryTest {
 					.requires("display_capability")
 					.build())
 				.build();
+		return new DameRespository(_repo);
 	}
-	
-	@Test
-	public void testQueryForDefinition() {
-
-		Goal goal = new Goal("greet");
-		Bundle bundle = repo.queryForDefinition(goal);
-
-		Assert.assertEquals("greater.def", bundle.identification);
-		
-	}
-	
-	@Test
-	public void testQueryForImplementation() {
-
-		Goal goal = new Goal("greet");
-		List<Bundle> bundles = repo.queryForImplementations(goal);
-
-		Assert.assertEquals(1, bundles.size());
-		Assert.assertEquals("greater.impl", bundles.get(0).identification);
-		
-	}
-
 }

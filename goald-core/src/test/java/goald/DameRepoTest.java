@@ -1,4 +1,4 @@
-package goald.dam.planning;
+package goald;
 
 import java.util.ArrayList;
 import java.util.List;
