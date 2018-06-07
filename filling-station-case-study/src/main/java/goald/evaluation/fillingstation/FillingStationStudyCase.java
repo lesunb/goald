@@ -37,9 +37,15 @@ public class FillingStationStudyCase extends AbstractStudyCase {
 		scenario("s1", (ctxEvaluatorBuilder)->{
 			ctxEvaluatorBuilder.with(
 					"antenna_triangulation", 
-						"protocol_get_fuel_level_and_mileage",
-						"storage",
-						"sound");
+					"protocol_get_fuel_level_and_mileage",
+					"storage",
+					"audio_player");
+			},
+			(qualityWeights) -> {
+				qualityWeights.put("precision", 1);
+				qualityWeights.put("responseTime", 1);
+				qualityWeights.put("storegedSize", 1);
+				qualityWeights.put("usability", 1);
 			},
 			(goalsChangeBuilding)->{
 				goalsChangeBuilding.addGoal("vehicle-refueling-is-assisted");
@@ -62,6 +68,9 @@ public class FillingStationStudyCase extends AbstractStudyCase {
 				"internet_connection",
 				"synthesized_voice");
 			},
+			(qualityWeights) -> {
+				qualityWeights.put("xx", 2);
+			},
 			(goalsChangeBuilding)->{
 				goalsChangeBuilding.addGoal("vehicle-refueling-is-assisted");
 			},
@@ -81,6 +90,9 @@ public class FillingStationStudyCase extends AbstractStudyCase {
 				"gps_capability", 
 				"internet_connection",
 				"synthesized_voice");
+		},
+		(qualityWeights) -> {
+			qualityWeights.put("xx", 2);
 		},
 		(goalsChangeBuilding)->{
 			goalsChangeBuilding.addGoal("vehicle-refueling-is-assisted");
@@ -103,6 +115,9 @@ public class FillingStationStudyCase extends AbstractStudyCase {
 				"storage",
 				"visible_graphical_interface");
 		},
+		(qualityWeights) -> {
+			qualityWeights.put("xx", 2);
+		},
 		(goalsChangeBuilding)->{
 			goalsChangeBuilding.addGoal("vehicle-refueling-is-assisted");
 		},
@@ -124,26 +139,8 @@ public class FillingStationStudyCase extends AbstractStudyCase {
 				"internet_connection",
 				"interface_navigation_system");
 		},
-		(goalsChangeBuilding)->{
-			goalsChangeBuilding.addGoal("vehicle-refueling-is-assisted");
-		},
-		(changesList) -> {
-			changesList.add(ContextChangeBuilder.create()
-					.remove("storage").build());
-			changesList.add(ContextChangeBuilder.create()
-					.add("label").build());	
-			changesList.add(ContextChangeBuilder.create()
-					.add("storage").build());	
-			changesList.add(ContextChangeBuilder.create()
-					.remove("antenna_triangulation").build());	
-		});
-	
-		
-		scenario("s6", (ctxEvaluatorBuilder)->{
-			ctxEvaluatorBuilder.with(
-				"protocol_on_board_computer_get_distante_to_empty", 
-				"storage",
-				"synthesized_voice");
+		(qualityWeights) -> {
+			qualityWeights.put("xx", 2);
 		},
 		(goalsChangeBuilding)->{
 			goalsChangeBuilding.addGoal("vehicle-refueling-is-assisted");
@@ -158,26 +155,47 @@ public class FillingStationStudyCase extends AbstractStudyCase {
 			changesList.add(ContextChangeBuilder.create()
 					.remove("antenna_triangulation").build());	
 		});
-	
-		scenario("s7", (ctxEvaluatorBuilder)->{
-			ctxEvaluatorBuilder.with(
-				"gps_capability", 
-				"protocol_on_board_computer_get_distante_to_empty",
-				"interface_navigation_system");
-		},
-		(goalsChangeBuilding)->{
-			goalsChangeBuilding.addGoal("vehicle-refueling-is-assisted");
-		},
-		(changesList) -> {
-			changesList.add(ContextChangeBuilder.create()
-					.remove("storage").build());
-			changesList.add(ContextChangeBuilder.create()
-					.add("label").build());	
-			changesList.add(ContextChangeBuilder.create()
-					.add("storage").build());	
-			changesList.add(ContextChangeBuilder.create()
-					.remove("antenna_triangulation").build());	
-		});
+//	
+//		
+//		scenario("s6", (ctxEvaluatorBuilder)->{
+//			ctxEvaluatorBuilder.with(
+//				"protocol_on_board_computer_get_distante_to_empty", 
+//				"storage",
+//				"synthesized_voice");
+//		},
+//		(goalsChangeBuilding)->{
+//			goalsChangeBuilding.addGoal("vehicle-refueling-is-assisted");
+//		},
+//		(changesList) -> {
+//			changesList.add(ContextChangeBuilder.create()
+//					.remove("storage").build());
+//			changesList.add(ContextChangeBuilder.create()
+//					.add("label").build());	
+//			changesList.add(ContextChangeBuilder.create()
+//					.add("storage").build());	
+//			changesList.add(ContextChangeBuilder.create()
+//					.remove("antenna_triangulation").build());	
+//		});
+//	
+//		scenario("s7", (ctxEvaluatorBuilder)->{
+//			ctxEvaluatorBuilder.with(
+//				"gps_capability", 
+//				"protocol_on_board_computer_get_distante_to_empty",
+//				"interface_navigation_system");
+//		},
+//		(goalsChangeBuilding)->{
+//			goalsChangeBuilding.addGoal("vehicle-refueling-is-assisted");
+//		},
+//		(changesList) -> {
+//			changesList.add(ContextChangeBuilder.create()
+//					.remove("storage").build());
+//			changesList.add(ContextChangeBuilder.create()
+//					.add("label").build());	
+//			changesList.add(ContextChangeBuilder.create()
+//					.add("storage").build());	
+//			changesList.add(ContextChangeBuilder.create()
+//					.remove("antenna_triangulation").build());	
+//		});
 	
 	}
 	

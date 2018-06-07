@@ -1,5 +1,8 @@
 package goald; 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import goald.execution.DeploymentExecutor;
 import goald.model.Agent;
 import goald.model.ContextChange;
@@ -31,7 +34,7 @@ public abstract class AutonomousAgent {
 	// knowledge
 	private Agent agent;
 	
-	public abstract void setup(CtxEvaluatorBuilder ctxEvaluatorBilder, GoalsChangeRequestBuilder goalsChangeBuilder);
+	public abstract void setup(CtxEvaluatorBuilder ctxEvaluatorBilder, GoalsChangeRequestBuilder goalsChangeBuilder, Map<String, Integer> weightMap);
 	
 	public void handleContextChange(ContextChange change) {		
 		DeploymentPlan adaptPlan;
@@ -56,10 +59,12 @@ public abstract class AutonomousAgent {
 		
 		GoalsChangeRequestBuilder goalsChangeBuilder = GoalsChangeRequestBuilder.create();
 		
-		setup(ctxEvaluatorBilder, goalsChangeBuilder);
+		Map<String, Integer> weights = new HashMap<String, Integer>();
+		setup(ctxEvaluatorBilder, goalsChangeBuilder, weights);
 		
 		AgentBuilder agentBuilder =  AgentBuilder.create()
-			.withContext(ctxEvaluatorBilder.build());
+			.withContext(ctxEvaluatorBilder.build())
+			.withQualityWeight(weights);
 
 		agent = agentBuilder.build();
 		GoalsChangeRequest goalsChangeRequest = goalsChangeBuilder.build();

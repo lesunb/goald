@@ -21,6 +21,9 @@ public class Deployment {
 	}
 	
 	public void add(Status status, Bundle bundle) {
+		if(status == null || bundle == null) {
+			throw new IllegalStateException();
+		}
 		getBundles().add(new BundleStatus(status, bundle) );
 	}
 	

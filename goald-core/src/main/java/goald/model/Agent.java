@@ -39,6 +39,10 @@ public class Agent {
 		}
 		weightMap.put(label, value);
 	}
+	
+	public void setWeightMap(Map<String, Integer> weightMap) {
+		this.weightMap = weightMap;
+	}
 
 	public Integer getQualityWeight(String label) {
 		return weightMap.get(label);

@@ -2,6 +2,7 @@ package goalp.evaluation.exec;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -121,15 +122,15 @@ public class ExecuteExperiment implements IExecuteExperiments {
 		
 			@Override
 			public void setup(CtxEvaluatorBuilder initialCtx, 
-					GoalsChangeRequestBuilder goals) {
+					GoalsChangeRequestBuilder goals, Map<String, Integer> weightMap) {
 					
-						initialCtx.with(ctx);
-						
-						goals
-						.addGoals(execGoals);
-				timer.split("creating_dam");
+				initialCtx.with(ctx);
 				
+				goals.addGoals(execGoals);
+				
+				timer.split("creating_dam");
 			}
+			
 			@Override
 			public void damUpdated() {
 				timer.split("dam_updated");

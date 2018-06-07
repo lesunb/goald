@@ -1,5 +1,7 @@
 package goald.model.util;
 
+import java.util.Map;
+
 import goald.model.Agent;
 import goald.model.CtxEvaluator;
 
@@ -23,6 +25,11 @@ public class AgentBuilder {
 	
 	public AgentBuilder withQualityWeight(String label, int value) {
 		this.agent.setWeight(label, value);
+		return this;
+	}
+	
+	public AgentBuilder withQualityWeight(Map<String, Integer> weightMap) {
+		this.agent.setWeightMap(weightMap);
 		return this;
 	}
 

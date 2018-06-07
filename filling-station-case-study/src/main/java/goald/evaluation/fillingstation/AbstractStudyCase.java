@@ -2,6 +2,7 @@ package goald.evaluation.fillingstation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import javax.inject.Inject;
@@ -53,6 +54,7 @@ public abstract class AbstractStudyCase {
 	}
 	
 	public void scenario(String experimentName, Consumer<CtxEvaluatorBuilder> ctxBuilding,
+			Consumer<Map<String, Integer>> weightMapBuilding,
 			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding,
 			Consumer<List<ContextChange>> changesBuilding) {
 	
@@ -61,7 +63,7 @@ public abstract class AbstractStudyCase {
 		timer.begin();
 		
 		// agent contexts and goals
-		AutonomousAgent agent = createAgent(ctxBuilding, goalsChangeBuilding);
+		AutonomousAgent agent = createAgent(ctxBuilding, goalsChangeBuilding, weightMapBuilding);
 		
 		// contexts changes
 		List<ContextChange> changes = new ArrayList<>();
@@ -91,13 +93,17 @@ public abstract class AbstractStudyCase {
 	}
 		
 	public AutonomousAgent createAgent(Consumer<CtxEvaluatorBuilder> ctxBuilding,
-			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding) {
+			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding, 
+			Consumer<Map<String, Integer>> weightMapBuilding) {
 		return new AutonomousAgent() {
 			@Override
 			public void setup(CtxEvaluatorBuilder _initialCtx, 
-					GoalsChangeRequestBuilder _goalsChangeBuilder) {
+					GoalsChangeRequestBuilder _goalsChangeBuilder, 
+					Map<String, Integer> weightMap){
+				
 				ctxBuilding.accept(_initialCtx); 
-				goalsChangeBuilding.accept(_goalsChangeBuilder); 
+				goalsChangeBuilding.accept(_goalsChangeBuilder);
+				weightMapBuilding.accept(weightMap);
 			}
 			
 			@Override
