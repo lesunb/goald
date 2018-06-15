@@ -26,6 +26,7 @@ public class DeploymentPlanner {
 	public DeploymentPlan createPlan() {
 		Dame rootDame = this.agent.getRootDame();
 		if(rootDame.getChosenAlt() == null) {
+			// deployment not possible
 			// TODO how to procced?
 			return DeploymentPlanBuilder.create()
 					.build();
@@ -45,13 +46,19 @@ public class DeploymentPlanner {
 				.build();
 	}
 	
-	public Set<Bundle> addToSellected(Dame dame, Set<Bundle> sellected) {		
-		sellected.add(dame.getDefinition());
+	public Set<Bundle> addToSellected(Dame dame, Set<Bundle> sellected) {
 		if(dame.getChosenAlt() == null) {
 			System.out.println("incomplete deployment plan");
 			return sellected;
 		}
-		sellected.add(dame.getChosenAlt().getImpl());
+		
+		if(dame.getParentAlt() == null && dame.getDefinition() == null) {
+			System.out.println("ignoring def for root dame");
+		}else {
+			sellected.add(dame.getDefinition());
+			sellected.add(dame.getChosenAlt().getImpl());
+		}
+		
 		
 		for(Dame child:dame.getChosenAlt().getListDepDame()) {
 			addToSellected(child, sellected);

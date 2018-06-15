@@ -89,7 +89,12 @@ public class DamUpdater {
 		for(Alternative alt: alts) {
 			int quality = 0;
 			for(QualityParameter param: alt.getImpl().getQualityParams()) {
-				quality += param.getValue() * agent.getQualityWeight(param.getLabel());
+				Integer weight = agent.getQualityWeight(param.getLabel());
+				if(weight == null) { 
+					System.out.println("agent has no weight for label '"+ param.getLabel() + "'");
+					weight = 1;
+				}
+				quality += param.getValue() * weight;
 			}
 			alt.setQuality(quality);
 		}
