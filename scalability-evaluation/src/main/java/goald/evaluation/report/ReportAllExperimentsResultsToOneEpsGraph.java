@@ -10,12 +10,12 @@ import org.slf4j.Logger;
 import com.panayotis.gnuplot.dataset.Point;
 
 import goald.eval.exec.Execution;
+import goald.evaluation.model.PlanningExperiment;
 import goald.exputil.DataSetBuilder;
 import goald.exputil.EvalUtil;
 import goald.exputil.PlotBuilder;
 import goalp.Conf;
 import goalp.Conf.Keys;
-import goalp.evaluation.model.PlanningExperiment;
 
 /**
  * Context Requirement: gnuplot installed

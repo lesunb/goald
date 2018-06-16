@@ -10,11 +10,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.eval.exec.ExperimentSetup;
+import goald.evaluation.exec.PrismRepositoryFactory;
+import goald.evaluation.model.PlanningExperiment;
+import goald.evaluation.model.PlanningExperimentBuilder;
 import goald.model.Bundle;
 import goald.model.Goal;
-import goalp.evaluation.exec.PrismRepositoryFactory;
-import goalp.evaluation.model.PlanningExperiment;
-import goalp.evaluation.model.PlanningExperimentBuilder;
 
 public class PrismRespositoryBuilderTest {
 

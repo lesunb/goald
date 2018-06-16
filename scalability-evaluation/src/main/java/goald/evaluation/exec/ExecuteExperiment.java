@@ -1,4 +1,4 @@
-package goalp.evaluation.exec;
+package goald.evaluation.exec;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ import goald.eval.exec.ExecResult;
 import goald.eval.exec.Execution;
 import goald.eval.exec.ExperimentSetup;
 import goald.eval.spec.Experiment;
+import goald.evaluation.model.PlanningExperiment;
 import goald.exputil.EchoService;
 import goald.exputil.EvalUtil;
 import goald.exputil.ExperimentTimer;
@@ -25,7 +26,6 @@ import goald.model.util.ContextChangeBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
 import goalp.evaluation.goals.IExecuteExperiments;
-import goalp.evaluation.model.PlanningExperiment;
 
 @Named
 public class ExecuteExperiment implements IExecuteExperiments {

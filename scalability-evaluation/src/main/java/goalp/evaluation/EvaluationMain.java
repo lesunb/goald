@@ -8,9 +8,9 @@ import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 
 import goald.eval.spec.Experiment;
+import goald.evaluation.strategy.EvaluateStrategy;
 import goald.experiments.CreateExperimentsToEvaluateScalabilityOverPlanSize;
 import goalp.evaluation.goals.ICreateExperiments;
-import goalp.evaluation.strategy.EvaluateStrategy;
 
 @Singleton
 public class EvaluationMain {

@@ -1,4 +1,4 @@
-package goalp.evaluation.strategy;
+package goald.evaluation.strategy;
 
 import java.util.List;
 

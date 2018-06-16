@@ -1,4 +1,4 @@
-package goalp.evaluation.model;
+package goald.evaluation.model;
 
 import goald.eval.spec.Experiment;
 

@@ -1,4 +1,4 @@
-package goalp.evaluation.exec;
+package goald.evaluation.exec;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -9,12 +9,12 @@ import java.util.Map;
 import java.util.Set;
 
 import goald.eval.exec.ExperimentSetup;
+import goald.evaluation.model.RepoSpec;
 import goald.exputil.RandomPrismRepositoryUtil;
 import goald.model.Bundle;
 import goald.model.util.BundleBuilder;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
-import goalp.evaluation.model.RepoSpec;
 
 public class PrismRepositoryFactory {
 	

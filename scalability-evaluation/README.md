@@ -6,7 +6,7 @@
 In a Ubuntu 16.04, Fresh Virtual Machine, local or in the cloud, paste the following line in the terminal:
 
 ``` bash
-sudo wget https://raw.githubusercontent.com/lesunb/goalp/master/setup/ubuntu1604lts.sh -v -O /tmp/install-goalp-scal.sh; sudo chmod +x /tmp/install-goalp-scal.sh; /tmp/install-goalp-scal.sh
+sudo wget https://raw.githubusercontent.com/lesunb/goald/master/setup/ubuntu1604lts.sh -v -O /tmp/install-goald-scal.sh; sudo chmod +x /tmp/install-goald-scal.sh; /tmp/install-goald-scal.sh
 
 ```
 The dependencies will be download, the experiment will be executed.
@@ -16,7 +16,7 @@ Then, you can see the log of the execution with:
  tail -f ~/scalability-evaluation-log
 
 ```
-After a couple of hours you get the result at the goalp/scalability-evaluation/result folder.
+After a couple of hours you get the result at the goald/scalability-evaluation/result folder.
 
 A file like like this:
 
@@ -39,8 +39,8 @@ sudo apt install maven
 
 ### Clone the Project 
 ``` bash
-git clone https://github.com/lesunb/goalp.git
-cd goalp/
+git clone https://github.com/lesunb/goald.git
+cd goald/
 ```
 
 ### Build
@@ -60,7 +60,7 @@ mvn exec:java
 
 # Tinkering and Contributing
 
-If you would like to tinker with the project, follow the steps at https://github.com/lesunb/goalp to setup the project.
+If you would like to tinker with the project, follow the steps at https://github.com/lesunb/goald to setup the project.
 
 # That's all, folks.
 peace.

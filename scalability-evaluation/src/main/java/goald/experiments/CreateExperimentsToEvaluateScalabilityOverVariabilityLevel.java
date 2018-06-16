@@ -4,7 +4,7 @@ import goald.eval.spec.ExecSpec;
 import goald.eval.spec.ExecSpecBuilder;
 import goald.eval.spec.Experiment;
 import goald.eval.spec.ExperimentBuilder;
-import goalp.evaluation.model.PlanningExperimentBuilder;
+import goald.evaluation.model.PlanningExperimentBuilder;
 
 public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel extends AbstractCreateExperiments {
 
