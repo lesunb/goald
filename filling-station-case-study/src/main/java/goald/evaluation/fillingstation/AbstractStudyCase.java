@@ -42,18 +42,19 @@ public abstract class AbstractStudyCase {
 	
 	protected abstract IRepository getRepo();
 
+	
 	public void exec() {
 		//setup environment
 		timer.begin();
 		repo = new DameRespository(getRepo());
 		timer.split("setup env");
 		//execute deployment planning for case study
-		ds = Dataset.init("test_case", "scenario", "time");
+		ds = Dataset.init("test_case", "scenario", "exec_index", "operation", "time");
 		caseStudy();
 		ds.flush();
 	}
 	
-	public void scenario(String experimentName, Consumer<CtxEvaluatorBuilder> ctxBuilding,
+	public void scenario(String experimentName, int execIndex, Consumer<CtxEvaluatorBuilder> ctxBuilding,
 			Consumer<Map<String, Integer>> weightMapBuilding,
 			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding,
 			Consumer<List<ContextChange>> changesBuilding) {
@@ -63,7 +64,7 @@ public abstract class AbstractStudyCase {
 		timer.begin();
 		
 		// agent contexts and goals
-		AutonomousAgent agent = createAgent(ctxBuilding, goalsChangeBuilding, weightMapBuilding);
+		AutonomousAgent agent = createAgent(experimentName, execIndex, ctxBuilding, goalsChangeBuilding, weightMapBuilding);
 		
 		// contexts changes
 		List<ContextChange> changes = new ArrayList<>();
@@ -78,8 +79,7 @@ public abstract class AbstractStudyCase {
 			timer.split("start_addapting:" + experimentName);
 			for(ContextChange change:changes) {
 				agent.handleContextChange(change);
-				Number resultTime = timer.split("handling_change:" + experimentName);
-				ds.log(experimentName, resultTime);
+				split(experimentName, execIndex, "handling_change");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,10 +92,13 @@ public abstract class AbstractStudyCase {
 		timer.finish();
 	}
 		
-	public AutonomousAgent createAgent(Consumer<CtxEvaluatorBuilder> ctxBuilding,
+	public AutonomousAgent createAgent(String _experimentName, int _execIndex, Consumer<CtxEvaluatorBuilder> ctxBuilding,
 			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding, 
 			Consumer<Map<String, Integer>> weightMapBuilding) {
 		return new AutonomousAgent() {
+			String experimentName = _experimentName;
+			int execIndex = _execIndex;
+			
 			@Override
 			public void setup(CtxEvaluatorBuilder _initialCtx, 
 					GoalsChangeRequestBuilder _goalsChangeBuilder, 
@@ -108,25 +111,29 @@ public abstract class AbstractStudyCase {
 			
 			@Override
 			public void changingGoals() {
-				timer.split("changing_goals");
+				split(experimentName, execIndex, "changing_goals");
 			}
 			
 			@Override
 			public void damUpdated() {
-				timer.split("dam_updated");
+				split(experimentName, execIndex, "dam_updated");
 			}
 			
 			@Override
 			public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {
 				echo.it(adaptPlan);
-				timer.split("deployment_change_planned");
+				split(experimentName, execIndex, "deployment_change_planned");
 			}
 			
 			@Override
 			public void deploymentChangeExecuted() {
-				timer.split("deployment_change_excuted");
+				split(experimentName, execIndex, "deployment_change_excuted");
 			}
 		};
+	}
+
+	public void split(String scenario, int execIndex, String label) {
+		ds.log(scenario, execIndex, label, timer.split(label));
 	}
 
 //	public void echo(DeploymentPlanningResult resultPlan, Number time) {
