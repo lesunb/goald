@@ -15,8 +15,8 @@ sudo apt install maven
 
 ### Clone the Project 
 ``` bash
-git clone https://github.com/lesunb/goalp.git
-cd goalp/
+git clone https://github.com/lesunb/goald.git
+cd goald/
 ```
 
 ### Build
@@ -40,12 +40,12 @@ cd fillin-statio-case-study
 mvn exec:java
 ```
 R Script the data set and  previous obtained datasets are avaliable at
-https://github.com/lesunb/goalp-evaluation/tree/master/scalability/exp1
+https://github.com/lesunb/goald-evaluation/tree/master/scalability/exp1
 
 
 # Tinkering and Contributing
 
-If you would like to tinker with the project, follow the steps at https://github.com/lesunb/goalp to setup the project.
+If you would like to tinker with the project, follow the steps at https://github.com/lesunb/goalds to setup the project.
 
 # That's all, folks.
 peace.

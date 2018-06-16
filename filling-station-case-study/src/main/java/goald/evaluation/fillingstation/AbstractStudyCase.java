@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
+import goald.evaluation.Dataset;
 import goald.exputil.EchoService;
 import goald.exputil.ExperimentTimer;
 import goald.model.ContextChange;
@@ -18,7 +19,6 @@ import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
 import goald.planning.DameRespository;
 import goald.repository.IRepository;
-import goalp.evaluation.Dataset;
 
 public abstract class AbstractStudyCase {
 

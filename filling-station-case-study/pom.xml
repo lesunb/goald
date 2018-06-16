@@ -120,7 +120,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>goalp.evaluation.fillingstation.EvaluationMain</mainClass>
+					<mainClass>goald.evaluation.fillingstation.EvaluationMain</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

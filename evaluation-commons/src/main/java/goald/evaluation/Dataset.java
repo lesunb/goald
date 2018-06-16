@@ -1,4 +1,4 @@
-package goalp.evaluation;
+package goald.evaluation;
 
 import java.io.BufferedWriter;
 import java.nio.file.Files;

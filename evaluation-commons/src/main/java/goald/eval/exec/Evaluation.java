@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import goalp.evaluation.ExperimentTimerImpl.Split;
+import goald.evaluation.ExperimentTimerImpl.Split;
 
 public class Evaluation {
 	

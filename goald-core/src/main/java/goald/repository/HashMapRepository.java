@@ -22,7 +22,7 @@ public class HashMapRepository implements IRepository {
 	int repoSize = 0;
 
 	/* (non-Javadoc)
-	 * @see goalp.systems.IRepository#getKnownArtifacts()
+	 * @see goald.systems.IRepository#getKnownArtifacts()
 	 */
 	protected HashMap<String, List<Bundle>> getKnownBundles(BundleType type) {
 		if(type == BundleType.DEFINITION ) {
@@ -65,7 +65,7 @@ public class HashMapRepository implements IRepository {
 	}
 	
 	/* (non-Javadoc)
-	 * @see goalp.systems.IRepository#getArtifactsThatProvideGoal(java.lang.String)
+	 * @see goald.systems.IRepository#getArtifactsThatProvideGoal(java.lang.String)
 	 */
 	@Override
 	public Bundle queryForDefinition(Goal goal){
@@ -77,7 +77,7 @@ public class HashMapRepository implements IRepository {
 	}
 	
 	/* (non-Javadoc)
-	 * @see goalp.systems.IRepository#getArtifactsThatProvideGoal(java.lang.String)
+	 * @see goald.systems.IRepository#getArtifactsThatProvideGoal(java.lang.String)
 	 */
 	@Override
 	public List<Bundle>  queryForImplementations(Goal goal){

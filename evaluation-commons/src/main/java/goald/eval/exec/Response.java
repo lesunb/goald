@@ -2,7 +2,7 @@ package goald.eval.exec;
 
 import java.util.List;
 
-import goalp.evaluation.ExperimentTimerImpl.Split;
+import goald.evaluation.ExperimentTimerImpl.Split;
 
 public class Response {
 
