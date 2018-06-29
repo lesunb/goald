@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import goald.evaluation.ExperimentTimerImpl.Split;
+import goald.evaluation.Measure;
+import goald.evaluation.Timer;
 
 public class Evaluation {
 	
@@ -15,10 +16,11 @@ public class Evaluation {
 	
 	private Number responseValue;
 	
-	// for experiments with many observations
-	private List<Long> observations;
+	private ExecResult result;
 	
-	private List<Split> times;
+	private Map<Integer, List<Measure>> indexedMeasures;
+	
+	private Timer timer;
 	
 	public Map<String, Number> getFactors() {
 		if(factors == null){
@@ -59,12 +61,6 @@ public class Evaluation {
 		this.responseValue = responseValue;
 	}
 	
-	public void addObservation(Long observation) {
-		if(this.observations == null) {
-			this.observations = new ArrayList<>();
-		}
-		this.observations.add(observation);
-	}
 	
 	public Evaluation blankCopy(){
 		Evaluation clone = new Evaluation();
@@ -75,8 +71,40 @@ public class Evaluation {
 		return clone;
 	}
 
-	public void addMesures(List<Split> times) {
-		this.times = times;
+	public void split(Integer execIndex, String label) {
+		Long value = getTimer().split(label);
+		Measure mesure = new Measure(label, value);
+		getMeasures(execIndex).add(mesure);
+	}
+	
+	public void setResult(ExecResult result) {
+		this.result = result;
+	}
+	
+	public ExecResult getResult() {
+		return this.result;
+	}
+	
+	public Timer getTimer() {
+		if(this.timer == null) {
+			this.timer = new Timer();
+			this.timer.begin();
+		}
+		return this.timer;
 	}
 
+
+	public List<Measure> getMeasures(Integer execIndex) {
+		if(this.indexedMeasures == null) {
+			this.indexedMeasures = new HashMap<>();
+		}
+		if(this.indexedMeasures.get(execIndex) == null) {
+			this.indexedMeasures.put(execIndex, new ArrayList<>());
+		}
+		return this.indexedMeasures.get(execIndex);
+	}
+
+	public Map<Integer, List<Measure>> getIndexedMeasures() {
+		return indexedMeasures;
+	}
 }

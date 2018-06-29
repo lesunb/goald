@@ -1,4 +1,4 @@
-package goald.evaluation.report;
+package goald.evaluation;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -55,7 +55,10 @@ public class ReportResultToFile implements IReportResult {
 		sb.append("execIndex\t");
 		
 		Map<Integer, List<Measure>> indexedMesures  = eval.getIndexedMeasures();
-		List<Measure> firstSetOfMeasures = indexedMesures.get(0);
+		Integer firstKey = (Integer) indexedMesures.keySet().toArray()[0];
+		
+		List<Measure> firstSetOfMeasures = indexedMesures.get(firstKey);
+		
 		
 		for(Measure measure: firstSetOfMeasures) {
 			String measurelabel = measure.getLabel();

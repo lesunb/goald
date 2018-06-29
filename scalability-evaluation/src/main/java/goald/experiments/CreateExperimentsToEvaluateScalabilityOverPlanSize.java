@@ -13,15 +13,15 @@ public class CreateExperimentsToEvaluateScalabilityOverPlanSize extends Abstract
 	@Override
 	protected Experiment createExperiments() {
 		
-		String expName = "Plan Size vs Planning Time (ms) - with variability=2, 10 execs";
+		String expName = "scal_over_plan_size";
 		
 		ExperimentBuilder expBuilder = ((PlanningExperimentBuilder)PlanningExperimentBuilder
 				.create()
 				.setName(expName)
 				.setResponseVariable("Time (ms)")
 				//experiment evaluated factors
-				.addFactor("Variability")
-				.addFactor("Plan size"))
+				.addFactor("variability")
+				.addFactor("numberOfGoals"))
 				// params for creating the repository
 				.putRepoSpec("depth", 2)
 				.putRepoSpec("numOfDependencies", 5)
@@ -39,12 +39,14 @@ public class CreateExperimentsToEvaluateScalabilityOverPlanSize extends Abstract
 		
 		//create 10 series of equal experiments
 		for(int i=0; i<10; i++){
-			
+			final Integer index = (Integer) i;
 			//add new experiment specification, copying from model and setting values in ranges (goals and variability)
 			addExecSpecsWithInRangeSetter(model, 
-					1, 100, 1, // goals (from 1 to 100, step = 1 )
+					1, 10, 1, // goals (from 1 to 100, step = 1 )
 					(spec, value) ->{
 				spec.put("numberOfGoals",value);
+				spec.put("name", "num_goals_" + value);
+				spec.put("index", index);
 			}, expBuilder);
 		}
 			

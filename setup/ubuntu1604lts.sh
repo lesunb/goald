@@ -1,5 +1,5 @@
 sudo apt install -y openjdk-9-jdk-headless maven
-git clone https://github.com/lesunb/goalp.git
+git clone https://github.com/lesunb/goald.git
 cd goalp/
 mvn install
 

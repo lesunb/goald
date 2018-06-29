@@ -30,9 +30,9 @@ public class WriteToFileService extends WriteService{
 	}
 
 	private void write(ExecResult result, BufferedWriter writer) throws IOException{
-		if(result.getAgent() != null &&
-				result.getAgent().getRootDame() != null) {
-			printTree(result.getAgent().getRootDame(), 0, writer);
-		}						
+//		if(result.getAgent() != null &&
+//				result.getAgent().getRootDame() != null) {
+//			printTree(result.getAgent().getRootDame(), 0, writer);
+//		}						
 	}
 }

@@ -18,8 +18,8 @@ public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel extends 
 				.setName(expName)
 				.setResponseVariable("Time (ms)")
 				//experiment evaluated factors
-				.addFactor("Variability")
-				.addFactor("Plan size"))
+				.addFactor("variability")
+				.addFactor("numberOfGoals"))
 				// params for creating the repository
 				.putRepoSpec("depth", 2)
 				.putRepoSpec("numOfDependencies", 5)
@@ -38,14 +38,15 @@ public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel extends 
 		
 		//create 10 repetitions of equal experiments
 		for(int i=0; i<10; i++){
-			
+			final Integer index = (Integer) i;
 			//create execution specification from a range of k combination, from 0
 			addExecSpecsWithTwoInRangeSetter(model, 
-					0, 100, 1, //goals (start, end, step)
-					1, 10, 1, //variability  (start, end, step)
+					1, 10, 1, //goals (start, end, step)
+					1, 3, 1, //variability  (start, end, step)
 					(spec, rangeValues) ->{
 				spec.put("numberOfGoals", rangeValues[0]);
 				spec.put("variability", rangeValues[1]);
+				spec.put("index", index);
 			}, expBuilder);
 		}
 			

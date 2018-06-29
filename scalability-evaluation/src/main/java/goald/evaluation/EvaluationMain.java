@@ -1,4 +1,4 @@
-package goalp.evaluation;
+package goald.evaluation;
 
 import java.util.List;
 

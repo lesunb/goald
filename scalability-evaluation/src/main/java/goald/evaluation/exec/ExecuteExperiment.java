@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,9 +12,10 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
-import goald.eval.exec.ExecResult;
+import goald.eval.exec.Evaluation;
 import goald.eval.exec.Execution;
 import goald.eval.exec.ExperimentSetup;
+import goald.eval.spec.ExecSpec;
 import goald.eval.spec.Experiment;
 import goald.evaluation.model.PlanningExperiment;
 import goald.exputil.EchoService;
@@ -25,10 +27,9 @@ import goald.model.DeploymentPlan;
 import goald.model.util.ContextChangeBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
-import goalp.evaluation.goals.IExecuteExperiments;
 
 @Named
-public class ExecuteExperiment implements IExecuteExperiments {
+public class ExecuteExperiment {
 
 	@Inject
 	Logger log;
@@ -47,11 +48,8 @@ public class ExecuteExperiment implements IExecuteExperiments {
 	ExperimentSetup expSetup;
 	
 	private Random randomGenerator;
-
-	String rootGoal = "br.unb.rootGoal:0.0.1";
 	
-	@Override
-	public void accept(Experiment experiment) {
+	public Stream<Evaluation> accept(Experiment experiment) {
 		randomGenerator = new Random();
 		
 		//preamble
@@ -61,21 +59,25 @@ public class ExecuteExperiment implements IExecuteExperiments {
 		
 		log.info("Experiment factor {}", EvalUtil.getFactors(experiment));
 		//exec
-		experiment.getExecutions().forEach((exec) -> {
+		List<Execution> execs = experiment.getExecutions();
+		
+		 Stream<Evaluation> evals = execs.stream()
+		.map((exec) -> {
 			//TODO change for dispatch event in experiment context?
 			
 			//run execution
 			timer.begin();
-			ExecResult result = execute(exec);
-			Number responseResult = timer.split("execution");
-			write.it(result);
+			execute(exec.getSpecification(), exec.getEvaluation());
+//			Number responseResult = timer.split("execution");
+//			write.it(result);
 			
 			// validateResult(result);
-			timer.split("validation");
-			exec.getEvaluation().setResponseValue(responseResult);
+//			timer.split("validation");
 			timer.finish();
-		});
-		clean();
+			return exec.getEvaluation();
+		}); 
+		//clean();
+		return evals;
 	}
 
 	private void setupEnvironment(PlanningExperiment exp) {
@@ -95,15 +97,15 @@ public class ExecuteExperiment implements IExecuteExperiments {
 		echo.it(expSetup);
 	}
 
-	private ExecResult execute(Execution exec) {
+	private Evaluation execute(ExecSpec spec, Evaluation evaluation) {
 		timer.begin();
 		
 		// get exec params
 		int numberOfGoals=0, variability = 0;
-		
+				
 		try{
-			numberOfGoals = exec.getSpecification().getInteger("numberOfGoals");
-			variability = exec.getSpecification().getInteger("variability");
+			numberOfGoals = spec.getInteger("numberOfGoals");
+			variability = spec.getInteger("variability");
 		}catch(NullPointerException e){
 			throw new IllegalStateException("can't get number of goals or variability");
 		}
@@ -116,10 +118,12 @@ public class ExecuteExperiment implements IExecuteExperiments {
 		for(int i=0; i< numberOfGoals; i++){
 			execGoals.add(repositoryGoals.get(i));
 		}
-		
+			
+		final int execIndex = spec.getInteger("index");
+				
 		//create a experiment agent
 		AutonomousAgent agent = new AutonomousAgent() {
-		
+			
 			@Override
 			public void setup(CtxEvaluatorBuilder initialCtx, 
 					GoalsChangeRequestBuilder goals, Map<String, Integer> weightMap) {
@@ -128,33 +132,34 @@ public class ExecuteExperiment implements IExecuteExperiments {
 				
 				goals.addGoals(execGoals);
 				
-				timer.split("creating_dam");
+				evaluation.split(execIndex, "creating_dam");
+			}
+			
+			@Override
+			public void changingGoals() {
+				evaluation.split(execIndex, "changing_goals");
 			}
 			
 			@Override
 			public void damUpdated() {
-				timer.split("dam_updated");
-				
+				evaluation.split(execIndex, "dam_updated");
 			}
 			
 			@Override
 			public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {
-				//echo.it(adaptPlan);
-				timer.split("deployment_change_planned");
+				echo.it(adaptPlan);
+				evaluation.split(execIndex, "deployment_change_planned");
 			}
-			
 			
 			@Override
 			public void deploymentChangeExecuted() {
-				timer.split("deployment_change_excuted");
+				evaluation.split(execIndex, "deployment_change_excuted");
 			}
 		};
 		
 		List<ContextChange> changes = new ArrayList<>();
 
-		//start the data collection
-		ExecResult execResult = new ExecResult(); // agent.getExecResult();
-		
+
 		// create context changes
 		for(int i = 0; i<5; i++) {
 			String ctxChanged = getRandom(ctx);
@@ -178,11 +183,10 @@ public class ExecuteExperiment implements IExecuteExperiments {
 			agent.handleContextChange(ctxChange);
 		}
 		
-		exec.getEvaluation().getFactors().put("Variability", variability);
-		exec.getEvaluation().getFactors().put("Bundles Count", agent.getDeployment().getBundles().size());
-		echo.it(exec);
+		evaluation.getFactors().put("variability", variability);
+		evaluation.getFactors().put("bundles_count", agent.getDeployment().getBundles().size());
 		
-		return execResult;
+		return evaluation;
 		
 	}
 	
@@ -208,10 +212,4 @@ public class ExecuteExperiment implements IExecuteExperiments {
 //		}
 //		
 //	}
-	
-	private void clean(){
-		this.expSetup = null;
-		System.gc();
-	}
-
 }

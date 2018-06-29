@@ -10,9 +10,8 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
-import goald.evaluation.Dataset;
+import goald.eval.exec.Evaluation;
 import goald.exputil.EchoService;
-import goald.exputil.ExperimentTimer;
 import goald.model.ContextChange;
 import goald.model.DeploymentPlan;
 import goald.model.util.CtxEvaluatorBuilder;
@@ -20,66 +19,60 @@ import goald.model.util.GoalsChangeRequestBuilder;
 import goald.planning.DameRespository;
 import goald.repository.IRepository;
 
-public abstract class AbstractStudyCase {
+public abstract class FillingStationBaseStudyCase implements IExperimentsExecutor {
 
 	@Inject
 	Logger log;
-	
-	@Inject
-	ExperimentTimer timer;
 
 	@Inject
 	EchoService echo;
-
-	Dataset ds;
 	
 	DameRespository repo;
 	
 	public CtxEvaluatorBuilder initialCtx;
 	public GoalsChangeRequestBuilder goalsChangeBuilder;
 	
-	public abstract void caseStudy();
+	public abstract List<Evaluation> caseStudy();
 	
 	protected abstract IRepository getRepo();
 
-	
-	public void exec() {
+	@Override
+	public List<Evaluation> exec() {
 		//setup environment
-		timer.begin();
 		repo = new DameRespository(getRepo());
-		timer.split("setup env");
 		//execute deployment planning for case study
-		ds = Dataset.init("test_case", "scenario", "exec_index", "operation", "time");
-		caseStudy();
-		ds.flush();
+		return caseStudy();
 	}
-	
-	public void scenario(String experimentName, int execIndex, Consumer<CtxEvaluatorBuilder> ctxBuilding,
+
+
+	public void scenario(Integer scenario, int execIndex, Consumer<CtxEvaluatorBuilder> ctxBuilding,
 			Consumer<Map<String, Integer>> weightMapBuilding,
 			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding,
-			Consumer<List<ContextChange>> changesBuilding) {
+			Consumer<List<ContextChange>> changesBuilding, 
+			Evaluation evaluation) {
 	
-		log.info("Executing experiment {}", experimentName); 
+		log.info("Executing scenario s{}, repetition {}", scenario, execIndex); 
 		//run execution
-		timer.begin();
 		
 		// agent contexts and goals
-		AutonomousAgent agent = createAgent(experimentName, execIndex, ctxBuilding, goalsChangeBuilding, weightMapBuilding);
+		AutonomousAgent agent = createAgent(scenario, execIndex, ctxBuilding, 
+				goalsChangeBuilding, weightMapBuilding, evaluation);
 		
 		// contexts changes
 		List<ContextChange> changes = new ArrayList<>();
 		changesBuilding.accept(changes);
+		evaluation.getFactors().put("scenario", scenario);
 
-		timer.split("initing_agent:" + experimentName);
+		evaluation.split(execIndex, "initing_agent");
 		// start the agent. It will deploy for the initial goals
 		agent.init(repo);
 				
 		// context changes
 		try {
-			timer.split("start_addapting:" + experimentName);
+			evaluation.split(execIndex, "start_addapting");
 			for(ContextChange change:changes) {
 				agent.handleContextChange(change);
-				split(experimentName, execIndex, "handling_change");
+				evaluation.split(execIndex, "handling_change");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,16 +80,15 @@ public abstract class AbstractStudyCase {
 			throw new RuntimeException(e);
 		}
 				
-		timer.split("validation");
 		echo.it(agent.getDeployment());
-		timer.finish();
 	}
 		
-	public AutonomousAgent createAgent(String _experimentName, int _execIndex, Consumer<CtxEvaluatorBuilder> ctxBuilding,
+	public AutonomousAgent createAgent(Integer scenario, int _execIndex, Consumer<CtxEvaluatorBuilder> ctxBuilding,
 			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding, 
-			Consumer<Map<String, Integer>> weightMapBuilding) {
+			Consumer<Map<String, Integer>> weightMapBuilding, 
+			Evaluation evaluation) {
+		
 		return new AutonomousAgent() {
-			String experimentName = _experimentName;
 			int execIndex = _execIndex;
 			
 			@Override
@@ -111,40 +103,25 @@ public abstract class AbstractStudyCase {
 			
 			@Override
 			public void changingGoals() {
-				split(experimentName, execIndex, "changing_goals");
+				evaluation.split(execIndex, "changing_goals");
 			}
 			
 			@Override
 			public void damUpdated() {
-				split(experimentName, execIndex, "dam_updated");
+				evaluation.split(execIndex, "dam_updated");
 			}
 			
 			@Override
 			public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {
 				echo.it(adaptPlan);
-				split(experimentName, execIndex, "deployment_change_planned");
+				evaluation.split(execIndex, "deployment_change_planned");
 			}
 			
 			@Override
 			public void deploymentChangeExecuted() {
-				split(experimentName, execIndex, "deployment_change_excuted");
+				evaluation.split(execIndex, "deployment_change_excuted");
+
 			}
 		};
 	}
-
-	public void split(String scenario, int execIndex, String label) {
-		ds.log(scenario, execIndex, label, timer.split(label));
-	}
-
-//	public void echo(DeploymentPlanningResult resultPlan, Number time) {
-//		log.info("############################ Exec Result");
-//		log.info("# Success:" + resultPlan.isSuccessfull());
-//		log.info("# Time:" + time);
-//		log.info("# Plan Size:" + resultPlan.getPlan().getSelectedArtifacts().size());
-//		if(!resultPlan.isSuccessfull()){
-//			log.info("# Failure: " + resultPlan.getFailures().toString());
-//		}
-//		log.info("#############################################");
-//	}
-
 }

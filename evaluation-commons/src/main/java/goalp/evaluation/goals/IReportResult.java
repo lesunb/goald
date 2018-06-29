@@ -1,11 +1,13 @@
 package goalp.evaluation.goals;
 
-import java.util.List;
+import java.util.stream.Stream;
 
-import goald.eval.spec.Experiment;
+import goald.eval.exec.Evaluation;
 
 public interface IReportResult {
 
-	void exec(List<Experiment> experiments);
+	void doReport(Stream<Evaluation> result);
+
+	void flushAll();
 
 }
