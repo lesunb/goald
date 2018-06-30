@@ -26,7 +26,7 @@ public class CreateExperimentsToEvaluateScalabilityOverPlanSize extends Abstract
 				.putRepoSpec("depth", 2)
 				.putRepoSpec("numOfDependencies", 5)
 				.putRepoSpec("variabilityRange", 2, 2)
-				.putRepoSpec("numberOfTrees", 100)
+				.putRepoSpec("numberOfTrees", 1000)
 				.putRepoSpec("contextSpace", getContextSpace(20))
 				.putRepoSpec("contextVariabilityP",5)
 				.putRepoSpec("contextVariabilityK",2);
@@ -42,7 +42,7 @@ public class CreateExperimentsToEvaluateScalabilityOverPlanSize extends Abstract
 			final Integer index = (Integer) i;
 			//add new experiment specification, copying from model and setting values in ranges (goals and variability)
 			addExecSpecsWithInRangeSetter(model, 
-					1, 10, 1, // goals (from 1 to 100, step = 1 )
+					1, 100, 1, // goals (from 1 to 100, step = 1 )
 					(spec, value) ->{
 				spec.put("numberOfGoals",value);
 				spec.put("name", "num_goals_" + value);

@@ -20,8 +20,6 @@ import goald.repository.IRepository;
 
 public abstract class AutonomousAgent {
 	
-	
-	
 	private GoalsChangeHandler gcHandler;
 	private ContextChangeHandler ccHandler;
 	
@@ -34,9 +32,12 @@ public abstract class AutonomousAgent {
 	// knowledge
 	private Agent agent;
 	
+	protected int version = 0;
+	
 	public abstract void setup(CtxEvaluatorBuilder ctxEvaluatorBilder, GoalsChangeRequestBuilder goalsChangeBuilder, Map<String, Integer> weightMap);
 	
-	public void handleContextChange(ContextChange change) {		
+	public void handleContextChange(ContextChange change) {
+		this.version++;
 		DeploymentPlan adaptPlan;
 		ccHandler.handle(change);
 		damUpdated();

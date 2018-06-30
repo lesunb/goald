@@ -38,10 +38,8 @@ public class DamUpdater {
 			agent.getCtxDamesMap().add(alt.getCtxReq(), dame);
 			if(!ctx.check(alt.getCtxReq())) {
 				//context not satisfied, can't apply this alternative
-				alt.setCtxSatisfied(false);
 				alt.setResolved(false);
 			}else {
-				alt.setCtxSatisfied(true);
 				// context satisfied, resolve dependencies
 				boolean resolved = true;
 				if(!alt.getDependencyGoals().isEmpty()) {

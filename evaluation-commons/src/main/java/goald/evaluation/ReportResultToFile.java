@@ -21,7 +21,6 @@ import goalp.evaluation.goals.IReportResult;
 public class ReportResultToFile implements IReportResult {
 
 	private List<String> lines;
-	private int fileIndex = 0;
 	
 	public ReportResultToFile() {
 		
@@ -108,6 +107,7 @@ public class ReportResultToFile implements IReportResult {
 	
 	public void flush(List<String> lines){		
 		//write lines to file 
+		@SuppressWarnings("deprecation")
 		Path path = Paths.get( Conf.get(Keys.RESULT_FILE) + "_" + (new Date()).toLocaleString() );
 		path.toAbsolutePath();
 		

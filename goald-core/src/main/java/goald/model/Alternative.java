@@ -9,8 +9,6 @@ public class Alternative {
 	
 	private List<Goal> dependencyGoals;
 	
-	private Boolean ctxSatisfied;
-	
 	private boolean resolved = false;
 	
 	private List<Dame> listDepDame;
@@ -38,14 +36,6 @@ public class Alternative {
 
 	public void setDependencyGoals(List<Goal> dependencyGoals) {
 		this.dependencyGoals = dependencyGoals;
-	}
-
-	public Boolean getCtxSatisfied() {
-		return ctxSatisfied;
-	}
-
-	public void setCtxSatisfied(Boolean ctxSatisfied) {
-		this.ctxSatisfied = ctxSatisfied;
 	}
 
 	public Boolean getResolved() {

@@ -129,31 +129,28 @@ public class ExecuteExperiment {
 					GoalsChangeRequestBuilder goals, Map<String, Integer> weightMap) {
 					
 				initialCtx.with(ctx);
-				
 				goals.addGoals(execGoals);
-				
-				evaluation.split(execIndex, "creating_dam");
 			}
 			
 			@Override
 			public void changingGoals() {
-				evaluation.split(execIndex, "changing_goals");
+				evaluation.split(execIndex, "changing_goals_" + this.version);
 			}
 			
 			@Override
 			public void damUpdated() {
-				evaluation.split(execIndex, "dam_updated");
+				evaluation.split(execIndex, "dam_updated_" + this.version);
 			}
 			
 			@Override
 			public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {
 				echo.it(adaptPlan);
-				evaluation.split(execIndex, "deployment_change_planned");
+				evaluation.split(execIndex, "deployment_change_planned_" + this.version);
 			}
 			
 			@Override
 			public void deploymentChangeExecuted() {
-				evaluation.split(execIndex, "deployment_change_excuted");
+				evaluation.split(execIndex, "deployment_change_excuted_" + this.version);
 			}
 		};
 		

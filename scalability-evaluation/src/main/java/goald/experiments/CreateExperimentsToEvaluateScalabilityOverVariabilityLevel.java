@@ -24,7 +24,7 @@ public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel extends 
 				.putRepoSpec("depth", 2)
 				.putRepoSpec("numOfDependencies", 5)
 				.putRepoSpec("variabilityRange", 1, 10)
-				.putRepoSpec("numberOfTrees", 100)
+				.putRepoSpec("numberOfTrees", 1000)
 				.putRepoSpec("contextSpace", getContextSpace(20))
 				.putRepoSpec("agentContext", getContextSpace(20))
 				.putRepoSpec("contextVariabilityP",5)
@@ -41,8 +41,8 @@ public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel extends 
 			final Integer index = (Integer) i;
 			//create execution specification from a range of k combination, from 0
 			addExecSpecsWithTwoInRangeSetter(model, 
-					1, 10, 1, //goals (start, end, step)
-					1, 3, 1, //variability  (start, end, step)
+					1, 100, 1, //goals (start, end, step)
+					1, 10, 1, //variability  (start, end, step)
 					(spec, rangeValues) ->{
 				spec.put("numberOfGoals", rangeValues[0]);
 				spec.put("variability", rangeValues[1]);
