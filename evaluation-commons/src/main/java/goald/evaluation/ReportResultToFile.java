@@ -1,11 +1,11 @@
 package goald.evaluation;
 
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 import javax.inject.Named;
 
 import goald.eval.exec.Evaluation;
-import goald.evaluation.Measure;
 import goalp.Conf;
 import goalp.Conf.Keys;
 import goalp.evaluation.goals.IReportResult;
@@ -22,6 +21,7 @@ import goalp.evaluation.goals.IReportResult;
 public class ReportResultToFile implements IReportResult {
 
 	private List<String> lines;
+	private int fileIndex = 0;
 	
 	public ReportResultToFile() {
 		
@@ -108,7 +108,7 @@ public class ReportResultToFile implements IReportResult {
 	
 	public void flush(List<String> lines){		
 		//write lines to file 
-		Path path = Paths.get( Conf.get(Keys.RESULT_FILE));
+		Path path = Paths.get( Conf.get(Keys.RESULT_FILE) + "_" + (new Date()).toLocaleString() );
 		path.toAbsolutePath();
 		
 		//TODO create first columns
@@ -119,6 +119,8 @@ public class ReportResultToFile implements IReportResult {
 			}
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
+		} finally{
+			lines.clear();
 		}
 	}
 }

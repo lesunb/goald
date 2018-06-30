@@ -23,25 +23,14 @@ public class FillingStationStudyCaseScenarios extends FillingStationBaseStudyCas
 	@Inject
 	ExperimentTimer timer;
 	
-	public List<Evaluation> caseStudy() {
+	public List<Evaluation>  caseStudy() {
 		List<Evaluation> evaluations = new ArrayList<>();
 		Evaluation baseEvaluation = EvaluationBuilder.create().build();
-		for(int i =1; i<=1000; i++){
-			Evaluation evaluation = baseEvaluation.blankCopy();
-			// eval.setFactors(factors);
-			System.out.println("\n\n exec " + i);
-			doCaseStudy(i, evaluation);
-			evaluations.add(evaluation);
-		}
-		return evaluations;
-	}
-	
-	public void doCaseStudy(int execIndex, Evaluation evaluation) {
 		/* 
 		 * Study case scenarios. Each one define a different set of contexts. 
 		 * For each one the deployment will be planned
 		 */
-		scenario(1, execIndex, (ctxEvaluatorBuilder)->{
+		scenarioRepetitions(1000, 1, (ctxEvaluatorBuilder)->{
 			ctxEvaluatorBuilder.with(
 					"antenna_triangulation", 
 					"protocol_get_fuel_level_and_mileage",
@@ -66,9 +55,9 @@ public class FillingStationStudyCaseScenarios extends FillingStationBaseStudyCas
 						.remove("protocol_get_fuel_level_and_mileage").build());
 				changesList.add(ContextChangeBuilder.create()
 						.add("protocol_get_fuel_level_and_mileage").build());	
-		}, evaluation);
+		}, evaluations, baseEvaluation);
 		
-		scenario(2, execIndex, (ctxEvaluatorBuilder)->{
+		scenarioRepetitions(1000, 2, (ctxEvaluatorBuilder)->{
 			ctxEvaluatorBuilder.with(
 				"gps_capability",
 				"protocol_on_board_computer_get_distante_to_empty",
@@ -93,9 +82,9 @@ public class FillingStationStudyCaseScenarios extends FillingStationBaseStudyCas
 						.remove("synthesized_voice").build());
 				changesList.add(ContextChangeBuilder.create()
 						.add("synthesized_voice").build());	
-		}, evaluation);
+		}, evaluations, baseEvaluation);
 		
-		scenario(3, execIndex ,(ctxEvaluatorBuilder)->{
+		scenarioRepetitions(1000, 3, (ctxEvaluatorBuilder)->{
 			ctxEvaluatorBuilder.with(
 				"gps_capability", 
 				"internet_connection",
@@ -119,9 +108,9 @@ public class FillingStationStudyCaseScenarios extends FillingStationBaseStudyCas
 					.remove("internet_connection").build());
 			changesList.add(ContextChangeBuilder.create()
 					.add("internet_connection").build());	
-		}, evaluation);
+		}, evaluations, baseEvaluation);
 	
-		scenario(4, execIndex, (ctxEvaluatorBuilder)->{
+		scenarioRepetitions(1000, 4, (ctxEvaluatorBuilder)->{
 			ctxEvaluatorBuilder.with(
 				"gps_capability", 
 				"protocol_on_board_computer_get_distante_to_empty",
@@ -146,9 +135,9 @@ public class FillingStationStudyCaseScenarios extends FillingStationBaseStudyCas
 					.remove("visible_graphical_interface").build());
 			changesList.add(ContextChangeBuilder.create()
 					.add("visible_graphical_interface").build());	
-		}, evaluation);
+		}, evaluations, baseEvaluation);
 	
-		scenario(5, execIndex, (ctxEvaluatorBuilder)->{
+		scenarioRepetitions(1000, 5, (ctxEvaluatorBuilder)->{
 			ctxEvaluatorBuilder.with(
 				"gps_capability", 
 				"protocol_on_board_computer_get_distante_to_empty",
@@ -173,10 +162,10 @@ public class FillingStationStudyCaseScenarios extends FillingStationBaseStudyCas
 					.remove("interface_navigation_system").build());
 			changesList.add(ContextChangeBuilder.create()
 					.add("interface_navigation_system").build());	
-		}, evaluation);
+		}, evaluations, baseEvaluation);
 	
 		
-		scenario(6, execIndex, (ctxEvaluatorBuilder)->{
+		scenarioRepetitions(1000, 6, (ctxEvaluatorBuilder)->{
 			ctxEvaluatorBuilder.with(
 				"protocol_on_board_computer_get_distante_to_empty", 
 				"storage",
@@ -201,9 +190,9 @@ public class FillingStationStudyCaseScenarios extends FillingStationBaseStudyCas
 					.remove("protocol_on_board_computer_get_distante_to_empty").build());
 			changesList.add(ContextChangeBuilder.create()
 					.add("protocol_on_board_computer_get_distante_to_empty").build());	
-		}, evaluation);
+		}, evaluations, baseEvaluation);
 	
-		scenario(7, execIndex, (ctxEvaluatorBuilder)->{
+		scenarioRepetitions(1000, 7, (ctxEvaluatorBuilder)->{
 			ctxEvaluatorBuilder.with(
 				"gps_capability", 
 				"protocol_on_board_computer_get_distante_to_empty",
@@ -227,7 +216,9 @@ public class FillingStationStudyCaseScenarios extends FillingStationBaseStudyCas
 					.add("interface_navigation_system").build());	
 			changesList.add(ContextChangeBuilder.create()
 					.remove("interface_navigation_system").build());	
-		}, evaluation);
+		}, evaluations, baseEvaluation);
+		
+		return evaluations;
 	}
 	
 	protected IRepository getRepo(){

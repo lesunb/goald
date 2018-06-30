@@ -28,7 +28,8 @@ public class ContextChangeHandler {
 		boolean result = true;
 		
 		for(Dame affected:affectedDames) {
-			boolean thisResult = this.updater.resolveDame(affected);
+			affected = this.updater.resolveDame(affected);
+			boolean thisResult = affected.getIsAchievable(); 
 			if(!thisResult) {
 				if(affected.getParentAlt() == null) {
 					result = false;

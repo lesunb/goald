@@ -1,6 +1,7 @@
 package goald.evaluation.fillingstation;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -42,6 +43,22 @@ public abstract class FillingStationBaseStudyCase implements IExperimentsExecuto
 		repo = new DameRespository(getRepo());
 		//execute deployment planning for case study
 		return caseStudy();
+	}
+	
+	public void scenarioRepetitions(int numOfRepetitions, Integer scenario, Consumer<CtxEvaluatorBuilder> ctxBuilding,
+			Consumer<Map<String, Integer>> weightMapBuilding,
+			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding,
+			Consumer<List<ContextChange>> changesBuilding, 
+			Collection<Evaluation> evaluations, Evaluation baseEvaluation) {
+		
+		for(int execIndex =1; execIndex<=numOfRepetitions; execIndex++){
+			Evaluation evaluation = baseEvaluation.blankCopy();
+			// eval.setFactors(factors);
+			scenario(scenario, execIndex, ctxBuilding,
+					weightMapBuilding, goalsChangeBuilding,
+					changesBuilding, evaluation);
+			evaluations.add(evaluation);
+		}
 	}
 
 

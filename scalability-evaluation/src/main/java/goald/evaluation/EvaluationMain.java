@@ -10,6 +10,7 @@ import org.jboss.weld.environment.se.WeldContainer;
 import goald.eval.spec.Experiment;
 import goald.evaluation.strategy.EvaluateStrategy;
 import goald.experiments.CreateExperimentsToEvaluateScalabilityOverPlanSize;
+import goald.experiments.CreateExperimentsToEvaluateScalabilityOverVariabilityLevel;
 import goalp.evaluation.goals.ICreateExperiments;
 
 @Singleton
@@ -24,15 +25,15 @@ public class EvaluationMain {
 		Weld weld = new Weld();
 		WeldContainer container = weld.initialize();
 
-		//execute experiments
+		// execute experiments
 		container.select(EvaluateStrategy.class).get()
 			.exec(getExperiments(
 					CreateExperimentsToEvaluateScalabilityOverPlanSize.class));
 		
-//		container.select(EvaluateStrategy.class).get()
-//			.exec(getExperiments(
-//					CreateExperimentsToEvaluateScalabilityOverVariabilityLevel.class));
-//		
+		container.select(EvaluateStrategy.class).get()
+			.exec(getExperiments(
+					CreateExperimentsToEvaluateScalabilityOverVariabilityLevel.class));
+		
 		container.shutdown();
 
 		System.out.println("Goalp planning evaluation has come a normal end. Good bye");

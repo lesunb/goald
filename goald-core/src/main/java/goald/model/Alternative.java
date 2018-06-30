@@ -11,7 +11,7 @@ public class Alternative {
 	
 	private Boolean ctxSatisfied;
 	
-	private Boolean resolved;
+	private boolean resolved = false;
 	
 	private List<Dame> listDepDame;
 	

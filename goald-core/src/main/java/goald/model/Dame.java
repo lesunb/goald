@@ -11,6 +11,8 @@ public class Dame {
 	private List<Alternative> alts;
 	
 	private Alternative chosenAlt;
+	
+	private Boolean isAchievable;
 
 	public Bundle getDefinition() {
 		return definition;
@@ -47,9 +49,16 @@ public class Dame {
 		this.chosenAlt = chosenAlt;
 	}
 
+	public Boolean getIsAchievable() {
+		return isAchievable;
+	}
+
+	public void setIsAchievable(Boolean isAchievable) {
+		this.isAchievable = isAchievable;
+	}
+	
 	@Override
 	public String toString() {
 		return "Dame [definition=" + definition + ", chosenAlt=" + chosenAlt + ", parentAlt=" + parentAlt + ", alts=" + alts + "]";
 	}
-	
 }
