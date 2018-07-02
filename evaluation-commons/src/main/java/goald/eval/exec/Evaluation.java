@@ -12,6 +12,8 @@ public class Evaluation {
 	
 	private Map<String, Number> factors = new HashMap<>();
 	
+	private Map<String, Object> constant = new HashMap<>();
+	
 	private String responseVariable;
 	
 	private Number responseValue;
@@ -67,6 +69,9 @@ public class Evaluation {
 		for(String key:this.factors.keySet()){
 			clone.factors.put(key, null);
 		}
+		for(String key:this.constant.keySet()){
+			clone.constant.put(key, this.constant.get(key));
+		}
 		clone.responseVariable = this.responseVariable;
 		return clone;
 	}
@@ -106,5 +111,12 @@ public class Evaluation {
 
 	public Map<Integer, List<Measure>> getIndexedMeasures() {
 		return indexedMeasures;
+	}
+
+	public Map<String, Object> getConstants() {
+		if(constant == null) {
+			constant = new HashMap<>();
+		}
+		return constant;
 	}
 }

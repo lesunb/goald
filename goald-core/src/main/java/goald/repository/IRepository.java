@@ -4,7 +4,6 @@ import java.util.List;
 
 import goald.model.Bundle;
 import goald.model.Goal;
-import goald.repository.HashMapRepository.BundleType;
 
 public interface IRepository {
 

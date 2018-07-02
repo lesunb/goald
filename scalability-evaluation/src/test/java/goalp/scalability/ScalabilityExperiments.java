@@ -7,7 +7,7 @@ import org.jboss.weld.environment.se.WeldContainer;
 import org.junit.Test;
 
 import goald.eval.spec.Experiment;
-import goald.evaluation.strategy.EvaluateStrategy;
+import goald.evaluation.EvaluateStrategy;
 import goald.experiments.CreateExperimentsToEvaluateScalabilityOverPlanSize;
 import goald.experiments.CreateExperimentsToEvaluateScalabilityOverVariabilityLevel;
 import goalp.evaluation.goals.ICreateExperiments;

@@ -1,4 +1,4 @@
-package goald.evaluation.fillingstation;
+package goald.eval.exec;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
-import goald.eval.exec.Evaluation;
 import goald.exputil.EchoService;
 import goald.model.ContextChange;
 import goald.model.DeploymentPlan;
@@ -20,7 +19,7 @@ import goald.model.util.GoalsChangeRequestBuilder;
 import goald.planning.DameRespository;
 import goald.repository.IRepository;
 
-public abstract class FillingStationBaseStudyCase implements IExperimentsExecutor {
+public abstract class ScenarioBasedExperimentExecutior implements IExperimentsExecutor {
 
 	@Inject
 	Logger log;
@@ -28,9 +27,10 @@ public abstract class FillingStationBaseStudyCase implements IExperimentsExecuto
 	@Inject
 	EchoService echo;
 	
-	DameRespository repo;
+	protected DameRespository repo;
 	
 	public CtxEvaluatorBuilder initialCtx;
+	
 	public GoalsChangeRequestBuilder goalsChangeBuilder;
 	
 	public abstract List<Evaluation> caseStudy();
@@ -40,10 +40,12 @@ public abstract class FillingStationBaseStudyCase implements IExperimentsExecuto
 	@Override
 	public List<Evaluation> exec() {
 		//setup environment
-		repo = new DameRespository(getRepo());
+		setup();
 		//execute deployment planning for case study
 		return caseStudy();
 	}
+	
+	public abstract void setup();
 	
 	public void scenarioRepetitions(int numOfRepetitions, Integer scenario, Consumer<CtxEvaluatorBuilder> ctxBuilding,
 			Consumer<Map<String, Integer>> weightMapBuilding,
@@ -137,7 +139,6 @@ public abstract class FillingStationBaseStudyCase implements IExperimentsExecuto
 			@Override
 			public void deploymentChangeExecuted() {
 				evaluation.split(execIndex, "deployment_change_excuted");
-
 			}
 		};
 	}

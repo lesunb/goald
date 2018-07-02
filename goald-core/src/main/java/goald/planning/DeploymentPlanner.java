@@ -48,17 +48,16 @@ public class DeploymentPlanner {
 	
 	public Set<Bundle> addToSellected(Dame dame, Set<Bundle> sellected) {
 		if(dame.getChosenAlt() == null) {
-			System.out.println("incomplete deployment plan");
+			// incomplete deployment plan
 			return sellected;
 		}
 		
 		if(dame.getParentAlt() == null && dame.getDefinition() == null) {
-			System.out.println("ignoring def for root dame");
+			// NOP ignoring def for root dame 
 		}else {
 			sellected.add(dame.getDefinition());
 			sellected.add(dame.getChosenAlt().getImpl());
 		}
-		
 		
 		for(Dame child:dame.getChosenAlt().getListDepDame()) {
 			addToSellected(child, sellected);

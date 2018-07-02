@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.stream.Stream;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,13 +12,11 @@ import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
 import goald.eval.exec.Evaluation;
-import goald.eval.exec.Execution;
 import goald.eval.exec.ExperimentSetup;
 import goald.eval.spec.ExecSpec;
 import goald.eval.spec.Experiment;
 import goald.evaluation.model.PlanningExperiment;
 import goald.exputil.EchoService;
-import goald.exputil.EvalUtil;
 import goald.exputil.ExperimentTimer;
 import goald.exputil.WriteToFileService;
 import goald.model.ContextChange;
@@ -49,35 +46,14 @@ public class ExecuteExperiment {
 	
 	private Random randomGenerator;
 	
-	public Stream<Evaluation> accept(Experiment experiment) {
+	public void setup(Experiment experiment) {
 		randomGenerator = new Random();
 		
 		//preamble
 		timer.begin();
 		setupEnvironment((PlanningExperiment)experiment);
 		timer.split("setup env");
-		
-		log.info("Experiment factor {}", EvalUtil.getFactors(experiment));
-		//exec
-		List<Execution> execs = experiment.getExecutions();
-		
-		 Stream<Evaluation> evals = execs.stream()
-		.map((exec) -> {
-			//TODO change for dispatch event in experiment context?
-			
-			//run execution
-			timer.begin();
-			execute(exec.getSpecification(), exec.getEvaluation());
-//			Number responseResult = timer.split("execution");
-//			write.it(result);
-			
-			// validateResult(result);
-//			timer.split("validation");
-			timer.finish();
-			return exec.getEvaluation();
-		}); 
-		//clean();
-		return evals;
+	
 	}
 
 	private void setupEnvironment(PlanningExperiment exp) {
@@ -97,21 +73,23 @@ public class ExecuteExperiment {
 		echo.it(expSetup);
 	}
 
-	private Evaluation execute(ExecSpec spec, Evaluation evaluation) {
+	public Evaluation execute(ExecSpec spec, Evaluation evaluation) {
 		timer.begin();
 		
 		// get exec params
-		int numberOfGoals=0, variability = 0;
+		int numberOfGoals=0, variability = 0, numberOfChanges=0;
 				
 		try{
 			numberOfGoals = spec.getInteger("numberOfGoals");
+			numberOfChanges = (Integer) evaluation.getConstants().get( "numberOfChanges");
 			variability = spec.getInteger("variability");
 		}catch(NullPointerException e){
 			throw new IllegalStateException("can't get number of goals or variability");
 		}
 
 		List<String> ctx = expSetup.getCtxSpace();
-		List<String> repositoryGoals = expSetup.getRootGoals();
+		
+		List<String> repositoryGoals = expSetup.getRootGoals(variability);
 		
 		// parameterize the exec by number of goals
 		List<String> execGoals = new ArrayList<>(); 
@@ -158,7 +136,7 @@ public class ExecuteExperiment {
 
 
 		// create context changes
-		for(int i = 0; i<5; i++) {
+		for(int i = 0; i< numberOfChanges; i++) {
 			String ctxChanged = getRandom(ctx);
 			ContextChange ctxRemoved = ContextChangeBuilder.create()
 					.remove(ctxChanged)

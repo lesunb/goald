@@ -8,24 +8,26 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.eval.exec.Evaluation;
+import goald.eval.exec.ScenarioBasedExperimentExecutior;
 import goald.evaluation.EvaluationBuilder;
-import goald.exputil.ExperimentTimer;
 import goald.model.util.ContextChangeBuilder;
+import goald.planning.DameRespository;
 import goald.repository.IRepository;
 
-public class FillingStationStudyCaseScenarios extends FillingStationBaseStudyCase {
-	
-	IRepository repo;
+public class FillingStationStudyCaseScenarios extends ScenarioBasedExperimentExecutior {
 	
 	@Inject
 	Logger log;
 	
-	@Inject
-	ExperimentTimer timer;
-	
+	public void setup() {
+		repo = new DameRespository(getRepo());
+	}
+
 	public List<Evaluation>  caseStudy() {
 		List<Evaluation> evaluations = new ArrayList<>();
-		Evaluation baseEvaluation = EvaluationBuilder.create().build();
+		Evaluation baseEvaluation = EvaluationBuilder.create()
+				.setConstant("resultFileName", "fsa_dataset")
+				.build();
 		/* 
 		 * Study case scenarios. Each one define a different set of contexts. 
 		 * For each one the deployment will be planned

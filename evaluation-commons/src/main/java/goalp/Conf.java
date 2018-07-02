@@ -13,8 +13,10 @@ public class Conf {
 	
 	public enum Keys {
 		
-		@SuppressWarnings("deprecation")
+		RESULT_DIR (BASE_DIR),		
+		
 		RESULT_FILE (BASE_DIR+"result.dat"),
+		
 		@SuppressWarnings("deprecation")
 		DEPL_PLAN_FILE (BASE_DIR+"depl_plan_"+(new Date()).toLocaleString());
 

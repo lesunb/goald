@@ -19,6 +19,8 @@ public class CreateExperimentsToEvaluateScalabilityOverPlanSize extends Abstract
 				.create()
 				.setName(expName)
 				.setResponseVariable("Time (ms)")
+				.setConstant("numberOfChanges", 2)
+				.setConstant("resultFileName", expName + ".dat")
 				//experiment evaluated factors
 				.addFactor("variability")
 				.addFactor("numberOfGoals"))
@@ -26,7 +28,7 @@ public class CreateExperimentsToEvaluateScalabilityOverPlanSize extends Abstract
 				.putRepoSpec("depth", 2)
 				.putRepoSpec("numOfDependencies", 5)
 				.putRepoSpec("variabilityRange", 2, 2)
-				.putRepoSpec("numberOfTrees", 1000)
+				.putRepoSpec("numberOfTrees", 1500)
 				.putRepoSpec("contextSpace", getContextSpace(20))
 				.putRepoSpec("contextVariabilityP",5)
 				.putRepoSpec("contextVariabilityK",2);

@@ -17,6 +17,11 @@ public class EvaluationBuilder {
 		return new EvaluationBuilder();
 	}
 	
+	public EvaluationBuilder setConstant(String label, Object value) {
+		this.evaluation.getConstants().put(label, value);
+		return this;
+	}
+	
 	public Evaluation build(){
 		Evaluation built = this.evaluation;
 		this.evaluation = null;

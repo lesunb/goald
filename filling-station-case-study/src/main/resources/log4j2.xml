@@ -6,10 +6,10 @@
     </Console>
   </Appenders>
   <Loggers>
-    <Logger name="goalp" level="trace" additivity="false">
+    <Logger name="goalp" level="info" additivity="false">
       <AppenderRef ref="Console"/>
     </Logger>
-    <Logger name="goald" level="trace" additivity="true">
+    <Logger name="goald" level="info" additivity="true">
       <AppenderRef ref="Console"/>
     </Logger>
     <Root level="error">

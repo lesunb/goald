@@ -32,11 +32,11 @@ public class EchoService {
 	}
 	
 	public void it(DeploymentPlan adaptPlan) {
-		log.info(adaptPlan.toString());
+		log.debug(adaptPlan.toString());
 	}
 	
 	public void it(Deployment deployment) {
-		log.info(deployment.toString());
+		log.debug(deployment.toString());
 	}
 	
 	

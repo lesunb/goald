@@ -69,4 +69,9 @@ public class ExperimentBuilder {
 		return this;
 	}
 	
+	public ExperimentBuilder setConstant(String label, Object value) {
+		this.experiment.getEvaluation().getConstants().put(label, value);
+		return this;
+	}
+	
 }

@@ -13,18 +13,20 @@ public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel extends 
 		
 		String expName = "Plan Size vs Variability vs Planning Time (ms) - 10 execs";
 		
-		ExperimentBuilder expBuilder = ((PlanningExperimentBuilder)PlanningExperimentBuilder
+		ExperimentBuilder expBuilder = ((PlanningExperimentBuilder) PlanningExperimentBuilder
 				.create()
 				.setName(expName)
 				.setResponseVariable("Time (ms)")
 				//experiment evaluated factors
+				.setConstant("numberOfChanges", 2)
+				.setConstant("resultFileName", "variability.dat")
 				.addFactor("variability")
 				.addFactor("numberOfGoals"))
 				// params for creating the repository
-				.putRepoSpec("depth", 2)
-				.putRepoSpec("numOfDependencies", 5)
+				.putRepoSpec("depth", 3)
+				.putRepoSpec("numOfDependencies", 3)
 				.putRepoSpec("variabilityRange", 1, 10)
-				.putRepoSpec("numberOfTrees", 1000)
+				.putRepoSpec("numberOfTrees", 100)
 				.putRepoSpec("contextSpace", getContextSpace(20))
 				.putRepoSpec("agentContext", getContextSpace(20))
 				.putRepoSpec("contextVariabilityP",5)
@@ -41,7 +43,7 @@ public class CreateExperimentsToEvaluateScalabilityOverVariabilityLevel extends 
 			final Integer index = (Integer) i;
 			//create execution specification from a range of k combination, from 0
 			addExecSpecsWithTwoInRangeSetter(model, 
-					1, 100, 1, //goals (start, end, step)
+					1, 60, 1, //goals (start, end, step)
 					1, 10, 1, //variability  (start, end, step)
 					(spec, rangeValues) ->{
 				spec.put("numberOfGoals", rangeValues[0]);
