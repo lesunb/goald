@@ -16,15 +16,17 @@ public class SendAlarmImp implements SendAlarm {
 	@Inject
 	Logger log;
 	
-	
 	@Override
 	public void exec() {
 		
-		String[] services = {"alarmService1"
-                , "alarmService2", "alarmService3" };
-		
+		String[] services = {
+				"AlarmService1", 
+				"AlarmService2", 
+				"AlarmService3" };
 		try {
+			
 			servicesCall.call(services, 2);
+			
 		} catch (CallFailure e) {
 			log.info("service failure");
 			throw new SystemException("alarmService");

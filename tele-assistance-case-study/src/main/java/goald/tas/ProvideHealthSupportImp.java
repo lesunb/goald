@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.profile.ProfileService;
+import goald.profile.TraceService;
 import goald.tas.definitions.HandleButtonPush;
 import goald.tas.definitions.ProvideAutomatedLifeSupport;
 import goald.tas.definitions.ProvideHealthSuport;
@@ -23,9 +24,12 @@ public class ProvideHealthSupportImp implements ProvideHealthSuport {
 	@Inject
 	Logger log;
 	
+	@Inject
+	private TraceService traceService;
+	
 	public void exec() {
 		System.out.println("Initing Tele Assistance Service...");
-		
+		traceService.startNewExectution();
 		String pick = getPick();
 		try {
 			if(pick=="vitalParamsMsg") {
@@ -35,12 +39,21 @@ public class ProvideHealthSupportImp implements ProvideHealthSuport {
 				handleButtonPush.doHandle();
 			}			
 		}catch(SystemException e) {
-			log.error(e.serviceName);
+			//log.error(e.serviceName);
+			traceService.error("system");
 		}
+		
+		System.out.println(traceService.getTraces());
 	}
 
 	private String getPick() {
 		//return "buttonMsg";
 		return profileService.getValue("pick");
+	}
+	
+	public void loop(int iterations) {
+		for(int i=0; i<iterations; i++) {
+			this.exec();
+		}
 	}
 }
