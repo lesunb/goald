@@ -12,21 +12,22 @@ import goald.tas.ProvideHealthSupportImp;
 import goald.tas.definitions.ProvideHealthSuport;
 
 @Singleton
-public class EvaluationMain {
+public class TeleAssistanceBehaviourComparisionMain {
 
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("Initializing goald planning evaluation ... ");
+		System.out.println("Initializing TAS Behaviour Comparision  ... ");
 
 		Weld weld = new Weld();
 		WeldContainer container = weld.initialize();
 		
 		Profile profile = ProfileBuilder.create()
 				.forVariable("pick", "buttonMsg",  0.1f, "vitalParamsMsg", 0.9f)
-				.forVariable("analyzeData", "patientOK", 0.25f, "changeDrug",0.25f, 
-						"changeDose",0.25f, "sendAlarm",0.25f  )
-				
-				//.forVariable("getVitalParams", 0.25f, "changeDrug",  0.75f, "buttonMsg")
+				.forVariable("analyzeData", 
+							"patientOK", 0.25f, 
+							"changeDrug",0.25f, 
+							"changeDose",0.25f, 
+							"sendAlarm",0.25f )
 				.withFailureRate("AlarmService1", 0.1f)
 				.withFailureRate("AlarmService2", 0.1f)
 				.withFailureRate("AlarmService3", 0.1f)
@@ -34,7 +35,6 @@ public class EvaluationMain {
 				.withFailureRate("MedicalService2", 0.1f)
 				.withFailureRate("MedicalService3", 0.1f)
 				.withFailureRate("DrugService", 0.1f)
-
 				.build();
 		
 		container.select(ProfileService.class).get()
@@ -45,7 +45,7 @@ public class EvaluationMain {
 		.loop(3);
 
 		container.shutdown();
-
-		System.out.println("Goald planning evaluation has come a normal end. Good bye");
+		System.out.println("\n\n----");
+		System.out.println("TAS Behaviour Comparision has come a normal end. Good bye");
 	}
 }
