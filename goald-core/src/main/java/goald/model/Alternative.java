@@ -87,7 +87,7 @@ public class Alternative {
 	@Override
 	public String toString() {
 		return "Alternative [impl=" + impl + ", dependencyGoals=" + dependencyGoals  + ", ctxReq=" + ctxReq
-				+ ", resolved=" + resolved + ", listDepDame=" + listDepDame +", parentDame=" + parentDame
+				+ ", resolved=" + resolved + ", listDepDame=" + listDepDame
 				+ ", ctxSatisfied=" + ", impl=" + impl + ", quality=" + quality + "]";
 	}
 	

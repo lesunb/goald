@@ -46,6 +46,10 @@ public class DamUpdater {
 					List<Dame> depDames = repo.queryRepo(alt.getDependencyGoals());
 					alt.setListDepDame(depDames);
 					
+					if(depDames == null) {
+						throw new RuntimeException("dependency goals not resolved" + alt.getDependencyGoals());
+					}
+					
 					for(Dame dependency: depDames) {
 						Dame result = resolveDame(dependency);
 						if(!result.getIsAchievable()) {

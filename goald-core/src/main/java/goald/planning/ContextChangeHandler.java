@@ -32,6 +32,7 @@ public class ContextChangeHandler {
 			boolean thisResult = affected.getIsAchievable(); 
 			if(!thisResult) {
 				if(affected.getParentAlt() == null) {
+					// got to root goal, the deployment can not be fixed
 					result = false;
 					break;
 				}else {
