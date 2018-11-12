@@ -18,6 +18,15 @@ public class DameRespository {
 		this.repo = repo;
 	}
 	
+	public List<Dame> queryForDependencies(Alternative alt){
+		List<Dame> dames = this.queryRepo(alt.getDependencyGoals());
+		if(dames == null) {
+			return null;
+		}
+		dames.forEach(dame -> {dame.setParentAlt(alt);});
+		return dames;
+	}
+	
 	public List<Dame> queryRepo(List<Goal> goals){
 		List<Dame> dames = new ArrayList<>();
 		for(Goal goal:goals) {

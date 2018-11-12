@@ -59,6 +59,6 @@ public class Dame {
 	
 	@Override
 	public String toString() {
-		return "Dame [definition=" + definition + ", chosenAlt=" + chosenAlt + ", parentAlt=" + parentAlt + ", alts=" + alts + "]";
+		return "Dame [definition=" + definition + ", chosenAlt=" + chosenAlt + ", alts=" + alts + "]";
 	}
 }

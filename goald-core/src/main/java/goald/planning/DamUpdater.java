@@ -43,7 +43,7 @@ public class DamUpdater {
 				// context satisfied, resolve dependencies
 				boolean resolved = true;
 				if(!alt.getDependencyGoals().isEmpty()) {
-					List<Dame> depDames = repo.queryRepo(alt.getDependencyGoals());
+					List<Dame> depDames = repo.queryForDependencies(alt);
 					alt.setListDepDame(depDames);
 					
 					if(depDames == null) {
@@ -63,26 +63,9 @@ public class DamUpdater {
 			bestAlternative = getBestAlternative(bestAlternative, alt);
 		}
 		dame.setChosenAlt(bestAlternative);	
-		dame.setIsAchievable(bestAlternative != null);
-		
+		boolean isAchievable = bestAlternative != null;
+		dame.setIsAchievable(isAchievable);	
 		return dame;
-//		
-//		
-//		List<Alternative> orderedAlts = orderAlt(dame.getAlts(), dame.getDefinition());
-//		Iterator<Alternative> alts = orderedAlts.iterator();
-//		
-//		while(!result && alts.hasNext() ) {
-//				Alternative candidate = alts.next();
-//				agent.getCtxDamesMap().add(candidate.getCtxReq(), dame);
-//				result = resolveAlt(ctx, candidate);
-//				if(result) {
-//					candidate.setResolved(true);
-//					candidate.setCtxSatisfied(true);
-//					dame.setChosenAlt(candidate);
-//					break;
-//				}
-//		}
-//		return result;
 	}
 
 	private Alternative getBestAlternative(Alternative currentAlt, Alternative newAlt) {

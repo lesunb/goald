@@ -6,6 +6,8 @@ import goald.model.Agent;
 import goald.model.ContextChange;
 import goald.model.Dame;
 
+
+
 public class ContextChangeHandler {
 	
 	DamUpdater updater;
@@ -28,16 +30,22 @@ public class ContextChangeHandler {
 		boolean result = true;
 		
 		for(Dame affected:affectedDames) {
-			affected = this.updater.resolveDame(affected);
-			boolean thisResult = affected.getIsAchievable(); 
-			if(!thisResult) {
-				if(affected.getParentAlt() == null) {
-					// got to root goal, the deployment can not be fixed
-					result = false;
-					break;
-				}else {
-					this.updater.resolveDame(affected.getParentAlt().getParentDame());
-				}
+			boolean previousStatus = affected.getIsAchievable();
+			Dame currentPoint = this.updater.resolveDame(affected);
+		
+			//changed and parent is not null
+			while(previousStatus != currentPoint.getIsAchievable().booleanValue()
+					&& currentPoint.getParentAlt() != null){
+				currentPoint = currentPoint.getParentAlt().getParentDame();
+				previousStatus = currentPoint.getIsAchievable();
+				// should reevaluate parents
+				currentPoint = this.updater.resolveDame(currentPoint);
+			}
+			// got to root
+			if(!currentPoint.getIsAchievable() &&
+					currentPoint.getParentAlt() == null) {
+				result = false;
+				break;
 			}
 		}
 		return result;
