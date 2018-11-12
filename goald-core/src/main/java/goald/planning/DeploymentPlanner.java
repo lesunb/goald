@@ -25,10 +25,11 @@ public class DeploymentPlanner {
 	
 	public DeploymentPlan createPlan() {
 		Dame rootDame = this.agent.getRootDame();
-		if(rootDame.getChosenAlt() == null) {
+		if(rootDame.getChosenAlt() == null) {		
 			// deployment not possible
 			// TODO how to procced?
 			return DeploymentPlanBuilder.create()
+					.uninstall(this.agent.getDeployment().getAll(Status.ACTIVE))
 					.build();
 		}
 		

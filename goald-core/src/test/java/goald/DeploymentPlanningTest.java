@@ -96,10 +96,41 @@ public class DeploymentPlanningTest {
 		DeploymentPlan plan3 = deploymentPlanner.createPlan();
 		assertEquals(0, plan3.getCommands().size());
 		
+		ContextChange change3 = ContextChangeBuilder.create()
+				.add("gps_capability")
+				.build();
+		handler.handle(change3);
+		DeploymentPlan plan4 = deploymentPlanner.createPlan();
+		assertEquals(2, plan4.getCommands().size());
 	}
 	
 	@Test
 	public void testPlanForAnInvalidDeployment() {
-		// assertTrue(false);
+		
+		DeploymentPlanner deploymentPlanner = new DeploymentPlanner(repo, agent);
+		DeploymentPlan plan = deploymentPlanner.createPlan();
+
+		DeploymentExecutor executor = new DeploymentExecutor(agent);
+		executor.execute(plan);
+		
+		ContextChangeHandler handler = new ContextChangeHandler(repo, agent);
+		
+		ContextChange change = ContextChangeBuilder.create()
+				.remove("display_capability")
+				.build();
+
+		handler.handle(change);
+		
+		DeploymentPlan plan2 = deploymentPlanner.createPlan();
+		assertEquals(6, plan2.getCommands().size());
+		executor.execute(plan2);
+		
+		ContextChange change2 = ContextChangeBuilder.create()
+				.add("display_capability")
+				.build();
+		
+		handler.handle(change2);
+		DeploymentPlan plan3 = deploymentPlanner.createPlan();
+		assertEquals(6, plan3.getCommands().size());
 	}
 }

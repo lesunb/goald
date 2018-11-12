@@ -1,6 +1,7 @@
 package goald.planning;
 
 import java.util.Set;
+import java.util.Vector;
 
 import goald.model.Agent;
 import goald.model.ContextChange;
@@ -29,7 +30,10 @@ public class ContextChangeHandler {
 		
 		boolean result = true;
 		
-		for(Dame affected:affectedDames) {
+		Vector<Dame> affectedDamesVector = new Vector<>();
+		affectedDamesVector.addAll(affectedDames);
+		
+		for(Dame affected:affectedDamesVector) {
 			boolean previousStatus = affected.getIsAchievable();
 			Dame currentPoint = this.updater.resolveDame(affected);
 		
