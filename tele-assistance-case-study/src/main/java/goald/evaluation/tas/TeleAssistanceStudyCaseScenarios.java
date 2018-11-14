@@ -34,7 +34,7 @@ public class TeleAssistanceStudyCaseScenarios extends ScenarioBasedExperimentExe
 		 */
 		scenarioRepetitions(1, 1, (ctxEvaluatorBuilder)->{
 			ctxEvaluatorBuilder.with(
-					"internet-connection");
+					"internet-connection", "drug-being-administered");
 			},
 			(qualityWeights) -> {
 //				qualityWeights.put("precision", 1);

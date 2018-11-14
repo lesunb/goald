@@ -10,21 +10,21 @@ public class TASRepository {
 		return RepositoryBuilder.create()
 		.add(
 			BundleBuilder.create()
-			.identification("ProvideHealthSupport.def")
+			.identification("ProvideHalthSupport.def")
 			.defines("ProvideHealthSupport")
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("ProvideHealthSupport.impl")
 			.provides("ProvideHealthSupport")
-			.dependsOn("HandleButtonPush")
+			.dependsOn("ProvideSelfDiagnosedEmergenciesSupport")
 			.dependsOn("ProvideAutomatedLifeSupport")
 			.build())
 		/* 2nd level definitions */
 		.add(
 			BundleBuilder.create()
-			.identification("HandleButtonPush-definition")
-			.defines("HandleButtonPush")
+			.identification("ProvideSelfDiagnosedEmergenciesSupport-definition")
+			.defines("ProvideSelfDiagnosedEmergenciesSupport")
 			.build())
 		.add(
 			BundleBuilder.create()
@@ -34,8 +34,38 @@ public class TASRepository {
 		/* Provide Automated Life Support plans*/
 		.add(
 			BundleBuilder.create()
+			.identification("ProvideAutomatedLifeSupport-impl")
+			.provides("ProvideAutomatedLifeSupport")
+			.dependsOn("MonitorPatient")
+			.dependsOn("EnactTreatment")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("MonitorPatient-definition")
+			.defines("MonitorPatient")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("EnactTreatment-definition")
+			.defines("EnactTreatment")
+			.build())
+		/* Monitor Patient */
+		.add(
+			BundleBuilder.create()
+			.identification("MonitorPatient-impl")
+			.provides("MonitorPatient")
+			.dependsOn("GetVitalParams")
+			.dependsOn("AnalyzeData")
+			.build())
+		.add(
+			BundleBuilder.create()
 			.identification("GetVitalParams-definition")
 			.defines("GetVitalParams")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("GetVitalParams-impl")
+			.provides("GetVitalParams")
 			.build())
 		.add(
 			BundleBuilder.create()
@@ -44,8 +74,34 @@ public class TASRepository {
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("ChangeDose-definition")
-			.defines("ChangeDose")
+			.identification("LocalAnalyzis-impl")
+			.provides("AnalyzeData")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("RemoteAnalysis-impl")
+			.provides("AnalyzeData")
+			.requires("internet-connection")
+			.build())
+		/* Enact Treatment */
+		.add(
+			BundleBuilder.create()
+			.identification("EnactTreatment-impl")
+			.provides("EnactTreatment")
+			.dependsOn("AdministerMedicine")
+			.dependsOn("NotifyEmergencyMedicalServices")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("AdministerMedicine-definition")
+			.defines("AdministerMedicine")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("AdministerMedicine-impl")
+			.provides("AdministerMedicine")
+			.dependsOn("ChangeDrug")
+			.dependsOn("ChangeDose")
 			.build())
 		.add(
 			BundleBuilder.create()
@@ -54,42 +110,41 @@ public class TASRepository {
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("SendAlarm-definition")
-			.defines("SendAlarm")
-			.build())
-		.add(
-			BundleBuilder.create()
-			.identification("ProvideAutomatedLifeSupport")
-			.provides("ProvideAutomatedLifeSupport")
-			.dependsOn("GetVitalParams")
-			.dependsOn("AnalyzeData")
-			.dependsOn("ChangeDose")
-			.dependsOn("ChangeDrug")
-			.dependsOn("SendAlarm")
-			.build())
-		/* Provide Automated Life Support dependencies impl */
-		.add(
-			BundleBuilder.create()
-			.identification("GetVitalParams-impl")
-			.provides("GetVitalParams")
-			.build())
-		.add(
-			BundleBuilder.create()
-			.identification("AnalyzeData-impl")
-			.provides("AnalyzeData")
-			.requires("internet-connection")
-			.build())
-		.add(
-			BundleBuilder.create()
-			.identification("ChangeDose-impl")
-			.provides("ChangeDose")
-			.requires("internet-connection")
+			.identification("ChangeDose-definition")
+			.defines("ChangeDose")
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("ChangeDrug-impl")
 			.provides("ChangeDrug")
-			.requires("internet-connection")
+			.dependsOn("NonInvasive")
+			.dependsOn("Invasive")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("NonInvasive-definition")
+			.defines("NonInvasive")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("Invasive-definition")
+			.defines("Invasive")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("NonInvasive-impl")
+			.provides("NonInvasive")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("Invasive-impl")
+			.provides("Invasive")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("ChangeDose-impl")
+			.provides("ChangeDose")
+			.requires("drug-being-administered")
 			.build())
 		.add(
 			BundleBuilder.create()
@@ -97,12 +152,38 @@ public class TASRepository {
 			.provides("SendAlarm")
 			.requires("internet-connection")
 			.build())
-		/* Handle Button Push Impl */
+		/* Panic Button Impl */
 		.add(
 			BundleBuilder.create()
-			.identification("HandleButtonPush-impl")
-			.provides("HandleButtonPush")
-			.dependsOn("SendAlarm")
+			.identification("ProvideSelfDiagnosedEmergenciesSupport-impl")
+			.provides("ProvideSelfDiagnosedEmergenciesSupport")
+			.dependsOn("PushButton")
+			.dependsOn("NotifyEmergencyMedicalServices")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("PushButton-definition")
+			.defines("PushButton")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("PushButton-impl")
+			.provides("PushButton")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("NotifyEmergencyMedicalServices-definition")
+			.defines("NotifyEmergencyMedicalServices")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("SendSMS-impl")
+			.provides("NotifyEmergencyMedicalServices")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("AlarmService-impl")
+			.provides("NotifyEmergencyMedicalServices")
 			.build())
 		.build();
 	}
