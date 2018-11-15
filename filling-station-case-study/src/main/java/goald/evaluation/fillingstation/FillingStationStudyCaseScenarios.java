@@ -7,14 +7,14 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import goald.eval.exec.Evaluation;
-import goald.eval.exec.ScenarioBasedExperimentExecutior;
-import goald.evaluation.EvaluationBuilder;
+import goald.eval.exec.ScenarioBasedExperimentExecutor;
+import goald.evaluation.response.ResponseEvaluation;
+import goald.evaluation.response.ResponseEvaluationBuilder;
 import goald.model.util.ContextChangeBuilder;
 import goald.planning.DameRespository;
 import goald.repository.IRepository;
 
-public class FillingStationStudyCaseScenarios extends ScenarioBasedExperimentExecutior {
+public class FillingStationStudyCaseScenarios extends ScenarioBasedExperimentExecutor {
 	
 	@Inject
 	Logger log;
@@ -23,9 +23,9 @@ public class FillingStationStudyCaseScenarios extends ScenarioBasedExperimentExe
 		repo = new DameRespository(getRepo());
 	}
 
-	public List<Evaluation>  caseStudy() {
-		List<Evaluation> evaluations = new ArrayList<>();
-		Evaluation baseEvaluation = EvaluationBuilder.create()
+	public List<ResponseEvaluation>  caseStudy() {
+		List<ResponseEvaluation> evaluations = new ArrayList<>();
+		ResponseEvaluation baseEvaluation = ResponseEvaluationBuilder.create()
 				.setConstant("resultFileName", "fsa_dataset")
 				.build();
 		/* 

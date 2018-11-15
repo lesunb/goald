@@ -10,11 +10,17 @@ public interface ExperimentTimer {
 
 		String name;
 		Long duration;
+		Long timestamp;
 		Map<String, String> otherLabels;
 		
 		public Split(String name, Long duration){
 			this.name = name;
 			this.duration = duration;
+		}
+		public Split(String name, Long duration, Long timestamp){
+			this.name = name;
+			this.duration = duration;
+			this.timestamp = timestamp;
 		}
 		
 		public Split(String name, Long duration, Map<String, String> otherLabels) {
@@ -22,6 +28,7 @@ public interface ExperimentTimer {
 			this.duration = duration;
 			this.otherLabels = otherLabels;
 		}
+		
 
 		public String getLabel(){
 			return this.name;
@@ -45,5 +52,7 @@ public interface ExperimentTimer {
 	void finish();
 
 	List<Split> result();
+
+	ExperimentTimer clone();
 
 }

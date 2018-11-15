@@ -9,12 +9,20 @@ public class ContextChange {
 	private OP op;
 	
 	private String label;
+	
+	private Long time;
 
 	public ContextChange() { }
 	
 	public ContextChange(OP op, String label) {
 		this.op = op;
 		this.label = label;
+	}
+	
+	public ContextChange(OP op, String label, Long time) {
+		this.op = op;
+		this.label = label;
+		this.time = time;
 	}
 
 	public OP getOp() {
@@ -33,6 +41,14 @@ public class ContextChange {
 		this.label = label;
 	}
 
+	public Long getTime() {
+		return this.time;
+	}
+
+	public void setTime(Long time) {
+		this.time = time;
+	}
+	
 	@Override
 	public String toString() {
 		return "ContextChange [" + op + ":" + label + "]";

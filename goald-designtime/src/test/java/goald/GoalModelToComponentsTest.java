@@ -19,15 +19,15 @@ public class GoalModelToComponentsTest {
 	@Before
 	public void setUp() throws Exception {
 		this.gooalModelA = GoalModelBuilder.create()
-		.root("G4")
+		.root("ProvideHealthSupport")
 		.decomposition(
 			DecompositionsBuilder
 				.create()
 				.and()
-				.intoTask("P12")
-				.intoTask("P13")
+				.intoTask("ProvideSelfDiagnosedEmergenciesSupport")
+				.intoTask("ProvideAutomatedLifeSupport")
 				.build())
-		.node("P12")
+		.node("ProvideSelfDiagnosedEmergenciesSupport")
 		.node("P13")
 		.build();
 

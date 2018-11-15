@@ -2,8 +2,8 @@ package goald.eval.spec;
 
 import java.util.List;
 
-import goald.eval.exec.Evaluation;
 import goald.eval.exec.Execution;
+import goald.evaluation.Evaluation;
 
 public class ExperimentBuilder {
 	

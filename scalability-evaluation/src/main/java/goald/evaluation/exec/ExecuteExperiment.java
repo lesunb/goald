@@ -11,11 +11,12 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
-import goald.eval.exec.Evaluation;
 import goald.eval.exec.ExperimentSetup;
 import goald.eval.spec.ExecSpec;
 import goald.eval.spec.Experiment;
+import goald.evaluation.Evaluation;
 import goald.evaluation.model.PlanningExperiment;
+import goald.evaluation.response.ResponseEvaluation;
 import goald.exputil.EchoService;
 import goald.exputil.ExperimentTimer;
 import goald.exputil.WriteToFileService;
@@ -51,7 +52,7 @@ public class ExecuteExperiment {
 		
 		//preamble
 		timer.begin();
-		setupEnvironment((PlanningExperiment)experiment);
+		setupEnvironment((PlanningExperiment) experiment);
 		timer.split("setup env");
 	
 	}
@@ -73,7 +74,7 @@ public class ExecuteExperiment {
 		echo.it(expSetup);
 	}
 
-	public Evaluation execute(ExecSpec spec, Evaluation evaluation) {
+	public Evaluation execute(ExecSpec spec, ResponseEvaluation evaluation) {
 		timer.begin();
 		
 		// get exec params

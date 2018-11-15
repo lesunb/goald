@@ -25,7 +25,7 @@ public class EvaluateStrategy implements IEvaluate {
 	Logger log;
 	
 	@Inject
-	Timer timer;
+	ClockTimer timer;
 	
 	@Override
 	public void exec(List<Experiment> experiments){

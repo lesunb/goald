@@ -7,15 +7,15 @@ import org.jboss.weld.exceptions.IllegalStateException;
 
 import goald.exputil.ExperimentTimer;
 
-public class Timer implements ExperimentTimer {
+public class ClockTimer implements ExperimentTimer {
 	
 	List<Split> measures;
 	
 	Long startTime;
 	
 	
-	public static Timer create() {
-		return new Timer();
+	public static ClockTimer create() {
+		return new ClockTimer();
 	}
 	
 	/* (non-Javadoc)
@@ -25,6 +25,13 @@ public class Timer implements ExperimentTimer {
 	public void begin() {
 		measures = new ArrayList<>();
 		startTime = System.nanoTime();
+	}
+	
+	@Override
+	public ExperimentTimer clone() {
+		ClockTimer timer = new ClockTimer();
+		timer.startTime = this.startTime;		
+		return timer;
 	}
 
 	/* (non-Javadoc)

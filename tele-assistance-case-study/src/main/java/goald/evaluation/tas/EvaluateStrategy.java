@@ -4,25 +4,25 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import goald.eval.exec.Evaluation;
-import goald.eval.exec.IExperimentsExecutor;
-import goalp.evaluation.goals.IReportResult;
+import goald.evaluation.timeline.ReportTimelineEvaluationToFile;
+import goald.evaluation.timeline.TimelineEvaluation;
 
 public class EvaluateStrategy  {
 
 	@Inject
-	IReportResult report;
+	ReportTimelineEvaluationToFile report;
 	
 	@Inject
-	IExperimentsExecutor executor;
+	TeleAssistanceStudyCaseScenarios executor;
 	
 	public void exec() {
 		
 		try {
-			List<Evaluation> evaluation= executor.exec();
+			List<TimelineEvaluation> evaluation= executor.exec();
 			report.start(evaluation.size());
 			report.doReport(evaluation.stream());
 			report.flushAll();
+			report.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new IllegalStateException(e);

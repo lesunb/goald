@@ -3,14 +3,14 @@ package goald.eval.spec;
 import java.util.ArrayList;
 import java.util.List;
 
-import goald.eval.exec.Evaluation;
 import goald.eval.exec.Execution;
+import goald.evaluation.response.ResponseEvaluation;
 
 public class Experiment {
 	
 	public String name;
 	
-	private Evaluation evaluation;
+	private ResponseEvaluation evaluation;
 		
 	private List<Execution> executions;
 	
@@ -34,14 +34,14 @@ public class Experiment {
 		getExecutions().add(execution);
 	}
 
-	public Evaluation getEvaluation() {
+	public ResponseEvaluation getEvaluation() {
 		if(evaluation == null){
-			evaluation = new Evaluation();
+			evaluation = new ResponseEvaluation();
 		}
 		return evaluation;
 	}
 
-	public void setEvaluation(Evaluation evaluation) {
+	public void setEvaluation(ResponseEvaluation evaluation) {
 		this.evaluation = evaluation;
 	}
 

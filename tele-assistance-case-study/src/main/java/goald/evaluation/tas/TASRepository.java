@@ -76,12 +76,16 @@ public class TASRepository {
 			BundleBuilder.create()
 			.identification("LocalAnalyzis-impl")
 			.provides("AnalyzeData")
+			.withQuality("precision", 8)
+			.withQuality("responseTime", 3)
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("RemoteAnalysis-impl")
 			.provides("AnalyzeData")
 			.requires("internet-connection")
+			.withQuality("precision", 10)
+			.withQuality("responseTime", 5)
 			.build())
 		/* Enact Treatment */
 		.add(

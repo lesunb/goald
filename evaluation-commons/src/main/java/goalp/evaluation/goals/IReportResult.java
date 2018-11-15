@@ -2,16 +2,18 @@ package goalp.evaluation.goals;
 
 import java.util.stream.Stream;
 
-import goald.eval.exec.Evaluation;
+import goald.evaluation.Evaluation;
 
-public interface IReportResult {
+public interface IReportResult<T extends Evaluation> {
 
-	void doReport(Stream<Evaluation> result);
+	void doReport(Stream<T> result);
 	
-	void addToReport(Evaluation evaluation);
+	void addToReport(T evaluation);
 
 	void flushAll();
 
 	void start(int total);
+	
+	public void close();
 
 }

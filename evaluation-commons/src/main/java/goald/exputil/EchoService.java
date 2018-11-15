@@ -26,7 +26,7 @@ public class EchoService {
 	public void it(Execution exec) {
 		log.info("############################ Exec Result");
 		log.info("# Factors:" + exec.getEvaluation().getFactors());
-		log.info("# Response:" + exec.getEvaluation().getResponseVariable());
+		log.info("# Result:" + exec.getEvaluation().toString());
 		//log.info("# Plan Size:" + exec.getEvaluation().getPlan().getSelectedArtifacts().size());
 		log.info("#############################################");
 	}

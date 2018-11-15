@@ -48,6 +48,10 @@ public abstract class AutonomousAgent {
 	}
 	
 	public void changingGoals() {}
+
+	public void beforeHandleContextChange(ContextChange change) {}
+
+	public void afterHandleContextChange(ContextChange change) {}
 	
 	public void damUpdated() {}
 	
@@ -103,5 +107,4 @@ public abstract class AutonomousAgent {
 		return "AutonomousAgent [agent=" + agent + ", gcHandler=" + gcHandler + ", ccHandler=" + ccHandler + ", deploymentPlanner="
 				+ deploymentPlanner + ", executor=" + executor + "]";
 	}
-
 }

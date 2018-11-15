@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
+import goald.evaluation.response.ResponseEvaluation;
 import goald.exputil.EchoService;
 import goald.model.ContextChange;
 import goald.model.DeploymentPlan;
@@ -19,7 +21,8 @@ import goald.model.util.GoalsChangeRequestBuilder;
 import goald.planning.DameRespository;
 import goald.repository.IRepository;
 
-public abstract class ScenarioBasedExperimentExecutior implements IExperimentsExecutor {
+@Alternative
+public abstract class ScenarioBasedExperimentExecutor implements IExperimentsExecutor<ResponseEvaluation> {
 
 	@Inject
 	Logger log;
@@ -33,12 +36,12 @@ public abstract class ScenarioBasedExperimentExecutior implements IExperimentsEx
 	
 	public GoalsChangeRequestBuilder goalsChangeBuilder;
 	
-	public abstract List<Evaluation> caseStudy();
+	public abstract List<ResponseEvaluation> caseStudy();
 	
 	protected abstract IRepository getRepo();
 
-	@Override
-	public List<Evaluation> exec() {
+	//@Override
+	public List<ResponseEvaluation> exec() {
 		//setup environment
 		setup();
 		//execute deployment planning for case study
@@ -51,10 +54,10 @@ public abstract class ScenarioBasedExperimentExecutior implements IExperimentsEx
 			Consumer<Map<String, Integer>> weightMapBuilding,
 			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding,
 			Consumer<List<ContextChange>> changesBuilding, 
-			Collection<Evaluation> evaluations, Evaluation baseEvaluation) {
+			Collection<ResponseEvaluation> evaluations, ResponseEvaluation baseEvaluation) {
 		
 		for(int execIndex =1; execIndex<=numOfRepetitions; execIndex++){
-			Evaluation evaluation = baseEvaluation.blankCopy();
+			ResponseEvaluation evaluation = baseEvaluation.blankCopy();
 			// eval.setFactors(factors);
 			scenario(scenario, execIndex, ctxBuilding,
 					weightMapBuilding, goalsChangeBuilding,
@@ -68,7 +71,7 @@ public abstract class ScenarioBasedExperimentExecutior implements IExperimentsEx
 			Consumer<Map<String, Integer>> weightMapBuilding,
 			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding,
 			Consumer<List<ContextChange>> changesBuilding, 
-			Evaluation evaluation) {
+			ResponseEvaluation evaluation) {
 	
 		log.info("Executing scenario s{}, repetition {}", scenario, execIndex); 
 		//run execution
@@ -105,7 +108,7 @@ public abstract class ScenarioBasedExperimentExecutior implements IExperimentsEx
 	public AutonomousAgent createAgent(Integer scenario, int _execIndex, Consumer<CtxEvaluatorBuilder> ctxBuilding,
 			Consumer<GoalsChangeRequestBuilder> goalsChangeBuilding, 
 			Consumer<Map<String, Integer>> weightMapBuilding, 
-			Evaluation evaluation) {
+			ResponseEvaluation evaluation) {
 		
 		return new AutonomousAgent() {
 			int execIndex = _execIndex;

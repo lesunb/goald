@@ -1,13 +1,13 @@
 package goald.eval.exec;
 
 import goald.evaluation.Dataset;
-import goald.evaluation.Timer;
+import goald.evaluation.ClockTimer;
 
 public class ExecResult {
 	
 	Dataset ds;
 	
-	Timer timer;
+	ClockTimer timer;
 	
 	private static ExecResult instance;
 	
@@ -18,7 +18,7 @@ public class ExecResult {
 	public static ExecResult create() {
 		instance = new ExecResult();
 		instance.ds = Dataset.create();
-		instance.timer = Timer.create();
+		instance.timer = ClockTimer.create();
 		instance.timer.begin();
 		return instance;
 	}

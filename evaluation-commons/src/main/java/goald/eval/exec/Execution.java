@@ -1,6 +1,7 @@
 package goald.eval.exec;
 
 import goald.eval.spec.ExecSpec;
+import goald.evaluation.Evaluation;
 
 public class Execution {
 
