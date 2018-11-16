@@ -1,10 +1,10 @@
-package goald.evaluation.tas;
+package simpletas;
 
 import goald.model.util.BundleBuilder;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
 
-public class TASRepositoryOld {
+public class SimpleTASRepository {
 
 	public static IRepository getRepo() {
 		return RepositoryBuilder.create()

@@ -1,4 +1,4 @@
-package goald.tas;
+package simpletas.impl;
 
 import javax.inject.Inject;
 
@@ -7,13 +7,13 @@ import org.slf4j.Logger;
 import goald.profile.CallFailure;
 import goald.profile.ProfileService;
 import goald.profile.ServicesCall;
-import goald.tas.definitions.ChangeDrug;
+import simpletas.definitions.ChangeDose;
 
-public class ChangeDrugImp implements ChangeDrug {
+public class ChangeDoseImp implements ChangeDose {
 
 	@Inject
 	private ProfileService profileService;
-
+	
 	@Inject
 	private ServicesCall servicesCall;
 	
@@ -27,7 +27,7 @@ public class ChangeDrugImp implements ChangeDrug {
 			servicesCall.call(services, 2);			
 		} catch (CallFailure e) {
 			log.info("service failure");
-			throw new SystemException("ChangeDrug");
+			throw new SystemException("ChangeDose");
 		}
-	}	
+	}
 }

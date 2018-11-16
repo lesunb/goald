@@ -8,19 +8,20 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.eval.exec.TickProducer;
-import goald.eval.exec.TimelineBasedExperimentExecutor;
-import goald.evaluation.Evaluation;
-import goald.evaluation.TickerTimer;
+import goald.eval.exec.ExperimentExecutorTimelineBased;
 import goald.evaluation.timeline.TimelineEvaluation;
-import goald.evaluation.timeline.TimelineEvaluationBuilder;
+import goald.evaluation.timeline.TimelineTimer;
 import goald.planning.DameRespository;
 import goald.repository.IRepository;
 
 
-public class TeleAssistanceStudyCaseScenarios extends TimelineBasedExperimentExecutor {
+public class TASTimelineStudyCaseScenarios extends ExperimentExecutorTimelineBased {
 	
 	@Inject
 	Logger log;
+	
+	@Inject
+	TimelineEvaluation baseEvaluation;
 	
 	public void setup() {
 		repo = new DameRespository(getRepo());
@@ -28,10 +29,9 @@ public class TeleAssistanceStudyCaseScenarios extends TimelineBasedExperimentExe
 
 	public List<TimelineEvaluation>  caseStudy() {
 		List<TimelineEvaluation> evaluations = new ArrayList<>();
-		TimelineEvaluation baseEvaluation = TimelineEvaluationBuilder.create()
-				.setConstant("resultFileName", "tsa_dataset")
-				.setTimer(TickerTimer.create())
-				.build();
+		baseEvaluation.getConstants().put("resultFileName", "tsa_dataset");
+		baseEvaluation.setTimer(TimelineTimer.create());
+		
 		/* 
 		 * Study case scenarios. Each one define a different set of contexts. 
 		 * For each one the deployment will be planned
@@ -51,16 +51,42 @@ public class TeleAssistanceStudyCaseScenarios extends TimelineBasedExperimentExe
 			},
 			(goalsChangeBuilding)-> goalsChangeBuilding
 				.addGoal("ProvideHealthSupport")
-			
 			,
 			(ctxMonitorBuilding) -> ctxMonitorBuilding
 				.add(100l, "internet-connection")
-				.remove(10*1000l, "internet-connection")
-			
+				.rem(10*1000l, "internet-connection")
 			, evaluations, baseEvaluation);
+		
+		scenarioRepetitions(1, 2, 
+				TickProducer.create(100l,0l,30*1000l),
+				(ctxEvaluatorBuilder)-> ctxEvaluatorBuilder
+					.with(
+						"internet-connection", 
+						"drug-being-administered")
+				,
+				(qualityWeightsMap) -> {
+					qualityWeightsMap.put("precision", 2);
+					qualityWeightsMap.put("responseTime", 1);
+					qualityWeightsMap.put("storegedSize", 1);
+					qualityWeightsMap.put("usability", 1);
+				},
+				(goalsChangeBuilding)-> goalsChangeBuilding
+					.addGoal("ProvideHealthSupport")
+				,
+				(ctxMonitorBuilding) -> ctxMonitorBuilding
+					.rem(1*1000l, "internet-connection")
+					.add(2*1000l, "internet-connection")
+					.rem(3*1000l, "internet-connection")
+					.add(4*1000l, "internet-connection")
+					.rem(5*1000l, "internet-connection")
+					.add(6*1000l, "internet-connection")
+					.rem(7*1000l, "internet-connection")
+				, evaluations, baseEvaluation);
 
 		return evaluations;
 	}
+	
+	
 	
 	protected IRepository getRepo(){
 		return TASRepository.getRepo();

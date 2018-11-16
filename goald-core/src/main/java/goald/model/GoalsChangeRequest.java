@@ -3,7 +3,7 @@ package goald.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GoalsChangeRequest {
+public class GoalsChangeRequest extends Change  {
 	public enum GoalChangeOp {
 		ADD,
 		REMOVE

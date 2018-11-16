@@ -7,14 +7,14 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import goald.eval.exec.ScenarioBasedExperimentExecutor;
+import goald.eval.exec.ExperimentExecutorScenarioBased;
 import goald.evaluation.response.ResponseEvaluation;
 import goald.evaluation.response.ResponseEvaluationBuilder;
 import goald.model.util.ContextChangeBuilder;
 import goald.planning.DameRespository;
 import goald.repository.IRepository;
 
-public class FillingStationStudyCaseScenarios extends ScenarioBasedExperimentExecutor {
+public class FillingStationStudyCaseScenarios extends ExperimentExecutorScenarioBased {
 	
 	@Inject
 	Logger log;

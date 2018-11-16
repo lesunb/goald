@@ -1,4 +1,4 @@
-package goald.evaluation;
+package goald.evaluation.response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,15 +7,15 @@ import org.jboss.weld.exceptions.IllegalStateException;
 
 import goald.exputil.ExperimentTimer;
 
-public class ClockTimer implements ExperimentTimer {
+public class SplitTimer implements ExperimentTimer {
 	
 	List<Split> measures;
 	
 	Long startTime;
 	
 	
-	public static ClockTimer create() {
-		return new ClockTimer();
+	public static SplitTimer create() {
+		return new SplitTimer();
 	}
 	
 	/* (non-Javadoc)
@@ -29,7 +29,7 @@ public class ClockTimer implements ExperimentTimer {
 	
 	@Override
 	public ExperimentTimer clone() {
-		ClockTimer timer = new ClockTimer();
+		SplitTimer timer = new SplitTimer();
 		timer.startTime = this.startTime;		
 		return timer;
 	}

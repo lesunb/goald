@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import goald.eval.exec.ScenarioBasedExperimentExecutor;
+import goald.eval.exec.ExperimentExecutorScenarioBased;
 import goald.evaluation.response.ResponseEvaluation;
 import goald.evaluation.response.ResponseEvaluationBuilder;
 import goald.model.util.ContextChangeBuilder;
@@ -16,7 +16,7 @@ import goald.planning.DameRespository;
 import goald.repository.IRepository;
 
 @Alternative
-public class TeleAssistanceStudyCaseScenariosOld extends ScenarioBasedExperimentExecutor {
+public class TASPerformanceStudyCaseScenarios extends ExperimentExecutorScenarioBased {
 	
 	@Inject
 	Logger log;

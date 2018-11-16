@@ -1,9 +1,9 @@
-package goald.tas;
+package simpletas.impl;
 
 import javax.inject.Inject;
 
-import goald.tas.definitions.HandleButtonPush;
-import goald.tas.definitions.SendAlarm;
+import simpletas.definitions.HandleButtonPush;
+import simpletas.definitions.SendAlarm;
 
 public class HandleButtonPushImpl implements HandleButtonPush {
 

@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import goald.evaluation.response.SplitTimer;
 import goalp.Conf;
 import goalp.Conf.Keys;
 import goalp.evaluation.goals.IReportResult;
@@ -22,7 +23,7 @@ public abstract class ReportToFileAbstract<T extends Evaluation> implements IRep
 	private int pending = 0;
 	private int total = 0;
 	@Inject
-	ClockTimer timer;
+	SplitTimer timer;
 
 	public ReportToFileAbstract() {
 		super();

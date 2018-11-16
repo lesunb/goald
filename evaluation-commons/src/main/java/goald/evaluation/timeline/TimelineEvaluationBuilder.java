@@ -1,7 +1,6 @@
 package goald.evaluation.timeline;
 
 import goald.eval.spec.Experiment;
-import goald.evaluation.TickerTimer;
 
 public class TimelineEvaluationBuilder {
 	
@@ -22,7 +21,7 @@ public class TimelineEvaluationBuilder {
 		return this;
 	}
 
-	public TimelineEvaluationBuilder setTimer(TickerTimer tickerTimer) {
+	public TimelineEvaluationBuilder setTimer(TimelineTimer tickerTimer) {
 		this.evaluation.setTimer(tickerTimer);
 		return this;
 	}

@@ -7,8 +7,6 @@ import goald.model.Agent;
 import goald.model.ContextChange;
 import goald.model.Dame;
 
-
-
 public class ContextChangeHandler {
 	
 	DamUpdater updater;
@@ -23,11 +21,7 @@ public class ContextChangeHandler {
 	public Boolean handle(ContextChange change) {
 		this.agent.getActualCtx().update(change);
 		Set<Dame> affectedDames = this.agent.getCtxDamesMap().get(change.getLabel());
-		
-		if(affectedDames == null) {
-			return true;
-		}
-		
+			
 		boolean result = true;
 		
 		Vector<Dame> affectedDamesVector = new Vector<>();
@@ -36,10 +30,11 @@ public class ContextChangeHandler {
 		for(Dame affected:affectedDamesVector) {
 			boolean previousStatus = affected.getIsAchievable();
 			Dame currentPoint = this.updater.resolveDame(affected);
-		
+			
 			//changed and parent is not null
 			while(previousStatus != currentPoint.getIsAchievable().booleanValue()
 					&& currentPoint.getParentAlt() != null){
+				
 				currentPoint = currentPoint.getParentAlt().getParentDame();
 				previousStatus = currentPoint.getIsAchievable();
 				// should reevaluate parents

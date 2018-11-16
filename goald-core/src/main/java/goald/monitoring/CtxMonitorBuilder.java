@@ -25,7 +25,7 @@ public class CtxMonitorBuilder {
 		return this;
 	}
 	
-	public CtxMonitorBuilder remove(Long time, String context) {
+	public CtxMonitorBuilder rem(Long time, String context) {
 		built.addToChanges(new ContextChange(OP.REMOVED, context, time));
 		return this;
 	}

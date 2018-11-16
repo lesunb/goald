@@ -3,7 +3,7 @@ package goald.evaluation;
 import java.util.List;
 import java.util.Map;
 
-public interface Evaluation {
+public interface Evaluation<M> {
 
 	Map<String, Number> getFactors();
 
@@ -13,9 +13,9 @@ public interface Evaluation {
 
 	void putFactor(String factor, Number value);
 
-	List<Measure> getMeasures(Integer execIndex);
+	List<M> getMeasures(Integer execIndex);
 
-	Map<Integer, List<Measure>> getIndexedMeasures();
+	Map<Integer, List<M>> getIndexedMeasures();
 
 	Map<String, Object> getConstants();
 	

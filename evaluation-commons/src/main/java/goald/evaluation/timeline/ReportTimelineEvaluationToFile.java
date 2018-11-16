@@ -3,11 +3,11 @@ package goald.evaluation.timeline;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 import javax.inject.Named;
 
-import goald.evaluation.Evaluation;
 import goald.evaluation.Measure;
 import goald.evaluation.ReportToFileAbstract;
 
@@ -25,8 +25,8 @@ public class ReportTimelineEvaluationToFile extends ReportToFileAbstract<Timelin
 			this.initFile(evaluation);
 		}
 		
-		List<String> lines = getLines(evaluation);
-		lines.addAll(lines);
+		List<String> evalLines = getLines(evaluation);
+		lines.addAll(evalLines);
 		this.flushAll();
 	}
 	
@@ -37,7 +37,7 @@ public class ReportTimelineEvaluationToFile extends ReportToFileAbstract<Timelin
 		
 	}
 	
-	private boolean initLinesWithHeader(Evaluation eval) {
+	private boolean initLinesWithHeader(TimelineEvaluation eval) {
 		if(eval == null) {
 			return false;
 		}
@@ -48,26 +48,19 @@ public class ReportTimelineEvaluationToFile extends ReportToFileAbstract<Timelin
 			sb.append(entry.getKey() + "\t");
 		});
 		
-		sb.append("execIndex\t");
+		sb.append("execIndex");
+		sb.append("\tlabel");
+		sb.append("\tstart");
+		sb.append("\tend");
+		sb.append("\r\n");
 		
-//		Map<Integer, List<Measure>> indexedMesures  = eval.getIndexedMeasures();
-//		Integer firstKey = (Integer) indexedMesures.keySet().toArray()[0];
-//		
-//		List<Measure> firstSetOfMeasures = indexedMesures.get(firstKey);
-//		
-//		
-//		for(Measure measure: firstSetOfMeasures) {
-//			String measurelabel = measure.getLabel();
-//			sb.append(measurelabel + "\t");
-//		}
-		sb.append("\r\n");		
 		this.lines = new ArrayList<>();
 		lines.add(sb.toString());
 		return true;
 	}
 	
 
-	private List<String> getLines(Evaluation eval) {
+	private List<String> getLines(TimelineEvaluation eval) {
 		StringBuffer sb = new StringBuffer();
 		List<String> lines = new ArrayList<>();
 		eval.getFactors().entrySet()
@@ -76,25 +69,29 @@ public class ReportTimelineEvaluationToFile extends ReportToFileAbstract<Timelin
 		});
 			
 		StringBuffer lineBuff = new StringBuffer();
-//		for(Map.Entry<Integer,List<Measure>> measureEntry: eval.getIndexedMeasures().entrySet()) {
-//			
-//			// append all factors
-//			lineBuff.append(sb);
-//			
-//			// append execution index (id of a repetition with same factors)
-//			lineBuff.append(measureEntry.getKey()+ "\t");
-//			
-//			// append each measure
-//			measureEntry.getValue().forEach( measure ->{
-//				lineBuff.append(measure.getValue()+ "\t");
-//			});
-//			// end of line
-//			lineBuff.append("\r\n");
-//			
-//			//add to lines set ant reset linebuff to reuse
-//			lines.add(lineBuff.toString());
-//			lineBuff.setLength(0); 
-//		}
+		StringBuffer header = new StringBuffer();
+		for(Entry<Integer, List<TimelineMeasure>> measureEntry: eval.getIndexedMeasures().entrySet()) {
+			
+			// append all factors
+			header.append(sb);
+			
+			// append execution index (id of a repetition with same factors)
+			header.append(measureEntry.getKey()+ "\t");
+			
+			
+			// append each measure time line format (label, start, end)
+			measureEntry.getValue().forEach( measure ->{
+				lineBuff.append(header);
+				lineBuff.append(measure.getLabel()+ "\t");
+				lineBuff.append(measure.getStart()+ "\t");
+				lineBuff.append(measure.getEnd()+ "\t");
+				// end of line
+				//add to lines set ant reset linebuff to reuse
+				lineBuff.append("\r\n");
+				lines.add(lineBuff.toString());
+				lineBuff.setLength(0); 
+			});
+		}
 		return lines;
 	}
 }

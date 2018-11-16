@@ -1,4 +1,4 @@
-package goald.tas.definitions;
+package simpletas.definitions;
 
 public interface AnalyzeData {
 

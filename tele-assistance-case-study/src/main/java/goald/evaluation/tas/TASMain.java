@@ -6,7 +6,7 @@ import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 
 @Singleton
-public class TeleAssistancePlanningEvaluationMain {
+public class TASMain {
 
 
 	public static void main(String[] args) throws Exception {

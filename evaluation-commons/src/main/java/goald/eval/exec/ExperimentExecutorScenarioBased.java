@@ -14,15 +14,17 @@ import org.slf4j.Logger;
 import goald.AutonomousAgent;
 import goald.evaluation.response.ResponseEvaluation;
 import goald.exputil.EchoService;
+import goald.model.Change;
 import goald.model.ContextChange;
 import goald.model.DeploymentPlan;
+import goald.model.GoalsChangeRequest;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
 import goald.planning.DameRespository;
 import goald.repository.IRepository;
 
 @Alternative
-public abstract class ScenarioBasedExperimentExecutor implements IExperimentsExecutor<ResponseEvaluation> {
+public abstract class ExperimentExecutorScenarioBased implements IExperimentsExecutor<ResponseEvaluation> {
 
 	@Inject
 	Logger log;
@@ -124,7 +126,7 @@ public abstract class ScenarioBasedExperimentExecutor implements IExperimentsExe
 			}
 			
 			@Override
-			public void changingGoals() {
+			public void beforeChangeGoals(GoalsChangeRequest goalsChangeRequest) {
 				evaluation.split(execIndex, "changing_goals");
 			}
 			
@@ -140,7 +142,7 @@ public abstract class ScenarioBasedExperimentExecutor implements IExperimentsExe
 			}
 			
 			@Override
-			public void deploymentChangeExecuted() {
+			public void onDeploymentChange(Change change) {
 				evaluation.split(execIndex, "deployment_change_excuted");
 			}
 		};

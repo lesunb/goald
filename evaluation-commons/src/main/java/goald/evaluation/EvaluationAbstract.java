@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class EvaluationAbstract implements Evaluation {
+public abstract class EvaluationAbstract<M> implements Evaluation<M> {
 
 	protected Map<String, Number> factors = new HashMap<>();
 	protected Map<String, Object> constant = new HashMap<>();
-	private Map<Integer, List<Measure>> indexedMeasures;
+	private Map<Integer, List<M>> indexedMeasures;
 
 	public EvaluationAbstract() {
 		super();
@@ -58,7 +58,7 @@ public abstract class EvaluationAbstract implements Evaluation {
 	 * @see goald.evaluation.Evaluation#getMeasures(java.lang.Integer)
 	 */
 	@Override
-	public List<Measure> getMeasures(Integer execIndex) {
+	public List<M> getMeasures(Integer execIndex) {
 		if(this.indexedMeasures == null) {
 			this.indexedMeasures = new HashMap<>();
 		}
@@ -72,7 +72,7 @@ public abstract class EvaluationAbstract implements Evaluation {
 	 * @see goald.evaluation.Evaluation#getIndexedMeasures()
 	 */
 	@Override
-	public Map<Integer, List<Measure>> getIndexedMeasures() {
+	public Map<Integer, List<M>> getIndexedMeasures() {
 		return indexedMeasures;
 	}
 

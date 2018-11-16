@@ -31,6 +31,10 @@ public class CtxEvaluator {
 		return true;
 	}
 	
+	public Collection<ContextCondition> getCtxCollection() {
+		return this.actualCtx;
+	}
+	
 	/**
 	 * Update context
 	 * @param change

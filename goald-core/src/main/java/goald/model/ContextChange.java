@@ -1,6 +1,6 @@
 package goald.model;
 
-public class ContextChange {
+public class ContextChange extends Change {
 	public enum OP {
 		ADDED,
 		REMOVED
@@ -10,8 +10,6 @@ public class ContextChange {
 	
 	private String label;
 	
-	private Long time;
-
 	public ContextChange() { }
 	
 	public ContextChange(OP op, String label) {
@@ -40,15 +38,9 @@ public class ContextChange {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-
-	public Long getTime() {
-		return this.time;
-	}
-
-	public void setTime(Long time) {
-		this.time = time;
-	}
 	
+
+
 	@Override
 	public String toString() {
 		return "ContextChange [" + op + ":" + label + "]";

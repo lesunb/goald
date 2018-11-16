@@ -8,8 +8,7 @@ import org.jboss.weld.environment.se.WeldContainer;
 import goald.profile.Profile;
 import goald.profile.ProfileBuilder;
 import goald.profile.ProfileService;
-import goald.tas.ProvideHealthSupportImp;
-import goald.tas.definitions.ProvideHealthSuport;
+import simpletas.definitions.ProvideHealthSuport;
 
 @Singleton
 public class TeleAssistanceBehaviourComparisionMain {

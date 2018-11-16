@@ -1,4 +1,4 @@
-package goald.tas;
+package simpletas.impl;
 
 import javax.inject.Inject;
 
@@ -6,9 +6,9 @@ import org.slf4j.Logger;
 
 import goald.profile.ProfileService;
 import goald.profile.TraceService;
-import goald.tas.definitions.HandleButtonPush;
-import goald.tas.definitions.ProvideAutomatedLifeSupport;
-import goald.tas.definitions.ProvideHealthSuport;
+import simpletas.definitions.HandleButtonPush;
+import simpletas.definitions.ProvideAutomatedLifeSupport;
+import simpletas.definitions.ProvideHealthSuport;
 
 public class ProvideHealthSupportImp implements ProvideHealthSuport {
 

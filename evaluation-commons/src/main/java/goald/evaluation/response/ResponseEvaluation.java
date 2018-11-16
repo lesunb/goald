@@ -1,12 +1,11 @@
 package goald.evaluation.response;
 
 import goald.eval.exec.ExecResult;
-import goald.evaluation.ClockTimer;
 import goald.evaluation.EvaluationAbstract;
 import goald.evaluation.Measure;
 import goald.exputil.ExperimentTimer;
 
-public class ResponseEvaluation extends EvaluationAbstract {
+public class ResponseEvaluation extends EvaluationAbstract<Measure> {
 	
 	private String responseVariable;
 	
@@ -50,25 +49,7 @@ public class ResponseEvaluation extends EvaluationAbstract {
 		Measure mesure = new Measure(label, value);
 		getMeasures(execIndex).add(mesure);
 	}
-	
-	
-	/**
-	 * splitToogleOn/ splitToogleOff are used to create measures of type: label, start, end
-	 * @param execIndex
-	 * @param label
-	 */
-	public void splitToogleOn(Integer execIndex, String label) {
-		Long value = getTimer().split(label);
-		Measure mesure = new Measure(label, value);
-		getMeasures(execIndex).add(mesure);
-	}
-	
-	public void splitToogleOff(Integer execIndex, String label) {
-		Long value = getTimer().split(label);
-		Measure mesure = new Measure(label, value);
-		getMeasures(execIndex).add(mesure);
-	}
-	
+		
 	public void setResult(ExecResult result) {
 		this.result = result;
 	}
@@ -79,7 +60,7 @@ public class ResponseEvaluation extends EvaluationAbstract {
 	
 	public ExperimentTimer getTimer() {
 		if(this.timer == null) {
-			this.timer = new ClockTimer();
+			this.timer = new SplitTimer();
 			this.timer.begin();
 		}
 		return this.timer;

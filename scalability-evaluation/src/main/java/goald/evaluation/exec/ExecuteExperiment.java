@@ -112,7 +112,7 @@ public class ExecuteExperiment {
 			}
 			
 			@Override
-			public void changingGoals() {
+			public void beforeChangeGoals() {
 				evaluation.split(execIndex, "changing_goals_" + this.version);
 			}
 			
@@ -128,7 +128,7 @@ public class ExecuteExperiment {
 			}
 			
 			@Override
-			public void deploymentChangeExecuted() {
+			public void onDeploymentChange() {
 				evaluation.split(execIndex, "deployment_change_excuted_" + this.version);
 			}
 		};

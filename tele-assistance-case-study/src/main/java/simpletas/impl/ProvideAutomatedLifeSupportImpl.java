@@ -1,15 +1,15 @@
-package goald.tas;
+package simpletas.impl;
 
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import goald.tas.definitions.AnalyzeData;
-import goald.tas.definitions.ChangeDose;
-import goald.tas.definitions.ChangeDrug;
-import goald.tas.definitions.GetVitalParams;
-import goald.tas.definitions.ProvideAutomatedLifeSupport;
-import goald.tas.definitions.SendAlarm;
+import simpletas.definitions.AnalyzeData;
+import simpletas.definitions.ChangeDose;
+import simpletas.definitions.ChangeDrug;
+import simpletas.definitions.GetVitalParams;
+import simpletas.definitions.ProvideAutomatedLifeSupport;
+import simpletas.definitions.SendAlarm;
 
 public class ProvideAutomatedLifeSupportImpl implements ProvideAutomatedLifeSupport {
 

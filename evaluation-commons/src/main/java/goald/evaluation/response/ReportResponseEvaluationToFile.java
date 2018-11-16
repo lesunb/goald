@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 
 import javax.inject.Named;
 
-import goald.evaluation.Evaluation;
 import goald.evaluation.Measure;
 import goald.evaluation.ReportToFileAbstract;
 
@@ -37,7 +36,7 @@ public class ReportResponseEvaluationToFile extends ReportToFileAbstract<Respons
 		
 	}
 	
-	private boolean initLinesWithHeader(Evaluation eval) {
+	private boolean initLinesWithHeader(ResponseEvaluation eval) {
 		if(eval == null) {
 			return false;
 		}
@@ -67,7 +66,7 @@ public class ReportResponseEvaluationToFile extends ReportToFileAbstract<Respons
 	}
 	
 
-	private List<String> getLines(Evaluation eval) {
+	private List<String> getLines(ResponseEvaluation eval) {
 		StringBuffer sb = new StringBuffer();
 		List<String> lines = new ArrayList<>();
 		eval.getFactors().entrySet()

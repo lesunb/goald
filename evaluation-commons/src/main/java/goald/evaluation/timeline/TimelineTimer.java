@@ -1,4 +1,4 @@
-package goald.evaluation;
+package goald.evaluation.timeline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import goald.exputil.ExperimentTimer;
 import goalp.eval.qualifier.TimelineBased;
 
 @TimelineBased
-public class TickerTimer implements ExperimentTimer {
+public class TimelineTimer implements ExperimentTimer {
 	 
 	List<Split> measures;
 	
@@ -18,18 +18,18 @@ public class TickerTimer implements ExperimentTimer {
 	/* used to fast forward the time stamp ahead*/
 	Long baseTime = 0l;
 	
-	public static TickerTimer create() {
-		return new TickerTimer();
+	public static TimelineTimer create() {
+		return new TimelineTimer();
 	}
 	
-	private TickerTimer() { }
+	private TimelineTimer() { }
 	
 	public void forwardTimerTo(Long baseTime) {
 		this.baseTime = baseTime;
 	}
 	
-	public ExperimentTimer clone() {
-		TickerTimer timer = new TickerTimer();
+	public TimelineTimer clone() {
+		TimelineTimer timer = new TimelineTimer();
 		timer.startClockTime = this.startClockTime;
 		timer.baseTime = this.baseTime;
 		
@@ -42,7 +42,7 @@ public class TickerTimer implements ExperimentTimer {
 	@Override
 	public void begin() {
 		measures = new ArrayList<>();
-		startClockTime = System.nanoTime();
+		startClockTime = System.currentTimeMillis();
 	}
 	
 	/* (non-Javadoc)
@@ -65,7 +65,7 @@ public class TickerTimer implements ExperimentTimer {
 	}
 	
 	public long getTimestamp() {
-		Long newTime = System.nanoTime();
+		Long newTime = System.currentTimeMillis();
 		/* measured clock time + base time */
 		return (newTime - startClockTime) + baseTime;
 	}

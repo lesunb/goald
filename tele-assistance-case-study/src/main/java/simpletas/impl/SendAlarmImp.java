@@ -1,19 +1,15 @@
-package goald.tas;
+package simpletas.impl;
 
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
 import goald.profile.CallFailure;
-import goald.profile.ProfileService;
 import goald.profile.ServicesCall;
-import goald.tas.definitions.AnalyzeData;
+import simpletas.definitions.SendAlarm;
 
-public class AnalyzeDataImp implements AnalyzeData {
+public class SendAlarmImp implements SendAlarm {
 
-	@Inject
-	private ProfileService profileService;
-	
 	@Inject
 	private ServicesCall servicesCall;
 	
@@ -21,23 +17,20 @@ public class AnalyzeDataImp implements AnalyzeData {
 	Logger log;
 	
 	@Override
-	public String doAnalyze(Double[] data) {
-
+	public void exec() {
 		
 		String[] services = {
-				"MedicalService1", 
-				"MedicalService2", 
-				"MedicalService3" };
+				"AlarmService1", 
+				"AlarmService2", 
+				"AlarmService3" };
 		try {
 			
 			servicesCall.call(services, 2);
-			return profileService.getValue("analyzeData");
 			
 		} catch (CallFailure e) {
 			log.info("service failure");
 			throw new SystemException("alarmService");
 		}
-		
 	}
 
 }

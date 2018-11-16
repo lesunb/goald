@@ -10,11 +10,15 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
-import goald.evaluation.TickerTimer;
 import goald.evaluation.timeline.TimelineEvaluation;
+import goald.evaluation.timeline.TimelineTimer;
 import goald.exputil.EchoService;
+import goald.model.Change;
 import goald.model.ContextChange;
+import goald.model.ContextChange.OP;
+import goald.model.ContextCondition;
 import goald.model.DeploymentPlan;
+import goald.model.GoalsChangeRequest;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
 import goald.monitoring.CtxMonitor;
@@ -24,7 +28,7 @@ import goald.repository.IRepository;
 import goalp.eval.qualifier.TimelineBased;
 
 @TimelineBased
-public abstract class TimelineBasedExperimentExecutor implements IExperimentsExecutor<TimelineEvaluation> {
+public abstract class ExperimentExecutorTimelineBased implements IExperimentsExecutor<TimelineEvaluation> {
 
 	@Inject
 	Logger log;
@@ -95,34 +99,26 @@ public abstract class TimelineBasedExperimentExecutor implements IExperimentsExe
 		evaluation.getFactors().put("scenario", scenario);
 
 		evaluation.begin();
-		//evaluation.split(execIndex, "initing_agent");
 		// start the agent. It will deploy for the initial goals
 		agent.init(repo);
 				
 		// context changes
 		try {
-			//evaluation.split(execIndex, "start_addapting");
-
 			//ticks fast forward in time 
 			for(Long time:ticker) {
-				
-				TickerTimer timer = (TickerTimer) evaluation.getTimer();
+				TimelineTimer timer = (TimelineTimer) evaluation.getTimer();
 				timer.forwardTimerTo(time);
 				
 				if(ctxMonitor.hasChange(time)) {
 					// monitor return changes since the last check
 					List<ContextChange> contextChanges = ctxMonitor.getChange(time);
-					
 					for(ContextChange contextChange: contextChanges){
 						//evaluation.split(execIndex, "as");
-						
-						agent.beforeHandleContextChange(contextChange);
 						agent.handleContextChange(contextChange);
-						agent.afterHandleContextChange(contextChange);
 					}
 				}
-				//evaluation.split(execIndex, "handling_change");
 			}
+			agent.shutdown();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
@@ -153,18 +149,33 @@ public abstract class TimelineBasedExperimentExecutor implements IExperimentsExe
 			}
 			
 			@Override
-			public void changingGoals() {
-				//evaluation.split(execIndex, "changing_goals");
+			public void beforeChangeGoals(GoalsChangeRequest goalsChangeRequest) {
+				toogleOn("system");
+				for(ContextCondition context: getAgent().getActualCtx().getCtxCollection()) {
+					toogleOn(context.getLabel());
+				}
+				
 			}
 			
 			@Override
-			public void beforeHandleContextChange(ContextChange change) {
-				//evaluation.split(execIndex, "changing_context");
+			public void beforePlanningForContextChange(ContextChange change) {
+				if(change.getOp() == OP.ADDED) {
+					toogleOn("real_"+change.getLabel(), change.getTime());
+					toogleOn(change.getLabel());
+				}else if(change.getOp() == OP.REMOVED) {
+					toogleOff("real_"+change.getLabel(), change.getTime());
+					toogleOn(change.getLabel());
+				}
 			}
 			
 			@Override
 			public void damUpdated() {
 				//evaluation.split(execIndex, "dam_updated");
+			}
+			
+			@Override
+			public void onShutdown() {
+				evaluation.endExec();
 			}
 			
 			@Override
@@ -174,9 +185,37 @@ public abstract class TimelineBasedExperimentExecutor implements IExperimentsExe
 			}
 			
 			@Override
-			public void deploymentChangeExecuted() {
-				//evaluation.split(execIndex, "deployment_change_excuted");
+			public void onDeploymentChange(Change change) {
+				boolean status = this.getAgent().getRootDame().getIsAchievable();
+				if(status) {
+					toogleOn("system_available");
+				}else {
+					toogleOff("system_available", change.getTime());
+				}
+			}
+			@Override
+			public void onFailure(Change change) {
+				toogleOff("system_available", change.getTime());
+			}
+			
+			private void toogleOn(String label) {
+				evaluation.splitToogleOn(execIndex, label);
+			}
+			
+			private void toogleOn(String label, Long timestamp) {
+				evaluation.toogleOn(execIndex, label,timestamp);
+			}
+			
+			private void toogleOff(String label) {
+				evaluation.splitToogleOff(execIndex, label);
+			}
+			
+			private void toogleOff(String label, Long timestamp) {
+				evaluation.toogleOff(execIndex, label,timestamp);
 			}
 		};
+		
+
 	}
+
 }

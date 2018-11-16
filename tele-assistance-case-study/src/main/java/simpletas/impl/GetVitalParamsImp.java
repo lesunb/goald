@@ -1,6 +1,6 @@
-package goald.tas;
+package simpletas.impl;
 
-import goald.tas.definitions.GetVitalParams;
+import simpletas.definitions.GetVitalParams;
 
 public class GetVitalParamsImp implements GetVitalParams {
 

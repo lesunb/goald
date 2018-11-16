@@ -1,4 +1,4 @@
-package goald.tas;
+package simpletas.impl;
 
 public class SystemException extends RuntimeException {
 

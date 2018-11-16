@@ -13,7 +13,7 @@ public class EvaluateStrategy  {
 	ReportTimelineEvaluationToFile report;
 	
 	@Inject
-	TeleAssistanceStudyCaseScenarios executor;
+	TASTimelineStudyCaseScenarios executor;
 	
 	public void exec() {
 		
