@@ -183,11 +183,16 @@ public class TASRepository {
 			BundleBuilder.create()
 			.identification("SendSMS-impl")
 			.provides("NotifyEmergencyMedicalServices")
+			.withQuality("precision", 5)
+			.withQuality("responseTime", 3)
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("AlarmService-impl")
 			.provides("NotifyEmergencyMedicalServices")
+			.requires("internet-connection")
+			.withQuality("precision", 10)
+			.withQuality("responseTime", 5)
 			.build())
 		.build();
 	}

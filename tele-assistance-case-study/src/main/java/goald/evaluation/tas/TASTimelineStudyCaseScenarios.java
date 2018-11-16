@@ -7,8 +7,8 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import goald.eval.exec.TickProducer;
 import goald.eval.exec.ExperimentExecutorTimelineBased;
+import goald.evaluation.timeline.TickProducer;
 import goald.evaluation.timeline.TimelineEvaluation;
 import goald.evaluation.timeline.TimelineTimer;
 import goald.planning.DameRespository;
