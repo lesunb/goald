@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.AutonomousAgent;
+import goald.evaluation.timeline.TickProducer;
 import goald.evaluation.timeline.TimelineEvaluation;
 import goald.evaluation.timeline.TimelineTimer;
 import goald.exputil.EchoService;
