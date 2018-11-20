@@ -11,23 +11,23 @@ import goald.behaviour.BehaviourSim;
 import goald.behaviour.CallFailure;
 import goald.behaviour.Profile;
 import goald.behaviour.ProfileBuilder;
-import goald.model.GoalDManager;
 import goald.model.ContextChange;
 import goald.model.CtxEvaluator;
+import goald.model.Dependency;
+import goald.model.GoalDManager;
 import goald.model.VE;
-import goald.model.Goal;
 import goald.model.util.AgentBuilder;
 import goald.model.util.ContextChangeBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.RepoQueryBuilder;
 import goald.planning.ContextChangeHandler;
-import goald.planning.DamUpdater;
-import goald.planning.DameRespository;
+import goald.planning.DVMUpdater;
+import goald.planning.VERespository;
 
 public class BehaviourSimTest {
 	
-	DamUpdater updater;
-	DameRespository repo;
+	DVMUpdater updater;
+	VERespository repo;
 	
 	@Before
 	public void setup() {
@@ -47,13 +47,13 @@ public class BehaviourSimTest {
 			.withContext(ctx)
 			.build();
 
-		List<Goal> query = RepoQueryBuilder.create()
+		List<Dependency> query = RepoQueryBuilder.create()
 			.queryFor("getPosition")
 			.build();
 		
-		updater = new DamUpdater(repo, agent);
+		updater = new DVMUpdater(repo, agent);
 	
-		VE dame = updater.resolveGoals(query).get(0);		
+		VE dame = updater.resolveDepenencies(query).get(0);		
 				
 		agent.setRootDame(dame);
 		
@@ -70,7 +70,7 @@ public class BehaviourSimTest {
 
 		VE dame2 = repo.queryRepo(query).get(0);
 
-		updater.resolveDame(dame2);
+		updater.resolveVE(dame2);
 		
 		agent.setRootDame(dame2);
 				

@@ -9,25 +9,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.execution.DeploymentExecutor;
-import goald.model.GoalDManager;
 import goald.model.ContextChange;
 import goald.model.CtxEvaluator;
-import goald.model.VE;
+import goald.model.Dependency;
 import goald.model.DeploymentPlan;
-import goald.model.Goal;
+import goald.model.GoalDManager;
+import goald.model.VE;
 import goald.model.util.AgentBuilder;
 import goald.model.util.ContextChangeBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.RepoQueryBuilder;
 import goald.planning.ContextChangeHandler;
-import goald.planning.DamUpdater;
-import goald.planning.DameRespository;
+import goald.planning.DVMUpdater;
 import goald.planning.DeploymentPlanner;
+import goald.planning.VERespository;
 
 public class DeploymentPlanningTest {
 	
-	DamUpdater updater;
-	DameRespository repo;
+	DVMUpdater updater;
+	VERespository repo;
 	GoalDManager agent;
 	
 	@Before
@@ -45,13 +45,13 @@ public class DeploymentPlanningTest {
 			.withContext(ctx)
 			.build();
 
-		List<Goal> query = RepoQueryBuilder.create()
+		List<Dependency> query = RepoQueryBuilder.create()
 			.queryFor("displayMyPosition")
 			.build();
 		
-		updater = new DamUpdater(repo, agent);
+		updater = new DVMUpdater(repo, agent);
 	
-		VE rootDame = updater.resolveGoals(query).get(0);		
+		VE rootDame = updater.resolveDepenencies(query).get(0);		
 				
 		agent.setRootDame(rootDame);
 	}

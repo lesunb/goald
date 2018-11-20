@@ -3,7 +3,7 @@ package goald.repository;
 import java.util.List;
 
 import goald.model.Bundle;
-import goald.model.Goal;
+import goald.model.Dependency;
 
 public interface IRepository {
 
@@ -11,10 +11,10 @@ public interface IRepository {
 	
 	int getSize();
 
-	Bundle queryForDefinition(Goal goal);
+	Bundle queryForDefinition(Dependency goal);
 
-	List<Bundle> queryForImplementations(Goal goal);
+	List<Bundle> queryForImplementations(Dependency goal);
 
-	List<Bundle> queryForDefinitions(Goal goal);
+	List<Bundle> queryForDefinitions(Dependency goal);
 	
 }

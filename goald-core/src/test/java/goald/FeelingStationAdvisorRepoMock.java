@@ -1,13 +1,13 @@
 package goald;
 
 import goald.model.util.BundleBuilder;
-import goald.planning.DameRespository;
+import goald.planning.VERespository;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
 
 public class FeelingStationAdvisorRepoMock {
 
-	public static DameRespository regRepo() {
+	public static VERespository regRepo() {
 
 		IRepository _repo = RepositoryBuilder.create()
 				.add(
@@ -77,6 +77,6 @@ public class FeelingStationAdvisorRepoMock {
 					.requires("display_capability")
 					.build())
 				.build();
-		return new DameRespository(_repo);
+		return new VERespository(_repo);
 	}
 }

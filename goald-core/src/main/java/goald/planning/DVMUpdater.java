@@ -2,34 +2,34 @@ package goald.planning;
 
 import java.util.List;
 
-import goald.model.GoalDManager;
 import goald.model.Alternative;
 import goald.model.Bundle;
 import goald.model.CtxEvaluator;
-import goald.model.VE;
-import goald.model.Goal;
+import goald.model.Dependency;
+import goald.model.GoalDManager;
 import goald.model.QualityParameter;
+import goald.model.VE;
 
-public class DamUpdater {
+public class DVMUpdater {
 	
 	GoalDManager agent;
-	DameRespository repo;
+	VERespository repo;
 	
-	public DamUpdater(DameRespository repo, GoalDManager agent) {
+	public DVMUpdater(VERespository repo, GoalDManager agent) {
 		this.repo = repo;
 		this.agent = agent;
 	}
 	
-	public List<VE> resolveGoals(List<Goal> goals) {
-		List<VE> dames = repo.queryRepo(goals);
+	public List<VE> resolveDepenencies(List<Dependency> dependencies) {
+		List<VE> ves = repo.queryRepo(dependencies);
 		
-		for(VE dame:dames) {
-			resolveDame(dame);
+		for(VE ve:ves) {
+			resolveVE(ve);
 		}
-		return dames;
+		return ves;
 	}
 	
-	public VE resolveDame(VE dame) {
+	public VE resolveVE(VE dame) {
 		CtxEvaluator ctx = this.agent.getActualCtx();
 		dame.setChosenAlt(null);
 		Alternative bestAlternative = null;
@@ -42,16 +42,16 @@ public class DamUpdater {
 			}else {
 				// context satisfied, resolve dependencies
 				boolean resolved = true;
-				if(!alt.getDependencyGoals().isEmpty()) {
+				if(!alt.getDependencies().isEmpty()) {
 					List<VE> depDames = repo.queryForDependencies(alt);
 					alt.setListDepDame(depDames);
 					
 					if(depDames == null) {
-						throw new RuntimeException("dependency goals not resolved" + alt.getDependencyGoals());
+						throw new RuntimeException("dependency goals not resolved" + alt.getDependencies());
 					}
 					
 					for(VE dependency: depDames) {
-						VE result = resolveDame(dependency);
+						VE result = resolveVE(dependency);
 						if(!result.getIsAchievable()) {
 							resolved = false;
 							break;

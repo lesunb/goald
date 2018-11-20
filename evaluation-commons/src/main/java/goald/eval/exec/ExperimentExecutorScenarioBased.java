@@ -20,7 +20,7 @@ import goald.model.DeploymentPlan;
 import goald.model.GoalsChangeRequest;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
-import goald.planning.DameRespository;
+import goald.planning.VERespository;
 import goald.repository.IRepository;
 
 @Alternative
@@ -32,7 +32,7 @@ public abstract class ExperimentExecutorScenarioBased implements IExperimentsExe
 	@Inject
 	EchoService echo;
 	
-	protected DameRespository repo;
+	protected VERespository repo;
 	
 	public CtxEvaluatorBuilder initialCtx;
 	

@@ -3,25 +3,26 @@ package goald.planning;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import goald.model.GoalDManager;
 import goald.model.Alternative;
-import goald.model.VE;
+import goald.model.Dependency;
 import goald.model.Goal;
+import goald.model.GoalDManager;
 import goald.model.GoalsChangeRequest;
 import goald.model.GoalsChangeRequest.GoalChange;
 import goald.model.GoalsChangeRequest.GoalChangeOp;
+import goald.model.VE;
 import goald.model.util.AlternativeBuilder;
-import goald.model.util.DameBuilder;
 import goald.model.util.RepoQueryBuilder;
+import goald.model.util.VEBuilder;
 
 public class GoalsChangeHandler {
 
-	private DamUpdater updater;
-	private GoalDManager agent;
+	private DVMUpdater updater;
+	private GoalDManager goalDmanager;
 	
-	public GoalsChangeHandler(DameRespository repo, GoalDManager agent) {
-		this.agent = agent;
-		updater = new DamUpdater(repo, agent);
+	public GoalsChangeHandler(VERespository repo, GoalDManager agent) {
+		this.goalDmanager = agent;
+		updater = new DVMUpdater(repo, agent);
 	}
 
 	public void handle(GoalsChangeRequest goalsChangeRequest) {
@@ -35,27 +36,27 @@ public class GoalsChangeHandler {
 					.map((change) -> change.getGoal()).collect(Collectors.toList());
 			
 			
-			VE rootDame = DameBuilder.create()
+			VE dvm = VEBuilder.create()
 					.build();
 			
 			Alternative virtualAlt = AlternativeBuilder.create()
-					.forDame(rootDame)
+					.forDame(dvm)
 					.withDependencies(goals)
 					.build();
 			
-			rootDame.getAlts().add(virtualAlt);
-			updater.resolveDame(rootDame);
-			agent.setRootDame(rootDame);
+			dvm.getAlts().add(virtualAlt);
+			updater.resolveVE(dvm);
+			goalDmanager.setRootDame(dvm);
 			// rootDame.setChosenAlt(virualAlt);
 		} else {
 			GoalChange change = goalsChangeRequest.getGoalChange().get(0);
 			
-			List<Goal> query = RepoQueryBuilder.create()
+			List<Dependency> query = RepoQueryBuilder.create()
 					.queryFor(change.getGoal())
 					.build();
 				
-			VE rootDame = updater.resolveGoals(query).get(0);
-			agent.setRootDame(rootDame);
+			VE rootDame = updater.resolveDepenencies(query).get(0);
+			goalDmanager.setRootDame(rootDame);
 		}
 	}
 

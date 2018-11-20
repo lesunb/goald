@@ -13,13 +13,13 @@ import goald.model.util.SetUtils;
 
 public class DeploymentPlanner {
 	
-	DamUpdater updater;
+	DVMUpdater updater;
 	
 	GoalDManager agent;
 	
-	public DeploymentPlanner(DameRespository repo, GoalDManager agent) {
+	public DeploymentPlanner(VERespository repo, GoalDManager agent) {
 		this.agent = agent;
-		this.updater = new DamUpdater(repo, agent);
+		this.updater = new DVMUpdater(repo, agent);
 	}
 	
 	

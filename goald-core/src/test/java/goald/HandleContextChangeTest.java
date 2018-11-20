@@ -8,23 +8,23 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.model.GoalDManager;
 import goald.model.ContextChange;
 import goald.model.CtxEvaluator;
+import goald.model.Dependency;
+import goald.model.GoalDManager;
 import goald.model.VE;
-import goald.model.Goal;
 import goald.model.util.AgentBuilder;
 import goald.model.util.ContextChangeBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.RepoQueryBuilder;
 import goald.planning.ContextChangeHandler;
-import goald.planning.DamUpdater;
-import goald.planning.DameRespository;
+import goald.planning.DVMUpdater;
+import goald.planning.VERespository;
 
 public class HandleContextChangeTest {
 	
-	DamUpdater updater;
-	DameRespository repo;
+	DVMUpdater updater;
+	VERespository repo;
 	
 	@Before
 	public void setup() {
@@ -44,13 +44,13 @@ public class HandleContextChangeTest {
 			.withContext(ctx)
 			.build();
 
-		List<Goal> query = RepoQueryBuilder.create()
+		List<Dependency> query = RepoQueryBuilder.create()
 			.queryFor("getPosition")
 			.build();
 		
-		updater = new DamUpdater(repo, agent);
+		updater = new DVMUpdater(repo, agent);
 	
-		VE dame = updater.resolveGoals(query).get(0);		
+		VE dame = updater.resolveDepenencies(query).get(0);		
 				
 		agent.setRootDame(dame);
 		
@@ -67,7 +67,7 @@ public class HandleContextChangeTest {
 
 		VE dame2 = repo.queryRepo(query).get(0);
 
-		updater.resolveDame(dame2);
+		updater.resolveVE(dame2);
 		
 		agent.setRootDame(dame2);
 		
@@ -87,13 +87,13 @@ public class HandleContextChangeTest {
 				.withQualityWeight("responseTime", 1)
 				.build();
 				
-			List<Goal> query = RepoQueryBuilder.create()
+			List<Dependency> query = RepoQueryBuilder.create()
 				.queryFor("getPosition")
 				.build();
 			
-			updater = new DamUpdater(repo, agent);
+			updater = new DVMUpdater(repo, agent);
 		
-			VE dame = updater.resolveGoals(query).get(0);		
+			VE dame = updater.resolveDepenencies(query).get(0);		
 					
 			agent.setRootDame(dame);
 			
@@ -124,13 +124,13 @@ public class HandleContextChangeTest {
 				.withQualityWeight("responseTime", 1)
 				.build();
 				
-			List<Goal> query = RepoQueryBuilder.create()
+			List<Dependency> query = RepoQueryBuilder.create()
 				.queryFor("getPosition")
 				.build();
 			
-			updater = new DamUpdater(repo, agent);
+			updater = new DVMUpdater(repo, agent);
 		
-			VE dame = updater.resolveGoals(query).get(0);		
+			VE dame = updater.resolveDepenencies(query).get(0);		
 					
 			agent.setRootDame(dame);
 			
@@ -159,13 +159,13 @@ public class HandleContextChangeTest {
 				.withQualityWeight("responseTime", 1)
 				.build();
 				
-			List<Goal> query = RepoQueryBuilder.create()
+			List<Dependency> query = RepoQueryBuilder.create()
 				.queryFor("getPosition")
 				.build();
 			
-			updater = new DamUpdater(repo, agent);
+			updater = new DVMUpdater(repo, agent);
 		
-			VE dame = updater.resolveGoals(query).get(0);		
+			VE dame = updater.resolveDepenencies(query).get(0);		
 					
 			agent.setRootDame(dame);
 			
@@ -202,13 +202,13 @@ public class HandleContextChangeTest {
 				.withQualityWeight("responseTime", 1)
 				.build();
 				
-			List<Goal> query = RepoQueryBuilder.create()
+			List<Dependency> query = RepoQueryBuilder.create()
 				.queryFor("getPosition")
 				.build();
 			
-			updater = new DamUpdater(repo, agent);
+			updater = new DVMUpdater(repo, agent);
 		
-			VE dame = updater.resolveGoals(query).get(0);		
+			VE dame = updater.resolveDepenencies(query).get(0);		
 					
 			agent.setRootDame(dame);
 			

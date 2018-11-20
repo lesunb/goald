@@ -15,7 +15,7 @@ import goald.model.util.AgentBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
 import goald.planning.ContextChangeHandler;
-import goald.planning.DameRespository;
+import goald.planning.VERespository;
 import goald.planning.DeploymentPlanner;
 import goald.planning.GoalsChangeHandler;
 import goald.repository.IRepository;
@@ -65,7 +65,7 @@ public abstract class AutonomousAgent {
 		}
 	}
 	
-	public void init(DameRespository repo) {
+	public void init(VERespository repo) {
 		CtxEvaluatorBuilder ctxEvaluatorBilder = CtxEvaluatorBuilder.create();
 		
 		GoalsChangeRequestBuilder goalsChangeBuilder = GoalsChangeRequestBuilder.create();
@@ -128,7 +128,7 @@ public abstract class AutonomousAgent {
 	
 
 	public void init(IRepository _repo) {
-		init(new DameRespository(_repo));
+		init(new VERespository(_repo));
 	}
 	
 	public Deployment getDeployment() {

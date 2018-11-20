@@ -3,32 +3,38 @@ package goald.model.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import goald.model.Dependency;
 import goald.model.Goal;
 
 public class RepoQueryBuilder {
 	
-	protected List<Goal> goals;
+	protected List<Dependency> dependencies;
 	
 	protected RepoQueryBuilder(){
-		this.goals = new ArrayList<>();
+		this.dependencies = new ArrayList<>();
 	}
 	
 	public static RepoQueryBuilder create(){
 		return new RepoQueryBuilder();
 	}
 	
-	public List<Goal> build(){
-		List<Goal> built = this.goals;
-		this.goals = null;
+	public List<Dependency> build(){
+		List<Dependency> built = this.dependencies;
+		this.dependencies = null;
 		return built;
 	}
 	
 	public RepoQueryBuilder queryFor(String identification){
-		return queryFor(new Goal(identification));
+		return queryFor(new Dependency(identification));
 	}
 
+	public RepoQueryBuilder queryFor(Dependency dependency){
+		this.dependencies.add(dependency);
+		return this;
+	}
+	
 	public RepoQueryBuilder queryFor(Goal goal){
-		this.goals.add(goal);
+		this.dependencies.add(new Dependency(goal.getIdentication()));
 		return this;
 	}
 	

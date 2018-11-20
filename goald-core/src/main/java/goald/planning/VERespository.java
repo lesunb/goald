@@ -5,33 +5,34 @@ import java.util.List;
 
 import goald.model.Alternative;
 import goald.model.Bundle;
-import goald.model.VE;
+import goald.model.Dependency;
 import goald.model.Goal;
+import goald.model.VE;
 import goald.model.util.AlternativeBuilder;
 import goald.repository.IRepository;
 
-public class DameRespository {
+public class VERespository {
 	
 	IRepository repo;
 	
-	public DameRespository(IRepository repo) {
+	public VERespository(IRepository repo) {
 		this.repo = repo;
 	}
 	
 	public List<VE> queryForDependencies(Alternative alt){
-		List<VE> dames = this.queryRepo(alt.getDependencyGoals());
-		if(dames == null) {
+		List<VE> ves = this.queryRepo(alt.getDependencies());
+		if(ves == null) {
 			return null;
 		}
-		dames.forEach(dame -> {dame.setParentAlt(alt);});
-		return dames;
+		ves.forEach(ve -> {ve.setParentAlt(alt);});
+		return ves;
 	}
 	
-	public List<VE> queryRepo(List<Goal> goals){
-		List<VE> dames = new ArrayList<>();
-		for(Goal goal:goals) {
-			Bundle def = this.repo.queryForDefinition(goal);
-			List<Bundle> impls = this.repo.queryForImplementations(goal);
+	public List<VE> queryRepo(List<Dependency> dependencies){
+		List<VE> ves = new ArrayList<>();
+		for(Dependency depenency:dependencies) {
+			Bundle def = this.repo.queryForDefinition(depenency);
+			List<Bundle> impls = this.repo.queryForImplementations(depenency);
 			if(def == null || impls == null || impls.isEmpty()) {
 				return null;
 			}
@@ -47,8 +48,8 @@ public class DameRespository {
 				
 				dame.getAlts().add(alt);
 			}
-			dames.add(dame);
+			ves.add(dame);
 		}
-		return dames;
+		return ves;
 	}
 }

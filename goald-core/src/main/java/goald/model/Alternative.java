@@ -7,7 +7,7 @@ public class Alternative {
 	
 	private VE parentDame;
 	
-	private List<Goal> dependencyGoals;
+	private List<Dependency> dependencies;
 	
 	private boolean resolved = false;
 	
@@ -27,15 +27,15 @@ public class Alternative {
 		this.parentDame = parentDame;
 	}
 
-	public List<Goal> getDependencyGoals() {
-		if(dependencyGoals == null) {
-			this.dependencyGoals = new ArrayList<>();
+	public List<Dependency> getDependencies() {
+		if(dependencies == null) {
+			this.dependencies = new ArrayList<>();
 		}
-		return dependencyGoals;
+		return dependencies;
 	}
 
-	public void setDependencyGoals(List<Goal> dependencyGoals) {
-		this.dependencyGoals = dependencyGoals;
+	public void setDependencies(List<Dependency> dependencies) {
+		this.dependencies = dependencies;
 	}
 
 	public Boolean getResolved() {
@@ -86,7 +86,7 @@ public class Alternative {
 
 	@Override
 	public String toString() {
-		return "Alternative [impl=" + impl + ", dependencyGoals=" + dependencyGoals  + ", ctxReq=" + ctxReq
+		return "Alternative [impl=" + impl + ", dependencies=" + dependencies  + ", ctxReq=" + ctxReq
 				+ ", resolved=" + resolved + ", listDepDame=" + listDepDame
 				+ ", ctxSatisfied=" + ", impl=" + impl + ", quality=" + quality + "]";
 	}

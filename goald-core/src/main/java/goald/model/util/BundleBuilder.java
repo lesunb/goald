@@ -2,6 +2,7 @@ package goald.model.util;
 
 import goald.model.Bundle;
 import goald.model.ContextCondition;
+import goald.model.Dependency;
 import goald.model.Goal;
 import goald.model.QualityParameter;
 
@@ -39,7 +40,7 @@ public class BundleBuilder {
 	}
 	
 	public BundleBuilder dependsOn(String identification){
-		this.bundle.getDepends().add(new Goal(identification));
+		this.bundle.getDepends().add(new Dependency(identification));
 		return this;
 	}
 	

@@ -9,13 +9,13 @@ import goald.model.VE;
 
 public class ContextChangeHandler {
 	
-	DamUpdater updater;
+	DVMUpdater updater;
 	
 	GoalDManager agent;
 	
-	public ContextChangeHandler(DameRespository repo, GoalDManager agent) {
+	public ContextChangeHandler(VERespository repo, GoalDManager agent) {
 		this.agent = agent;
-		this.updater = new DamUpdater(repo, agent);
+		this.updater = new DVMUpdater(repo, agent);
 	}
 
 	public Boolean handle(ContextChange change) {
@@ -33,7 +33,7 @@ public class ContextChangeHandler {
 		
 		for(VE affected:affectedDamesVector) {
 			boolean previousStatus = affected.getIsAchievable();
-			VE currentPoint = this.updater.resolveDame(affected);
+			VE currentPoint = this.updater.resolveVE(affected);
 			
 			//changed and parent is not null
 			while(previousStatus != currentPoint.getIsAchievable().booleanValue()
@@ -42,7 +42,7 @@ public class ContextChangeHandler {
 				currentPoint = currentPoint.getParentAlt().getParentDame();
 				previousStatus = currentPoint.getIsAchievable();
 				// should reevaluate parents
-				currentPoint = this.updater.resolveDame(currentPoint);
+				currentPoint = this.updater.resolveVE(currentPoint);
 			}
 			// got to root
 			if(!currentPoint.getIsAchievable() &&

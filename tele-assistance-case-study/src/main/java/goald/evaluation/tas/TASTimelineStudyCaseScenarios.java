@@ -11,7 +11,7 @@ import goald.eval.exec.ExperimentExecutorTimelineBased;
 import goald.evaluation.timeline.TickProducer;
 import goald.evaluation.timeline.TimelineEvaluation;
 import goald.evaluation.timeline.TimelineTimer;
-import goald.planning.DameRespository;
+import goald.planning.VERespository;
 import goald.repository.IRepository;
 
 
@@ -24,7 +24,7 @@ public class TASTimelineStudyCaseScenarios extends ExperimentExecutorTimelineBas
 	TimelineEvaluation baseEvaluation;
 	
 	public void setup() {
-		repo = new DameRespository(getRepo());
+		repo = new VERespository(getRepo());
 	}
 
 	public List<TimelineEvaluation>  caseStudy() {

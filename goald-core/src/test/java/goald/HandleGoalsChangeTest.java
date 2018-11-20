@@ -12,14 +12,14 @@ import goald.model.GoalsChangeRequest;
 import goald.model.util.AgentBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
-import goald.planning.DamUpdater;
-import goald.planning.DameRespository;
+import goald.planning.DVMUpdater;
+import goald.planning.VERespository;
 import goald.planning.GoalsChangeHandler;
 
 public class HandleGoalsChangeTest {
 	
-	DamUpdater updater;
-	DameRespository repo;
+	DVMUpdater updater;
+	VERespository repo;
 	GoalDManager agent;
 	
 	@Before

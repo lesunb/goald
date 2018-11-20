@@ -14,7 +14,7 @@ import goald.evaluation.exec.PrismRepositoryFactory;
 import goald.evaluation.model.PlanningExperiment;
 import goald.evaluation.model.PlanningExperimentBuilder;
 import goald.model.Bundle;
-import goald.model.Goal;
+import goald.model.Dependency;
 
 public class PrismRespositoryBuilderTest {
 
@@ -63,7 +63,7 @@ public class PrismRespositoryBuilderTest {
 	public void testCreatedRepository() {
 		assertEquals(10311, setup.getRepository().getSize());
 		
-		Goal nextGoal = new Goal(setup.getRootGoals().get(0));
+		Dependency nextGoal = new Dependency(setup.getRootGoals().get(0));
 		Bundle def, impl;
 		int level = 0;
 		do {
@@ -79,8 +79,10 @@ public class PrismRespositoryBuilderTest {
 			}
 		}while(nextGoal != null);
 		
+		Dependency query = new Dependency(def.getDefines().get(0).getIdentication());
+		
 		assertEquals(2, impl.getConditions().size());
 		assertEquals(5, level);
-		assertEquals("num of alternatives", 4, setup.getRepository().queryForImplementations(def.getDefines().get(0)).size());
+		assertEquals("num of alternatives", 4, setup.getRepository().queryForImplementations(query).size());
 	}
 }

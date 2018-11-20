@@ -7,21 +7,21 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.model.GoalDManager;
 import goald.model.Alternative;
 import goald.model.Bundle;
 import goald.model.CtxEvaluator;
+import goald.model.Dependency;
+import goald.model.GoalDManager;
 import goald.model.VE;
-import goald.model.Goal;
 import goald.model.util.AgentBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.RepoQueryBuilder;
-import goald.planning.DamUpdater;
-import goald.planning.DameRespository;
+import goald.planning.DVMUpdater;
+import goald.planning.VERespository;
 
 public class OrderAlternativesTest {
 	
-	DameRespository repo;
+	VERespository repo;
 	@Before
 	public void setup() {
 		repo = FeelingStationAdvisorRepoMock.regRepo();
@@ -40,7 +40,7 @@ public class OrderAlternativesTest {
 				.withContext(ctx)
 				.build();
 		
-		List<Goal> query = RepoQueryBuilder.create()
+		List<Dependency> query = RepoQueryBuilder.create()
 				.queryFor("getPosition")
 				.build();
 		
@@ -48,7 +48,7 @@ public class OrderAlternativesTest {
 		List<Alternative> alts = result.get(0).getAlts();
 		Bundle def = result.get(0).getDefinition();
 		
-		DamUpdater updater = new DamUpdater(repo, agent);
+		DVMUpdater updater = new DVMUpdater(repo, agent);
 		List<Alternative> orderAlts = updater.orderAlt(alts, def);
 				
 		assertEquals("getPositionByGPS", orderAlts.get(0).getImpl().getIdentification());
@@ -65,7 +65,7 @@ public class OrderAlternativesTest {
 				.withContext(ctx2)
 				.build();
 		
-		List<Goal> query2 = RepoQueryBuilder.create()
+		List<Dependency> query2 = RepoQueryBuilder.create()
 				.queryFor("getPosition")
 				.build();
 		
@@ -73,7 +73,7 @@ public class OrderAlternativesTest {
 		List<Alternative> alts2 = result2.get(0).getAlts();
 		Bundle def2 = result2.get(0).getDefinition();
 		
-		DamUpdater updater2 = new DamUpdater(repo, agent2);
+		DVMUpdater updater2 = new DVMUpdater(repo, agent2);
 		List<Alternative> orderAlts2 = updater2.orderAlt(alts2, def2);
 				
 		assertEquals("getPositionByAntenna", orderAlts2.get(0).getImpl().getIdentification());

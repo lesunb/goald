@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import goald.model.Bundle;
+import goald.model.Dependency;
 import goald.model.Goal;
 
 public class HashMapRepository implements IRepository {
@@ -68,8 +69,8 @@ public class HashMapRepository implements IRepository {
 	 * @see goald.systems.IRepository#getArtifactsThatProvideGoal(java.lang.String)
 	 */
 	@Override
-	public Bundle queryForDefinition(Goal goal){
-		List<Bundle> bundlesList = getKnownBundles(BundleType.DEFINITION).get(goal.getIdentication());
+	public Bundle queryForDefinition(Dependency dependency){
+		List<Bundle> bundlesList = getKnownBundles(BundleType.DEFINITION).get(dependency.getIdentication());
 		if(bundlesList != null) {
 			return bundlesList.get(0);
 		}
@@ -80,9 +81,9 @@ public class HashMapRepository implements IRepository {
 	 * @see goald.systems.IRepository#getArtifactsThatProvideGoal(java.lang.String)
 	 */
 	@Override
-	public List<Bundle>  queryForImplementations(Goal goal){
+	public List<Bundle>  queryForImplementations(Dependency dependency){
 		List<Bundle> bundles = new ArrayList<>();
-		List<Bundle> bundlesList = getKnownBundles(BundleType.IMPLEMENTATION).get(goal.getIdentication());
+		List<Bundle> bundlesList = getKnownBundles(BundleType.IMPLEMENTATION).get(dependency.getIdentication());
 		if(bundlesList != null) {
 			bundles.addAll(bundlesList);
 		}
@@ -90,9 +91,9 @@ public class HashMapRepository implements IRepository {
 	}
 
 	@Override
-	public List<Bundle> queryForDefinitions(Goal goal) {
+	public List<Bundle> queryForDefinitions(Dependency dependency) {
 		List<Bundle> bundles = new ArrayList<>();
-		List<Bundle> bundlesList = getKnownBundles(BundleType.DEFINITION).get(goal.getIdentication());
+		List<Bundle> bundlesList = getKnownBundles(BundleType.DEFINITION).get(dependency.getIdentication());
 		if(bundlesList != null) {
 			bundles.addAll(bundlesList);
 		}

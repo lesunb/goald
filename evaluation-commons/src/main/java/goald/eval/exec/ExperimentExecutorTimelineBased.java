@@ -25,7 +25,7 @@ import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
 import goald.monitoring.CtxMonitor;
 import goald.monitoring.CtxMonitorBuilder;
-import goald.planning.DameRespository;
+import goald.planning.VERespository;
 import goald.repository.IRepository;
 import goalp.eval.qualifier.TimelineBased;
 
@@ -38,7 +38,7 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 	@Inject
 	EchoService echo;
 	
-	protected DameRespository repo;
+	protected VERespository repo;
 	
 	public CtxEvaluatorBuilder initialCtx;
 	

@@ -13,8 +13,6 @@ public class ExperimentSetup {
 	
 	private Map<Integer, List<String>> rootGoals;
 	
-	// private IDeploymentPlanner planner;
-	
 	private GoalDManager agent;
 
 	private List<String> contextSpace;
@@ -43,14 +41,6 @@ public class ExperimentSetup {
 		this.rootGoals = rootGoals;
 	}
 
-//	public IDeploymentPlanner getPlanner() {
-//		return planner;
-//	}
-//
-//	public void setPlanner(IDeploymentPlanner planner) {
-//		this.planner = planner;
-//	}
-
 	public GoalDManager getAgent() {
 		return agent;
 	}
@@ -66,5 +56,4 @@ public class ExperimentSetup {
 	public void setCtxSpace(List<String> contextSpace) {
 		this.contextSpace = contextSpace;
 	}
-
 }

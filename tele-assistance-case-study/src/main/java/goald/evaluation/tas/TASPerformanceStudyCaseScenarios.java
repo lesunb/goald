@@ -12,7 +12,7 @@ import goald.eval.exec.ExperimentExecutorScenarioBased;
 import goald.evaluation.response.ResponseEvaluation;
 import goald.evaluation.response.ResponseEvaluationBuilder;
 import goald.model.util.ContextChangeBuilder;
-import goald.planning.DameRespository;
+import goald.planning.VERespository;
 import goald.repository.IRepository;
 
 @Alternative
@@ -22,7 +22,7 @@ public class TASPerformanceStudyCaseScenarios extends ExperimentExecutorScenario
 	Logger log;
 	
 	public void setup() {
-		repo = new DameRespository(getRepo());
+		repo = new VERespository(getRepo());
 	}
 
 	public List<ResponseEvaluation>  caseStudy() {

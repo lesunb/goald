@@ -6,20 +6,20 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.model.GoalDManager;
 import goald.model.CtxEvaluator;
+import goald.model.Dependency;
+import goald.model.GoalDManager;
 import goald.model.VE;
-import goald.model.Goal;
 import goald.model.util.AgentBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.RepoQueryBuilder;
-import goald.planning.DamUpdater;
-import goald.planning.DameRespository;
+import goald.planning.DVMUpdater;
+import goald.planning.VERespository;
 
-public class UpdateDamTest {
+public class UpdateDVMTest {
 	
-	DamUpdater updater;
-	DameRespository repo;
+	DVMUpdater updater;
+	VERespository repo;
 	@Before
 	public void setup() {
 		repo = FeelingStationAdvisorRepoMock.regRepo();
@@ -32,24 +32,24 @@ public class UpdateDamTest {
 				.withContext(ctx)
 				.build();
 		
-		updater = new DamUpdater(repo, agent);
+		updater = new DVMUpdater(repo, agent);
 	}
 
 	@Test
-	public void testResolveDameInNoValidAlternative() {		
-		List<Goal> query = RepoQueryBuilder.create()
+	public void testResolveVEInNoValidAlternative() {		
+		List<Dependency> query = RepoQueryBuilder.create()
 				.queryFor("alarm")
 				.build();
 		
-		VE dame = repo.queryRepo(query).get(0);		
+		VE ve = repo.queryRepo(query).get(0);		
 		
-		boolean result = updater.resolveDame(dame).getIsAchievable();
+		boolean result = updater.resolveVE(ve).getIsAchievable();
 		Assert.assertFalse(result);
-		Assert.assertNull(dame.getChosenAlt());	
+		Assert.assertNull(ve.getChosenAlt());	
 	}
 	
 	@Test
-	public void testResolveDameOneValidAlternative() {
+	public void testResolveVEOneValidAlternative() {
 		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
 				.with("gps_capability")
 				.build();
@@ -60,14 +60,14 @@ public class UpdateDamTest {
 				.withContext(ctx)
 				.build();
 		
-		List<Goal> query = RepoQueryBuilder.create()
+		List<Dependency> query = RepoQueryBuilder.create()
 				.queryFor("getPosition")
 				.build();
 		
 		VE dame = repo.queryRepo(query).get(0);		
 		
-		DamUpdater updater = new DamUpdater(repo, agent);
-		boolean result = updater.resolveDame(dame).getIsAchievable();
+		DVMUpdater updater = new DVMUpdater(repo, agent);
+		boolean result = updater.resolveVE(dame).getIsAchievable();
 		Assert.assertTrue(result);
 		
 		Assert.assertNotNull(dame.getChosenAlt());
@@ -75,7 +75,7 @@ public class UpdateDamTest {
 		
 		VE dame2 = repo.queryRepo(query).get(0);		
 		
-		boolean result2 = updater.resolveDame(dame2).getIsAchievable();
+		boolean result2 = updater.resolveVE(dame2).getIsAchievable();
 		Assert.assertTrue(result2);
 		
 		Assert.assertNotNull(dame2.getChosenAlt());
@@ -83,36 +83,36 @@ public class UpdateDamTest {
 	}
 	
 	@Test
-	public void testResolveDameMultipleAlternativeDependencies() {
+	public void testResolveVEMultipleAlternativeDependencies() {
 
 		
 		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
 				.with("gps_capability", "display_capability")
 				.build();
 		
-		GoalDManager agent = AgentBuilder.create()
+		GoalDManager manager = AgentBuilder.create()
 				.withQualityWeight("precision", 3)
 				.withQualityWeight("responseTime", 1)
 				.withContext(ctx)
 				.build();
 		
-		List<Goal> query = RepoQueryBuilder.create()
+		List<Dependency> query = RepoQueryBuilder.create()
 				.queryFor("displayMyPosition")
 				.build();
 		
-		VE dame = repo.queryRepo(query).get(0);		
+		VE ve = repo.queryRepo(query).get(0);		
 		
-		DamUpdater updater = new DamUpdater(repo, agent);
-		boolean result = updater.resolveDame(dame).getIsAchievable();
+		DVMUpdater updater = new DVMUpdater(repo, manager);
+		boolean result = updater.resolveVE(ve).getIsAchievable();
 		Assert.assertTrue(result);
 		
 		// displayMyPosition
 		
-		Assert.assertNotNull(dame.getChosenAlt());
-		Assert.assertEquals(true, dame.getChosenAlt().getResolved());	
+		Assert.assertNotNull(ve.getChosenAlt());
+		Assert.assertEquals(true, ve.getChosenAlt().getResolved());	
 		
 		// check altenative children
-		Assert.assertEquals(2, dame.getChosenAlt().getListDepDame().size());	
+		Assert.assertEquals(2, ve.getChosenAlt().getListDepDame().size());	
 		//TODO check altenative grand children
 	}
 	

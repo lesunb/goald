@@ -33,10 +33,10 @@ public class BehaviourSim {
 		return result;	
 	}
 
-	public Object call(VE dame, List<String> contexts) throws CallFailure {
-		Alternative alternative = dame.getChosenAlt();
+	public Object call(VE ve, List<String> contexts) throws CallFailure {
+		Alternative alternative = ve.getChosenAlt();
 		
-		if(alternative.getDependencyGoals().isEmpty()) {
+		if(alternative.getDependencies().isEmpty()) {
 			bundleSim.simulateCall(alternative);
 		}
 		

@@ -7,14 +7,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import goald.model.Dependency;
+import goald.model.Goal;
 import goald.model.GoalDManager;
 import goald.model.VE;
-import goald.model.Goal;
-import goald.planning.DameRespository;
+import goald.planning.VERespository;
 
-public class DameRepoTest {
+public class VERepoTest {
 
-	DameRespository repo;
+	VERespository repo;
 	
 	GoalDManager agent;
 	
@@ -26,8 +27,8 @@ public class DameRepoTest {
 	
 	@Test
 	public void testNotFoundDependency() {
-		Goal goal = new Goal("nosense");
-		List<Goal> goals = new ArrayList<>();
+		Dependency goal = new Dependency("nosense");
+		List<Dependency> goals = new ArrayList<>();
 		goals.add(goal);
 
 		List<VE> result = repo.queryRepo(goals);
@@ -36,8 +37,8 @@ public class DameRepoTest {
 	
 	@Test
 	public void testWithOneDependency() {
-		Goal goal = new Goal("greet");
-		List<Goal> goals = new ArrayList<>();
+		Dependency goal = new Dependency("greet");
+		List<Dependency> goals = new ArrayList<>();
 		goals.add(goal);
 		
 		List<VE> result = repo.queryRepo(goals);
@@ -51,9 +52,9 @@ public class DameRepoTest {
 
 	@Test
 	public void testWithTwoDependencies() {
-		Goal goal = new Goal("getPosition");
+		Dependency goal = new Dependency("getPosition");
 		
-		List<Goal> goals = new ArrayList<>();
+		List<Dependency> goals = new ArrayList<>();
 		goals.add(goal);
 
 		List<VE> result = repo.queryRepo(goals);

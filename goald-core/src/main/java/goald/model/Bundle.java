@@ -16,7 +16,7 @@ public class Bundle {
 
 	protected List<Goal> provides;
 
-	protected List<Goal> depends;
+	protected List<Dependency> depends;
 	
 	protected List<QualityParameter> qualityParams;
 
@@ -69,14 +69,14 @@ public class Bundle {
 		this.provides = provides;
 	}
 
-	public List<Goal> getDepends() {
+	public List<Dependency> getDepends() {
 		if (this.depends == null) {
 			this.depends = new ArrayList<>();
 		}
 		return depends;
 	}
 
-	public void setDepends(List<Goal> depends) {
+	public void setDepends(List<Dependency> depends) {
 		this.depends = depends;
 	}
 	

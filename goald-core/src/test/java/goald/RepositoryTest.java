@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.model.Bundle;
-import goald.model.Goal;
+import goald.model.Dependency;
 import goald.model.util.BundleBuilder;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
@@ -78,7 +78,7 @@ public class RepositoryTest {
 	@Test
 	public void testQueryForDefinition() {
 
-		Goal goal = new Goal("greet");
+		Dependency goal = new Dependency("greet");
 		Bundle bundle = repo.queryForDefinition(goal);
 
 		Assert.assertEquals("greater.def", bundle.identification);
@@ -88,7 +88,7 @@ public class RepositoryTest {
 	@Test
 	public void testQueryForImplementation() {
 
-		Goal goal = new Goal("greet");
+		Dependency goal = new Dependency("greet");
 		List<Bundle> bundles = repo.queryForImplementations(goal);
 
 		Assert.assertEquals(1, bundles.size());
