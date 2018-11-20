@@ -15,13 +15,16 @@ import goald.eval.exec.ExperimentSetup;
 import goald.eval.spec.ExecSpec;
 import goald.eval.spec.Experiment;
 import goald.evaluation.Evaluation;
+import goald.evaluation.Measure;
 import goald.evaluation.model.PlanningExperiment;
 import goald.evaluation.response.ResponseEvaluation;
 import goald.exputil.EchoService;
 import goald.exputil.ExperimentTimer;
 import goald.exputil.WriteToFileService;
+import goald.model.Change;
 import goald.model.ContextChange;
 import goald.model.DeploymentPlan;
+import goald.model.GoalsChangeRequest;
 import goald.model.util.ContextChangeBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
@@ -74,7 +77,7 @@ public class ExecuteExperiment {
 		echo.it(expSetup);
 	}
 
-	public Evaluation execute(ExecSpec spec, ResponseEvaluation evaluation) {
+	public Evaluation<Measure> execute(ExecSpec spec, ResponseEvaluation evaluation) {
 		timer.begin();
 		
 		// get exec params
@@ -112,7 +115,7 @@ public class ExecuteExperiment {
 			}
 			
 			@Override
-			public void beforeChangeGoals() {
+			public void beforeChangeGoals(GoalsChangeRequest goalsChangeRequest) {
 				evaluation.split(execIndex, "changing_goals_" + this.version);
 			}
 			
@@ -122,13 +125,13 @@ public class ExecuteExperiment {
 			}
 			
 			@Override
-			public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {
+			public void onDeploymentChangePlanned(DeploymentPlan adaptPlan) {
 				echo.it(adaptPlan);
 				evaluation.split(execIndex, "deployment_change_planned_" + this.version);
 			}
 			
 			@Override
-			public void onDeploymentChange() {
+			public void onDeploymentChangeExecuted(Change change, DeploymentPlan adaptPlan) {
 				evaluation.split(execIndex, "deployment_change_excuted_" + this.version);
 			}
 		};

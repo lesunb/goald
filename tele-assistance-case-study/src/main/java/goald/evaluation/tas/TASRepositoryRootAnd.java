@@ -4,7 +4,7 @@ import goald.model.util.BundleBuilder;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;
 
-public class TASRepository {
+public class TASRepositoryRootAnd {
 
 	public static IRepository getRepo() {
 		return RepositoryBuilder.create()
@@ -13,14 +13,29 @@ public class TASRepository {
 			.identification("ProvideHalthSupport.def")
 			.defines("ProvideHealthSupport")
 			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("ProvideHealthSupport.impl")
+			.provides("ProvideHealthSupport")
+			.dependsOn("ProvideSelfDiagnosedEmergenciesSupport")
+			.dependsOn("ProvideAutomatedLifeSupport")
+			.build())
+		/* 2nd level definitions */
+		.add(
+			BundleBuilder.create()
+			.identification("ProvideSelfDiagnosedEmergenciesSupport-definition")
+			.defines("ProvideSelfDiagnosedEmergenciesSupport")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("ProvideAutomatedLifeSupport-definition")
+			.defines("ProvideAutomatedLifeSupport")
+			.build())
 		/* Provide Automated Life Support plans*/
 		.add(
 			BundleBuilder.create()
 			.identification("ProvideAutomatedLifeSupport-impl")
-			.provides("ProvideHealthSupport")
-			.withQuality("precision", 10)
-			.withQuality("responseTime", 10)
-			.requires("not-battery-is-low")
+			.provides("ProvideAutomatedLifeSupport")
 			.dependsOn("MonitorPatient")
 			.dependsOn("EnactTreatment")
 			.build())
@@ -59,7 +74,7 @@ public class TASRepository {
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("LocalAnalysis-impl")
+			.identification("LocalAnalyzis-impl")
 			.provides("AnalyzeData")
 			.withQuality("precision", 8)
 			.withQuality("responseTime", 3)
@@ -77,7 +92,6 @@ public class TASRepository {
 			BundleBuilder.create()
 			.identification("EnactTreatment-impl")
 			.provides("EnactTreatment")
-			//.requires("not-patient-is-ok")
 			.dependsOn("AdministerMedicine")
 			.dependsOn("NotifyEmergencyMedicalServices")
 			.build())
@@ -105,6 +119,13 @@ public class TASRepository {
 			.build())
 		.add(
 			BundleBuilder.create()
+			.identification("ChangeDrug-impl")
+			.provides("ChangeDrug")
+			.dependsOn("NonInvasive")
+			.dependsOn("Invasive")
+			.build())
+		.add(
+			BundleBuilder.create()
 			.identification("NonInvasive-definition")
 			.defines("NonInvasive")
 			.build())
@@ -116,20 +137,18 @@ public class TASRepository {
 		.add(
 			BundleBuilder.create()
 			.identification("NonInvasive-impl")
-			.provides("ChangeDrug")
+			.provides("NonInvasive")
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("Invasive-impl")
-			.requires("doctor-is-present")
-			.withQuality("responseTime", 10)
-			.provides("ChangeDrug")
+			.provides("Invasive")
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("ChangeDose-impl")
 			.provides("ChangeDose")
-			//.requires("drug-being-administered")
+			.requires("drug-being-administered")
 			.build())
 		.add(
 			BundleBuilder.create()
@@ -141,11 +160,9 @@ public class TASRepository {
 		.add(
 			BundleBuilder.create()
 			.identification("ProvideSelfDiagnosedEmergenciesSupport-impl")
-			.provides("ProvideHealthSupport")
+			.provides("ProvideSelfDiagnosedEmergenciesSupport")
 			.dependsOn("PushButton")
 			.dependsOn("NotifyEmergencyMedicalServices")
-			.withQuality("precision", 5)
-			.withQuality("responseTime", 5)
 			.build())
 		.add(
 			BundleBuilder.create()

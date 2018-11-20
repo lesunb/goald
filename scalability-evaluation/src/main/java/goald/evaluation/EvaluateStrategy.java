@@ -9,9 +9,9 @@ import org.slf4j.Logger;
 import goald.eval.exec.Execution;
 import goald.eval.spec.Experiment;
 import goald.evaluation.exec.ExecuteExperiment;
+import goald.evaluation.response.ReportResponseEvaluationToFile;
 import goald.exputil.EvalUtil;
 import goalp.evaluation.goals.IEvaluate;
-import goalp.evaluation.goals.IReportResult;
 
 public class EvaluateStrategy implements IEvaluate {
 
@@ -19,13 +19,11 @@ public class EvaluateStrategy implements IEvaluate {
 	ExecuteExperiment execute;
 	
 	@Inject
-	IReportResult report;
+	ReportResponseEvaluationToFile report;
 	
 	@Inject
 	Logger log;
 	
-	@Inject
-	ClockTimer timer;
 	
 	@Override
 	public void exec(List<Experiment> experiments){

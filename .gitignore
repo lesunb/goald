@@ -9,3 +9,4 @@ logs/
 .checkstyle
 *.bak
 evaluation/result/
+.Rproj.user

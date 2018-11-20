@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import goald.eval.exec.ExperimentExecutorTimelineBased;
+import goald.eval.exec.ExperimentExecutorAllContextsBased;
 import goald.evaluation.timeline.TickProducer;
 import goald.evaluation.timeline.TimelineEvaluation;
 import goald.evaluation.timeline.TimelineTimer;
@@ -15,7 +15,7 @@ import goald.planning.DameRespository;
 import goald.repository.IRepository;
 
 
-public class TASTimelineStudyCaseScenarios extends ExperimentExecutorTimelineBased {
+public class TASAllContextsChangesScenarios extends ExperimentExecutorAllContextsBased {
 	
 	@Inject
 	Logger log;
@@ -38,9 +38,13 @@ public class TASTimelineStudyCaseScenarios extends ExperimentExecutorTimelineBas
 		 */
 		scenarioRepetitions(100, 1, 
 				TickProducer.create(100l,0l,12000l),
-				(ctxEvaluatorBuilder)-> ctxEvaluatorBuilder
-					.with(
-						"internet-connection")
+				(ctxList)-> {
+					ctxList.add("internet-connection");
+					ctxList.add("not-battery-is-low");
+					ctxList.add("doctor-is-present");
+					ctxList.add("xxx");
+					ctxList.add("yyy");
+				}
 				,
 				(qualityWeightsMap) -> {
 					qualityWeightsMap.put("precision", 2);
@@ -50,15 +54,6 @@ public class TASTimelineStudyCaseScenarios extends ExperimentExecutorTimelineBas
 				},
 				(goalsChangeBuilding)-> goalsChangeBuilding
 					.addGoal("ProvideHealthSupport")
-				,
-				(ctxMonitorBuilding) -> ctxMonitorBuilding
-//					.rem(1000l, "not-battery-is-low")
-					.add(2000l, "not-battery-is-low")
-					.rem(3000l, "internet-connection")
-					.add(4000l, "internet-connection")
-					//.rem(6000l, "not-patient-is-ok")
-					.add(7000l, "doctor-is-present")
-					.rem(11000l, "doctor-is-present")
 				, evaluations, baseEvaluation);
 
 		return evaluations;
