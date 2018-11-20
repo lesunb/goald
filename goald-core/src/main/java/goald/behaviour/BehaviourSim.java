@@ -22,7 +22,7 @@ public class BehaviourSim {
 	
 	public Object call(List<String> contexts) {
 		bundleSim.clear();
-		CallResult result = null;
+		CallResult result = new CallResult();
 		try {
 			call(agent.getRootDame(), contexts);
 			result.setSuccess(true);
