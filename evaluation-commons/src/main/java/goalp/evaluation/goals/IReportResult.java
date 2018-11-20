@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 
 import goald.evaluation.Evaluation;
 
-public interface IReportResult<T extends Evaluation> {
+public interface IReportResult<T extends Evaluation<?>> {
 
 	void doReport(Stream<T> result);
 	

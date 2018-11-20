@@ -3,7 +3,7 @@ package goald.eval.spec;
 import java.util.List;
 
 import goald.eval.exec.Execution;
-import goald.evaluation.Evaluation;
+import goald.evaluation.response.ResponseEvaluation;
 
 public class ExperimentBuilder {
 	
@@ -30,7 +30,7 @@ public class ExperimentBuilder {
 		exec.setSpecification(spec);
 		
 		//set exec eval with factors values from spec
-		Evaluation<?> eval = this.experiment.getEvaluation().blankCopy();
+		ResponseEvaluation eval = this.experiment.getEvaluation().blankCopy();
 		eval.getFactorList().forEach((factor)->{
 			eval.putFactor(factor, spec.getInteger(factor));
 		});

@@ -1,13 +1,13 @@
 package goald.eval.exec;
 
 import goald.eval.spec.ExecSpec;
-import goald.evaluation.Evaluation;
+import goald.evaluation.response.ResponseEvaluation;
 
 public class Execution {
 
 	private ExecSpec spec;
 
-	private Evaluation evaluation;
+	private ResponseEvaluation evaluation;
 	
 	public ExecSpec getSpecification() {
 		return spec;
@@ -17,11 +17,11 @@ public class Execution {
 		this.spec = spec;
 	}
 
-	public Evaluation getEvaluation() {
+	public ResponseEvaluation getEvaluation() {
 		return evaluation;
 	}
 
-	public void setEvaluation(Evaluation evaluation) {
+	public void setEvaluation(ResponseEvaluation evaluation) {
 		this.evaluation = evaluation;
 	}
 }

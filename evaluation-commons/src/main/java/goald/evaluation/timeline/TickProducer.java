@@ -21,12 +21,13 @@ public class TickProducer implements Iterable<Long>{
 		return new Iterator<Long>() {
 			@Override
 			public boolean hasNext() {
-				return current < end;
+				return current <= end;
 			}
 			@Override
 			public Long next() {
+				long return_ = current;
 				current += tick;
-				return current;
+				return return_;
 			}
 		};
 	}

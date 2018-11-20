@@ -136,13 +136,13 @@ public abstract class ExperimentExecutorScenarioBased implements IExperimentsExe
 			}
 			
 			@Override
-			public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {
+			public void onDeploymentChangePlanned(DeploymentPlan adaptPlan) {
 				echo.it(adaptPlan);
 				evaluation.split(execIndex, "deployment_change_planned");
 			}
 			
 			@Override
-			public void onDeploymentChange(Change change) {
+			public void onDeploymentChangeExecuted(Change change, DeploymentPlan adaptPlan) {
 				evaluation.split(execIndex, "deployment_change_excuted");
 			}
 		};

@@ -2,13 +2,11 @@ package goald.evaluation.timeline;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 import javax.inject.Named;
 
-import goald.evaluation.Measure;
 import goald.evaluation.ReportToFileAbstract;
 
 @Named
@@ -70,6 +68,9 @@ public class ReportTimelineEvaluationToFile extends ReportToFileAbstract<Timelin
 			
 		StringBuffer lineBuff = new StringBuffer();
 		StringBuffer header = new StringBuffer();
+		if(eval.getIndexedMeasures() == null) {
+			return lines;
+		}
 		for(Entry<Integer, List<TimelineMeasure>> measureEntry: eval.getIndexedMeasures().entrySet()) {
 			
 			// append all factors
@@ -84,7 +85,7 @@ public class ReportTimelineEvaluationToFile extends ReportToFileAbstract<Timelin
 				lineBuff.append(header);
 				lineBuff.append(measure.getLabel()+ "\t");
 				lineBuff.append(measure.getStart()+ "\t");
-				lineBuff.append(measure.getEnd()+ "\t");
+				lineBuff.append(measure.getEnd());
 				// end of line
 				//add to lines set ant reset linebuff to reuse
 				lineBuff.append("\r\n");

@@ -19,7 +19,8 @@ import goald.model.ContextChange;
 import goald.model.ContextChange.OP;
 import goald.model.ContextCondition;
 import goald.model.DeploymentPlan;
-import goald.model.GoalsChangeRequest;
+import goald.model.DeploymentPlan.Command;
+import goald.model.DeploymentPlan.DeployOp;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
 import goald.monitoring.CtxMonitor;
@@ -105,7 +106,8 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 				
 		// context changes
 		try {
-			//ticks fast forward in time 
+			//ticks fast forward in time
+			long lastTime=0;
 			for(Long time:ticker) {
 				TimelineTimer timer = (TimelineTimer) evaluation.getTimer();
 				timer.forwardTimerTo(time);
@@ -118,7 +120,9 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 						agent.handleContextChange(contextChange);
 					}
 				}
+				lastTime = time;
 			}
+			evaluation.endExec(lastTime);
 			agent.shutdown();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -150,48 +154,50 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 			}
 			
 			@Override
-			public void beforeChangeGoals(GoalsChangeRequest goalsChangeRequest) {
-				toogleOn("system");
+			public void onStartup() {
 				for(ContextCondition context: getAgent().getActualCtx().getCtxCollection()) {
-					toogleOn(context.getLabel());
+					toogleOn(context.getLabel(), 0l);
+					//toogleOn("ctx_"+context.getLabel());
 				}
-				
+				//toogleOn("system");
 			}
-			
+						
 			@Override
 			public void beforePlanningForContextChange(ContextChange change) {
 				if(change.getOp() == OP.ADDED) {
-					toogleOn("real_"+change.getLabel(), change.getTime());
-					toogleOn(change.getLabel());
+					toogleOn(change.getLabel(), change.getTime());
+					//toogleOn("ctx_"+change.getLabel());
 				}else if(change.getOp() == OP.REMOVED) {
-					toogleOff("real_"+change.getLabel(), change.getTime());
-					toogleOn(change.getLabel());
+					toogleOff(change.getLabel(), change.getTime());
+					//toogleOff("ctx_"+change.getLabel());
 				}
 			}
 			
 			@Override
-			public void damUpdated() {
-				//evaluation.split(execIndex, "dam_updated");
-			}
-			
-			@Override
-			public void onShutdown() {
-				evaluation.endExec();
-			}
-			
-			@Override
-			public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {
+			public void onDeploymentChangePlanned(DeploymentPlan adaptPlan) {
 				echo.it(adaptPlan);
-				//evaluation.split(execIndex, "deployment_change_planned");
+				//toogleOn("changing_deployment");
 			}
 			
 			@Override
-			public void onDeploymentChange(Change change) {
+			public void onDeploymentChangeExecuted(Change change, DeploymentPlan adaptPlan) {
 				boolean status = this.getAgent().getRootDame().getIsAchievable();
+				//toogleOff("changing_deployment");
 				if(status) {
 					toogleOn("system_available");
 				}else {
 					toogleOff("system_available", change.getTime());
+				}
+				
+				for(Command comm: adaptPlan.getCommands()) {
+					if(comm.getBundle().getProvides().isEmpty()) {
+						continue;
+					}
+					if(comm.getOp() == DeployOp.INSTALL) {
+						toogleOn(comm.getBundle().identification);	
+					}else {
+						toogleOff(comm.getBundle().identification);
+					}
 				}
 			}
 			@Override
@@ -215,8 +221,5 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 				evaluation.toogleOff(execIndex, label,timestamp);
 			}
 		};
-		
-
 	}
-
 }

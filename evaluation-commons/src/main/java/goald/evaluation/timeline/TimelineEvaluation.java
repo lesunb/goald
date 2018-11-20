@@ -58,10 +58,9 @@ public class TimelineEvaluation extends EvaluationAbstract<TimelineMeasure> {
 		}
 	}
 	
-	public void endExec() {
-		long timestamp = getTimer().getTimestamp();
+	public void endExec(long lastTime) {
 		whatIsOnMap.values().forEach(measure ->{
-			measure.end = timestamp;
+			measure.end = lastTime;
 		});
 		whatIsOnMap.clear();
 	}	
