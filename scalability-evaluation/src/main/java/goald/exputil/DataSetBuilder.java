@@ -16,8 +16,6 @@ public class DataSetBuilder<N extends Number> {
 	private PointDataSet<N> dataset;
 	private PlotStyle ps;
 	
-	private String yUnit;
-	
 	private DataSetBuilder(){
 		this.dataset = new PointDataSet<N>();
 		this.ps = new PlotStyle();

@@ -15,7 +15,7 @@ import goalp.Conf;
 import goalp.Conf.Keys;
 import goalp.evaluation.goals.IReportResult;
 
-public abstract class ReportToFileAbstract<T extends Evaluation> implements IReportResult<T> {
+public abstract class ReportToFileAbstract<T extends Evaluation<?>> implements IReportResult<T> {
 
 	protected List<String> lines;
 	private BufferedWriter writer;
@@ -60,7 +60,7 @@ public abstract class ReportToFileAbstract<T extends Evaluation> implements IRep
 		System.out.print(".");
 	}
 
-	public void initFile(Evaluation evaluation) {
+	public void initFile(Evaluation<?> evaluation) {
 		if(writer != null) {
 			return;
 		}

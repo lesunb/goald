@@ -5,14 +5,10 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.profile.CallFailure;
-import goald.profile.ProfileService;
 import goald.profile.ServicesCall;
 import simpletas.definitions.ChangeDose;
 
 public class ChangeDoseImp implements ChangeDose {
-
-	@Inject
-	private ProfileService profileService;
 	
 	@Inject
 	private ServicesCall servicesCall;

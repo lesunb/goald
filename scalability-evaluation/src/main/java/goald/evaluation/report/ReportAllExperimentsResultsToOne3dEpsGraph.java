@@ -70,11 +70,6 @@ public class ReportAllExperimentsResultsToOne3dEpsGraph {// implements IReportRe
 					
 				}
 				
-				String responseVariable = exp.getEvaluation().getResponseVariable();
-				//log.info("ploting {},{} vs {}", factorOne, factorTwo, responseVariable);
-
-				// create graph (factor vs r)esult) for the experiment execution
-				// list
 				for(List<Execution> execs: contextExecutions.values()){
 					addDataSet(exp, execs, plotBuilder, (exec) -> {
 						Number factorOneValue = exec.getEvaluation().getFactors().get(factorOne);

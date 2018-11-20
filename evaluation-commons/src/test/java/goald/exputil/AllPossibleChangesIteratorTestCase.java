@@ -7,7 +7,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.exputil.AllPossibleChangesIterator;
 import goald.exputil.AllPossibleChangesIterator.CtxChangesIterator;
 import goald.model.ContextChange;
 import goald.model.ContextChange.OP;
