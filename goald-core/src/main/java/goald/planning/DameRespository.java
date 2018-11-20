@@ -5,7 +5,7 @@ import java.util.List;
 
 import goald.model.Alternative;
 import goald.model.Bundle;
-import goald.model.Dame;
+import goald.model.VE;
 import goald.model.Goal;
 import goald.model.util.AlternativeBuilder;
 import goald.repository.IRepository;
@@ -18,8 +18,8 @@ public class DameRespository {
 		this.repo = repo;
 	}
 	
-	public List<Dame> queryForDependencies(Alternative alt){
-		List<Dame> dames = this.queryRepo(alt.getDependencyGoals());
+	public List<VE> queryForDependencies(Alternative alt){
+		List<VE> dames = this.queryRepo(alt.getDependencyGoals());
 		if(dames == null) {
 			return null;
 		}
@@ -27,8 +27,8 @@ public class DameRespository {
 		return dames;
 	}
 	
-	public List<Dame> queryRepo(List<Goal> goals){
-		List<Dame> dames = new ArrayList<>();
+	public List<VE> queryRepo(List<Goal> goals){
+		List<VE> dames = new ArrayList<>();
 		for(Goal goal:goals) {
 			Bundle def = this.repo.queryForDefinition(goal);
 			List<Bundle> impls = this.repo.queryForImplementations(goal);
@@ -36,7 +36,7 @@ public class DameRespository {
 				return null;
 			}
 			
-			Dame dame = new Dame();
+			VE dame = new VE();
 			dame.setDefinition(def);
 			
 			for(Bundle impl:impls) {

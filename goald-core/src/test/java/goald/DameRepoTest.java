@@ -7,8 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.model.Agent;
-import goald.model.Dame;
+import goald.model.GoalDManager;
+import goald.model.VE;
 import goald.model.Goal;
 import goald.planning.DameRespository;
 
@@ -16,7 +16,7 @@ public class DameRepoTest {
 
 	DameRespository repo;
 	
-	Agent agent;
+	GoalDManager agent;
 	
 	@Before
 	public void setUp() throws Exception {	
@@ -30,7 +30,7 @@ public class DameRepoTest {
 		List<Goal> goals = new ArrayList<>();
 		goals.add(goal);
 
-		List<Dame> result = repo.queryRepo(goals);
+		List<VE> result = repo.queryRepo(goals);
 		Assert.assertNull(result);
 	}
 	
@@ -40,7 +40,7 @@ public class DameRepoTest {
 		List<Goal> goals = new ArrayList<>();
 		goals.add(goal);
 		
-		List<Dame> result = repo.queryRepo(goals);
+		List<VE> result = repo.queryRepo(goals);
 		
 		Assert.assertNotNull(result);
 		Assert.assertEquals(1, result.size());
@@ -56,7 +56,7 @@ public class DameRepoTest {
 		List<Goal> goals = new ArrayList<>();
 		goals.add(goal);
 
-		List<Dame> result = repo.queryRepo(goals);
+		List<VE> result = repo.queryRepo(goals);
 		
 		Assert.assertNotNull(result);
 		Assert.assertEquals(1, result.size());

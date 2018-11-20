@@ -7,11 +7,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.Alternative;
 import goald.model.Bundle;
 import goald.model.CtxEvaluator;
-import goald.model.Dame;
+import goald.model.VE;
 import goald.model.Goal;
 import goald.model.util.AgentBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
@@ -34,7 +34,7 @@ public class OrderAlternativesTest {
 		.with("antenna_capability", "gps_capability")
 		.build();
 		
-		Agent agent = AgentBuilder.create()
+		GoalDManager agent = AgentBuilder.create()
 				.withQualityWeight("precision", 3)
 				.withQualityWeight("responseTime", 1)
 				.withContext(ctx)
@@ -44,7 +44,7 @@ public class OrderAlternativesTest {
 				.queryFor("getPosition")
 				.build();
 		
-		List<Dame> result = repo.queryRepo(query);		
+		List<VE> result = repo.queryRepo(query);		
 		List<Alternative> alts = result.get(0).getAlts();
 		Bundle def = result.get(0).getDefinition();
 		
@@ -59,7 +59,7 @@ public class OrderAlternativesTest {
 		.with("antenna_capability", "gps_capability")
 		.build();
 		
-		Agent agent2 = AgentBuilder.create()
+		GoalDManager agent2 = AgentBuilder.create()
 				.withQualityWeight("precision", 1)
 				.withQualityWeight("responseTime", 3)
 				.withContext(ctx2)
@@ -69,7 +69,7 @@ public class OrderAlternativesTest {
 				.queryFor("getPosition")
 				.build();
 		
-		List<Dame> result2 = repo.queryRepo(query2);		
+		List<VE> result2 = repo.queryRepo(query2);		
 		List<Alternative> alts2 = result2.get(0).getAlts();
 		Bundle def2 = result2.get(0).getDefinition();
 		

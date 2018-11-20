@@ -3,7 +3,7 @@ package goald.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dame {
+public class VE {
 	private Bundle definition;
 	
 	private Alternative parentAlt;

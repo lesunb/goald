@@ -5,7 +5,7 @@ import java.util.List;
 import goald.model.Alternative;
 import goald.model.Bundle;
 import goald.model.ContextCondition;
-import goald.model.Dame;
+import goald.model.VE;
 import goald.model.Goal;
 
 public class AlternativeBuilder {
@@ -49,7 +49,7 @@ public class AlternativeBuilder {
 		return this;
 	}
 
-	public AlternativeBuilder forDame(Dame dame) {
+	public AlternativeBuilder forDame(VE dame) {
 		this.alternative.setParentDame(dame);
 		return this;
 	}

@@ -5,15 +5,15 @@ import java.util.Map;
 
 
 
-public class Agent {
+public class GoalDManager {
 
 	private CtxEvaluator actualCtx;
 	
-	private Dame rootDame;
+	private VE dvm;
 		
 	private Map<String, Integer> weightMap;
 	
-	private CtxDameMap ctxDamesMap;
+	private CtxVEMap ctxVEMap;
 	
 	private Deployment deployment;
 
@@ -25,12 +25,12 @@ public class Agent {
 		this.actualCtx = ctx;
 	}
 
-	public Dame getRootDame() {
-		return rootDame;
+	public VE getRootDame() {
+		return dvm;
 	}
 
-	public void setRootDame(Dame rootDame) {
-		this.rootDame = rootDame;
+	public void setRootDame(VE rootDame) {
+		this.dvm = rootDame;
 	}
 	
 	public void setWeight(String label, int value) {
@@ -48,15 +48,15 @@ public class Agent {
 		return weightMap.get(label);
 	}
 
-	public CtxDameMap getCtxDamesMap() {
-		if(ctxDamesMap == null) {
-			ctxDamesMap = new CtxDameMap();
+	public CtxVEMap getCtxVEMap() {
+		if(ctxVEMap == null) {
+			ctxVEMap = new CtxVEMap();
 		}
-		return ctxDamesMap;
+		return ctxVEMap;
 	}
 
-	public void setCtxDamesMap(CtxDameMap ctxDamesMap) {
-		this.ctxDamesMap = ctxDamesMap;
+	public void setCtxVEMap(CtxVEMap ctxVEMap) {
+		this.ctxVEMap = ctxVEMap;
 	}
 
 	public Deployment getDeployment() {
@@ -72,8 +72,8 @@ public class Agent {
 
 	@Override
 	public String toString() {
-		return "Agent [actualCtx=" + actualCtx + ", rootDame=" + rootDame + ", weightMap=" + weightMap
-				+ ", ctxDamesMap=" + ctxDamesMap + ", deployment=" + deployment + "]";
+		return "GoalDManager [actualCtx=" + actualCtx + ", weightMap=" + weightMap
+				+ ", ctxVEMap=" + ctxVEMap + ", deployment=" + deployment + ", dvm=" + dvm + "]";
 	}
 
 }

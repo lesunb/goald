@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.CtxEvaluator;
 import goald.model.GoalsChangeRequest;
 import goald.model.util.AgentBuilder;
@@ -20,7 +20,7 @@ public class HandleGoalsChangeTest {
 	
 	DamUpdater updater;
 	DameRespository repo;
-	Agent agent;
+	GoalDManager agent;
 	
 	@Before
 	public void setup() {

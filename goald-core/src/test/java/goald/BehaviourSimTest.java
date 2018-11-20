@@ -11,10 +11,10 @@ import goald.behaviour.BehaviourSim;
 import goald.behaviour.CallFailure;
 import goald.behaviour.Profile;
 import goald.behaviour.ProfileBuilder;
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.ContextChange;
 import goald.model.CtxEvaluator;
-import goald.model.Dame;
+import goald.model.VE;
 import goald.model.Goal;
 import goald.model.util.AgentBuilder;
 import goald.model.util.ContextChangeBuilder;
@@ -41,7 +41,7 @@ public class BehaviourSimTest {
 			.with("gps_capability")
 			.build();
 		
-		Agent agent = AgentBuilder.create()
+		GoalDManager agent = AgentBuilder.create()
 			.withQualityWeight("precision", 3)
 			.withQualityWeight("responseTime", 1)
 			.withContext(ctx)
@@ -53,7 +53,7 @@ public class BehaviourSimTest {
 		
 		updater = new DamUpdater(repo, agent);
 	
-		Dame dame = updater.resolveGoals(query).get(0);		
+		VE dame = updater.resolveGoals(query).get(0);		
 				
 		agent.setRootDame(dame);
 		
@@ -68,7 +68,7 @@ public class BehaviourSimTest {
 		ContextChangeHandler handler = new ContextChangeHandler(repo, agent);
 		handler.handle(change2);
 
-		Dame dame2 = repo.queryRepo(query).get(0);
+		VE dame2 = repo.queryRepo(query).get(0);
 
 		updater.resolveDame(dame2);
 		

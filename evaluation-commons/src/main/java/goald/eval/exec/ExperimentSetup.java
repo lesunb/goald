@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.repository.IRepository;
 
 public class ExperimentSetup {
@@ -15,7 +15,7 @@ public class ExperimentSetup {
 	
 	// private IDeploymentPlanner planner;
 	
-	private Agent agent;
+	private GoalDManager agent;
 
 	private List<String> contextSpace;
 
@@ -51,11 +51,11 @@ public class ExperimentSetup {
 //		this.planner = planner;
 //	}
 
-	public Agent getAgent() {
+	public GoalDManager getAgent() {
 		return agent;
 	}
 
-	public void setAgent(Agent agent) {
+	public void setAgent(GoalDManager agent) {
 		this.agent = agent;
 	}
 	

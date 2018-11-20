@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Alternative {
 	
-	private Dame parentDame;
+	private VE parentDame;
 	
 	private List<Goal> dependencyGoals;
 	
 	private boolean resolved = false;
 	
-	private List<Dame> listDepDame;
+	private List<VE> listDepDame;
 	
 	private List<ContextCondition> ctxReq;
 	
@@ -19,11 +19,11 @@ public class Alternative {
 	
 	private Integer quality;
 
-	public Dame getParentDame() {
+	public VE getParentDame() {
 		return parentDame;
 	}
 
-	public void setParentDame(Dame parentDame) {
+	public void setParentDame(VE parentDame) {
 		this.parentDame = parentDame;
 	}
 
@@ -46,14 +46,14 @@ public class Alternative {
 		this.resolved = resolved;
 	}
 
-	public List<Dame> getListDepDame() {
+	public List<VE> getListDepDame() {
 		if(listDepDame == null) {
 			listDepDame = new ArrayList<>();
 		}
 		return listDepDame;
 	}
 
-	public void setListDepDame(List<Dame> listDepDame) {
+	public void setListDepDame(List<VE> listDepDame) {
 		this.listDepDame = listDepDame;
 	}
 

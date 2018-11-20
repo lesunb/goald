@@ -2,20 +2,20 @@ package goald.behaviour;
 
 import java.util.List;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.Alternative;
-import goald.model.Dame;
+import goald.model.VE;
 
 public class BehaviourSim {
 
-	Agent agent;
+	GoalDManager agent;
 	CallSim bundleSim;
 	
-	public BehaviourSim(Agent agent, Profile profile ) {
+	public BehaviourSim(GoalDManager agent, Profile profile ) {
 		this(agent, new CallSim(profile, new RandomFailureTrowerImp()));
 	}
 	
-	public BehaviourSim(Agent agent, CallSim bundleSim) {
+	public BehaviourSim(GoalDManager agent, CallSim bundleSim) {
 		this.agent = agent;
 		this.bundleSim = bundleSim;
 	}
@@ -33,7 +33,7 @@ public class BehaviourSim {
 		return result;	
 	}
 
-	public Object call(Dame dame, List<String> contexts) throws CallFailure {
+	public Object call(VE dame, List<String> contexts) throws CallFailure {
 		Alternative alternative = dame.getChosenAlt();
 		
 		if(alternative.getDependencyGoals().isEmpty()) {

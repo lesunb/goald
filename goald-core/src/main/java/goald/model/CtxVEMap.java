@@ -6,31 +6,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class CtxDameMap {
+public class CtxVEMap {
 	
-	Map<String, Set<Dame>> ctxDameMap;
+	Map<String, Set<VE>> ctxDameMap;
 	
-	public CtxDameMap() {
+	public CtxVEMap() {
 		this.ctxDameMap = new HashMap<>();
 	}
 	
-	public void add(List<ContextCondition> ctxs, Dame dame) {
+	public void add(List<ContextCondition> ctxs, VE dame) {
 		for(ContextCondition ctx:ctxs) {
 			add(ctx.getLabel(), dame);
 		}
 	}
 	
-	public void add(String ctx, Dame dame) {
-		Set<Dame> dames = this.ctxDameMap.get(ctx);
+	public void add(String ctx, VE dame) {
+		Set<VE> dames = this.ctxDameMap.get(ctx);
 		if( dames == null) {
-			Set<Dame> newSet = new HashSet<>();
+			Set<VE> newSet = new HashSet<>();
 			this.ctxDameMap.put(ctx, newSet);
 			dames = newSet;
 		}
 		dames.add(dame);
 	}
 	
-	public Set<Dame> get(String ctx) {
+	public Set<VE> get(String ctx) {
 		return this.ctxDameMap.get(ctx);
 	}
 

@@ -3,9 +3,9 @@ package goald.planning;
 import java.util.HashSet;
 import java.util.Set;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.Bundle;
-import goald.model.Dame;
+import goald.model.VE;
 import goald.model.DeploymentPlan;
 import goald.model.Deployment.Status;
 import goald.model.util.DeploymentPlanBuilder;
@@ -15,16 +15,16 @@ public class DeploymentPlanner {
 	
 	DamUpdater updater;
 	
-	Agent agent;
+	GoalDManager agent;
 	
-	public DeploymentPlanner(DameRespository repo, Agent agent) {
+	public DeploymentPlanner(DameRespository repo, GoalDManager agent) {
 		this.agent = agent;
 		this.updater = new DamUpdater(repo, agent);
 	}
 	
 	
 	public DeploymentPlan createPlan() {
-		Dame rootDame = this.agent.getRootDame();
+		VE rootDame = this.agent.getRootDame();
 		if(rootDame.getChosenAlt() == null) {		
 			// deployment not possible
 			// TODO how to procced?
@@ -47,7 +47,7 @@ public class DeploymentPlanner {
 				.build();
 	}
 	
-	public Set<Bundle> addToSellected(Dame dame, Set<Bundle> sellected) {
+	public Set<Bundle> addToSellected(VE dame, Set<Bundle> sellected) {
 		if(dame.getChosenAlt() == null) {
 			// incomplete deployment plan
 			return sellected;
@@ -60,7 +60,7 @@ public class DeploymentPlanner {
 			sellected.add(dame.getChosenAlt().getImpl());
 		}
 		
-		for(Dame child:dame.getChosenAlt().getListDepDame()) {
+		for(VE child:dame.getChosenAlt().getListDepDame()) {
 			addToSellected(child, sellected);
 		}
 		return sellected;

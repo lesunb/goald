@@ -6,9 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.CtxEvaluator;
-import goald.model.Dame;
+import goald.model.VE;
 import goald.model.Goal;
 import goald.model.util.AgentBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
@@ -28,7 +28,7 @@ public class UpdateDamTest {
 				.with("gps_capability")
 				.build();
 		
-		Agent agent = AgentBuilder.create()
+		GoalDManager agent = AgentBuilder.create()
 				.withContext(ctx)
 				.build();
 		
@@ -41,7 +41,7 @@ public class UpdateDamTest {
 				.queryFor("alarm")
 				.build();
 		
-		Dame dame = repo.queryRepo(query).get(0);		
+		VE dame = repo.queryRepo(query).get(0);		
 		
 		boolean result = updater.resolveDame(dame).getIsAchievable();
 		Assert.assertFalse(result);
@@ -54,7 +54,7 @@ public class UpdateDamTest {
 				.with("gps_capability")
 				.build();
 	
-		Agent agent = AgentBuilder.create()
+		GoalDManager agent = AgentBuilder.create()
 				.withQualityWeight("precision", 3)
 				.withQualityWeight("responseTime", 1)
 				.withContext(ctx)
@@ -64,7 +64,7 @@ public class UpdateDamTest {
 				.queryFor("getPosition")
 				.build();
 		
-		Dame dame = repo.queryRepo(query).get(0);		
+		VE dame = repo.queryRepo(query).get(0);		
 		
 		DamUpdater updater = new DamUpdater(repo, agent);
 		boolean result = updater.resolveDame(dame).getIsAchievable();
@@ -73,7 +73,7 @@ public class UpdateDamTest {
 		Assert.assertNotNull(dame.getChosenAlt());
 		Assert.assertEquals(true, dame.getChosenAlt().getResolved());	
 		
-		Dame dame2 = repo.queryRepo(query).get(0);		
+		VE dame2 = repo.queryRepo(query).get(0);		
 		
 		boolean result2 = updater.resolveDame(dame2).getIsAchievable();
 		Assert.assertTrue(result2);
@@ -90,7 +90,7 @@ public class UpdateDamTest {
 				.with("gps_capability", "display_capability")
 				.build();
 		
-		Agent agent = AgentBuilder.create()
+		GoalDManager agent = AgentBuilder.create()
 				.withQualityWeight("precision", 3)
 				.withQualityWeight("responseTime", 1)
 				.withContext(ctx)
@@ -100,7 +100,7 @@ public class UpdateDamTest {
 				.queryFor("displayMyPosition")
 				.build();
 		
-		Dame dame = repo.queryRepo(query).get(0);		
+		VE dame = repo.queryRepo(query).get(0);		
 		
 		DamUpdater updater = new DamUpdater(repo, agent);
 		boolean result = updater.resolveDame(dame).getIsAchievable();

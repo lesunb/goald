@@ -3,24 +3,24 @@ package goald.planning;
 import java.util.Set;
 import java.util.Vector;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.ContextChange;
-import goald.model.Dame;
+import goald.model.VE;
 
 public class ContextChangeHandler {
 	
 	DamUpdater updater;
 	
-	Agent agent;
+	GoalDManager agent;
 	
-	public ContextChangeHandler(DameRespository repo, Agent agent) {
+	public ContextChangeHandler(DameRespository repo, GoalDManager agent) {
 		this.agent = agent;
 		this.updater = new DamUpdater(repo, agent);
 	}
 
 	public Boolean handle(ContextChange change) {
 		this.agent.getActualCtx().update(change);
-		Set<Dame> affectedDames = this.agent.getCtxDamesMap().get(change.getLabel());
+		Set<VE> affectedDames = this.agent.getCtxVEMap().get(change.getLabel());
 			
 		if(affectedDames == null || affectedDames.isEmpty()) {
 			return true;
@@ -28,12 +28,12 @@ public class ContextChangeHandler {
 
 		boolean result = true;
 
-		Vector<Dame> affectedDamesVector = new Vector<>();
+		Vector<VE> affectedDamesVector = new Vector<>();
 		affectedDamesVector.addAll(affectedDames);
 		
-		for(Dame affected:affectedDamesVector) {
+		for(VE affected:affectedDamesVector) {
 			boolean previousStatus = affected.getIsAchievable();
-			Dame currentPoint = this.updater.resolveDame(affected);
+			VE currentPoint = this.updater.resolveDame(affected);
 			
 			//changed and parent is not null
 			while(previousStatus != currentPoint.getIsAchievable().booleanValue()

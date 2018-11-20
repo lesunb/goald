@@ -2,40 +2,40 @@ package goald.planning;
 
 import java.util.List;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.Alternative;
 import goald.model.Bundle;
 import goald.model.CtxEvaluator;
-import goald.model.Dame;
+import goald.model.VE;
 import goald.model.Goal;
 import goald.model.QualityParameter;
 
 public class DamUpdater {
 	
-	Agent agent;
+	GoalDManager agent;
 	DameRespository repo;
 	
-	public DamUpdater(DameRespository repo, Agent agent) {
+	public DamUpdater(DameRespository repo, GoalDManager agent) {
 		this.repo = repo;
 		this.agent = agent;
 	}
 	
-	public List<Dame> resolveGoals(List<Goal> goals) {
-		List<Dame> dames = repo.queryRepo(goals);
+	public List<VE> resolveGoals(List<Goal> goals) {
+		List<VE> dames = repo.queryRepo(goals);
 		
-		for(Dame dame:dames) {
+		for(VE dame:dames) {
 			resolveDame(dame);
 		}
 		return dames;
 	}
 	
-	public Dame resolveDame(Dame dame) {
+	public VE resolveDame(VE dame) {
 		CtxEvaluator ctx = this.agent.getActualCtx();
 		dame.setChosenAlt(null);
 		Alternative bestAlternative = null;
 		
 		for(Alternative alt: dame.getAlts()) {
-			agent.getCtxDamesMap().add(alt.getCtxReq(), dame);
+			agent.getCtxVEMap().add(alt.getCtxReq(), dame);
 			if(!ctx.check(alt.getCtxReq())) {
 				//context not satisfied, can't apply this alternative
 				alt.setResolved(false);
@@ -43,15 +43,15 @@ public class DamUpdater {
 				// context satisfied, resolve dependencies
 				boolean resolved = true;
 				if(!alt.getDependencyGoals().isEmpty()) {
-					List<Dame> depDames = repo.queryForDependencies(alt);
+					List<VE> depDames = repo.queryForDependencies(alt);
 					alt.setListDepDame(depDames);
 					
 					if(depDames == null) {
 						throw new RuntimeException("dependency goals not resolved" + alt.getDependencyGoals());
 					}
 					
-					for(Dame dependency: depDames) {
-						Dame result = resolveDame(dependency);
+					for(VE dependency: depDames) {
+						VE result = resolveDame(dependency);
 						if(!result.getIsAchievable()) {
 							resolved = false;
 							break;

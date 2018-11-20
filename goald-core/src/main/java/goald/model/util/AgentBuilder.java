@@ -2,23 +2,23 @@ package goald.model.util;
 
 import java.util.Map;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.CtxEvaluator;
 
 public class AgentBuilder {
 	
-	private Agent agent;
+	private GoalDManager agent;
 	
 	private AgentBuilder(){
-		this.agent = new Agent();
+		this.agent = new GoalDManager();
 	}
 	
 	public static AgentBuilder create(){
 		return new AgentBuilder();
 	}
 	
-	public Agent build(){
-		Agent built = this.agent;
+	public GoalDManager build(){
+		GoalDManager built = this.agent;
 		this.agent = null;
 		return built;
 	}

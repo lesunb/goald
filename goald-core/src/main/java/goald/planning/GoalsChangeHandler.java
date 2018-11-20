@@ -3,9 +3,9 @@ package goald.planning;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.Alternative;
-import goald.model.Dame;
+import goald.model.VE;
 import goald.model.Goal;
 import goald.model.GoalsChangeRequest;
 import goald.model.GoalsChangeRequest.GoalChange;
@@ -17,9 +17,9 @@ import goald.model.util.RepoQueryBuilder;
 public class GoalsChangeHandler {
 
 	private DamUpdater updater;
-	private Agent agent;
+	private GoalDManager agent;
 	
-	public GoalsChangeHandler(DameRespository repo, Agent agent) {
+	public GoalsChangeHandler(DameRespository repo, GoalDManager agent) {
 		this.agent = agent;
 		updater = new DamUpdater(repo, agent);
 	}
@@ -35,7 +35,7 @@ public class GoalsChangeHandler {
 					.map((change) -> change.getGoal()).collect(Collectors.toList());
 			
 			
-			Dame rootDame = DameBuilder.create()
+			VE rootDame = DameBuilder.create()
 					.build();
 			
 			Alternative virtualAlt = AlternativeBuilder.create()
@@ -54,7 +54,7 @@ public class GoalsChangeHandler {
 					.queryFor(change.getGoal())
 					.build();
 				
-			Dame rootDame = updater.resolveGoals(query).get(0);
+			VE rootDame = updater.resolveGoals(query).get(0);
 			agent.setRootDame(rootDame);
 		}
 	}

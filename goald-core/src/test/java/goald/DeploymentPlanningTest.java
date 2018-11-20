@@ -9,10 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.execution.DeploymentExecutor;
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.ContextChange;
 import goald.model.CtxEvaluator;
-import goald.model.Dame;
+import goald.model.VE;
 import goald.model.DeploymentPlan;
 import goald.model.Goal;
 import goald.model.util.AgentBuilder;
@@ -28,7 +28,7 @@ public class DeploymentPlanningTest {
 	
 	DamUpdater updater;
 	DameRespository repo;
-	Agent agent;
+	GoalDManager agent;
 	
 	@Before
 	public void setup() {
@@ -51,7 +51,7 @@ public class DeploymentPlanningTest {
 		
 		updater = new DamUpdater(repo, agent);
 	
-		Dame rootDame = updater.resolveGoals(query).get(0);		
+		VE rootDame = updater.resolveGoals(query).get(0);		
 				
 		agent.setRootDame(rootDame);
 	}

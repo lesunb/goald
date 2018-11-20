@@ -1,6 +1,6 @@
 package goald.execution;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.Deployment;
 import goald.model.DeploymentPlan;
 import goald.model.Deployment.Status;
@@ -9,9 +9,9 @@ import goald.model.DeploymentPlan.DeployOp;
 
 public class DeploymentExecutor {
 	
-	private Agent agent;
+	private GoalDManager agent;
 	
-	public DeploymentExecutor(Agent agent) {
+	public DeploymentExecutor(GoalDManager agent) {
 		this.agent = agent;
 	}
 

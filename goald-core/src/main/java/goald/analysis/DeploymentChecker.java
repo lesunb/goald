@@ -1,6 +1,6 @@
 package goald.analysis;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.Change.Effect;
 import goald.model.ContextChange;
 import goald.model.CtxEvaluator;
@@ -10,9 +10,9 @@ import goald.model.Deployment.Status;
 
 public class DeploymentChecker {
 	
-	private Agent agent;
+	private GoalDManager agent;
 	
-	public DeploymentChecker(Agent agent) {
+	public DeploymentChecker(GoalDManager agent) {
 		this.agent = agent;
 	}
 

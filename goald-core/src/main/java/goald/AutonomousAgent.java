@@ -5,7 +5,7 @@ import java.util.Map;
 
 import goald.analysis.DeploymentChecker;
 import goald.execution.DeploymentExecutor;
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.Change;
 import goald.model.ContextChange;
 import goald.model.Deployment;
@@ -35,7 +35,7 @@ public abstract class AutonomousAgent {
 	protected DeploymentExecutor executor;
 	
 	// knowledge
-	private Agent agent;
+	private GoalDManager agent;
 	
 	protected int version = 0;
 	
@@ -135,7 +135,7 @@ public abstract class AutonomousAgent {
 		return agent.getDeployment();
 	}
 	
-	public Agent getAgent() {
+	public GoalDManager getAgent() {
 		return this.agent;
 	}
 	

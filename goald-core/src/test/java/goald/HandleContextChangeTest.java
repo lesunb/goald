@@ -8,10 +8,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import goald.model.Agent;
+import goald.model.GoalDManager;
 import goald.model.ContextChange;
 import goald.model.CtxEvaluator;
-import goald.model.Dame;
+import goald.model.VE;
 import goald.model.Goal;
 import goald.model.util.AgentBuilder;
 import goald.model.util.ContextChangeBuilder;
@@ -38,7 +38,7 @@ public class HandleContextChangeTest {
 			.with("gps_capability")
 			.build();
 		
-		Agent agent = AgentBuilder.create()
+		GoalDManager agent = AgentBuilder.create()
 			.withQualityWeight("precision", 3)
 			.withQualityWeight("responseTime", 1)
 			.withContext(ctx)
@@ -50,7 +50,7 @@ public class HandleContextChangeTest {
 		
 		updater = new DamUpdater(repo, agent);
 	
-		Dame dame = updater.resolveGoals(query).get(0);		
+		VE dame = updater.resolveGoals(query).get(0);		
 				
 		agent.setRootDame(dame);
 		
@@ -65,7 +65,7 @@ public class HandleContextChangeTest {
 		ContextChangeHandler handler = new ContextChangeHandler(repo, agent);
 		handler.handle(change2);
 
-		Dame dame2 = repo.queryRepo(query).get(0);
+		VE dame2 = repo.queryRepo(query).get(0);
 
 		updater.resolveDame(dame2);
 		
@@ -81,7 +81,7 @@ public class HandleContextChangeTest {
 				.with("antenna_capability")
 				.build();
 			
-			Agent agent = AgentBuilder.create()
+			GoalDManager agent = AgentBuilder.create()
 				.withContext(ctx)
 				.withQualityWeight("precision", 3)
 				.withQualityWeight("responseTime", 1)
@@ -93,7 +93,7 @@ public class HandleContextChangeTest {
 			
 			updater = new DamUpdater(repo, agent);
 		
-			Dame dame = updater.resolveGoals(query).get(0);		
+			VE dame = updater.resolveGoals(query).get(0);		
 					
 			agent.setRootDame(dame);
 			
@@ -118,7 +118,7 @@ public class HandleContextChangeTest {
 				.with("gps_capability")
 				.build();
 			
-			Agent agent = AgentBuilder.create()
+			GoalDManager agent = AgentBuilder.create()
 				.withContext(ctx)
 				.withQualityWeight("precision", 3)
 				.withQualityWeight("responseTime", 1)
@@ -130,7 +130,7 @@ public class HandleContextChangeTest {
 			
 			updater = new DamUpdater(repo, agent);
 		
-			Dame dame = updater.resolveGoals(query).get(0);		
+			VE dame = updater.resolveGoals(query).get(0);		
 					
 			agent.setRootDame(dame);
 			
@@ -153,7 +153,7 @@ public class HandleContextChangeTest {
 				.with("gps_capability")
 				.build();
 			
-			Agent agent = AgentBuilder.create()
+			GoalDManager agent = AgentBuilder.create()
 				.withContext(ctx)
 				.withQualityWeight("precision", 3)
 				.withQualityWeight("responseTime", 1)
@@ -165,7 +165,7 @@ public class HandleContextChangeTest {
 			
 			updater = new DamUpdater(repo, agent);
 		
-			Dame dame = updater.resolveGoals(query).get(0);		
+			VE dame = updater.resolveGoals(query).get(0);		
 					
 			agent.setRootDame(dame);
 			
@@ -196,7 +196,7 @@ public class HandleContextChangeTest {
 				.with("antenna_capability")
 				.build();
 			
-			Agent agent = AgentBuilder.create()
+			GoalDManager agent = AgentBuilder.create()
 				.withContext(ctx)
 				.withQualityWeight("precision", 3)
 				.withQualityWeight("responseTime", 1)
@@ -208,7 +208,7 @@ public class HandleContextChangeTest {
 			
 			updater = new DamUpdater(repo, agent);
 		
-			Dame dame = updater.resolveGoals(query).get(0);		
+			VE dame = updater.resolveGoals(query).get(0);		
 					
 			agent.setRootDame(dame);
 			

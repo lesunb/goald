@@ -4,13 +4,13 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 import goald.eval.exec.ExecResult;
-import goald.model.Dame;
+import goald.model.VE;
 
 public abstract class WriteService {
 
 
 
-	protected void printTree(Dame dame, int level, BufferedWriter writer) throws IOException {
+	protected void printTree(VE dame, int level, BufferedWriter writer) throws IOException {
 		if(level == 0){
 			writer.write("## Root Dame");
 			newLine(writer);
@@ -20,7 +20,7 @@ public abstract class WriteService {
 		writer.write(dame.getChosenAlt().getImpl().getIdentification());
 		newLine(writer);
 		if(dame.getChosenAlt() != null) {
-			for(Dame dep:dame.getChosenAlt().getListDepDame()){
+			for(VE dep:dame.getChosenAlt().getListDepDame()){
 				printTree(dep, level+1, writer);
 			}
 		}
