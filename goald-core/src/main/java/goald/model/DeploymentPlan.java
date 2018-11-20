@@ -50,6 +50,10 @@ public class DeploymentPlan {
 	public void setCommands(List<Command> commands) {
 		this.commands = commands;
 	}
+	
+	public boolean isEmpty() {
+		return this.commands == null || this.commands.isEmpty();
+	}
 
 	@Override
 	public String toString() {

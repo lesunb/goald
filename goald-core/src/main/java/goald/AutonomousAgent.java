@@ -56,9 +56,13 @@ public abstract class AutonomousAgent {
 		damUpdated();
 		DeploymentPlan adaptPlan;
 		adaptPlan = deploymentPlanner.createPlan();
-		deploymentChangePlanCreated(adaptPlan);
+		if(adaptPlan!=null && !adaptPlan.isEmpty()) {
+			onDeploymentChangePlanned(adaptPlan);
+		}
 		executor.execute(adaptPlan);
-		onDeploymentChange(change);	
+		if(adaptPlan!=null && !adaptPlan.isEmpty()) {
+			onDeploymentChangeExecuted(change, adaptPlan);
+		}
 	}
 	
 	public void init(DameRespository repo) {
@@ -74,6 +78,7 @@ public abstract class AutonomousAgent {
 			.withQualityWeight(weights);
 
 		agent = agentBuilder.build();
+		onStartup();
 		GoalsChangeRequest goalsChangeRequest = goalsChangeBuilder.build();
 		
 		// construct the goald systems
@@ -89,10 +94,11 @@ public abstract class AutonomousAgent {
 		onUpdate(goalsChangeRequest);
 		damUpdated();
 		DeploymentPlan initialPlan = deploymentPlanner.createPlan();
-		deploymentChangePlanCreated(initialPlan);
+		onDeploymentChangePlanned(initialPlan);
 		onExecute(goalsChangeRequest, initialPlan);
 		executor.execute(initialPlan);
-		onDeploymentChange(goalsChangeRequest);
+		
+		onDeploymentChangeExecuted(goalsChangeRequest, initialPlan);
 		// exec the experiment
 	}
 		
@@ -104,6 +110,8 @@ public abstract class AutonomousAgent {
 	
 	public void onExecute(Change change, DeploymentPlan initialPlan) {}
 	
+	public void onStartup() {}
+	
 	public void onShutdown() {}
 	
 	public void beforeChangeGoals(GoalsChangeRequest goalsChangeRequest) {}
@@ -114,9 +122,9 @@ public abstract class AutonomousAgent {
 	
 	public void damUpdated() {}
 	
-	public void deploymentChangePlanCreated(DeploymentPlan adaptPlan) {}
+	public void onDeploymentChangePlanned(DeploymentPlan adaptPlan) {}
 	
-	public void onDeploymentChange(Change change) {}
+	public void onDeploymentChangeExecuted(Change change, DeploymentPlan adaptPlan) {}
 	
 
 	public void init(IRepository _repo) {

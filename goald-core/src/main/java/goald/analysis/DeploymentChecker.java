@@ -16,13 +16,13 @@ public class DeploymentChecker {
 		this.agent = agent;
 	}
 
-	public Boolean check(ContextChange change) {
+	public boolean check(ContextChange change) {
 		Deployment depl = agent.getDeployment();
 		CtxEvaluator ctx = agent.getActualCtx();
 		
 		if(!agent.getRootDame().getIsAchievable()) {
 			change.setEffect(Effect.NEUTRAL);
-			return null;
+			return true;
 		}
 		
 		boolean result = true;

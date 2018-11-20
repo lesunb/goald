@@ -22,8 +22,12 @@ public class ContextChangeHandler {
 		this.agent.getActualCtx().update(change);
 		Set<Dame> affectedDames = this.agent.getCtxDamesMap().get(change.getLabel());
 			
+		if(affectedDames == null || affectedDames.isEmpty()) {
+			return true;
+		}
+
 		boolean result = true;
-		
+
 		Vector<Dame> affectedDamesVector = new Vector<>();
 		affectedDamesVector.addAll(affectedDames);
 		
