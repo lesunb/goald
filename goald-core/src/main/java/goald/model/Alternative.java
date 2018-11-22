@@ -11,7 +11,7 @@ public class Alternative {
 	
 	private boolean resolved = false;
 	
-	private List<VE> listDepDame;
+	private List<VE> listDepVE;
 	
 	private List<ContextCondition> ctxReq;
 	
@@ -46,15 +46,15 @@ public class Alternative {
 		this.resolved = resolved;
 	}
 
-	public List<VE> getListDepDame() {
-		if(listDepDame == null) {
-			listDepDame = new ArrayList<>();
+	public List<VE> getListDepVE() {
+		if(listDepVE == null) {
+			listDepVE = new ArrayList<>();
 		}
-		return listDepDame;
+		return listDepVE;
 	}
 
-	public void setListDepDame(List<VE> listDepDame) {
-		this.listDepDame = listDepDame;
+	public void setListDepVE(List<VE> listDepVE) {
+		this.listDepVE = listDepVE;
 	}
 
 	public List<ContextCondition> getCtxReq() {
@@ -87,7 +87,7 @@ public class Alternative {
 	@Override
 	public String toString() {
 		return "Alternative [impl=" + impl + ", dependencies=" + dependencies  + ", ctxReq=" + ctxReq
-				+ ", resolved=" + resolved + ", listDepDame=" + listDepDame
+				+ ", resolved=" + resolved + ", listDepVE=" + listDepVE
 				+ ", ctxSatisfied=" + ", impl=" + impl + ", quality=" + quality + "]";
 	}
 	

@@ -64,22 +64,22 @@ public class UpdateDVMTest {
 				.queryFor("getPosition")
 				.build();
 		
-		VE dame = repo.queryRepo(query).get(0);		
+		VE ve = repo.queryRepo(query).get(0);		
 		
 		DVMUpdater updater = new DVMUpdater(repo, agent);
-		boolean result = updater.resolveVE(dame).getIsAchievable();
+		boolean result = updater.resolveVE(ve).getIsAchievable();
 		Assert.assertTrue(result);
 		
-		Assert.assertNotNull(dame.getChosenAlt());
-		Assert.assertEquals(true, dame.getChosenAlt().getResolved());	
+		Assert.assertNotNull(ve.getChosenAlt());
+		Assert.assertEquals(true, ve.getChosenAlt().getResolved());	
 		
-		VE dame2 = repo.queryRepo(query).get(0);		
+		VE ve2 = repo.queryRepo(query).get(0);		
 		
-		boolean result2 = updater.resolveVE(dame2).getIsAchievable();
+		boolean result2 = updater.resolveVE(ve2).getIsAchievable();
 		Assert.assertTrue(result2);
 		
-		Assert.assertNotNull(dame2.getChosenAlt());
-		Assert.assertEquals(true, dame2.getChosenAlt().getResolved());	
+		Assert.assertNotNull(ve2.getChosenAlt());
+		Assert.assertEquals(true, ve2.getChosenAlt().getResolved());	
 	}
 	
 	@Test
@@ -112,8 +112,21 @@ public class UpdateDVMTest {
 		Assert.assertEquals(true, ve.getChosenAlt().getResolved());	
 		
 		// check altenative children
-		Assert.assertEquals(2, ve.getChosenAlt().getListDepDame().size());	
+		Assert.assertEquals(2, ve.getChosenAlt().getListDepVE().size());	
 		//TODO check altenative grand children
 	}
 	
+	
+	@Test
+	public void testResolveVEInNoValidAlternativeForAnyModifier() {		
+		List<Dependency> query = RepoQueryBuilder.create()
+				.queryFor("timeManager")
+				.build();
+		
+		VE ve = repo.queryRepo(query).get(0);		
+		
+		boolean result = updater.resolveVE(ve).getIsAchievable();
+		Assert.assertFalse(true);
+		Assert.assertNotNull(ve.getChosenAlt());	
+	}
 }

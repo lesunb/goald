@@ -20,7 +20,7 @@ public abstract class WriteService {
 		writer.write(dame.getChosenAlt().getImpl().getIdentification());
 		newLine(writer);
 		if(dame.getChosenAlt() != null) {
-			for(VE dep:dame.getChosenAlt().getListDepDame()){
+			for(VE dep:dame.getChosenAlt().getListDepVE()){
 				printTree(dep, level+1, writer);
 			}
 		}

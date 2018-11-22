@@ -65,8 +65,8 @@ public class HandleGoalsChangeTest {
 		handler.handle(change);
 				
 		assertNotNull(agent.getRootDame());
-		assertEquals("displayMyPosition.impl", agent.getRootDame().getChosenAlt().getListDepDame().get(0).getChosenAlt().getImpl().identification);
-		assertEquals("alarm", agent.getRootDame().getChosenAlt().getListDepDame().get(1).getChosenAlt().getImpl().identification);
+		assertEquals("displayMyPosition.impl", agent.getRootDame().getChosenAlt().getListDepVE().get(0).getChosenAlt().getImpl().identification);
+		assertEquals("alarm", agent.getRootDame().getChosenAlt().getListDepVE().get(1).getChosenAlt().getImpl().identification);
 	}
 
 }

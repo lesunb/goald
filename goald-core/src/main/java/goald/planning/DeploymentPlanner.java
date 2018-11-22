@@ -60,7 +60,7 @@ public class DeploymentPlanner {
 			sellected.add(dame.getChosenAlt().getImpl());
 		}
 		
-		for(VE child:dame.getChosenAlt().getListDepDame()) {
+		for(VE child:dame.getChosenAlt().getListDepVE()) {
 			addToSellected(child, sellected);
 		}
 		return sellected;

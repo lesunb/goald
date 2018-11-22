@@ -44,6 +44,15 @@ public class BundleBuilder {
 		return this;
 	}
 	
+	public BundleBuilder dependsOnAny(String identification){
+		return this.dependsOn(identification, Dependency.Modifier.ANY);
+	}
+	
+	public BundleBuilder dependsOn(String identification, Dependency.Modifier modifier){
+		this.bundle.getDepends().add(new Dependency(identification, modifier));
+		return this;
+	}
+	
 	public BundleBuilder dependsOn(String[] identifications){
 		for(String identification:identifications){
 			dependsOn(identification);
@@ -65,6 +74,14 @@ public class BundleBuilder {
 
 	public BundleBuilder withQuality(String label, int value) {
 		this.bundle.getQualityParams().add(new QualityParameter(label, value));
+		return this;
+	}
+	
+
+	public BundleBuilder dependsOnAny(String[] identifications){
+		for(String identification:identifications){
+			dependsOn(identification, Dependency.Modifier.ANY);
+		}
 		return this;
 	}
 

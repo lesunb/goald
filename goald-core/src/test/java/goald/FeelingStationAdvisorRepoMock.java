@@ -76,7 +76,18 @@ public class FeelingStationAdvisorRepoMock {
 					.provides("mapView")
 					.requires("display_capability")
 					.build())
-				.build();
+				.add(
+					BundleBuilder.create()
+					.identification("timeManager.def")
+					.defines("timeManager")
+					.build())
+				.add(
+					BundleBuilder.create()
+					.identification("timeManager.impl")
+					.provides("timeManager")
+					.dependsOnAny("alarm")
+					.build())
+					.build();
 		return new VERespository(_repo);
 	}
 }

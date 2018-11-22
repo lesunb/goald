@@ -12,12 +12,12 @@ import goald.model.VE;
 
 public class DVMUpdater {
 	
-	GoalDManager agent;
+	GoalDManager manager;
 	VERespository repo;
 	
 	public DVMUpdater(VERespository repo, GoalDManager agent) {
 		this.repo = repo;
-		this.agent = agent;
+		this.manager = agent;
 	}
 	
 	public List<VE> resolveDepenencies(List<Dependency> dependencies) {
@@ -29,13 +29,13 @@ public class DVMUpdater {
 		return ves;
 	}
 	
-	public VE resolveVE(VE dame) {
-		CtxEvaluator ctx = this.agent.getActualCtx();
-		dame.setChosenAlt(null);
+	public VE resolveVE(VE ve) {
+		CtxEvaluator ctx = this.manager.getActualCtx();
+		ve.setChosenAlt(null);
 		Alternative bestAlternative = null;
 		
-		for(Alternative alt: dame.getAlts()) {
-			agent.getCtxVEMap().add(alt.getCtxReq(), dame);
+		for(Alternative alt: ve.getAlts()) {
+			manager.getCtxVEMap().add(alt.getCtxReq(), ve);
 			if(!ctx.check(alt.getCtxReq())) {
 				//context not satisfied, can't apply this alternative
 				alt.setResolved(false);
@@ -43,14 +43,14 @@ public class DVMUpdater {
 				// context satisfied, resolve dependencies
 				boolean resolved = true;
 				if(!alt.getDependencies().isEmpty()) {
-					List<VE> depDames = repo.queryForDependencies(alt);
-					alt.setListDepDame(depDames);
+					List<VE> depVElist = repo.queryForDependencies(alt);
+					alt.setListDepVE(depVElist);
 					
-					if(depDames == null) {
+					if(depVElist == null) {
 						throw new RuntimeException("dependency goals not resolved" + alt.getDependencies());
 					}
 					
-					for(VE dependency: depDames) {
+					for(VE dependency: depVElist) {
 						VE result = resolveVE(dependency);
 						if(!result.getIsAchievable()) {
 							resolved = false;
@@ -62,10 +62,10 @@ public class DVMUpdater {
 			}
 			bestAlternative = getBestAlternative(bestAlternative, alt);
 		}
-		dame.setChosenAlt(bestAlternative);	
+		ve.setChosenAlt(bestAlternative);	
 		boolean isAchievable = bestAlternative != null;
-		dame.setIsAchievable(isAchievable);	
-		return dame;
+		ve.setIsAchievable(isAchievable);	
+		return ve;
 	}
 
 	private Alternative getBestAlternative(Alternative currentAlt, Alternative newAlt) {
@@ -94,7 +94,7 @@ public class DVMUpdater {
 			return;
 		}
 		for(QualityParameter param: alt.getImpl().getQualityParams()) {
-			Integer weight = agent.getQualityWeight(param.getLabel());
+			Integer weight = manager.getQualityWeight(param.getLabel());
 			if(weight == null) { 
 				System.out.println("agent has no weight for label '"+ param.getLabel() + "'");
 				weight = 1;
@@ -140,7 +140,7 @@ public class DVMUpdater {
 		for(Alternative alt: alts) {
 			int quality = 0;
 			for(QualityParameter param: alt.getImpl().getQualityParams()) {
-				Integer weight = agent.getQualityWeight(param.getLabel());
+				Integer weight = manager.getQualityWeight(param.getLabel());
 				if(weight == null) { 
 					System.out.println("agent has no weight for label '"+ param.getLabel() + "'");
 					weight = 1;
