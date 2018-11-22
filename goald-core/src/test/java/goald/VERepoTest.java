@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.model.Dependency;
-import goald.model.Goal;
 import goald.model.GoalDManager;
 import goald.model.VE;
 import goald.planning.VERespository;

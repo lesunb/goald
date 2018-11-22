@@ -32,7 +32,6 @@ public class DVMUpdater {
 	public VE resolveVE(VE ve) {
 		CtxEvaluator ctx = this.manager.getActualCtx();
 		ve.setChosenAlt(null);
-		Alternative bestAlternative = null;
 		
 		for(Alternative alt: ve.getAlts()) {
 			manager.getCtxVEMap().add(alt.getCtxReq(), ve);
@@ -60,14 +59,27 @@ public class DVMUpdater {
 				}
 				alt.setResolved(resolved);
 			}
-			bestAlternative = getBestAlternative(bestAlternative, alt);
+			selectBetterAlternativeSet(ve, alt);
 		}
-		ve.setChosenAlt(bestAlternative);	
-		boolean isAchievable = bestAlternative != null;
+		boolean isAchievable = checkAltValidity(ve);
 		ve.setIsAchievable(isAchievable);	
 		return ve;
 	}
 
+	private void selectBetterAlternativeSet(VE ve, Alternative alt) {
+		ve.setChosenAlt(getBestAlternative(ve.getChosenAlt(), alt));
+	}
+	
+	private boolean checkAltValidity(VE ve) {
+		if(ve.getChosenAlt() != null) {
+			return true;
+		} else {
+			return false;
+		}
+				
+	}
+
+	@Deprecated
 	private Alternative getBestAlternative(Alternative currentAlt, Alternative newAlt) {
 		//check  if newalt is a viable alternative
 		if(newAlt == null || !newAlt.getResolved()) {

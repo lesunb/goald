@@ -125,7 +125,7 @@ public class UpdateDVMTest {
 		VE ve = repo.queryRepo(query).get(0);		
 		
 		boolean result = updater.resolveVE(ve).getIsAchievable();
-		Assert.assertFalse(true);
+		Assert.assertTrue(result);
 		Assert.assertNotNull(ve.getChosenAlt());	
 	}
 	
@@ -138,7 +138,7 @@ public class UpdateDVMTest {
 		VE ve = repo.queryRepo(query).get(0);		
 		
 		boolean result = updater.resolveVE(ve).getIsAchievable();
-		Assert.assertFalse(true);
+		Assert.assertTrue(result);
 		Assert.assertNotNull(ve.getChosenAlt());	
 	}
 	

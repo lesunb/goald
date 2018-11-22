@@ -20,18 +20,18 @@ public class ContextChangeHandler {
 
 	public Boolean handle(ContextChange change) {
 		this.agent.getActualCtx().update(change);
-		Set<VE> affectedDames = this.agent.getCtxVEMap().get(change.getLabel());
+		Set<VE> affectedVes = this.agent.getCtxVEMap().get(change.getLabel());
 			
-		if(affectedDames == null || affectedDames.isEmpty()) {
+		if(affectedVes == null || affectedVes.isEmpty()) {
 			return true;
 		}
 
 		boolean result = true;
 
-		Vector<VE> affectedDamesVector = new Vector<>();
-		affectedDamesVector.addAll(affectedDames);
+		Vector<VE> affectedVesVector = new Vector<>();
+		affectedVesVector.addAll(affectedVes);
 		
-		for(VE affected:affectedDamesVector) {
+		for(VE affected:affectedVesVector) {
 			boolean previousStatus = affected.getIsAchievable();
 			VE currentPoint = this.updater.resolveVE(affected);
 			
@@ -39,7 +39,7 @@ public class ContextChangeHandler {
 			while(previousStatus != currentPoint.getIsAchievable().booleanValue()
 					&& currentPoint.getParentAlt() != null){
 				
-				currentPoint = currentPoint.getParentAlt().getParentDame();
+				currentPoint = currentPoint.getParentAlt().getParentVE();
 				previousStatus = currentPoint.getIsAchievable();
 				// should reevaluate parents
 				currentPoint = this.updater.resolveVE(currentPoint);

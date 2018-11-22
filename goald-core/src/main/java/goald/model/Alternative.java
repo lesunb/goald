@@ -19,7 +19,7 @@ public class Alternative {
 	
 	private Integer quality;
 
-	public VE getParentDame() {
+	public VE getParentVE() {
 		return parentDame;
 	}
 
