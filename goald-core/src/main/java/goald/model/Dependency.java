@@ -1,31 +1,35 @@
 package goald.model;
 
+import goald.model.DependencyModifier.Type;
+
 public class Dependency {
 
-	public enum Modifier {
-		ONE,
-		ANY
-	};
-	
 	private String identification;
 	
-	private Modifier modifier;
+	private DependencyModifier modifier;
 	
 	public Dependency(String identification) {
 		this.identification = identification;
-		this.modifier = Modifier.ONE;
+		this.modifier = new DependencyModifier(Type.ONE);
 	}
 
-	public Dependency(String identification, Modifier modifier) {
+	public Dependency(String identification, DependencyModifier.Type modifier) {
 		this.identification = identification;
-		this.modifier = modifier;
+		this.modifier = new DependencyModifier(Type.ONE);
+	}
+	
+	public Dependency(String identification, 
+			DependencyModifier.Type modifier, 
+			ContextCondition condition) {
+		this.identification = identification;
+		this.modifier = new DependencyModifier(modifier, condition);
 	}
 
 	public String getIdentication() {
 		return this.identification;
 	}
 	
-	public Modifier getModifier() {
+	public DependencyModifier getModifier() {
 		return this.modifier;
 	}
 

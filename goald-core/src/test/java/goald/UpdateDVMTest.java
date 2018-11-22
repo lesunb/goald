@@ -116,11 +116,10 @@ public class UpdateDVMTest {
 		//TODO check altenative grand children
 	}
 	
-	
 	@Test
-	public void testResolveVEInNoValidAlternativeForAnyModifier() {		
+	public void testResolveCondInNoApplicableContext() {		
 		List<Dependency> query = RepoQueryBuilder.create()
-				.queryFor("timeManager")
+				.queryFor("driveTips")
 				.build();
 		
 		VE ve = repo.queryRepo(query).get(0);		
@@ -129,4 +128,30 @@ public class UpdateDVMTest {
 		Assert.assertFalse(true);
 		Assert.assertNotNull(ve.getChosenAlt());	
 	}
+	
+	@Test
+	public void testResolveCondInApplicableContext() {		
+		List<Dependency> query = RepoQueryBuilder.create()
+				.queryFor("driveTips")
+				.build();
+		
+		VE ve = repo.queryRepo(query).get(0);		
+		
+		boolean result = updater.resolveVE(ve).getIsAchievable();
+		Assert.assertFalse(true);
+		Assert.assertNotNull(ve.getChosenAlt());	
+	}
+	
+//	@Test
+//	public void testResolveVEInNoValidAlternativeForAnyModifier() {		
+//		List<Dependency> query = RepoQueryBuilder.create()
+//				.queryFor("timeManager")
+//				.build();
+//		
+//		VE ve = repo.queryRepo(query).get(0);		
+//		
+//		boolean result = updater.resolveVE(ve).getIsAchievable();
+//		Assert.assertFalse(true);
+//		Assert.assertNotNull(ve.getChosenAlt());	
+//	}
 }

@@ -3,6 +3,7 @@ package goald.model.util;
 import goald.model.Bundle;
 import goald.model.ContextCondition;
 import goald.model.Dependency;
+import goald.model.DependencyModifier;
 import goald.model.Goal;
 import goald.model.QualityParameter;
 
@@ -45,17 +46,32 @@ public class BundleBuilder {
 	}
 	
 	public BundleBuilder dependsOnAny(String identification){
-		return this.dependsOn(identification, Dependency.Modifier.ANY);
+		return this.dependsOn(identification, DependencyModifier.Type.ANY);
 	}
 	
-	public BundleBuilder dependsOn(String identification, Dependency.Modifier modifier){
+	public BundleBuilder dependsOn(String identification, DependencyModifier.Type modifier){
 		this.bundle.getDepends().add(new Dependency(identification, modifier));
+		return this;
+	}
+
+	public BundleBuilder dependsOnCond(String context, String identification) {
+		this.bundle.getDepends().add(new Dependency(identification, 
+				DependencyModifier.Type.COND,
+				new ContextCondition(context)
+				));
 		return this;
 	}
 	
 	public BundleBuilder dependsOn(String[] identifications){
 		for(String identification:identifications){
 			dependsOn(identification);
+		}
+		return this;
+	}
+	
+	public BundleBuilder dependsOnAny(String[] identifications){
+		for(String identification:identifications){
+			dependsOn(identification, DependencyModifier.Type.ANY);
 		}
 		return this;
 	}
@@ -77,12 +93,4 @@ public class BundleBuilder {
 		return this;
 	}
 	
-
-	public BundleBuilder dependsOnAny(String[] identifications){
-		for(String identification:identifications){
-			dependsOn(identification, Dependency.Modifier.ANY);
-		}
-		return this;
-	}
-
 }
