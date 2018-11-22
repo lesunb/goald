@@ -1,5 +1,6 @@
 package goald.model.util;
 
+import goald.model.Dependency;
 import goald.model.VE;
 
 public class VEBuilder {
@@ -18,5 +19,10 @@ public class VEBuilder {
 		VE built = this.ve;
 		this.ve = null;
 		return built;
+	}
+
+	public VEBuilder virtualDependency() {
+		this.ve.setSatisfy(new Dependency("virtual-root-goal"));
+		return this;
 	}
 }

@@ -10,28 +10,39 @@ public class TASRepository {
 		return RepositoryBuilder.create()
 		.add(
 			BundleBuilder.create()
-			.identification("ProvideHalthSupport.def")
+			.identification("ProvideHalthSupport-def")
 			.defines("ProvideHealthSupport")
 			.build())
 		/* Provide Automated Life Support plans*/
 		.add(
 			BundleBuilder.create()
-			.identification("ProvideAutomatedLifeSupport-impl")
+			.identification("ProvideHalthSupport-impl")
 			.provides("ProvideHealthSupport")
-			.withQuality("precision", 10)
-			.withQuality("responseTime", 10)
-			.requires("not-battery-is-low")
-			.dependsOn("MonitorPatient")
-			.dependsOn("EnactTreatment")
+			.dependsOn("ProvideSelfDiagnosedEmergenciesSupport")
+			.dependsOnCond("!battery-is-low", "ProvideAutomatedLifeSupport")
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("MonitorPatient-definition")
+			.identification("ProvideAutomatedLifeSupport.def")
+			.defines("ProvideAutomatedLifeSupport")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("ProvideAutomatedLifeSupport-impl")
+			.provides("ProvideAutomatedLifeSupport")
+			.withQuality("precision", 10)
+			.withQuality("responseTime", 10)
+			.dependsOn("MonitorPatient")
+			.dependsOnCond("!patient-is-ok", "EnactTreatment")
+			.build())
+		.add(
+			BundleBuilder.create()
+			.identification("MonitorPatient-def")
 			.defines("MonitorPatient")
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("EnactTreatment-definition")
+			.identification("EnactTreatment-def")
 			.defines("EnactTreatment")
 			.build())
 		/* Monitor Patient */
@@ -141,7 +152,7 @@ public class TASRepository {
 		.add(
 			BundleBuilder.create()
 			.identification("ProvideSelfDiagnosedEmergenciesSupport-impl")
-			.provides("ProvideHealthSupport")
+			.provides("ProvideSelfDiagnosedEmergenciesSupport")
 			.dependsOn("PushButton")
 			.dependsOn("NotifyEmergencyMedicalServices")
 			.withQuality("precision", 5)

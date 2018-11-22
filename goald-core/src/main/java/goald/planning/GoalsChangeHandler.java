@@ -37,6 +37,7 @@ public class GoalsChangeHandler {
 			
 			
 			VE dvm = VEBuilder.create()
+					.virtualDependency()
 					.build();
 			
 			Alternative virtualAlt = AlternativeBuilder.create()
