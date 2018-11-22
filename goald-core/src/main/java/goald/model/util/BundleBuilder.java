@@ -1,5 +1,8 @@
 package goald.model.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import goald.model.Bundle;
 import goald.model.ContextCondition;
 import goald.model.Dependency;
@@ -55,10 +58,11 @@ public class BundleBuilder {
 	}
 
 	public BundleBuilder dependsOnCond(String context, String identification) {
+		List<ContextCondition> conditions = new ArrayList<>();
+		conditions.add(new ContextCondition(context));
+		
 		this.bundle.getDepends().add(new Dependency(identification, 
-				DependencyModifier.Type.COND,
-				new ContextCondition(context)
-				));
+				DependencyModifier.Type.COND, conditions));
 		return this;
 	}
 	

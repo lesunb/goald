@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import goald.mock.FeelingStationAdvisorRepoMock;
 import goald.model.Alternative;
 import goald.model.Bundle;
 import goald.model.CtxEvaluator;

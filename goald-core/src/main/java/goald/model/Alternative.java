@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Alternative {
 	
-	private VE parentDame;
+	private VE parentVE;
 	
 	private List<Dependency> dependencies;
 	
@@ -20,11 +20,11 @@ public class Alternative {
 	private Integer quality;
 
 	public VE getParentVE() {
-		return parentDame;
+		return parentVE;
 	}
 
-	public void setParentDame(VE parentDame) {
-		this.parentDame = parentDame;
+	public void setParentVE(VE parentVE) {
+		this.parentVE = parentVE;
 	}
 
 	public List<Dependency> getDependencies() {

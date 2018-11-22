@@ -6,6 +6,7 @@ import goald.model.Alternative;
 import goald.model.Bundle;
 import goald.model.CtxEvaluator;
 import goald.model.Dependency;
+import goald.model.DependencyModifier;
 import goald.model.GoalDManager;
 import goald.model.QualityParameter;
 import goald.model.VE;
@@ -33,6 +34,14 @@ public class DVMUpdater {
 		CtxEvaluator ctx = this.manager.getActualCtx();
 		ve.setChosenAlt(null);
 		
+		if(!isDependencyCurrent(ve, ctx)) {
+			//put in the map
+			manager.getCtxVEMap().add(ve.getSatisfy()
+					.getModifier().getConditions(), ve);
+			ve.setIsAchievable(true);
+			ve.setChosenAlt(null);
+		}
+		
 		for(Alternative alt: ve.getAlts()) {
 			manager.getCtxVEMap().add(alt.getCtxReq(), ve);
 			if(!ctx.check(alt.getCtxReq())) {
@@ -51,7 +60,7 @@ public class DVMUpdater {
 					
 					for(VE dependency: depVElist) {
 						VE result = resolveVE(dependency);
-						if(!result.getIsAchievable()) {
+						if(!result.isAchievable()) {
 							resolved = false;
 							break;
 						}
@@ -61,8 +70,8 @@ public class DVMUpdater {
 			}
 			selectBetterAlternativeSet(ve, alt);
 		}
-		boolean isAchievable = checkAltValidity(ve);
-		ve.setIsAchievable(isAchievable);	
+		boolean isSatifiable = checkAltValidity(ve, ctx);
+		ve.setIsAchievable(isSatifiable);	
 		return ve;
 	}
 
@@ -70,13 +79,31 @@ public class DVMUpdater {
 		ve.setChosenAlt(getBestAlternative(ve.getChosenAlt(), alt));
 	}
 	
-	private boolean checkAltValidity(VE ve) {
+	private boolean checkAltValidity(VE ve, CtxEvaluator ctx) {
 		if(ve.getChosenAlt() != null) {
 			return true;
 		} else {
-			return false;
+			boolean validity; 
+			switch(ve.getSatisfy().getModifier().getType()) {
+				case COND:
+					// if context cond do not hold, the alt can be null
+					validity = !ctx.check(ve.getSatisfy().getModifier().getConditions());
+					break;
+				default:
+					validity = false;
+			}
+			if(!validity) {
+				System.out.println("can not satisfy: Dep "+ ve.getSatisfy() + " with ctx " + ctx.getCtxCollection());
+			}
+			return validity;
 		}
-				
+	}
+	
+	private boolean isDependencyCurrent(VE ve, CtxEvaluator ctx){
+		if(ve.getSatisfy().getModifier().getType() != DependencyModifier.Type.COND) {
+			return true;
+		}
+		return ctx.check(ve.getSatisfy().getModifier().getConditions());
 	}
 
 	@Deprecated

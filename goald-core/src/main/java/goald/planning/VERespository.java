@@ -6,7 +6,6 @@ import java.util.List;
 import goald.model.Alternative;
 import goald.model.Bundle;
 import goald.model.Dependency;
-import goald.model.Goal;
 import goald.model.VE;
 import goald.model.util.AlternativeBuilder;
 import goald.repository.IRepository;
@@ -30,25 +29,26 @@ public class VERespository {
 	
 	public List<VE> queryRepo(List<Dependency> dependencies){
 		List<VE> ves = new ArrayList<>();
-		for(Dependency depenency:dependencies) {
-			Bundle def = this.repo.queryForDefinition(depenency);
-			List<Bundle> impls = this.repo.queryForImplementations(depenency);
+		for(Dependency dependency:dependencies) {
+			Bundle def = this.repo.queryForDefinition(dependency);
+			List<Bundle> impls = this.repo.queryForImplementations(dependency);
 			if(def == null || impls == null || impls.isEmpty()) {
 				return null;
 			}
 			
-			VE dame = new VE();
-			dame.setDefinition(def);
+			VE ve = new VE();
+			ve.setDefinition(def);
+			ve.setSatisfy(dependency);
 			
 			for(Bundle impl:impls) {
 				Alternative alt = AlternativeBuilder.create()
-						.forDame(dame)
+						.forVe(ve)
 						.from(def, impl)
 						.build();
 				
-				dame.getAlts().add(alt);
+				ve.getAlts().add(alt);
 			}
-			ves.add(dame);
+			ves.add(ve);
 		}
 		return ves;
 	}

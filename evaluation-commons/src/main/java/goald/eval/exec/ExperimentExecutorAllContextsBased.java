@@ -148,7 +148,7 @@ public abstract class ExperimentExecutorAllContextsBased implements IExperiments
 			
 			@Override
 			public void onDeploymentChangeExecuted(Change change, DeploymentPlan adaptPlan) {
-				boolean status = this.getAgent().getRootDame().getIsAchievable();
+				boolean status = this.getAgent().getRootDame().isAchievable();
 				
 				System.out.print(status);
 			}

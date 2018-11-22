@@ -181,7 +181,7 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 			
 			@Override
 			public void onDeploymentChangeExecuted(Change change, DeploymentPlan adaptPlan) {
-				boolean status = this.getAgent().getRootDame().getIsAchievable();
+				boolean status = this.getAgent().getRootDame().isAchievable();
 				//toogleOff("changing_deployment");
 				if(status) {
 					toogleOn("system_available");

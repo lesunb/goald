@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import goald.mock.FeelingStationAdvisorRepoMock;
 import goald.model.CtxEvaluator;
 import goald.model.Dependency;
 import goald.model.GoalDManager;
@@ -24,15 +25,16 @@ public class UpdateDVMTest {
 	public void setup() {
 		repo = FeelingStationAdvisorRepoMock.regRepo();
 		
-		CtxEvaluator ctx = CtxEvaluatorBuilder.create()
+		CtxEvaluator gpsctx = CtxEvaluatorBuilder.create()
 				.with("gps_capability")
 				.build();
 		
-		GoalDManager agent = AgentBuilder.create()
-				.withContext(ctx)
+		GoalDManager mangerWithGPS = AgentBuilder.create()
+				.withContext(gpsctx)
 				.build();
 		
-		updater = new DVMUpdater(repo, agent);
+		updater = new DVMUpdater(repo, mangerWithGPS);
+
 	}
 
 	@Test
@@ -43,7 +45,7 @@ public class UpdateDVMTest {
 		
 		VE ve = repo.queryRepo(query).get(0);		
 		
-		boolean result = updater.resolveVE(ve).getIsAchievable();
+		boolean result = updater.resolveVE(ve).isAchievable();
 		Assert.assertFalse(result);
 		Assert.assertNull(ve.getChosenAlt());	
 	}
@@ -67,7 +69,7 @@ public class UpdateDVMTest {
 		VE ve = repo.queryRepo(query).get(0);		
 		
 		DVMUpdater updater = new DVMUpdater(repo, agent);
-		boolean result = updater.resolveVE(ve).getIsAchievable();
+		boolean result = updater.resolveVE(ve).isAchievable();
 		Assert.assertTrue(result);
 		
 		Assert.assertNotNull(ve.getChosenAlt());
@@ -75,7 +77,7 @@ public class UpdateDVMTest {
 		
 		VE ve2 = repo.queryRepo(query).get(0);		
 		
-		boolean result2 = updater.resolveVE(ve2).getIsAchievable();
+		boolean result2 = updater.resolveVE(ve2).isAchievable();
 		Assert.assertTrue(result2);
 		
 		Assert.assertNotNull(ve2.getChosenAlt());
@@ -103,7 +105,7 @@ public class UpdateDVMTest {
 		VE ve = repo.queryRepo(query).get(0);		
 		
 		DVMUpdater updater = new DVMUpdater(repo, manager);
-		boolean result = updater.resolveVE(ve).getIsAchievable();
+		boolean result = updater.resolveVE(ve).isAchievable();
 		Assert.assertTrue(result);
 		
 		// displayMyPosition
@@ -115,43 +117,4 @@ public class UpdateDVMTest {
 		Assert.assertEquals(2, ve.getChosenAlt().getListDepVE().size());	
 		//TODO check altenative grand children
 	}
-	
-	@Test
-	public void testResolveCondInNoApplicableContext() {		
-		List<Dependency> query = RepoQueryBuilder.create()
-				.queryFor("driveTips")
-				.build();
-		
-		VE ve = repo.queryRepo(query).get(0);		
-		
-		boolean result = updater.resolveVE(ve).getIsAchievable();
-		Assert.assertTrue(result);
-		Assert.assertNotNull(ve.getChosenAlt());	
-	}
-	
-	@Test
-	public void testResolveCondInApplicableContext() {		
-		List<Dependency> query = RepoQueryBuilder.create()
-				.queryFor("driveTips")
-				.build();
-		
-		VE ve = repo.queryRepo(query).get(0);		
-		
-		boolean result = updater.resolveVE(ve).getIsAchievable();
-		Assert.assertTrue(result);
-		Assert.assertNotNull(ve.getChosenAlt());	
-	}
-	
-//	@Test
-//	public void testResolveVEInNoValidAlternativeForAnyModifier() {		
-//		List<Dependency> query = RepoQueryBuilder.create()
-//				.queryFor("timeManager")
-//				.build();
-//		
-//		VE ve = repo.queryRepo(query).get(0);		
-//		
-//		boolean result = updater.resolveVE(ve).getIsAchievable();
-//		Assert.assertFalse(true);
-//		Assert.assertNotNull(ve.getChosenAlt());	
-//	}
 }

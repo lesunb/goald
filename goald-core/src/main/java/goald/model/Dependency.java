@@ -1,5 +1,7 @@
 package goald.model;
 
+import java.util.List;
+
 import goald.model.DependencyModifier.Type;
 
 public class Dependency {
@@ -20,9 +22,9 @@ public class Dependency {
 	
 	public Dependency(String identification, 
 			DependencyModifier.Type modifier, 
-			ContextCondition condition) {
+			 List<ContextCondition> conditions) {
 		this.identification = identification;
-		this.modifier = new DependencyModifier(modifier, condition);
+		this.modifier = new DependencyModifier(modifier, conditions);
 	}
 
 	public String getIdentication() {

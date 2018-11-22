@@ -52,8 +52,8 @@ public class AlternativeBuilder {
 		return this;
 	}
 
-	public AlternativeBuilder forDame(VE dame) {
-		this.alternative.setParentDame(dame);
+	public AlternativeBuilder forVe(VE ve) {
+		this.alternative.setParentVE(ve);
 		return this;
 	}
 

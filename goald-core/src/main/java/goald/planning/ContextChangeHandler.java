@@ -32,20 +32,20 @@ public class ContextChangeHandler {
 		affectedVesVector.addAll(affectedVes);
 		
 		for(VE affected:affectedVesVector) {
-			boolean previousStatus = affected.getIsAchievable();
+			boolean previousStatus = affected.isAchievable();
 			VE currentPoint = this.updater.resolveVE(affected);
 			
 			//changed and parent is not null
-			while(previousStatus != currentPoint.getIsAchievable().booleanValue()
+			while(previousStatus != currentPoint.isAchievable().booleanValue()
 					&& currentPoint.getParentAlt() != null){
 				
 				currentPoint = currentPoint.getParentAlt().getParentVE();
-				previousStatus = currentPoint.getIsAchievable();
+				previousStatus = currentPoint.isAchievable();
 				// should reevaluate parents
 				currentPoint = this.updater.resolveVE(currentPoint);
 			}
 			// got to root
-			if(!currentPoint.getIsAchievable() &&
+			if(!currentPoint.isAchievable() &&
 					currentPoint.getParentAlt() == null) {
 				result = false;
 				break;

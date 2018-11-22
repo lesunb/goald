@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.model.GoalDManager;
+import goald.mock.FeelingStationAdvisorRepoMock;
 import goald.model.CtxEvaluator;
 import goald.model.GoalsChangeRequest;
 import goald.model.util.AgentBuilder;

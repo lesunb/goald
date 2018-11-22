@@ -1,4 +1,4 @@
-package goald;
+package goald.mock;
 
 import goald.model.util.BundleBuilder;
 import goald.planning.VERespository;
@@ -89,14 +89,26 @@ public class FeelingStationAdvisorRepoMock {
 					.build())
 				.add(
 					BundleBuilder.create()
-					.identification("driveTips.def")
-					.defines("driveTips")
+					.identification("premiumDriveTips.def")
+					.defines("premiumDriveTips")
 					.build())
 				.add(
 					BundleBuilder.create()
-					.identification("driveTips.impl")
-					.provides("driveTips")
+					.identification("premiumDriveTips.impl")
+					.provides("premiumDriveTips")
 					.dependsOnCond("nearby", "mapView")
+					.build())
+				.add(
+					BundleBuilder.create()
+					.identification("soundAlertWhileDriving.def")
+					.defines("soundAlertWhileDriving")
+					.build())
+				.add(
+					BundleBuilder.create()
+					.identification("soundAlertWhileDriving.impl")
+					.provides("soundAlertWhileDriving")
+					.dependsOnCond("gps_capability", "displayMyPosition")
+					.dependsOnCond("sound_alert_active", "alarm")
 					.build())
 					.build();
 		

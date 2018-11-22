@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import goald.mock.FeelingStationAdvisorRepoMock;
 import goald.model.Dependency;
 import goald.model.GoalDManager;
 import goald.model.VE;

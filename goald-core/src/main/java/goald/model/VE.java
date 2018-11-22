@@ -13,6 +13,8 @@ public class VE {
 	private Alternative chosenAlt;
 	
 	private Boolean isAchievable;
+	
+	private Dependency satisfy;
 
 	public Bundle getDefinition() {
 		return definition;
@@ -49,16 +51,25 @@ public class VE {
 		this.chosenAlt = chosenAlt;
 	}
 
-	public Boolean getIsAchievable() {
+	public Boolean isAchievable() {
 		return isAchievable;
 	}
-
+	
 	public void setIsAchievable(Boolean isAchievable) {
 		this.isAchievable = isAchievable;
 	}
 	
+	public Dependency getSatisfy() {
+		return satisfy;
+	}
+
+	public void setSatisfy(Dependency satisfy) {
+		this.satisfy = satisfy;
+	}
+	
 	@Override
 	public String toString() {
-		return "VE [definition=" + definition + ", chosenAlt=" + chosenAlt + ", alts=" + alts + "]";
+		return "VE [ satisfy="+ satisfy +", definition=" + definition + ", chosenAlt=" + chosenAlt + ", alts=" + alts + "]";
 	}
+
 }

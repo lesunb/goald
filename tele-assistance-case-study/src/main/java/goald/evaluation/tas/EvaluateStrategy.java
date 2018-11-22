@@ -12,9 +12,12 @@ public class EvaluateStrategy  {
 	@Inject
 	ReportTimelineEvaluationToFile report;
 	
+//	@Inject
+//	TASAllContextsChangesScenarios executor;
+
 	@Inject
-	TASAllContextsChangesScenarios executor;
-	
+	TASTimelineStudyCaseScenarios executor;
+
 	public void exec() {
 		
 		try {

@@ -1,5 +1,7 @@
 package goald.model;
 
+import java.util.List;
+
 public class DependencyModifier {
 
 	public enum TypeMulti {
@@ -18,17 +20,25 @@ public class DependencyModifier {
 		}
 	};
 	
-	Type type;
+	private Type type;
 	
-	ContextCondition condition;
-	
-	public DependencyModifier(Type type, ContextCondition condition){
+	private List<ContextCondition> conditions;
+
+	public DependencyModifier(Type type, List<ContextCondition> conditions){
 		this.type = type;
-		this.condition = condition;
+		this.conditions = conditions;
 	}
 	
 	public DependencyModifier(Type type){
 		this.type = type;
+	}
+	
+	public Type getType() {
+		return type;
+	}
+
+	public  List<ContextCondition> getConditions() {
+		return conditions;
 	}
 
 	@Override
@@ -36,7 +46,7 @@ public class DependencyModifier {
 		if(this.type.multy == TypeMulti.unary) {
 			return type.toString();
 		}else {
-			return type + "" + condition;
+			return type + ":" + conditions;
 		}
 	}
 	

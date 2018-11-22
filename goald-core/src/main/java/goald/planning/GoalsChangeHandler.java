@@ -40,7 +40,7 @@ public class GoalsChangeHandler {
 					.build();
 			
 			Alternative virtualAlt = AlternativeBuilder.create()
-					.forDame(dvm)
+					.forVe(dvm)
 					.withDependencies(goals)
 					.build();
 			

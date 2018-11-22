@@ -45,6 +45,9 @@ public class GoalDManager {
 	}
 
 	public Integer getQualityWeight(String label) {
+		if(weightMap == null) {
+			weightMap = new HashMap<>();
+		}
 		return weightMap.get(label);
 	}
 

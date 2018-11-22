@@ -20,7 +20,7 @@ public class DeploymentChecker {
 		Deployment depl = agent.getDeployment();
 		CtxEvaluator ctx = agent.getActualCtx();
 		
-		if(!agent.getRootDame().getIsAchievable()) {
+		if(!agent.getRootDame().isAchievable()) {
 			change.setEffect(Effect.NEUTRAL);
 			return true;
 		}
