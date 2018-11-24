@@ -1,4 +1,4 @@
-package goald.evaluation.tas;
+package goald.evaluation.tas.timeline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import goald.eval.exec.ExperimentExecutorTimelineBased;
+import goald.evaluation.tas.TASRepository;
 import goald.evaluation.timeline.TickProducer;
 import goald.evaluation.timeline.TimelineEvaluation;
 import goald.evaluation.timeline.TimelineTimer;
@@ -36,7 +37,7 @@ public class TASTimelineStudyCaseScenarios extends ExperimentExecutorTimelineBas
 		 * Study case scenarios. Each one define a different set of contexts. 
 		 * For each one the deployment will be planned
 		 */
-		scenarioRepetitions(100, 1, 
+		scenarioRepetitions(1, 1, 
 				TickProducer.create(100l,0l,12000l),
 				(ctxEvaluatorBuilder)-> ctxEvaluatorBuilder
 					.with(
@@ -52,13 +53,15 @@ public class TASTimelineStudyCaseScenarios extends ExperimentExecutorTimelineBas
 					.addGoal("ProvideHealthSupport")
 				,
 				(ctxMonitorBuilding) -> ctxMonitorBuilding
-//					.rem(1000l, "not-battery-is-low")
-					.add(2000l, "not-battery-is-low")
+					.add(2000l, "!battery-is-low")
 					.rem(3000l, "internet-connection")
 					.add(4000l, "internet-connection")
-					//.rem(6000l, "not-patient-is-ok")
+					.add(6000l, "!patient-is-ok")
 					.add(7000l, "doctor-is-present")
-					.rem(11000l, "doctor-is-present")
+					.add(8000l, "drug-is-available")
+					.rem(1000l, "!patient-is-ok")
+					.rem(11000l, "!battery-is-low")
+					.rem(12000l, "doctor-is-present")
 				, evaluations, baseEvaluation);
 
 		return evaluations;

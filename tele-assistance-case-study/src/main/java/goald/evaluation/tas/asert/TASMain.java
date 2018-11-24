@@ -1,4 +1,4 @@
-package goald.evaluation.tas;
+package goald.evaluation.tas.asert;
 
 import javax.inject.Singleton;
 
@@ -16,9 +16,6 @@ public class TASMain {
 
 		Weld weld = new Weld();
 		WeldContainer container = weld.initialize();
-		
-//		container.select(TimelineEvaluateStrategy.class).get()
-//		.exec();
 		
 		container.select(TasAssertEvaluateStrategy.class).get()
 		.exec();

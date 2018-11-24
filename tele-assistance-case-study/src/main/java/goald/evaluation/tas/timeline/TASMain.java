@@ -1,11 +1,9 @@
-package goald.evaluation.tas;
+package goald.evaluation.tas.timeline;
 
 import javax.inject.Singleton;
 
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
-
-import goald.evaluation.tas.asert.TasAssertEvaluateStrategy;
 
 @Singleton
 public class TASMain {
@@ -17,11 +15,11 @@ public class TASMain {
 		Weld weld = new Weld();
 		WeldContainer container = weld.initialize();
 		
-//		container.select(TimelineEvaluateStrategy.class).get()
-//		.exec();
-		
-		container.select(TasAssertEvaluateStrategy.class).get()
+		container.select(TimelineEvaluateStrategy.class).get()
 		.exec();
+		
+//		container.select(TasAssertEvaluateStrategy.class).get()
+//		.exec();
 
 		container.shutdown();
 

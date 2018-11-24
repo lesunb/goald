@@ -32,6 +32,10 @@ public class VERespository {
 		for(Dependency dependency:dependencies) {
 			Bundle def = this.repo.queryForDefinition(dependency);
 			List<Bundle> impls = this.repo.queryForImplementations(dependency);
+			if(def == null) {
+				System.out.println("no def found for dep " + dependency);
+				return null;
+			}
 			if(def == null || impls == null || impls.isEmpty()) {
 				return null;
 			}

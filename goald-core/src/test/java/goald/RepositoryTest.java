@@ -29,13 +29,13 @@ public class RepositoryTest {
 					BundleBuilder.create()
 					.identification("greater.impl")
 					.provides("greet")
-					.requires("display_capability")
+					.condition("display_capability")
 					.build())
 				.add(
 					BundleBuilder.create()
 					.identification("alarm")
 					.provides("alarm")
-					.requires("sound_capability")
+					.condition("sound_capability")
 					.build())
 				.add(
 					BundleBuilder.create()
@@ -46,7 +46,7 @@ public class RepositoryTest {
 					BundleBuilder.create()
 					.identification("displayMyPosition.impl")
 					.provides("displayMyPosition")
-					.requires("display_capability")
+					.condition("display_capability")
 					.dependsOn("getPositionByGPS")
 					.dependsOn("mapView")
 					.build())
@@ -59,7 +59,7 @@ public class RepositoryTest {
 					BundleBuilder.create()
 					.identification("getPositionByGPS")
 					.provides("getPositionByGPS")
-					.requires("gps_capability")
+					.condition("gps_capability")
 					.build())
 				.add(
 					BundleBuilder.create()
@@ -70,7 +70,7 @@ public class RepositoryTest {
 					BundleBuilder.create()
 					.identification("mapView.impl")
 					.provides("mapView")
-					.requires("display_capability")
+					.condition("display_capability")
 					.build())
 				.build();
 	}

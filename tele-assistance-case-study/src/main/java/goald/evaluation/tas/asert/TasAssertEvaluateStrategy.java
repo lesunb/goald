@@ -1,27 +1,27 @@
-package goald.evaluation.tas;
+package goald.evaluation.tas.asert;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import goald.evaluation.timeline.ReportTimelineEvaluationToFile;
-import goald.evaluation.timeline.TimelineEvaluation;
+import goald.evaluation.response.ReportResponseEvaluationToFile;
+import goald.evaluation.response.ResponseEvaluation;
 
-public class EvaluateStrategy  {
+public class TasAssertEvaluateStrategy  {
 
 	@Inject
-	ReportTimelineEvaluationToFile report;
+	ReportResponseEvaluationToFile report;
 	
 //	@Inject
 //	TASAllContextsChangesScenarios executor;
 
 	@Inject
-	TASTimelineStudyCaseScenarios executor;
+	TASAssertAllContextsChangesScenarios executor;
 
 	public void exec() {
 		
 		try {
-			List<TimelineEvaluation> evaluation= executor.exec();
+			List<ResponseEvaluation> evaluation= executor.exec();
 			report.start(evaluation.size());
 			report.doReport(evaluation.stream());
 			report.flushAll();

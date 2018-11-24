@@ -40,38 +40,40 @@ public class DVMUpdater {
 					.getModifier().getConditions(), ve);
 			ve.setIsAchievable(true);
 			ve.setChosenAlt(null);
-		}
-		
-		for(Alternative alt: ve.getAlts()) {
-			manager.getCtxVEMap().add(alt.getCtxReq(), ve);
-			if(!ctx.check(alt.getCtxReq())) {
-				//context not satisfied, can't apply this alternative
-				alt.setResolved(false);
-			}else {
-				// context satisfied, resolve dependencies
-				boolean resolved = true;
-				if(!alt.getDependencies().isEmpty()) {
-					List<VE> depVElist = repo.queryForDependencies(alt);
-					alt.setListDepVE(depVElist);
-					
-					if(depVElist == null) {
-						throw new RuntimeException("dependency goals not resolved" + alt.getDependencies());
-					}
-					
-					for(VE dependency: depVElist) {
-						VE result = resolveVE(dependency);
-						if(!result.isAchievable()) {
-							resolved = false;
-							break;
+		} else {
+			
+			for(Alternative alt: ve.getAlts()) {
+				manager.getCtxVEMap().add(alt.getCtxReq(), ve);
+				if(!ctx.check(alt.getCtxReq())) {
+					//context not satisfied, can't apply this alternative
+					alt.setResolved(false);
+				}else {
+					// context satisfied, resolve dependencies
+					boolean resolved = true;
+					if(!alt.getDependencies().isEmpty()) {
+						List<VE> depVElist = repo.queryForDependencies(alt);
+						alt.setListDepVE(depVElist);
+						
+						if(depVElist == null) {
+							throw new RuntimeException("dependency goals not resolved" + alt.getDependencies());
+						}
+						
+						for(VE dependency: depVElist) {
+							VE result = resolveVE(dependency);
+							if(!result.isAchievable()) {
+								resolved = false;
+								break;
+							}
 						}
 					}
+					alt.setResolved(resolved);
 				}
-				alt.setResolved(resolved);
+				selectBetterAlternativeSet(ve, alt);
 			}
-			selectBetterAlternativeSet(ve, alt);
+			boolean isSatifiable = checkAltValidity(ve, ctx);
+			ve.setIsAchievable(isSatifiable);	
 		}
-		boolean isSatifiable = checkAltValidity(ve, ctx);
-		ve.setIsAchievable(isSatifiable);	
+		
 		return ve;
 	}
 

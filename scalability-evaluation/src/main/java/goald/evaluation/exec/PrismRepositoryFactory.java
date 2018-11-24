@@ -112,7 +112,7 @@ public class PrismRepositoryFactory {
 				Bundle leaf = BundleBuilder.create()
 						.identification(artifactLabel)
 						.provides(goalId)
-						.requires(contextSelectionStr) // generated the conditions after the selection
+						.condition(contextSelectionStr) // generated the conditions after the selection
 						.build();
 				builder.add(leaf);
 			}

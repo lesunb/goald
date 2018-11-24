@@ -80,14 +80,14 @@ public class BundleBuilder {
 		return this;
 	}
 	
-	public BundleBuilder requires(String identification){
+	public BundleBuilder condition(String identification){
 		this.bundle.getConditions().add((new ContextCondition(identification)));
 		return this;
 	}
 	
-	public BundleBuilder requires(String[] conditions){
+	public BundleBuilder condition(String[] conditions){
 		for(String condition:conditions){
-			requires(condition);
+			condition(condition);
 		}
 		return this;
 	}

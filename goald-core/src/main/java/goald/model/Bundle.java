@@ -19,6 +19,12 @@ public class Bundle {
 	protected List<Dependency> depends;
 	
 	protected List<QualityParameter> qualityParams;
+	
+	public Bundle() {}
+	
+	public Bundle(String identification) {
+		this.identification = identification;
+	}
 
 	public String getUuid() {
 		return uuid;

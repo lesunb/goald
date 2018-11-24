@@ -59,8 +59,6 @@ public class TASAllContextsChangesScenarios extends ExperimentExecutorAllContext
 		return evaluations;
 	}
 	
-	
-	
 	protected IRepository getRepo(){
 		return TASRepository.getRepo();
 	}

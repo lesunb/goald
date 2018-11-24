@@ -23,7 +23,7 @@ public class TASRepository {
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("ProvideAutomatedLifeSupport.def")
+			.identification("ProvideAutomatedLifeSupport-def")
 			.defines("ProvideAutomatedLifeSupport")
 			.build())
 		.add(
@@ -34,6 +34,7 @@ public class TASRepository {
 			.withQuality("responseTime", 10)
 			.dependsOn("MonitorPatient")
 			.dependsOnCond("!patient-is-ok", "EnactTreatment")
+			.condition("!battery-is-low")
 			.build())
 		.add(
 			BundleBuilder.create()
@@ -55,17 +56,17 @@ public class TASRepository {
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("GetVitalParams-definition")
+			.identification("GetVitalParams-def")
 			.defines("GetVitalParams")
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("GetVitalParams-impl")
+			.identification("GetSensedData-impl")
 			.provides("GetVitalParams")
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("AnalyzeData-definition")
+			.identification("AnalyzeData-def")
 			.defines("AnalyzeData")
 			.build())
 		.add(
@@ -79,7 +80,7 @@ public class TASRepository {
 			BundleBuilder.create()
 			.identification("RemoteAnalysis-impl")
 			.provides("AnalyzeData")
-			.requires("internet-connection")
+			.condition("internet-connection")
 			.withQuality("precision", 10)
 			.withQuality("responseTime", 5)
 			.build())
@@ -88,67 +89,50 @@ public class TASRepository {
 			BundleBuilder.create()
 			.identification("EnactTreatment-impl")
 			.provides("EnactTreatment")
-			//.requires("not-patient-is-ok")
+			.condition("!patient-is-ok")
 			.dependsOn("AdministerMedicine")
 			.dependsOn("NotifyEmergencyMedicalServices")
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("AdministerMedicine-definition")
+			.identification("AdministerMedicine-def")
 			.defines("AdministerMedicine")
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("AdministerMedicine-impl")
 			.provides("AdministerMedicine")
-			.dependsOn("ChangeDrug")
-			.dependsOn("ChangeDose")
+			.dependsOnCond("doctor-is-present", "ChangeDrug")
+			.dependsOnCond("drug-is-available", "ChangeDose")
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("ChangeDrug-definition")
+			.identification("ChangeDrug-def")
 			.defines("ChangeDrug")
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("ChangeDose-definition")
+			.identification("ChangeDose-def")
 			.defines("ChangeDose")
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("NonInvasive-definition")
-			.defines("NonInvasive")
-			.build())
-		.add(
-			BundleBuilder.create()
-			.identification("Invasive-definition")
-			.defines("Invasive")
-			.build())
-		.add(
-			BundleBuilder.create()
-			.identification("NonInvasive-impl")
+			.identification("ChangeDrug-impl")
 			.provides("ChangeDrug")
-			.build())
-		.add(
-			BundleBuilder.create()
-			.identification("Invasive-impl")
-			.requires("doctor-is-present")
-			.withQuality("responseTime", 10)
-			.provides("ChangeDrug")
+			.condition("doctor-is-present")
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("ChangeDose-impl")
 			.provides("ChangeDose")
-			//.requires("drug-being-administered")
-			.build())
-		.add(
-			BundleBuilder.create()
-			.identification("SendAlarm-impl")
-			.provides("SendAlarm")
-			.requires("internet-connection")
+			.condition("drug-is-available")
 			.build())
 		/* Panic Button Impl */
+		.add(
+			BundleBuilder.create()
+			.identification("ProvideSelfDiagnosedEmergenciesSupport-def")
+			.defines("ProvideSelfDiagnosedEmergenciesSupport")
+			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("ProvideSelfDiagnosedEmergenciesSupport-impl")
@@ -160,7 +144,7 @@ public class TASRepository {
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("PushButton-definition")
+			.identification("PushButton-def")
 			.defines("PushButton")
 			.build())
 		.add(
@@ -170,7 +154,7 @@ public class TASRepository {
 			.build())
 		.add(
 			BundleBuilder.create()
-			.identification("NotifyEmergencyMedicalServices-definition")
+			.identification("NotifyEmergencyMedicalServices-def")
 			.defines("NotifyEmergencyMedicalServices")
 			.build())
 		.add(
@@ -184,7 +168,7 @@ public class TASRepository {
 			BundleBuilder.create()
 			.identification("AlarmService-impl")
 			.provides("NotifyEmergencyMedicalServices")
-			.requires("internet-connection")
+			.condition("internet-connection")
 			.withQuality("precision", 10)
 			.withQuality("responseTime", 5)
 			.build())

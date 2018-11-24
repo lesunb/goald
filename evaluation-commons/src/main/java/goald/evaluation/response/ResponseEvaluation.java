@@ -41,6 +41,7 @@ public class ResponseEvaluation extends EvaluationAbstract<Measure> {
 			clone.constant.put(key, this.constant.get(key));
 		}
 		clone.responseVariable = this.responseVariable;
+		clone.timer = this.timer;
 		return clone;
 	}
 
@@ -67,7 +68,7 @@ public class ResponseEvaluation extends EvaluationAbstract<Measure> {
 	}
 	
 	public void begin() {
-		this.timer.begin();
+		this.getTimer().begin();
 	}
 	
 	public void setTimer(ExperimentTimer timer) {

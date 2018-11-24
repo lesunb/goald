@@ -8,7 +8,7 @@ import java.util.Set;
 public class Deployment {
 
 	private Collection<BundleStatus> bundleStatus;
-
+	
 	public Collection<BundleStatus> getBundles() {
 		if(bundleStatus == null) {
 			this.bundleStatus = new ArrayList<>();
@@ -25,6 +25,13 @@ public class Deployment {
 			throw new IllegalStateException();
 		}
 		getBundles().add(new BundleStatus(status, bundle) );
+	}
+	
+	public void add(Status status, String identification) {
+		if(status == null || identification == null) {
+			throw new IllegalStateException();
+		}
+		getBundles().add(new BundleStatus(status, new Bundle(identification)) );
 	}
 	
 	public void remove(Bundle bundle) {
@@ -87,5 +94,42 @@ public class Deployment {
 	public String toString() {
 		return "Deployment [bundleStatus=" + bundleStatus + "]";
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bundleStatus == null) ? 0 : bundleStatus.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Deployment other = (Deployment) obj;
+		if (bundleStatus == null) {
+			if (other.bundleStatus != null)
+				return false;
+		}
+		
+		//TODO
+		return this.toString().equals(
+				other.toString());
+	}
+	
+	public Deployment clone() {
+		Deployment clone = new Deployment();
+		
+		for(BundleStatus status: this.bundleStatus) {
+			clone.getBundles().add(new BundleStatus(status.getStatus(), status.getBundle()));
+		}
+		return clone;
+	}
+
 
 }

@@ -77,25 +77,25 @@ public class SimpleTASRepository {
 			BundleBuilder.create()
 			.identification("AnalyzeData-impl")
 			.provides("AnalyzeData")
-			.requires("internet-connection")
+			.condition("internet-connection")
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("ChangeDose-impl")
 			.provides("ChangeDose")
-			.requires("internet-connection")
+			.condition("internet-connection")
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("ChangeDrug-impl")
 			.provides("ChangeDrug")
-			.requires("internet-connection")
+			.condition("internet-connection")
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("SendAlarm-impl")
 			.provides("SendAlarm")
-			.requires("internet-connection")
+			.condition("internet-connection")
 			.build())
 		/* Handle Button Push Impl */
 		.add(

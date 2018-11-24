@@ -83,7 +83,7 @@ public class TASRepositoryRootAnd {
 			BundleBuilder.create()
 			.identification("RemoteAnalysis-impl")
 			.provides("AnalyzeData")
-			.requires("internet-connection")
+			.condition("internet-connection")
 			.withQuality("precision", 10)
 			.withQuality("responseTime", 5)
 			.build())
@@ -148,13 +148,13 @@ public class TASRepositoryRootAnd {
 			BundleBuilder.create()
 			.identification("ChangeDose-impl")
 			.provides("ChangeDose")
-			.requires("drug-being-administered")
+			.condition("drug-being-administered")
 			.build())
 		.add(
 			BundleBuilder.create()
 			.identification("SendAlarm-impl")
 			.provides("SendAlarm")
-			.requires("internet-connection")
+			.condition("internet-connection")
 			.build())
 		/* Panic Button Impl */
 		.add(
@@ -190,7 +190,7 @@ public class TASRepositoryRootAnd {
 			BundleBuilder.create()
 			.identification("AlarmService-impl")
 			.provides("NotifyEmergencyMedicalServices")
-			.requires("internet-connection")
+			.condition("internet-connection")
 			.withQuality("precision", 10)
 			.withQuality("responseTime", 5)
 			.build())

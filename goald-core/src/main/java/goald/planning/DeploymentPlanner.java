@@ -15,27 +15,27 @@ public class DeploymentPlanner {
 	
 	DVMUpdater updater;
 	
-	GoalDManager agent;
+	GoalDManager manager;
 	
 	public DeploymentPlanner(VERespository repo, GoalDManager agent) {
-		this.agent = agent;
+		this.manager = agent;
 		this.updater = new DVMUpdater(repo, agent);
 	}
 	
 	
 	public DeploymentPlan createPlan() {
-		VE rootDame = this.agent.getRootDame();
+		VE rootDame = this.manager.getRootDame();
 		if(rootDame.getChosenAlt() == null) {		
 			// deployment not possible
 			// TODO how to procced?
 			return DeploymentPlanBuilder.create()
-					.uninstall(this.agent.getDeployment().getAll(Status.ACTIVE))
+					.uninstall(this.manager.getDeployment().getAll(Status.ACTIVE))
 					.build();
 		}
 		
 		Set<Bundle> sellected = addToSellected(rootDame, new HashSet<>());
 		
-		Set<Bundle> active = this.agent.getDeployment().getAll(Status.ACTIVE);
+		Set<Bundle> active = this.manager.getDeployment().getAll(Status.ACTIVE);
 		
 		SetUtils<Bundle> utils = new SetUtils<Bundle>();
 		Set<Bundle> toInstall = utils.diffSet(sellected, active);
@@ -48,7 +48,7 @@ public class DeploymentPlanner {
 	}
 	
 	public Set<Bundle> addToSellected(VE dame, Set<Bundle> sellected) {
-		if(dame.getChosenAlt() == null) {
+		if(dame.getChosenAlt() == null || !dame.isAchievable()) {
 			// incomplete deployment plan
 			return sellected;
 		}
@@ -67,6 +67,6 @@ public class DeploymentPlanner {
 	}
 	
 	public boolean isAreadyDeployed(Bundle bundle) {
-		return this.agent.getDeployment().getStatus(bundle) == Status.ACTIVE;
+		return this.manager.getDeployment().getStatus(bundle) == Status.ACTIVE;
 	}
 }
