@@ -1,10 +1,10 @@
 # goal
 
-image:https://travis-ci.org/lesunb/goald.svg?branch=master["Build Status", link="https://travis-ci.org/lesunb/goald"]
-image:https://coveralls.io/repos/github/lesunb/goald/badge.svg?branch=master["Coverage Status", link="https://coveralls.io/repos/github/lesunb/goald?branch=master"]
+[comment]: <>  image:https://travis-ci.org/lesunb/goald.svg?branch=master["Build Status", link="https://travis-ci.org/lesunb/goald"]
+[comment]: <>  image:https://coveralls.io/repos/github/lesunb/goald/badge.svg?branch=master["Coverage Status", link="https://coveralls.io/repos/github/lesunb/goald?branch=master"]
 image:https://api.bintray.com/packages/lesunb/goald/goald/images/download.svg[link="https://bintray.com/lesunb/goald/goald/_latestVersion"]
-image:https://codeclimate.com/github/lesunb/goald/badges/issue_count.svg["Issues", link="https://codeclimate.com/github/lesunb/goald"]
-image:https://ci.appveyor.com/api/projects/status/mxxhw5ahlcdje6p6?svg=true["appveyor", link="https://ci.appveyor.com/project/gabrielsr/goald"]
+[comment]: <>  image:https://codeclimate.com/github/lesunb/goald/badges/issue_count.svg["Issues", link="https://codeclimate.com/github/lesunb/goald"]
+[comment]: <>  image:https://ci.appveyor.com/api/projects/status/mxxhw5ahlcdje6p6?svg=true["appveyor", link="https://ci.appveyor.com/project/gabrielsr/goald"]
 
 Intro 
 =====
