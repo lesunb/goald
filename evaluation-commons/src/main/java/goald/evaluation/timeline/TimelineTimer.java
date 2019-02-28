@@ -22,7 +22,7 @@ public class TimelineTimer implements ExperimentTimer {
 		return new TimelineTimer();
 	}
 	
-	private TimelineTimer() { }
+	protected TimelineTimer() { }
 	
 	public void forwardTimerTo(Long baseTime) {
 		this.baseTime = baseTime;
@@ -42,7 +42,7 @@ public class TimelineTimer implements ExperimentTimer {
 	@Override
 	public void begin() {
 		measures = new ArrayList<>();
-		startClockTime = System.currentTimeMillis();
+		startClockTime = currentTime();
 	}
 	
 	/* (non-Javadoc)
@@ -53,19 +53,19 @@ public class TimelineTimer implements ExperimentTimer {
 		if(startClockTime == null){
 			throw new IllegalStateException("Caller tried to split non initialized timer!");
 		}
-		Long newTime = System.nanoTime();
+		Long newTime = currentTime();
 		/* measured clock time + base time */
 		Long timestamp = (newTime - startClockTime) + baseTime;
 		
 		Long duration = newTime - startClockTime;
 		Split split = new Split(label, duration, timestamp);
 		measures.add(split);
-		startClockTime = System.nanoTime(); // start the timer againg
+		startClockTime = currentTime();
 		return duration;
 	}
 	
 	public long getTimestamp() {
-		Long newTime = System.currentTimeMillis();
+		Long newTime = currentTime();
 		/* measured clock time + base time */
 		return (newTime - startClockTime) + baseTime;
 	}
@@ -77,6 +77,10 @@ public class TimelineTimer implements ExperimentTimer {
 	public void finish() {
 		startClockTime = null;
 		// TODO Auto-generated method stub
+	}
+	
+	protected long currentTime() {
+		return System.currentTimeMillis();
 	}
 
 	/* (non-Javadoc)

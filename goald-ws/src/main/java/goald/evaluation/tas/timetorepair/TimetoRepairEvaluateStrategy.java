@@ -1,4 +1,4 @@
-package goald.evaluation.tas.timeline;
+package goald.evaluation.tas.timetorepair;
 
 import java.util.List;
 
@@ -7,17 +7,15 @@ import javax.inject.Inject;
 import goald.evaluation.timeline.ReportTimelineEvaluationToFile;
 import goald.evaluation.timeline.TimelineEvaluation;
 
-public class TimelineEvaluateStrategy  {
+public class TimetoRepairEvaluateStrategy  {
 
 	@Inject
 	ReportTimelineEvaluationToFile report;
-	
+
 	@Inject
-	TASTimelineStudyCaseScenarios executor;
+	TimetoRepairScenarios executor;
 
 	public void exec() {
-		
-		report.setMeasureOrder("context", "bundle", "system", "failure");
 		
 		try {
 			List<TimelineEvaluation> evaluation= executor.exec();

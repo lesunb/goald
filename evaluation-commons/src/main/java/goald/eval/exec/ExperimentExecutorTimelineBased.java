@@ -156,7 +156,7 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 			@Override
 			public void onStartup() {
 				for(ContextCondition context: getAgent().getActualCtx().getCtxCollection()) {
-					toogleOn(context.getLabel(), 0l);
+					toogleOn(context.getLabel(), "context", 0l);
 					//toogleOn("ctx_"+context.getLabel());
 				}
 				//toogleOn("system");
@@ -165,7 +165,7 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 			@Override
 			public void beforePlanningForContextChange(ContextChange change) {
 				if(change.getOp() == OP.ADDED) {
-					toogleOn(change.getLabel(), change.getTime());
+					toogleOn(change.getLabel(), "context", change.getTime());
 					//toogleOn("ctx_"+change.getLabel());
 				}else if(change.getOp() == OP.REMOVED) {
 					toogleOff(change.getLabel(), change.getTime());
@@ -184,7 +184,7 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 				boolean status = this.getAgent().getRootDame().isAchievable();
 				//toogleOff("changing_deployment");
 				if(status) {
-					toogleOn("system_available");
+					toogleOn("system_available", "system");
 				}else {
 					toogleOff("system_available", change.getTime());
 				}
@@ -194,23 +194,19 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 						continue;
 					}
 					if(comm.getOp() == DeployOp.INSTALL) {
-						toogleOn(comm.getBundle().identification);	
+						toogleOn(comm.getBundle().identification, "bundle");	
 					}else {
 						toogleOff(comm.getBundle().identification);
 					}
 				}
 			}
-			@Override
-			public void onFailure(Change change) {
-				toogleOff("system_available", change.getTime());
+			
+			private void toogleOn(String label, String type, Long timestamp) {
+				evaluation.toogleOn(execIndex, label, type, timestamp);
 			}
 			
-			private void toogleOn(String label) {
-				evaluation.splitToogleOn(execIndex, label);
-			}
-			
-			private void toogleOn(String label, Long timestamp) {
-				evaluation.toogleOn(execIndex, label,timestamp);
+			private void toogleOn(String label, String type) {
+				evaluation.splitToogleOn(execIndex, label, type);
 			}
 			
 			private void toogleOff(String label) {
@@ -218,7 +214,12 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 			}
 			
 			private void toogleOff(String label, Long timestamp) {
-				evaluation.toogleOff(execIndex, label,timestamp);
+				evaluation.toogleOff(execIndex, label, timestamp);
+			}
+			
+			@Override
+			public void onFailure(Change change) {
+				toogleOff("system_available", change.getTime());
 			}
 		};
 	}

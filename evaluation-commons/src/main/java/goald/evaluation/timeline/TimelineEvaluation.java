@@ -18,6 +18,8 @@ public class TimelineEvaluation extends EvaluationAbstract<TimelineMeasure> {
 	
 	private Map<String, TimelineMeasure> whatIsOnMap = new HashMap<>();
 	
+	private Long endTime;
+	
 	@Inject
 	private Logger logger;
 	
@@ -26,16 +28,24 @@ public class TimelineEvaluation extends EvaluationAbstract<TimelineMeasure> {
 	 * @param execIndex
 	 * @param label
 	 */
-	public void splitToogleOn(Integer execIndex, String label) {
+	public void splitToogleOn(Integer execIndex, String label, String type) {
 		long timestamp = getTimer().getTimestamp();
-		toogleOn(execIndex, label, timestamp);
+		toogleOn(execIndex, label, type, timestamp);
+	}
+	
+	public void splitToogleOn(Integer execIndex, String label) {
+		this.splitToogleOn(execIndex, label, null);
 	}
 	
 	public void toogleOn(Integer execIndex, String label, Long timestamp) {
+		this.toogleOn(execIndex, label, null, timestamp);
+	}
+	
+	public void toogleOn(Integer execIndex, String label, String type, Long timestamp) {
 		if(whatIsOnMap.get(label) != null) {
 			logger.warn("trying toogle on what is aready on " + label + " at " + timestamp);
 		} else {
-			TimelineMeasure mesure = new TimelineMeasure(label, timestamp, null);
+			TimelineMeasure mesure = new TimelineMeasure(label, type, timestamp, null);
 			whatIsOnMap.put(label, mesure);
 			getMeasures(execIndex).add(mesure);
 			logger.trace(label + " on at " + timestamp);
@@ -62,6 +72,7 @@ public class TimelineEvaluation extends EvaluationAbstract<TimelineMeasure> {
 		whatIsOnMap.values().forEach(measure ->{
 			measure.end = lastTime;
 		});
+		endTime = lastTime;
 		whatIsOnMap.clear();
 	}	
 	
@@ -100,6 +111,10 @@ public class TimelineEvaluation extends EvaluationAbstract<TimelineMeasure> {
 		clone.timer = this.timer.clone();
 		clone.logger = this.logger;
 		return clone;
+	}
+	
+	public Long getEndTime() {
+		return this.endTime;
 	}
 	
 	@Override
