@@ -77,9 +77,7 @@ public class RepositoryTest {
 	
 	@Test
 	public void testQueryForDefinition() {
-
-		Dependency goal = new Dependency("greet");
-		Bundle bundle = repo.queryForDefinition(goal);
+		Bundle bundle = repo.queryForDefinition("greet");
 
 		Assert.assertEquals("greater.def", bundle.identification);
 		
@@ -87,9 +85,7 @@ public class RepositoryTest {
 	
 	@Test
 	public void testQueryForImplementation() {
-
-		Dependency goal = new Dependency("greet");
-		List<Bundle> bundles = repo.queryForImplementations(goal);
+		List<Bundle> bundles = repo.queryForImplementations("greet");
 
 		Assert.assertEquals(1, bundles.size());
 		Assert.assertEquals("greater.impl", bundles.get(0).identification);

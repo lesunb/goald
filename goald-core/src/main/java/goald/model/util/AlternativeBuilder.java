@@ -8,6 +8,7 @@ import goald.model.Alternative;
 import goald.model.Bundle;
 import goald.model.ContextCondition;
 import goald.model.Dependency;
+import goald.model.DependencyModifier.Type;
 import goald.model.Goal;
 import goald.model.VE;
 
@@ -59,7 +60,7 @@ public class AlternativeBuilder {
 
 	public AlternativeBuilder withDependencies(List<Goal> dependencyGoals) {
 		Stream<Dependency> dependencies = dependencyGoals.stream()
-				.map( (goal -> new Dependency(goal.getIdentication())));
+				.map( (goal -> new Dependency(Type.ONE, goal.getIdentication())));
 		this.alternative.setDependencies(dependencies.collect(Collectors.toList()));
 		return this;
 	}

@@ -34,6 +34,17 @@ public class FeelingStationAdvisorRepoMock {
 					.build())
 				.add(
 					BundleBuilder.create()
+					.identification("displayORAlert.def")
+					.defines("displayORAlert")
+					.build())
+				.add(
+					BundleBuilder.create()
+					.identification("displayORAlert.impl")
+					.provides("displayORAlert")
+					.dependsOnAny("displayMyPosition", "alarm")
+					.build())
+				.add(
+					BundleBuilder.create()
 					.identification("displayMyPosition.def")
 					.defines("displayMyPosition")
 					.build())

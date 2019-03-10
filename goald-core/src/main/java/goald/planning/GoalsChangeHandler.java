@@ -3,6 +3,7 @@ package goald.planning;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import goald.analysis.DVMUpdater;
 import goald.model.Alternative;
 import goald.model.Dependency;
 import goald.model.Goal;

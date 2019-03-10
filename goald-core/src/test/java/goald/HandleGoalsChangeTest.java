@@ -7,13 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.model.GoalDManager;
+import goald.analysis.DVMUpdater;
 import goald.mock.FeelingStationAdvisorRepoMock;
 import goald.model.CtxEvaluator;
 import goald.model.GoalsChangeRequest;
 import goald.model.util.AgentBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.GoalsChangeRequestBuilder;
-import goald.planning.DVMUpdater;
 import goald.planning.VERespository;
 import goald.planning.GoalsChangeHandler;
 

@@ -23,10 +23,17 @@ public class DependencyModifier {
 	private Type type;
 	
 	private List<ContextCondition> conditions;
+	
+	private int groupId;
 
 	public DependencyModifier(Type type, List<ContextCondition> conditions){
 		this.type = type;
 		this.conditions = conditions;
+	}
+	
+	public DependencyModifier(Type type, int groupId){
+		this.type = type;
+		this.groupId = groupId;
 	}
 	
 	public DependencyModifier(Type type){

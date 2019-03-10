@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import goald.analysis.DVMUpdater;
 import goald.behaviour.BehaviourSim;
 import goald.behaviour.CallFailure;
 import goald.behaviour.Profile;
@@ -22,7 +23,6 @@ import goald.model.util.ContextChangeBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.RepoQueryBuilder;
 import goald.planning.ContextChangeHandler;
-import goald.planning.DVMUpdater;
 import goald.planning.VERespository;
 
 public class BehaviourSimTest {
@@ -76,12 +76,5 @@ public class BehaviourSimTest {
 		agent.setRootDame(dame2);
 				
 		assertEquals("getPositionByGPS", agent.getRootDame().getChosenAlt().getImpl().identification );
-		
-		Profile profile = ProfileBuilder.create()
-				.withFailureRate("getPositionByGPS", 0.5f)
-				.build();
-		
-		BehaviourSim sim = new BehaviourSim(agent, profile);
-		sim.call(dame2, null);
 	}
 }

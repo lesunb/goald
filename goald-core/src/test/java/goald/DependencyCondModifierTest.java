@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import goald.analysis.DVMUpdater;
 import goald.mock.FeelingStationAdvisorRepoMock;
 import goald.model.CtxEvaluator;
 import goald.model.Dependency;
@@ -14,7 +15,6 @@ import goald.model.VE;
 import goald.model.util.AgentBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.RepoQueryBuilder;
-import goald.planning.DVMUpdater;
 import goald.planning.VERespository;
 
 public class DependencyCondModifierTest {

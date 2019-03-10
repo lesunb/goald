@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import goald.analysis.DVMUpdater;
 import goald.execution.DeploymentExecutor;
 import goald.mock.FeelingStationAdvisorRepoMock;
 import goald.model.ContextChange;
@@ -21,7 +22,6 @@ import goald.model.util.ContextChangeBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.RepoQueryBuilder;
 import goald.planning.ContextChangeHandler;
-import goald.planning.DVMUpdater;
 import goald.planning.DeploymentPlanner;
 import goald.planning.VERespository;
 

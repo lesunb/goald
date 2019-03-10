@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import goald.analysis.DVMUpdater;
 import goald.mock.FeelingStationAdvisorRepoMock;
 import goald.model.Alternative;
 import goald.model.Bundle;
@@ -17,7 +18,6 @@ import goald.model.VE;
 import goald.model.util.AgentBuilder;
 import goald.model.util.CtxEvaluatorBuilder;
 import goald.model.util.RepoQueryBuilder;
-import goald.planning.DVMUpdater;
 import goald.planning.VERespository;
 
 public class OrderAlternativesTest {

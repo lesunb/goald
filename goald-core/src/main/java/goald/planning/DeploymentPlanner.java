@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import goald.model.GoalDManager;
+import goald.analysis.DVMUpdater;
 import goald.model.Bundle;
 import goald.model.VE;
 import goald.model.DeploymentPlan;

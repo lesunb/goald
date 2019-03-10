@@ -11,10 +11,10 @@ public interface IRepository {
 	
 	int getSize();
 
-	Bundle queryForDefinition(Dependency goal);
+	Bundle queryForDefinition(String identification);
 
-	List<Bundle> queryForImplementations(Dependency goal);
+	List<Bundle> queryForImplementations(String identification);
 
-	List<Bundle> queryForDefinitions(Dependency goal);
+	List<Bundle> queryForDefinitions(String identification);
 	
 }

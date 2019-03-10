@@ -69,8 +69,8 @@ public class HashMapRepository implements IRepository {
 	 * @see goald.systems.IRepository#getArtifactsThatProvideGoal(java.lang.String)
 	 */
 	@Override
-	public Bundle queryForDefinition(Dependency dependency){
-		List<Bundle> bundlesList = getKnownBundles(BundleType.DEFINITION).get(dependency.getIdentication());
+	public Bundle queryForDefinition(String identification){
+		List<Bundle> bundlesList = getKnownBundles(BundleType.DEFINITION).get(identification);
 		if(bundlesList != null) {
 			return bundlesList.get(0);
 		}
@@ -81,9 +81,9 @@ public class HashMapRepository implements IRepository {
 	 * @see goald.systems.IRepository#getArtifactsThatProvideGoal(java.lang.String)
 	 */
 	@Override
-	public List<Bundle>  queryForImplementations(Dependency dependency){
+	public List<Bundle>  queryForImplementations(String identification){
 		List<Bundle> bundles = new ArrayList<>();
-		List<Bundle> bundlesList = getKnownBundles(BundleType.IMPLEMENTATION).get(dependency.getIdentication());
+		List<Bundle> bundlesList = getKnownBundles(BundleType.IMPLEMENTATION).get(identification);
 		if(bundlesList != null) {
 			bundles.addAll(bundlesList);
 		}
@@ -91,9 +91,9 @@ public class HashMapRepository implements IRepository {
 	}
 
 	@Override
-	public List<Bundle> queryForDefinitions(Dependency dependency) {
+	public List<Bundle> queryForDefinitions(String identification) {
 		List<Bundle> bundles = new ArrayList<>();
-		List<Bundle> bundlesList = getKnownBundles(BundleType.DEFINITION).get(dependency.getIdentication());
+		List<Bundle> bundlesList = getKnownBundles(BundleType.DEFINITION).get(identification);
 		if(bundlesList != null) {
 			bundles.addAll(bundlesList);
 		}

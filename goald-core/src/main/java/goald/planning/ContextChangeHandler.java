@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import goald.model.GoalDManager;
+import goald.analysis.DVMUpdater;
 import goald.model.ContextChange;
 import goald.model.VE;
 

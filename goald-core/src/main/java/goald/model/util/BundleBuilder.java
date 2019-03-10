@@ -7,12 +7,15 @@ import goald.model.Bundle;
 import goald.model.ContextCondition;
 import goald.model.Dependency;
 import goald.model.DependencyModifier;
+import goald.model.DependencyModifier.Type;
 import goald.model.Goal;
 import goald.model.QualityParameter;
 
 public class BundleBuilder {
 	
 	protected Bundle bundle;
+	
+	int anyGroupId = 0;
 	
 	protected BundleBuilder(){
 		this.bundle = new Bundle();
@@ -44,25 +47,30 @@ public class BundleBuilder {
 	}
 	
 	public BundleBuilder dependsOn(String identification){
-		this.bundle.getDepends().add(new Dependency(identification));
+		this.bundle.getDepends().add(new Dependency(Type.ONE, identification));
 		return this;
 	}
 	
-	public BundleBuilder dependsOnAny(String identification){
-		return this.dependsOn(identification, DependencyModifier.Type.ANY);
-	}
-	
-	public BundleBuilder dependsOn(String identification, DependencyModifier.Type modifier){
-		this.bundle.getDepends().add(new Dependency(identification, modifier));
+	public BundleBuilder dependsOnAny(String ...identifications){
+		
+		List<Dependency> dependencies = new ArrayList<>();
+		for(String identification: identifications) {
+			this.bundle.getDepends().add(new Dependency(Type.ANY, identification, anyGroupId++));	
+		}		 
 		return this;
 	}
-
+	
+	public BundleBuilder dependsOn(DependencyModifier.Type modifier, String identification){
+		this.bundle.getDepends().add(new Dependency(modifier, identification));
+		return this;
+	}
+	
 	public BundleBuilder dependsOnCond(String context, String identification) {
 		List<ContextCondition> conditions = new ArrayList<>();
 		conditions.add(new ContextCondition(context));
 		
-		this.bundle.getDepends().add(new Dependency(identification, 
-				DependencyModifier.Type.COND, conditions));
+		this.bundle.getDepends().add(new Dependency( 
+				new DependencyModifier(DependencyModifier.Type.COND, conditions), identification));
 		return this;
 	}
 	
@@ -73,13 +81,13 @@ public class BundleBuilder {
 		return this;
 	}
 	
-	public BundleBuilder dependsOnAny(String[] identifications){
-		for(String identification:identifications){
-			dependsOn(identification, DependencyModifier.Type.ANY);
-		}
-		return this;
-	}
-	
+//	public BundleBuilder dependsOnAny(String[] identifications){
+//		for(String identification:identifications){
+//			dependsOn(identification, DependencyModifier.Type.ANY);
+//		}
+//		return this;
+//	}
+//	
 	public BundleBuilder condition(String identification){
 		this.bundle.getConditions().add((new ContextCondition(identification)));
 		return this;

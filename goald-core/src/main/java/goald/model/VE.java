@@ -62,6 +62,13 @@ public class VE {
 	public Dependency getSatisfy() {
 		return satisfy;
 	}
+	
+	public DependencyModifier getDepModifier(){
+		if(this.satisfy == null) {
+			return null;
+		}
+		return this.satisfy.getModifier();
+	}
 
 	public void setSatisfy(Dependency satisfy) {
 		this.satisfy = satisfy;
