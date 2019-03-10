@@ -1,7 +1,5 @@
 package goald.model;
 
-import java.util.List;
-
 public class ContextCondition {
 	
 	private String label;

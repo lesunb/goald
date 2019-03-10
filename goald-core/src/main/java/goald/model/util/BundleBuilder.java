@@ -52,8 +52,6 @@ public class BundleBuilder {
 	}
 	
 	public BundleBuilder dependsOnAny(String ...identifications){
-		
-		List<Dependency> dependencies = new ArrayList<>();
 		for(String identification: identifications) {
 			this.bundle.getDepends().add(new Dependency(Type.ANY, identification, anyGroupId++));	
 		}		 

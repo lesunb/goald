@@ -43,6 +43,10 @@ public class DependencyModifier {
 	public Type getType() {
 		return type;
 	}
+	
+	public int getGroupId() {
+		return this.groupId;
+	}
 
 	public  List<ContextCondition> getConditions() {
 		return conditions;

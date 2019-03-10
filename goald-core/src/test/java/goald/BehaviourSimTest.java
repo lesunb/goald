@@ -8,10 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.analysis.DVMUpdater;
-import goald.behaviour.BehaviourSim;
 import goald.behaviour.CallFailure;
-import goald.behaviour.Profile;
-import goald.behaviour.ProfileBuilder;
 import goald.mock.FeelingStationAdvisorRepoMock;
 import goald.model.ContextChange;
 import goald.model.CtxEvaluator;

@@ -3,7 +3,6 @@ package goald.repository;
 import java.util.List;
 
 import goald.model.Bundle;
-import goald.model.Dependency;
 
 public interface IRepository {
 

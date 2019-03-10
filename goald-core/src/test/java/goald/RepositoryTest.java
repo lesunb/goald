@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import goald.model.Bundle;
-import goald.model.Dependency;
 import goald.model.util.BundleBuilder;
 import goald.repository.IRepository;
 import goald.repository.RepositoryBuilder;

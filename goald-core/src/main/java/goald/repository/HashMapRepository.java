@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import goald.model.Bundle;
-import goald.model.Dependency;
 import goald.model.Goal;
 
 public class HashMapRepository implements IRepository {
