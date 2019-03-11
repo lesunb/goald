@@ -3,8 +3,6 @@ package goald.evaluation.assertives;
 import java.util.ArrayList;
 import java.util.List;
 
-import goald.model.CtxEvaluator;
-
 public class AssertDeploymentBuilder {
 	
 	protected List<Assertive> assertives = new ArrayList<>();
