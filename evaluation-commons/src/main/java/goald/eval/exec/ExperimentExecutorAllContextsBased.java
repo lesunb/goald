@@ -97,7 +97,7 @@ public abstract class ExperimentExecutorAllContextsBased implements IExperiments
 				goalsChangeBuilding,
 				weightMapBuilding, evaluation);
 		
-		evaluation.getFactors().put("scenario", scenario);
+		evaluation.putFactor("scenario", scenario);
 
 		evaluation.begin();
 		// start the agent. It will deploy for the initial goals

@@ -1,6 +1,5 @@
 package goald.evaluation.assertives;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -21,13 +20,6 @@ public class AssertDeployment {
 	
 	
 	public Assertion assertObservation(Observation obs) {
-		
-		List<Observation> unkowns = new ArrayList<>();
-		
-//		if(applys.count() == 0) {
-//			unkowns.add(obs);
-//		}
-		// Stream<Assertive> applys = 
 		Assertion ass = assertives.stream()
 				//assertives that apply
 				.filter((assertive)-> check(obs.ctx, assertive.premise))

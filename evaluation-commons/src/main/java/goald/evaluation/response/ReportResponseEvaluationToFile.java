@@ -13,6 +13,12 @@ import goald.evaluation.ReportToFileAbstract;
 @Named
 public class ReportResponseEvaluationToFile extends ReportToFileAbstract<ResponseEvaluation> {
 
+	List<String> factorsKeys = new ArrayList<>();
+	List<String> measuresKeys = new ArrayList<>();
+	List<String> Keys = new ArrayList<>();
+	
+	private final String NA_str = "NA";
+	
 	public ReportResponseEvaluationToFile() {
 		
 	}
@@ -27,6 +33,7 @@ public class ReportResponseEvaluationToFile extends ReportToFileAbstract<Respons
 		List<String> lines = getLines(evaluation);
 		this.lines.addAll(lines);
 		this.flushAll();
+		
 	}
 	
 	@Override
@@ -39,26 +46,30 @@ public class ReportResponseEvaluationToFile extends ReportToFileAbstract<Respons
 	private boolean initLinesWithHeader(ResponseEvaluation eval) {
 		if(eval == null) {
 			return false;
-		}
-		
+		}		
 		StringBuffer sb = new StringBuffer();
-		eval.getFactors().entrySet()
-		.forEach(entry ->{
-			sb.append(entry.getKey() + "\t");
-		});
 		
+		//collumnsKeys.add("execIndex");
 		sb.append("execIndex\t");
+
+		eval.getOrderedFactorList()
+		.forEach(factor ->{
+			factorsKeys.add(factor );
+			sb.append(factor + "\t");
+		});
 		
 		Map<Integer, List<Measure>> indexedMesures  = eval.getIndexedMeasures();
 		Integer firstKey = (Integer) indexedMesures.keySet().toArray()[0];
 		
 		List<Measure> firstSetOfMeasures = indexedMesures.get(firstKey);
 		
-		
 		for(Measure measure: firstSetOfMeasures) {
 			String measurelabel = measure.getLabel();
+			
+			measuresKeys.add(measurelabel);
 			sb.append(measurelabel + "\t");
 		}
+		
 		sb.append("\r\n");		
 		this.lines = new ArrayList<>();
 		lines.add(sb.toString());
@@ -68,24 +79,26 @@ public class ReportResponseEvaluationToFile extends ReportToFileAbstract<Respons
 
 	private List<String> getLines(ResponseEvaluation eval) {
 		StringBuffer sb = new StringBuffer();
+		
 		List<String> lines = new ArrayList<>();
-		eval.getFactors().entrySet()
-		.forEach(entry ->{
-			sb.append(entry.getValue() + "\t");
+		factorsKeys
+		.forEach(key ->{
+			sb.append("\t" + toStrOrNa(eval.getFactors().get(key)));
 		});
 			
 		StringBuffer lineBuff = new StringBuffer();
-		for(Map.Entry<Integer,List<Measure>> measureEntry: eval.getIndexedMeasures().entrySet()) {
+		for(Map.Entry<Integer, List<Measure>> measureEntry: eval.getIndexedMeasures().entrySet()) {			
+			Integer execIndex = measureEntry.getKey();
+			// append execution index (id of a repetition with same factors)
+			lineBuff.append(execIndex);
 			
 			// append all factors
 			lineBuff.append(sb);
-			
-			// append execution index (id of a repetition with same factors)
-			lineBuff.append(measureEntry.getKey()+ "\t");
-			
+
 			// append each measure
-			measureEntry.getValue().forEach( measure ->{
-				lineBuff.append(measure.getValue()+ "\t");
+			Map<String, String> measuresMap = eval.getMeasuresMap(execIndex);
+			measuresKeys.forEach(key -> {
+				lineBuff.append("\t" + toStrOrNa(measuresMap.get(key)));
 			});
 			// end of line
 			lineBuff.append("\r\n");
@@ -95,5 +108,9 @@ public class ReportResponseEvaluationToFile extends ReportToFileAbstract<Respons
 			lineBuff.setLength(0); 
 		}
 		return lines;
+	}
+	
+	private String toStrOrNa(Object object) {
+		return (object == null) ? NA_str:  object.toString();
 	}
 }

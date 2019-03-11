@@ -98,7 +98,7 @@ public abstract class ExperimentExecutorTimelineBased implements IExperimentsExe
 		CtxMonitorBuilder ctxMonitorBuilder = CtxMonitorBuilder.create();
 		ctxChangesBuilding.accept(ctxMonitorBuilder);
 		CtxMonitor ctxMonitor = ctxMonitorBuilder.build();		
-		evaluation.getFactors().put("scenario", scenario);
+		evaluation.putFactor("scenario", scenario);
 
 		evaluation.begin();
 		// start the agent. It will deploy for the initial goals

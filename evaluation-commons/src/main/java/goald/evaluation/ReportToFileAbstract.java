@@ -51,6 +51,7 @@ public abstract class ReportToFileAbstract<T extends Evaluation<?>> implements I
 			lines.clear();
 		}
 		if(writedLines++ >= 100) {
+			System.gc();
 			pending -= 100;
 			float miles  = timer.split("100")/1000000;
 			float minutesToComplete = ((pending/100)*miles)/( 1000 * 60);

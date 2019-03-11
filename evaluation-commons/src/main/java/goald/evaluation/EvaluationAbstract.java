@@ -2,15 +2,18 @@ package goald.evaluation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public abstract class EvaluationAbstract<M> implements Evaluation<M> {
 
 	protected Map<String, Number> factors = new HashMap<>();
 	protected Map<String, Object> constant = new HashMap<>();
 	private Map<Integer, List<M>> indexedMeasures;
-
+	protected Set<String> orderedFactorsSet = new HashSet<>();
+	
 	public EvaluationAbstract() {
 		super();
 	}
@@ -51,7 +54,8 @@ public abstract class EvaluationAbstract<M> implements Evaluation<M> {
 	 */
 	@Override
 	public void putFactor(String factor, Number value) {
-		getFactors().put(factor, value);
+		getFactors().put(factor, value);		
+		orderedFactorsSet.add(factor);
 	}
 
 	/* (non-Javadoc)
@@ -74,6 +78,12 @@ public abstract class EvaluationAbstract<M> implements Evaluation<M> {
 	@Override
 	public Map<Integer, List<M>> getIndexedMeasures() {
 		return indexedMeasures;
+	}
+	
+	public List<String> getOrderedFactorList() {
+		List<String> list = new ArrayList<String>();
+		list.addAll(this.orderedFactorsSet);
+		return list;
 	}
 
 	/* (non-Javadoc)

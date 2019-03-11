@@ -17,7 +17,6 @@ import goald.evaluation.assertives.Assertion;
 import goald.evaluation.assertives.Assertion.AssertionResult;
 import goald.evaluation.assertives.Propositions;
 import goald.evaluation.response.ResponseEvaluation;
-import goald.evaluation.timeline.TickProducer;
 import goald.exputil.AllPossibleChangesIterator;
 import goald.exputil.AllPossibleChangesIterator.CtxChangesIterator;
 import goald.exputil.EchoService;
@@ -85,7 +84,7 @@ public abstract class ExperimentAssertDeploymentChangesBased implements IExperim
 			// eval.setFactors(factors);
 			for(ContextChange ctxChange: ctxChangesIterator.getCtxChanges()) {
 				ResponseEvaluation evaluation = baseEvaluation.blankCopy();
-				evaluation.getFactors().put("scenario", scenario);
+				evaluation.putFactor("scenario", scenario);
 				evaluation.getTimer().begin();
 				scenario(scenario, execIndex++, ctxChangesIterator.getCtxs(),
 						weightMapBuilding, goalsChangeBuilding, ctxChange,

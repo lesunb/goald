@@ -1,5 +1,8 @@
 package goald.evaluation.response;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import goald.eval.exec.ExecResult;
 import goald.evaluation.EvaluationAbstract;
 import goald.evaluation.Measure;
@@ -65,6 +68,14 @@ public class ResponseEvaluation extends EvaluationAbstract<Measure> {
 			this.timer.begin();
 		}
 		return this.timer;
+	}
+	
+	public Map<String, String> getMeasuresMap(Integer index) {
+		Map<String, String> measureMap  = new HashMap<>();
+		this.getIndexedMeasures().get(index).forEach(measure -> {
+			measureMap.put(measure.getLabel(), measure.getValue());
+		});
+		return measureMap;
 	}
 	
 	public void begin() {

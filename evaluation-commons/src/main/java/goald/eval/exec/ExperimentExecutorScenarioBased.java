@@ -85,7 +85,7 @@ public abstract class ExperimentExecutorScenarioBased implements IExperimentsExe
 		// contexts changes
 		List<ContextChange> changes = new ArrayList<>();
 		changesBuilding.accept(changes);
-		evaluation.getFactors().put("scenario", scenario);
+		evaluation.putFactor("scenario", scenario);
 
 		evaluation.split(execIndex, "initing_agent");
 		// start the agent. It will deploy for the initial goals
