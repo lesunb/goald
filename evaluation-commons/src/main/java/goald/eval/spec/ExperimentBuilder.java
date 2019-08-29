@@ -9,6 +9,8 @@ public class ExperimentBuilder {
 	
 	protected Experiment experiment;
 	
+	private long specIndex = 0;
+	
 	protected ExperimentBuilder(){
 		this.experiment = new Experiment();
 	}
@@ -31,9 +33,11 @@ public class ExperimentBuilder {
 		
 		//set exec eval with factors values from spec
 		ResponseEvaluation eval = this.experiment.getEvaluation().blankCopy();
+		
 		eval.getFactorList().forEach((factor)->{
 			eval.putFactor(factor, spec.getInteger(factor));
 		});
+		eval.putFactor("specIndex",(Number) this.specIndex++);
 		exec.setEvaluation(eval);
 		
 		this.experiment.toExecute(exec);

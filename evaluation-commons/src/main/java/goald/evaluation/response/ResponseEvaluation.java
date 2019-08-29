@@ -52,6 +52,7 @@ public class ResponseEvaluation extends EvaluationAbstract<Measure> {
 		Long value = getTimer().split(label);
 		Measure mesure = new Measure(label, value);
 		getMeasures(execIndex).add(mesure);
+		this.orderedMeasuresKeysSet.add(label);
 	}
 		
 	public void setResult(ExecResult result) {

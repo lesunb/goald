@@ -2,7 +2,7 @@ package goald.evaluation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +12,8 @@ public abstract class EvaluationAbstract<M> implements Evaluation<M> {
 	protected Map<String, Number> factors = new HashMap<>();
 	protected Map<String, Object> constant = new HashMap<>();
 	private Map<Integer, List<M>> indexedMeasures;
-	protected Set<String> orderedFactorsSet = new HashSet<>();
+	protected Set<String> orderedFactorsSet = new LinkedHashSet<>();
+	protected Set<String> orderedMeasuresKeysSet = new LinkedHashSet<>();
 	
 	public EvaluationAbstract() {
 		super();
@@ -85,6 +86,13 @@ public abstract class EvaluationAbstract<M> implements Evaluation<M> {
 		list.addAll(this.orderedFactorsSet);
 		return list;
 	}
+	
+	public List<String> getOrderedMeasuresList() {
+		List<String> list = new ArrayList<String>();
+		list.addAll(this.orderedMeasuresKeysSet);
+		return list;
+	}
+
 
 	/* (non-Javadoc)
 	 * @see goald.evaluation.Evaluation#getConstants()

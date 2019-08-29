@@ -59,16 +59,20 @@ public class ReportResponseEvaluationToFile extends ReportToFileAbstract<Respons
 		});
 		
 		Map<Integer, List<Measure>> indexedMesures  = eval.getIndexedMeasures();
-		Integer firstKey = (Integer) indexedMesures.keySet().toArray()[0];
-		
-		List<Measure> firstSetOfMeasures = indexedMesures.get(firstKey);
-		
-		for(Measure measure: firstSetOfMeasures) {
-			String measurelabel = measure.getLabel();
-			
-			measuresKeys.add(measurelabel);
-			sb.append(measurelabel + "\t");
-		}
+//		Integer firstKey = (Integer) indexedMesures.keySet().toArray()[0];		
+//		List<Measure> firstSetOfMeasures = indexedMesures.get(firstKey);
+//		
+//		for(Measure measure: firstSetOfMeasures) {
+//			String measurelabel = measure.getLabel();
+//			
+//			measuresKeys.add(measurelabel);
+//			sb.append(measurelabel + "\t");
+//		}
+		eval.getOrderedMeasuresList()
+		.forEach(key ->{
+			measuresKeys.add(key );
+			sb.append(key + "\t");
+		});
 		
 		sb.append("\r\n");		
 		this.lines = new ArrayList<>();

@@ -56,13 +56,9 @@ public abstract class AutonomousAgent {
 		damUpdated();
 		DeploymentPlan adaptPlan;
 		adaptPlan = deploymentPlanner.createPlan();
-		if(adaptPlan!=null && !adaptPlan.isEmpty()) {
-			onDeploymentChangePlanned(adaptPlan);
-		}
+		onDeploymentChangePlanned(adaptPlan);
 		executor.execute(adaptPlan);
-		if(adaptPlan!=null && !adaptPlan.isEmpty()) {
-			onDeploymentChangeExecuted(change, adaptPlan);
-		}
+		onDeploymentChangeExecuted(change, adaptPlan);
 	}
 	
 	public void init(VERespository repo) {

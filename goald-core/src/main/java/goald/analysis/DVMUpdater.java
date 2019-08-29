@@ -1,4 +1,4 @@
-package goald.planning;
+package goald.analysis;
 
 import java.util.List;
 
@@ -7,9 +7,11 @@ import goald.model.Bundle;
 import goald.model.CtxEvaluator;
 import goald.model.Dependency;
 import goald.model.DependencyModifier;
+import goald.model.DependencyModifier.Type;
 import goald.model.GoalDManager;
 import goald.model.QualityParameter;
 import goald.model.VE;
+import goald.planning.VERespository;
 
 public class DVMUpdater {
 	
@@ -23,6 +25,10 @@ public class DVMUpdater {
 	
 	public List<VE> resolveDepenencies(List<Dependency> dependencies) {
 		List<VE> ves = repo.queryRepo(dependencies);
+		
+		if(ves == null || ves.isEmpty()) {
+			throw new IllegalStateException("no VES for " + dependencies);
+		}
 		
 		for(VE ve:ves) {
 			resolveVE(ve);
@@ -47,34 +53,57 @@ public class DVMUpdater {
 				if(!ctx.check(alt.getCtxReq())) {
 					//context not satisfied, can't apply this alternative
 					alt.setResolved(false);
-				}else {
+				} else if(alt.getDependencies().isEmpty()){
+					alt.setResolved(true);
+				} else {
 					// context satisfied, resolve dependencies
 					boolean resolved = true;
-					if(!alt.getDependencies().isEmpty()) {
-						List<VE> depVElist = repo.queryForDependencies(alt);
-						alt.setListDepVE(depVElist);
-						
-						if(depVElist == null) {
-							throw new RuntimeException("dependency goals not resolved" + alt.getDependencies());
-						}
-						
-						for(VE dependency: depVElist) {
-							VE result = resolveVE(dependency);
-							if(!result.isAchievable()) {
-								resolved = false;
-								break;
-							}
+					List<VE> depVElist = repo.queryForDependencies(alt);
+					alt.setListDepVE(depVElist);
+					
+					if(depVElist == null) {
+						throw new RuntimeException("dependency goals not resolved" + alt.getDependencies());
+					}
+					
+					for(VE dependency: depVElist) {
+						VE result = resolveVE(dependency);
+						if(!dependencyIsSatisfiable(result)) {
+							resolved = false;
+							break;
 						}
 					}
+					resolved = resolved && hasAtLeastOneAltForEveryAnyDep(alt);
 					alt.setResolved(resolved);
 				}
-				selectBetterAlternativeSet(ve, alt);
+				selectBetterAlternativeSet(ve, alt);		
 			}
+			
 			boolean isSatifiable = checkAltValidity(ve, ctx);
 			ve.setIsAchievable(isSatifiable);	
 		}
 		
 		return ve;
+	}
+
+	private boolean hasAtLeastOneAltForEveryAnyDep(Alternative alt) {
+		boolean hasAnyDependency = false;
+		boolean hasAnyAchievable = false;
+		
+		for(VE ve: alt.getListDepVE()) {
+			if(ve.getDepModifier().getType() == Type.ANY) {
+				hasAnyDependency = true;
+				if(ve.isAchievable()) {
+					hasAnyAchievable = true;
+					break;
+				}
+			}
+		}
+		return !hasAnyDependency || hasAnyAchievable;
+	}
+
+	public boolean dependencyIsSatisfiable(VE ve) {
+		return ve.isAchievable() ||
+				ve.getDepModifier().getType() == Type.ANY;
 	}
 
 	private void selectBetterAlternativeSet(VE ve, Alternative alt) {
@@ -108,7 +137,6 @@ public class DVMUpdater {
 		return ctx.check(ve.getSatisfy().getModifier().getConditions());
 	}
 
-	@Deprecated
 	private Alternative getBestAlternative(Alternative currentAlt, Alternative newAlt) {
 		//check  if newalt is a viable alternative
 		if(newAlt == null || !newAlt.getResolved()) {
