@@ -21,7 +21,6 @@ import goald.evaluation.assertives.Assertion.AssertionResult;
 import goald.evaluation.response.ResponseEvaluation;
 import goald.evaluation.response.SplitTimer;
 import goald.evaluation.tas.TASRepository;
-import goald.evaluation.timeline.TickProducer;
 import goald.planning.VERespository;
 import goald.repository.IRepository;
 

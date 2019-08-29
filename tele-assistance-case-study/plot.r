@@ -3,7 +3,7 @@ library(dplyr)
 
 setwd("result")
 
-dataframe <- read.csv(file="tsa_dataset1551293710806" , header=TRUE, sep= "\t", row.names=NULL)
+dataframe <- read.csv(file="tsa_dataset1551293710806" , header=TRUE, sep= "\t", row.names=NULL,  stringsAsFactors = FALSE)
 
 #dataframe <-dataframe[which(dataframe$label!="!battery-is-low"),]
 #dataframe <-dataframe[which(dataframe$label!="!patient-is-ok"),]
@@ -19,7 +19,43 @@ dataframe$color[dataframe$type=="failure"] <- "red"
 dataframe$label[dataframe$type=="failure"] <- "system_available"
 dataframe$name <- dataframe$label
 
-dataframe$name[dataframe$label=="PushButton-impl"] <- "PushButton"
+dataframe$label[dataframe$label=="PushButton-impl"] <- "PushButton"
+dataframe$label[dataframe$label=="ProvideSelfDiagnosedEmergenciesSupport-impl"] <-  "ProvideSelfDiagnosedE.Support"
+dataframe$label[dataframe$label=="ProvideHalthSupport-impl"] <- "ProvideHalthSupport"
+dataframe$label[dataframe$label=="AlarmService-impl"] <- "AlarmService"
+dataframe$label[dataframe$label=="GetSensedData-impl"] <- "GetSensedData"
+dataframe$label[dataframe$label=="MonitorPatient-impl"] <- "MonitorPatient"
+dataframe$label[dataframe$label=="RemoteAnalysis-impl"] <- "RemoteAnalysis"
+dataframe$label[dataframe$label=="ProvideAutomatedLifeSupport-impl"] <- "ProvideAutomatedLifeSupport"
+dataframe$label[dataframe$label=="SendSMS-impl"] <- "SendSMS"
+dataframe$label[dataframe$label=="LocalAnalysis-impl"] <- "LocalAnalysis"
+dataframe$label[dataframe$label=="RemoteAnalysis-impl"] <- "RemoteAnalysis"
+dataframe$label[dataframe$label=="AlarmService-impl"] <- "AlarmService"
+dataframe$label[dataframe$label=="EnactTreatment-impl"] <- "EnactTreatment"
+dataframe$label[dataframe$label=="AdministerMedicine-impl"] <- "AdministerMedicine"
+dataframe$label[dataframe$label=="ChangeDrug-impl"] <- "ChangeDrug"
+dataframe$label[dataframe$label=="ChangeDose-impl"] <- "ChangeDose"
+dataframe$label[dataframe$label=="SendSMS-impl"] <- "SendSMS"
+dataframe$label[dataframe$label=="LocalAnalysis-impl"] <- "LocalAnalysis"
+
+
+
+dataframe$start <- dataframe$start/(60*60*1000)
+dataframe$end <- dataframe$end/(60*60*1000)
+
+dataframe <-dataframe[order(-1*dataframe$plotIndex),]
+
+dataframe$label <- factor(dataframe$label, levels=unique(dataframe$label))
+avail = aggregate( (end-start) ~ label, data = dataframe, sum)
+dataframe<-merge(dataframe, avail, by="label", all.x=TRUE)
+
+fds = dataframe[dataframe$type == 'failure' ,]
+fds = fds[fds$start !=0,] #remove unavailable at start
+
+dataframe$label[dataframe$type=="failure"] <- "system_available"
+
+dataframe$label[dataframe$label=="PushButton-impl"] <- "PushButton"
+
 dataframe$name[dataframe$label=="ProvideSelfDiagnosedEmergenciesSupport-impl"] <-  "ProvideSelfDiagnosedEmergenciesSupport"
 dataframe$name[dataframe$label=="ProvideHalthSupport-impl"] <- "ProvideHalthSupport"
 dataframe$name[dataframe$label=="AlarmService-impl"] <- "AlarmService"
@@ -38,21 +74,6 @@ dataframe$name[dataframe$label=="ChangeDose-impl"] <- "ChangeDose"
 dataframe$name[dataframe$label=="SendSMS-impl"] <- "SendSMS"
 dataframe$name[dataframe$label=="LocalAnalysis-impl"] <- "LocalAnalysis"
 
-
-
-dataframe$start <- dataframe$start/(60*60*1000)
-dataframe$end <- dataframe$end/(60*60*1000)
-
-dataframe <-dataframe[order(-1*dataframe$plotIndex),]
-
-dataframe$label <- factor(dataframe$label, levels=unique(dataframe$label))
-avail = aggregate( (end-start) ~ label, data = dataframe, sum)
-dataframe<-merge(dataframe, avail, by="label", all.x=TRUE)
-
-fds = dataframe[dataframe$type == 'failure' ,]
-fds = fds[fds$start !=0,] #remove unavailable at start
-
-dataframe$label[dataframe$type=="failure"] <- "system_available"
 
 g2 <- ggplot() +
   #context, bundles and system
