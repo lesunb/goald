@@ -20,8 +20,7 @@ public class ScalabilityExperiments {
 
 		// get experiments
 		@SuppressWarnings("unchecked")
-		List<Experiment> experiments = getExperiments(
-				CreateExperimentsToEvaluateScalabilityOverPlanSize.class).exec();
+		List<Experiment> experiments = getExperiments(CreateExperimentsToEvaluateScalabilityOverPlanSize.class).exec();
 		exec(experiments);
 	}
 
@@ -31,8 +30,8 @@ public class ScalabilityExperiments {
 
 		// get experiments
 		@SuppressWarnings("unchecked")
-		List<Experiment> experiments = getExperiments(
-				CreateExperimentsToEvaluateScalabilityOverVariabilityLevel.class).exec();
+		List<Experiment> experiments = getExperiments(CreateExperimentsToEvaluateScalabilityOverVariabilityLevel.class)
+				.exec();
 		exec(experiments);
 	}
 

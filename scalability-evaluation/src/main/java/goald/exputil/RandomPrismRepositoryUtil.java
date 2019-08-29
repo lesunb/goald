@@ -28,6 +28,15 @@ public class RandomPrismRepositoryUtil {
 		return null;
 	}
 	
+	@SafeVarargs
+	public static <T> T randomChoice(float prob, T... choises) {
+		if(prob > Math.random()) {
+			return choises[0];
+		}else {
+			return choises[1];
+		}
+	}
+	
 	/**
 	 * Get a k-combination of elements in Deque 'contexts'
 	 * @param variables
