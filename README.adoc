@@ -56,7 +56,18 @@ It should come with Eclipse, don't worry.
 
  * Right click in the goald-core project
  * Run As > JUnit Tests
+ 
+ 
+== Run TAS Example (Timeline) ==
 
+ * Right click in the tele-assistance-case-study project
+ * Run As > Run Configurations > Java Application
+ * Choose goald.evaluation.tas.TASMain as 'Main class'
+ * In the tab 'Arguments', edit 'VM arguments:' with "--add-opens java.base/java.lang=ALL-UNNAMED"
+ * The evaluation experiment should init and you should see logs into the console of Eclipse.
+ * Final result should be created at tele-assistance-case-study > result
+ * Evaluation param can be changed at the class
+ 
 == Run Scalability Evaluation
 
  * Right click in the evaluation project
