@@ -59,9 +59,9 @@ public class PrismRespositoryBuilderTest {
 		int level = 0;
 		do {
 			level++;
-			def = setup.getRepository().queryForDefinition(nextGoal);
+			def = setup.getRepository().queryForDefinition(nextGoal.getIdentification());
 			assertNotNull(def);
-			impl = setup.getRepository().queryForImplementations(nextGoal).get(0);
+			impl = setup.getRepository().queryForImplementations(nextGoal.getIdentification()).get(0);
 			assertNotNull(impl);
 			if (impl.getDepends().size() > 0) {
 				nextGoal = impl.getDepends().get(0);
@@ -74,6 +74,6 @@ public class PrismRespositoryBuilderTest {
 
 		assertEquals(2, impl.getConditions().size());
 		assertEquals(5, level);
-		assertEquals("num of alternatives", 4, setup.getRepository().queryForImplementations(query).size());
+		assertEquals("num of alternatives", 4, setup.getRepository().queryForImplementations(query.getIdentification()).size());
 	}
 }

@@ -4,10 +4,10 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.jboss.weld.util.collections.ArraySet;
 
 /**
  * 
@@ -87,7 +87,7 @@ public class RandomPrismRepositoryUtil {
 	}
 	
 	public static Set<String> getPElements(final List<String> origin, int p){
-		Set<String> result = new ArraySet<String>();
+		Set<String> result = new HashSet<String>();
 		while(result.size() < p){
 			Double luck = Math.floor(Math.random()*origin.size());
 			result.add(origin.get(luck.intValue()));
